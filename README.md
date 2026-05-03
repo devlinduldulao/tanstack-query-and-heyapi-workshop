@@ -1,0 +1,910 @@
+# TanStack Query × Hey API — Self-Paced Workshop
+
+A self-guided, hands-on workshop for **senior React developers** who already know React, TypeScript, HTTP, and the basics of TanStack Query, and now want production-grade patterns with [TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview) plus [Hey API](https://heyapi.dev/openapi-ts/get-started) code generation.
+
+Clone the repo and everything is here: activities, problems, reference solutions, and instructions.
+
+## Quick Start
+
+```bash
+git clone <this-repo>
+cd tanstack-query-and-heyapi-workshop
+npm install
+npm run openapi-ts   # one-time: generate src/api/client/ from swagger.yaml
+npm run dev
+```
+
+Then open **<http://localhost:5173/bootcamp>** and choose the **4-hour workshop** or **8-hour workshop** track.
+
+The root `/` route still hosts the original demo app (Books / Authors / Activities) used as the playground for several exercises.
+
+## Who This Is For
+
+This is built for senior React developers who have shipped production React apps and have used TanStack Query at least once. It assumes you are comfortable with hooks, TypeScript object types, async/await, REST APIs, and reading generated code.
+
+This is intentionally not a beginner React course. The first TanStack Query exercises move quickly from `useQuery` into cache policy, query factories, cancellation, optimistic rollback, generated query keys, Zod validation, prefetching, and production debugging.
+
+## What You'll Build
+
+Two versions of the same senior-level curriculum:
+
+| Track  | Use When                              | Skills Unlocked                                                              |
+| ------ | ------------------------------------- | ---------------------------------------------------------------------------- |
+| 4-hour | You need the compressed essentials    | Query options, optimistic cache, Hey API adoption, Zod mutations, cache bugs |
+| 8-hour | You want the full hands-on experience | Everything in 4-hour plus state UX, invalidation, Suspense, prefetch, CRUD   |
+
+See [WORKSHOP_SCHEDULE.md](./WORKSHOP_SCHEDULE.md) for the full breakdown.
+
+## How the Workshop Is Organized
+
+```
+src/challenges/
+├── 4-hour/
+│   ├── exercise-N.tsx                  ← compressed starter files
+│   ├── challenge-2-bug.tsx             ← compressed bug challenge
+│   ├── instructions/                   ← markdown guidance for selected activities
+│   └── solutions/                      ← reference solutions
+├── 8-hour/
+│   ├── exercise-N.tsx                  ← starter file with TODOs (you edit this)
+│   ├── challenge-1-feature.tsx         ← end-of-workshop feature challenge
+│   ├── challenge-2-bug.tsx             ← end-of-workshop bug challenge
+│   ├── instructions/                   ← markdown guidance for each item
+│   │   ├── exercise-N.md
+│   │   ├── challenge-1-feature.md
+│   │   └── challenge-2-bug.md
+│   └── solutions/                      ← reference solutions
+│       ├── exercise-N-end.tsx
+│       ├── challenge-1-feature-end.tsx
+│       └── challenge-2-bug-end.tsx
+└── homework/
+  ├── 4-hour-homework.md              ← compressed capstone practice
+  └── 8-hour-homework.md              ← full capstone practice
+```
+
+The bootcamp UI (sidebar, instructions panel, solution toggle, completion tracking) lives at `/bootcamp` and is built with the same TanStack Router + shadcn/ui stack you're learning. Your progress is persisted in `localStorage`.
+
+## Why Hey API Gets a Whole Part
+
+The workshop is designed to make the value concrete, not theoretical. Attendees compare manual axios against generated SDK calls, replace hand-written request/response assumptions with generated contracts, use generated TanStack Query `*Options` and `*QueryKey` helpers, validate mutation payloads with generated Zod schemas, and see how an OpenAPI spec change turns into a useful TypeScript diff instead of a production surprise.
+
+## Recommended Workflow
+
+1. Open an exercise from the sidebar.
+2. Read the **Challenge Instructions** panel.
+3. Edit the matching file under `src/challenges/4-hour/` or `src/challenges/8-hour/` — hot reload shows your changes instantly.
+4. Stuck? Click **Show Solution** to load `solutions/exercise-N-end.tsx` side by side.
+5. Done? Click **Mark Complete** to update your progress.
+6. After the workshop: complete the **Homework** entry for extra practice.
+
+## Useful Commands
+
+| Command              | Purpose                                          |
+| -------------------- | ------------------------------------------------ |
+| `npm run dev`        | Start the workshop + demo app                    |
+| `npm run openapi-ts` | Regenerate `src/api/client/` from `swagger.yaml` |
+| `npm run typecheck`  | Type-check the project                           |
+| `npm run build`      | Production build                                 |
+
+---
+
+# Hey API — Generated Code Deep Dive
+
+> The remainder of this README is a reference deep-dive into every folder and file generated by [Hey API](https://heyapi.dev/) (`@hey-api/openapi-ts`). Read it once you've finished Part 2 of the workshop.
+
+---
+
+## Table of Contents
+
+1. [What is Hey API?](#what-is-hey-api)
+2. [How Code Generation Works](#how-code-generation-works)
+3. [Folder Structure Overview](#folder-structure-overview)
+4. [Top-Level Files](#top-level-files)
+   - [`client.gen.ts`](#clientgents) — The singleton API client
+   - [`index.ts`](#indexts) — Public barrel export
+   - [`sdk.gen.ts`](#sdkgents) — SDK functions (the actual API calls)
+   - [`types.gen.ts`](#typesgents) — TypeScript types
+   - [`zod.gen.ts`](#zodgents) — Zod validation schemas
+5. [The `@tanstack/` Folder](#the-tanstack-folder)
+   - [`react-query.gen.ts`](#react-querygents) — TanStack Query hooks
+6. [The `client/` Folder](#the-client-folder)
+   - [`client.gen.ts`](#clientclientgents) — Axios client factory
+   - [`index.ts`](#clientindexts) — Client barrel export
+   - [`types.gen.ts`](#clienttypesgents) — Client infrastructure types
+   - [`utils.gen.ts`](#clientutilsgents) — Client utilities
+7. [The `core/` Folder](#the-core-folder)
+   - [`auth.gen.ts`](#coreauthgents) — Authentication helpers
+   - [`bodySerializer.gen.ts`](#corebodyserializergents) — Body serializers
+   - [`params.gen.ts`](#coreparamsgents) — Parameter mapping
+   - [`pathSerializer.gen.ts`](#corepathserializergents) — URL path serialization
+   - [`queryKeySerializer.gen.ts`](#corequerykeycerializergents) — Query key serialization
+   - [`serverSentEvents.gen.ts`](#coreserversenteventsgents) — SSE streaming support
+   - [`types.gen.ts`](#coretypesgents) — Core type definitions
+   - [`utils.gen.ts`](#coreutilsgents) — URL building and config merging
+8. [How Everything Connects](#how-everything-connects)
+9. [The Generation Config](#the-generation-config)
+10. [Usage Examples](#usage-examples)
+11. [How to Convince React Developers to Try It](#how-to-convince-react-developers-to-try-it)
+
+---
+
+## What is Hey API?
+
+**Hey API** (`@hey-api/openapi-ts`) is a code generation tool that reads an **OpenAPI specification** (Swagger) and produces a fully type-safe TypeScript client. Think of it as a bridge between your backend's API contract (the OpenAPI spec) and your frontend's TypeScript code.
+
+### Why does this matter?
+
+Without Hey API, you'd manually:
+
+1. Write TypeScript types for every request and response
+2. Write fetch/axios calls for every endpoint
+3. Write TanStack Query hooks for every query and mutation
+4. Write Zod schemas if you need runtime validation
+5. Keep all of the above **in sync** with the backend every time it changes
+
+Hey API automates all of that. One command, and your entire API layer is generated, type-safe, and ready to use.
+
+```
+OpenAPI Spec (swagger.yaml)  →  Hey API  →  TypeScript Client + Types + Hooks + Schemas
+```
+
+---
+
+## How Code Generation Works
+
+When you run:
+
+```bash
+npm run openapi-ts
+```
+
+Hey API reads `openapi-ts.config.ts` and:
+
+1. **Parses** the `swagger.yaml` file (your OpenAPI spec)
+2. **Generates** TypeScript code based on the enabled **plugins**
+3. **Post-processes** the output with `oxlint` and `oxfmt` (linting and formatting)
+4. **Writes** everything to `src/api/client/`
+
+The key insight: **you never edit these files**. If the API changes, you update the OpenAPI spec and re-run the generator. Your entire API layer stays perfectly in sync.
+
+---
+
+## Folder Structure Overview
+
+```
+src/api/client/
+├── client.gen.ts              ← Singleton API client instance
+├── index.ts                   ← Barrel export (public API surface)
+├── sdk.gen.ts                 ← SDK functions (GET, POST, PUT, DELETE wrappers)
+├── types.gen.ts               ← TypeScript types for all models + request/response shapes
+├── zod.gen.ts                 ← Zod schemas for runtime validation
+│
+├── @tanstack/                 ← TanStack Query integration
+│   └── react-query.gen.ts     ← Query options, query keys, and mutation configs
+│
+├── client/                    ← HTTP client infrastructure (Axios-based)
+│   ├── client.gen.ts          ← createClient() factory function
+│   ├── index.ts               ← Client barrel export
+│   ├── types.gen.ts           ← Client config, options, and result types
+│   └── utils.gen.ts           ← Query serializer, auth, URL building, config merging
+│
+└── core/                      ← Low-level shared utilities
+    ├── auth.gen.ts            ← Auth token resolution (Bearer, Basic, API Key)
+    ├── bodySerializer.gen.ts  ← FormData, JSON, URLSearchParams serializers
+    ├── params.gen.ts          ← Parameter slot mapping (body, path, query, headers)
+    ├── pathSerializer.gen.ts  ← URL path parameter serialization
+    ├── queryKeySerializer.gen.ts  ← TanStack Query key serialization
+    ├── serverSentEvents.gen.ts    ← Server-Sent Events (SSE) streaming client
+    ├── types.gen.ts           ← Core type definitions (Client, Config, HttpMethod)
+    └── utils.gen.ts           ← URL construction, path param resolution
+```
+
+---
+
+## Top-Level Files
+
+These are the files you interact with most directly. They're the "public API" of the generated client.
+
+### `client.gen.ts`
+
+**Purpose:** Creates and exports the singleton API client instance.
+
+**Importance:** ⭐⭐⭐⭐⭐ (Critical) — This is the single client instance that every SDK function uses by default.
+
+```ts
+// What it does
+export const client = createClient(createConfig<ClientOptions2>());
+```
+
+**Why it matters:**
+
+- It's the "entry point" to the HTTP layer. Every API call flows through this client.
+- You configure it once (base URL, auth headers, interceptors) and every generated SDK function uses it automatically.
+- You can override it per-request by passing a custom `client` option.
+
+**How you use it:**
+
+```ts
+import { client } from "@/api/client/client.gen";
+
+// Configure the base URL (typically done once at app startup)
+client.setConfig({ baseURL: "https://fakerestapi.azurewebsites.net" });
+```
+
+---
+
+### `index.ts`
+
+**Purpose:** Barrel export file — re-exports everything consumers need from one clean import path.
+
+**Importance:** ⭐⭐⭐⭐ (High) — Provides a clean public API surface.
+
+**Why it matters:**
+
+- Instead of importing from deeply nested paths, you import from `@/api/client`.
+- It re-exports all SDK functions (`getApiV1Activities`, `postApiV1Books`, etc.) and all types (`Activity`, `Book`, `Author`, etc.).
+- Think of it as the "table of contents" of your generated API.
+
+**How you use it:**
+
+```ts
+// Clean imports through the barrel
+import { getApiV1Activities } from "@/api/client";
+import type { Activity, Book } from "@/api/client";
+```
+
+---
+
+### `sdk.gen.ts`
+
+**Purpose:** Contains one typed function per API endpoint — your entire SDK.
+
+**Importance:** ⭐⭐⭐⭐⭐ (Critical) — This is where the actual API calls live.
+
+For each endpoint in your OpenAPI spec, Hey API generates a function like:
+
+```ts
+// GET /api/v1/Activities → getApiV1Activities()
+export const getApiV1Activities = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ActivitiesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ActivitiesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Activities",
+    ...options,
+  });
+
+// GET /api/v1/Activities/{id} → getApiV1ActivitiesById()
+export const getApiV1ActivitiesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ActivitiesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ActivitiesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Activities/{id}",
+    ...options,
+  });
+```
+
+**Key design decisions:**
+
+1. **Each function maps to one endpoint** — `GET /api/v1/Books` → `getApiV1Books()`, `POST /api/v1/Books` → `postApiV1Books()`
+2. **Type-safe options** — The `options` parameter knows exactly what `path`, `body`, and `query` params each endpoint expects
+3. **Uses the singleton client** — Falls back to the shared `client` instance, but you can override with `options.client`
+4. **ThrowOnError generic** — Controls whether errors are thrown or returned in the response shape. By default, errors are returned (not thrown), making error handling explicit.
+
+**What gets generated for each HTTP method:**
+
+| OpenAPI Endpoint                 | Generated Function            | Required Params    |
+| -------------------------------- | ----------------------------- | ------------------ |
+| `GET /api/v1/Activities`         | `getApiV1Activities()`        | None (optional)    |
+| `POST /api/v1/Activities`        | `postApiV1Activities()`       | `body` (Activity)  |
+| `GET /api/v1/Activities/{id}`    | `getApiV1ActivitiesById()`    | `path.id` (number) |
+| `PUT /api/v1/Activities/{id}`    | `putApiV1ActivitiesById()`    | `path.id` + `body` |
+| `DELETE /api/v1/Activities/{id}` | `deleteApiV1ActivitiesById()` | `path.id`          |
+
+---
+
+### `types.gen.ts`
+
+**Purpose:** TypeScript type definitions for every model, request, and response in your API.
+
+**Importance:** ⭐⭐⭐⭐⭐ (Critical) — The type safety foundation of everything.
+
+This file contains three categories of types:
+
+#### 1. Model Types (from `components.schemas` in OpenAPI)
+
+```ts
+export type Activity = {
+  id?: number;
+  title?: string | null;
+  dueDate?: string;
+  completed?: boolean;
+};
+
+export type Book = {
+  id?: number;
+  title?: string | null;
+  description?: string | null;
+  pageCount?: number;
+  excerpt?: string | null;
+  publishDate?: string;
+};
+```
+
+These map directly to the `schemas` section of your OpenAPI spec. Every property, its type, and its optionality are derived from the spec.
+
+#### 2. Request Data Types (what you send)
+
+```ts
+// Describes what GET /api/v1/Activities/{id} expects
+export type GetApiV1ActivitiesByIdData = {
+  body?: never; // No body for GET requests
+  path: { id: number }; // Required path parameter
+  query?: never; // No query params
+  url: "/api/v1/Activities/{id}";
+};
+
+// Describes what PUT /api/v1/Activities/{id} expects
+export type PutApiV1ActivitiesByIdData = {
+  body?: Activity; // Optional request body
+  path: { id: number }; // Required path parameter
+  query?: never; // No query params
+  url: "/api/v1/Activities/{id}";
+};
+```
+
+**Why this is powerful:** TypeScript will catch bugs at compile time. If you pass `{ id: "abc" }` to a function expecting `{ id: number }`, you get a red squiggly _before_ you even run the code.
+
+#### 3. Response Types (what you get back)
+
+```ts
+export type GetApiV1ActivitiesResponses = {
+  200: Array<Activity>; // Success returns Activity[]
+};
+
+export type GetApiV1ActivitiesResponse = GetApiV1ActivitiesResponses[keyof GetApiV1ActivitiesResponses];
+// Resolves to: Array<Activity>
+```
+
+The response types use a mapped object pattern (`{ 200: ... }`) that maps HTTP status codes to their response shapes, then extracts the union.
+
+---
+
+### `zod.gen.ts`
+
+**Purpose:** Zod schemas for runtime validation of API data.
+
+**Importance:** ⭐⭐⭐⭐ (High) — Adds runtime safety on top of compile-time safety.
+
+**Why TypeScript types alone aren't enough:**
+TypeScript types only exist at **compile time**. Once your code is running in the browser, types are gone — JavaScript doesn't know about them. If the API returns unexpected data (wrong types, missing fields, extra fields), TypeScript can't help you.
+
+Zod schemas validate data at **runtime**:
+
+```ts
+// Model schema — validates an Activity object at runtime
+export const zActivity = z.object({
+  id: z.int().min(-2147483648).max(2147483647).optional(),
+  title: z.string().nullish(),
+  dueDate: z.iso.datetime().optional(),
+  completed: z.boolean().optional(),
+});
+
+// Response schema — validates the full response
+export const zGetApiV1ActivitiesResponse = z.array(zActivity);
+
+// Path parameter schema — validates path params
+export const zGetApiV1ActivitiesByIdPath = z.object({
+  id: z.int().min(-2147483648).max(2147483647),
+});
+
+// Request body schema — validates request bodies
+export const zPostApiV1ActivitiesBody = zActivity;
+```
+
+**Use cases:**
+
+1. **Form validation** — Use the Zod schemas with `react-hook-form`'s `zodResolver` to validate user input before sending it to the API
+2. **Response validation** — Pass schemas to the client's `responseValidator` to verify API responses at runtime
+3. **Request validation** — Pass schemas to `requestValidator` to catch invalid requests before they leave the browser
+
+---
+
+## The `@tanstack/` Folder
+
+### `react-query.gen.ts`
+
+**Purpose:** Pre-configured TanStack Query `queryOptions` and `UseMutationOptions` for every endpoint.
+
+**Importance:** ⭐⭐⭐⭐⭐ (Critical) — This is the **bridge between Hey API and React**. It's what makes the generated client feel like a React-native library.
+
+This file generates three things per GET endpoint and one thing per mutation endpoint:
+
+#### For GET Endpoints: Query Key + Query Options
+
+```ts
+// 1. Query Key Factory — deterministic, serializable key for caching
+export const getApiV1ActivitiesQueryKey = (options?: Options<GetApiV1ActivitiesData>) =>
+  createQueryKey("getApiV1Activities", options);
+
+// 2. Query Options Factory — plug directly into useQuery/useSuspenseQuery
+export const getApiV1ActivitiesOptions = (options?: Options<GetApiV1ActivitiesData>) =>
+  queryOptions<
+    GetApiV1ActivitiesResponse, // Data type
+    AxiosError<DefaultError>, // Error type
+    GetApiV1ActivitiesResponse, // Select type
+    ReturnType<typeof getApiV1ActivitiesQueryKey> // Query key type
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1Activities({
+        ...options,
+        ...queryKey[0],
+        signal, // Automatic request cancellation!
+        throwOnError: true, // Let TanStack Query handle errors
+      });
+      return data;
+    },
+    queryKey: getApiV1ActivitiesQueryKey(options),
+  });
+```
+
+**Why `queryOptions()` is powerful:**
+
+- `queryOptions()` is a TanStack Query v5 utility that bundles `queryKey` + `queryFn` + types together
+- You get **full type inference** — `data` in `useSuspenseQuery(getApiV1ActivitiesOptions())` is typed as `Array<Activity>` automatically
+- The `signal` parameter enables **automatic request cancellation** when a component unmounts
+- The `queryKey` includes the request parameters, so `getApiV1ActivitiesById({ path: { id: 1 } })` and `getApiV1ActivitiesById({ path: { id: 2 } })` are cached separately
+
+#### For POST/PUT/DELETE Endpoints: Mutation Options
+
+```ts
+export const postApiV1ActivitiesMutation = (
+  options?: Partial<Options<PostApiV1ActivitiesData>>,
+): UseMutationOptions<PostApiV1ActivitiesResponse, AxiosError<DefaultError>, Options<PostApiV1ActivitiesData>> => ({
+  mutationFn: async (fnOptions) => {
+    const { data } = await postApiV1Activities({
+      ...options,
+      ...fnOptions,
+      throwOnError: true,
+    });
+    return data;
+  },
+});
+```
+
+**How you use these in React:**
+
+```tsx
+// Queries — just pass the options factory to useSuspenseQuery
+const { data: activities } = useSuspenseQuery(getApiV1ActivitiesOptions());
+const { data: activity } = useSuspenseQuery(getApiV1ActivitiesByIdOptions({ path: { id: 1 } }));
+
+// Mutations — spread the mutation factory into useMutation
+const mutation = useMutation({
+  ...postApiV1ActivitiesMutation(),
+  onSuccess: () => toast.success("Created!"),
+});
+
+// Prefetching in route loaders — same options factory
+void queryClient.ensureQueryData(getApiV1ActivitiesOptions());
+```
+
+#### The `createQueryKey` Helper
+
+```ts
+const createQueryKey = <TOptions extends Options>(
+  id: string,
+  options?: TOptions,
+  infinite?: boolean,
+  tags?: ReadonlyArray<string>,
+): [QueryKey<TOptions>[0]] => {
+  const params: QueryKey<TOptions>[0] = {
+    _id: id,
+    baseURL: options?.baseURL || (options?.client ?? client).getConfig().baseURL,
+  } as QueryKey<TOptions>[0];
+  // ... includes body, headers, path, query if present
+  return [params];
+};
+```
+
+This is how Hey API creates **deterministic query keys**. Every unique combination of endpoint + parameters gets a unique key, which TanStack Query uses for caching, deduplication, and invalidation.
+
+---
+
+## The `client/` Folder
+
+This folder contains the HTTP client infrastructure — the Axios-based HTTP engine that powers every API call.
+
+### `client/client.gen.ts`
+
+**Purpose:** The `createClient()` factory function — creates a configured Axios-powered HTTP client.
+
+**Importance:** ⭐⭐⭐⭐⭐ (Critical) — This is the HTTP engine.
+
+This is a large file (~150 lines) that creates a client object with methods for every HTTP verb. Key features:
+
+- **Wraps Axios** — Uses `axios.create()` internally but adds a typed, ergonomic API on top
+- **Auth handling** — Automatically injects auth tokens via the `security` config before each request
+- **Request/Response validation** — Supports `requestValidator` and `responseValidator` hooks
+- **Body serialization** — Handles JSON, FormData, and URLSearchParams automatically
+- **Path parameter interpolation** — Replaces `{id}` in URLs with actual values
+- **SSE support** — Built-in Server-Sent Events streaming via the `sse` namespace
+- **Error handling** — Configurable `throwOnError` behavior
+
+```ts
+// The client exposes methods matching HTTP verbs
+return {
+  buildUrl: _buildUrl,
+  delete: makeMethodFn("DELETE"),
+  get: makeMethodFn("GET"),
+  getConfig,
+  head: makeMethodFn("HEAD"),
+  patch: makeMethodFn("PATCH"),
+  post: makeMethodFn("POST"),
+  put: makeMethodFn("PUT"),
+  request,            // Generic request method
+  setConfig,          // Runtime config updates
+  sse: { ... },       // SSE streaming methods
+  instance,           // Raw Axios instance (escape hatch)
+} as Client;
+```
+
+### `client/index.ts`
+
+**Purpose:** Barrel export for the client infrastructure.
+
+**Importance:** ⭐⭐⭐ (Medium) — Organizational convenience.
+
+Re-exports `createClient`, `createConfig`, types, and serializers so other generated files can import from `"./client"` instead of deep paths.
+
+### `client/types.gen.ts`
+
+**Purpose:** TypeScript types for the client infrastructure itself.
+
+**Importance:** ⭐⭐⭐⭐ (High) — Defines the shape of every request and configuration.
+
+Key types:
+
+| Type             | What It Defines                                                         |
+| ---------------- | ----------------------------------------------------------------------- |
+| `Config`         | Client configuration (baseURL, headers, auth, serializers, validators)  |
+| `RequestOptions` | Per-request options (body, path, query, url, method)                    |
+| `ClientOptions`  | Simplified options (baseURL, throwOnError)                              |
+| `RequestResult`  | Return type — either success response or error, based on `ThrowOnError` |
+| `Client`         | The full client interface with all HTTP method functions                |
+| `Options`        | The user-facing options type that SDK functions accept                  |
+| `TDataShape`     | Base shape for request data (body, headers, path, query, url)           |
+
+The `RequestResult` type is particularly clever:
+
+```ts
+// If ThrowOnError is true → returns Promise<AxiosResponse<TData>>
+// If ThrowOnError is false → returns Promise<SuccessResponse | ErrorResponse>
+export type RequestResult<TData, TError, ThrowOnError extends boolean> = ThrowOnError extends true
+  ? Promise<AxiosResponse<TData>>
+  : Promise<SuccessResponse | ErrorResponse>;
+```
+
+This conditional type means TypeScript narrows the return type based on your `throwOnError` setting.
+
+### `client/utils.gen.ts`
+
+**Purpose:** Utility functions for query serialization, auth, URL building, header merging, and config creation.
+
+**Importance:** ⭐⭐⭐⭐ (High) — The "plumbing" that makes everything work.
+
+Key utilities:
+
+| Function                  | What It Does                                                        |
+| ------------------------- | ------------------------------------------------------------------- |
+| `createQuerySerializer()` | Serializes query params following OpenAPI style/explode rules       |
+| `setAuthParams()`         | Injects auth tokens into headers, query, or cookies                 |
+| `buildUrl()`              | Constructs the final request URL with path params and query string  |
+| `mergeConfigs()`          | Deep merges client configurations                                   |
+| `mergeHeaders()`          | Intelligently merges header objects (handles Axios header keywords) |
+| `createConfig()`          | Creates an initial client configuration                             |
+
+---
+
+## The `core/` Folder
+
+Low-level, framework-agnostic utilities. These are shared primitives that the client layer builds on.
+
+### `core/auth.gen.ts`
+
+**Purpose:** Token resolution for different auth schemes.
+
+**Importance:** ⭐⭐⭐ (Medium)
+
+```ts
+// Supports Bearer, Basic, and raw API Key tokens
+export const getAuthToken = async (auth: Auth, callback) => {
+  const token = typeof callback === "function" ? await callback(auth) : callback;
+  if (auth.scheme === "bearer") return `Bearer ${token}`;
+  if (auth.scheme === "basic") return `Basic ${btoa(token)}`;
+  return token;
+};
+```
+
+This file handles the three common auth patterns: **Bearer tokens** (OAuth/JWT), **Basic auth** (username:password), and **API Keys**. The `callback` parameter means you can provide either a static token string or an async function (like Azure MSAL's `acquireTokenSilent`).
+
+### `core/bodySerializer.gen.ts`
+
+**Purpose:** Serializers for different request body content types.
+
+**Importance:** ⭐⭐⭐ (Medium)
+
+Provides three built-in serializers:
+
+| Serializer                      | When It's Used                                           |
+| ------------------------------- | -------------------------------------------------------- |
+| `jsonBodySerializer`            | Default — `JSON.stringify()` with BigInt support         |
+| `formDataBodySerializer`        | File uploads — converts objects to `FormData`            |
+| `urlSearchParamsBodySerializer` | Form submissions — converts objects to `URLSearchParams` |
+
+### `core/params.gen.ts`
+
+**Purpose:** Maps flat user-facing parameters into the correct request slots (body, path, query, headers).
+
+**Importance:** ⭐⭐⭐ (Medium)
+
+This is the system that lets Hey API support "flat" parameter styles. Instead of always requiring nested objects, it can map simple key-value pairs to the right place in the request.
+
+### `core/pathSerializer.gen.ts`
+
+**Purpose:** Serializes path parameters following OpenAPI serialization rules.
+
+**Importance:** ⭐⭐⭐ (Medium)
+
+Handles the different OpenAPI path parameter styles:
+
+| Style              | Example Input       | Example Output      |
+| ------------------ | ------------------- | ------------------- |
+| `simple` (default) | `{ id: 5 }`         | `/activities/5`     |
+| `label`            | `{ id: 5 }`         | `/activities/.5`    |
+| `matrix`           | `{ id: 5 }`         | `/activities/;id=5` |
+| Arrays             | `{ ids: [1,2,3] }`  | `/activities/1,2,3` |
+| Objects            | `{ filter: {a:1} }` | `/activities/a,1`   |
+
+### `core/queryKeySerializer.gen.ts`
+
+**Purpose:** Serializes query key values into a deterministic JSON-friendly format for TanStack Query.
+
+**Importance:** ⭐⭐⭐ (Medium)
+
+TanStack Query uses query keys for caching and deduplication. These keys must be **deterministic** and **serializable**. This file handles edge cases like:
+
+- `BigInt` → converted to string
+- `Date` → converted to ISO string
+- `URLSearchParams` → sorted and converted to object
+- `Headers` → normalized to plain object
+- Deeply nested objects → recursively serialized
+
+### `core/serverSentEvents.gen.ts`
+
+**Purpose:** Built-in Server-Sent Events (SSE) client with retry logic.
+
+**Importance:** ⭐⭐ (Low for this project, High if you use streaming APIs)
+
+Provides an async generator-based SSE client that:
+
+- Parses the SSE text protocol (`event:`, `data:`, `id:`, `retry:`)
+- Supports automatic reconnection with exponential backoff
+- Respects server-sent `retry` delays
+- Supports request interceptors and response transformers
+
+```ts
+// Usage example (if your API had SSE endpoints)
+const { stream } = await client.sse.get({ url: "/events" });
+for await (const event of stream) {
+  console.log(event);
+}
+```
+
+### `core/types.gen.ts`
+
+**Purpose:** Core type definitions shared across the generated code.
+
+**Importance:** ⭐⭐⭐⭐ (High)
+
+Defines the `Client` interface shape, `Config` type with all configuration options (auth, serializers, validators, transformers), `HttpMethod` union type, and utility types like `OmitNever`.
+
+### `core/utils.gen.ts`
+
+**Purpose:** URL construction utilities — builds the final request URL from base URL + path params + query string.
+
+**Importance:** ⭐⭐⭐ (Medium)
+
+Key functions:
+
+- `defaultPathSerializer()` — Replaces `{param}` placeholders in URL templates with actual values
+- `getUrl()` — Combines base URL + path + query string into the final URL
+
+```ts
+// "/api/v1/Activities/{id}" + { path: { id: 5 } }
+// → "https://example.com/api/v1/Activities/5"
+```
+
+---
+
+## How Everything Connects
+
+Here's the flow when you write `useSuspenseQuery(getApiV1ActivitiesByIdOptions({ path: { id: 1 } }))`:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Your React Component                                           │
+│  useSuspenseQuery(getApiV1ActivitiesByIdOptions({ path: {id:1}}))│
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  @tanstack/react-query.gen.ts                                   │
+│  getApiV1ActivitiesByIdOptions() returns:                       │
+│  - queryKey: [{ _id: "getApiV1ActivitiesById", path: {id:1} }] │
+│  - queryFn: calls getApiV1ActivitiesById() from sdk.gen.ts     │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  sdk.gen.ts                                                     │
+│  getApiV1ActivitiesById() calls:                                │
+│  client.get({ url: "/api/v1/Activities/{id}", path: {id:1} })  │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  client/client.gen.ts                                           │
+│  1. Resolves auth (core/auth.gen.ts)                            │
+│  2. Serializes body (core/bodySerializer.gen.ts)                │
+│  3. Builds URL: "/api/v1/Activities/1" (core/utils.gen.ts)      │
+│  4. Sends request via Axios                                     │
+│  5. Validates + transforms response                             │
+│  6. Returns typed { data: Activity }                            │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### The Layer Cake
+
+| Layer            | Files                          | Role                             |
+| ---------------- | ------------------------------ | -------------------------------- |
+| **React Layer**  | `@tanstack/react-query.gen.ts` | Hooks, query keys, query options |
+| **SDK Layer**    | `sdk.gen.ts`                   | One typed function per endpoint  |
+| **Client Layer** | `client/*.gen.ts`              | HTTP engine (Axios wrapper)      |
+| **Core Layer**   | `core/*.gen.ts`                | Serializers, auth, utilities     |
+| **Type Layer**   | `types.gen.ts`, `zod.gen.ts`   | Type safety (compile + runtime)  |
+
+Each layer only depends on the layers below it. Your React components only import from the top two layers.
+
+---
+
+## The Generation Config
+
+```ts
+// openapi-ts.config.ts
+import { defaultPlugins, defineConfig } from "@hey-api/openapi-ts";
+
+export default defineConfig({
+  input: "./swagger.yaml", // OpenAPI spec
+  plugins: [
+    ...defaultPlugins, // types.gen.ts + sdk.gen.ts
+    "@hey-api/client-axios", // Axios-based client (client/ folder)
+    "@tanstack/react-query", // TanStack Query hooks (@tanstack/ folder)
+    "zod", // Zod schemas (zod.gen.ts)
+  ],
+  output: { postProcess: ["oxlint", "oxfmt"], path: "src/api/client" }, // Output dir + formatting
+});
+```
+
+| Plugin                  | What It Generates                                          |
+| ----------------------- | ---------------------------------------------------------- |
+| `defaultPlugins`        | `types.gen.ts`, `sdk.gen.ts`, `client.gen.ts`, `index.ts`  |
+| `@hey-api/client-axios` | The `client/` folder — Axios HTTP client infrastructure    |
+| `@tanstack/react-query` | The `@tanstack/` folder — Query options + mutation configs |
+| `zod`                   | `zod.gen.ts` — Runtime validation schemas                  |
+
+---
+
+## Usage Examples
+
+### Fetching Data in a Route Loader (Prefetch Pattern)
+
+```tsx
+import { createFileRoute } from "@tanstack/react-router";
+import { getApiV1ActivitiesOptions } from "@/api/client/@tanstack/react-query.gen";
+
+export const Route = createFileRoute("/activities/")({
+  loader: ({ context: { queryClient } }) => {
+    // Prefetch without blocking — React shows pendingComponent immediately
+    void queryClient.ensureQueryData(getApiV1ActivitiesOptions());
+  },
+  pendingComponent: () => <div>Loading...</div>,
+  component: ActivitiesPage,
+});
+```
+
+### Using Data in a Component
+
+```tsx
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getApiV1ActivitiesByIdOptions } from "@/api/client/@tanstack/react-query.gen";
+
+function ActivityDetails({ id }: { id: number }) {
+  // Fully typed — data is Activity, not any
+  const { data: activity } = useSuspenseQuery(getApiV1ActivitiesByIdOptions({ path: { id } }));
+
+  return <h1>{activity.title}</h1>;
+}
+```
+
+### Creating Data with a Mutation
+
+```tsx
+import { useMutation } from "@tanstack/react-query";
+import { postApiV1ActivitiesMutation } from "@/api/client/@tanstack/react-query.gen";
+import type { Activity } from "@/api/client/types.gen";
+
+function CreateActivityForm() {
+  const mutation = useMutation({
+    ...postApiV1ActivitiesMutation(),
+    onSuccess: (data) => {
+      toast.success(`Created activity: ${data.title}`);
+    },
+  });
+
+  const handleSubmit = (values: Activity) => {
+    mutation.mutate({ body: values });
+  };
+}
+```
+
+### Validating Form Input with Generated Zod Schemas
+
+```tsx
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { zActivity } from "@/api/client/zod.gen";
+import type { Activity } from "@/api/client/types.gen";
+
+function ActivityForm() {
+  const form = useForm<Activity>({
+    resolver: zodResolver(zActivity),
+    defaultValues: { title: "", completed: false },
+  });
+}
+```
+
+### Invalidating Cache After Mutations
+
+```tsx
+import { getApiV1ActivitiesQueryKey } from "@/api/client/@tanstack/react-query.gen";
+
+// Invalidate all activities queries
+queryClient.invalidateQueries({
+  queryKey: getApiV1ActivitiesQueryKey(),
+});
+
+// Invalidate a specific activity
+queryClient.invalidateQueries({
+  queryKey: getApiV1ActivitiesByIdQueryKey({ path: { id: 1 } }),
+});
+```
+
+---
+
+## Summary Table
+
+| File                           | What                                              | Why                      | You Import From It?                 |
+| ------------------------------ | ------------------------------------------------- | ------------------------ | ----------------------------------- |
+| `types.gen.ts`                 | TS types for all models + requests + responses    | Compile-time type safety | ✅ Yes — types                      |
+| `zod.gen.ts`                   | Zod schemas for all models + requests + responses | Runtime validation       | ✅ Yes — form validation            |
+| `sdk.gen.ts`                   | One function per API endpoint                     | Type-safe API calls      | ⚠️ Rarely — use query hooks instead |
+| `client.gen.ts`                | Singleton Axios client                            | HTTP engine config       | ✅ Yes — `client.setConfig()`       |
+| `index.ts`                     | Barrel re-exports                                 | Clean import paths       | ✅ Yes — convenience                |
+| `@tanstack/react-query.gen.ts` | Query options + mutation configs                  | React integration        | ✅ Yes — primary way to use the API |
+| `client/client.gen.ts`         | `createClient()` factory                          | HTTP engine internals    | ❌ No — internal                    |
+| `client/types.gen.ts`          | Client config + options types                     | Infrastructure types     | ❌ No — internal                    |
+| `client/utils.gen.ts`          | URL building, auth, serialization                 | HTTP plumbing            | ❌ No — internal                    |
+| `core/*.gen.ts`                | Auth, serializers, SSE, URL utils                 | Low-level primitives     | ❌ No — internal                    |
+
+**The golden rule:** Your React components should only import from `types.gen.ts`, `zod.gen.ts`, `@tanstack/react-query.gen.ts`, and occasionally `client.gen.ts` for configuration. Everything in `client/` and `core/` is internal infrastructure.
