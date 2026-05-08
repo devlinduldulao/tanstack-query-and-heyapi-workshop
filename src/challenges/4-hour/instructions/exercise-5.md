@@ -1,4 +1,4 @@
-# Exercise 11: Generated Mutations + Zod Validation
+# Exercise 5: Generated Mutations + Zod Validation
 
 Generated mutation options are useful. Generated mutation options plus generated Zod schemas are the moment the API layer starts feeling production-ready.
 

@@ -15,7 +15,7 @@ const createBookSchema = zBook.extend({
   pageCount: z.coerce.number().int().positive("Page count must be positive"),
 });
 
-export default function Exercise11() {
+export default function Exercise5() {
   const queryClient = useQueryClient();
   const [title, setTitle] = useState("");
   const [pageCount, setPageCount] = useState("120");

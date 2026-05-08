@@ -51,7 +51,7 @@ const decisionRows: DecisionRow[] = [
   },
 ];
 
-export default function Exercise7() {
+export default function Exercise3() {
   return (
     <div className="space-y-5 text-sm">
       <section>

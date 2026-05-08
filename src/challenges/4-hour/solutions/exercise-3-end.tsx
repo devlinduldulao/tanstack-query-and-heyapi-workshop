@@ -1,4 +1,4 @@
-export default function Exercise7End() {
+export default function Exercise3End() {
   const generatedArtifacts = [
     {
       file: "src/api/client/sdk.gen.ts",

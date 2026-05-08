@@ -7,7 +7,7 @@ import {
   getApiV1BooksQueryKey,
 } from "@/api/client/@tanstack/react-query.gen";
 
-export default function Exercise9End() {
+export default function Exercise4End() {
   const queryClient = useQueryClient();
   const [selectedId, setSelectedId] = useState<number | null>(1);
 

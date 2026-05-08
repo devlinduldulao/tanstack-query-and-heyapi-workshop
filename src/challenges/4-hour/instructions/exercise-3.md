@@ -1,4 +1,4 @@
-# Exercise 7: Why Hey API Wins
+# Exercise 3: Why Hey API Wins
 
 This is the adoption exercise. Your job is to inspect what Hey API generated and explain why a senior React team would choose it over hand-written API wrappers.
 

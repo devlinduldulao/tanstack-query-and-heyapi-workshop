@@ -1,4 +1,4 @@
-# Exercise 9: Generated Options as Query Factories
+# Exercise 4: Generated Options as Query Factories
 
 The TanStack Query plugin is where Hey API becomes hard to give up. It generates the query function, the query key, and the mutation options from the same OpenAPI operation.
 

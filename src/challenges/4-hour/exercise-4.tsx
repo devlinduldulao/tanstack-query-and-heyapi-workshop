@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getApiV1BooksByIdOptions, getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
 
-export default function Exercise9() {
+export default function Exercise4() {
   const queryClient = useQueryClient();
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
