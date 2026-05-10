@@ -11,11 +11,7 @@ export default defineConfig({
   output: {
     path: "src/api/client",
     postProcess: [
-      {
-        args: ["exec", "--", "oxlint", "--fix", "-c", ".oxlintrc.openapi.json", "{{path}}"],
-        command: "npm",
-        name: "Oxlint",
-      },
+      "oxlint",
       "oxfmt",
     ],
   }, // Output dir + formatting
