@@ -32,6 +32,7 @@ const router = createRouter({
   context: {
     queryClient,
   },
+  defaultPreload: "intent",
   // background fetch after 24 hours
   defaultGcTime: 1000 * 60 * 60 * 24 * 7,
 
