@@ -14,6 +14,7 @@ function read(): CompletedMap {
 }
 
 function write(value: CompletedMap) {
+  if (typeof window === "undefined") return;
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
   window.dispatchEvent(new StorageEvent("storage", { key: STORAGE_KEY }));
 }
@@ -31,14 +32,16 @@ export function useExerciseCompletion() {
 
   const isCompleted = useCallback((day: string, exercise: string) => !!completed[`${day}/${exercise}`], [completed]);
 
-  const toggleCompletion = useCallback((day: string, exercise: string) => {
-    const key = `${day}/${exercise}`;
-    setCompleted((prev) => {
-      const next = { ...prev, [key]: !prev[key] };
+  const toggleCompletion = useCallback(
+    (day: string, exercise: string) => {
+      const key = `${day}/${exercise}`;
+      const next = { ...completed, [key]: !completed[key] };
+
+      setCompleted(next);
       write(next);
-      return next;
-    });
-  }, []);
+    },
+    [completed],
+  );
 
   return { isCompleted, toggleCompletion, completed };
 }
