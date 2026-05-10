@@ -4,6 +4,7 @@ import { createRouter, RouterProvider } from "@tanstack/react-router";
 import ReactDOM from "react-dom/client";
 import { routeTree } from "./route-tree.gen";
 import { client } from "./api/client/client.gen";
+import { Toaster } from "./components/ui/sonner";
 
 client.setConfig({
   baseURL: "https://fakerestapi.azurewebsites.net",
@@ -55,6 +56,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <InnerApp />
+      <Toaster richColors position="top-right" />
     </QueryClientProvider>
   );
 }

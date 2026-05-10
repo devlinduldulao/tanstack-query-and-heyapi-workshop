@@ -8,5 +8,15 @@ export default defineConfig({
     "@tanstack/react-query", // TanStack Query hooks (@tanstack/ folder)
     "zod", // Zod schemas (zod.gen.ts)
   ],
-  output: { postProcess: ["oxlint", "oxfmt"], path: "src/api/client" }, // Output dir + formatting
+  output: {
+    path: "src/api/client",
+    postProcess: [
+      {
+        args: ["exec", "--", "oxlint", "--fix", "-c", ".oxlintrc.openapi.json", "{{path}}"],
+        command: "npm",
+        name: "Oxlint",
+      },
+      "oxfmt",
+    ],
+  }, // Output dir + formatting
 });
