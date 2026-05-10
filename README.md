@@ -32,7 +32,7 @@ Two versions of the same senior-level curriculum:
 
 | Track  | Use When                              | Skills Unlocked                                                                                 |
 | ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| 4-hour | You need the compressed essentials    | Generated reads, mutation feedback, Hey API adoption, validated writes, cache bugs              |
+| 4-hour | You need the compressed essentials    | Generated reads, mutation feedback, Hey API adoption, validated writes, contract drift triage, cache bugs |
 | 8-hour | You want the full hands-on experience | Everything in 4-hour plus state UX, invalidation, Suspense, CRUD, and app-vs-tutorial tradeoffs |
 
 See [WORKSHOP_SCHEDULE.md](./WORKSHOP_SCHEDULE.md) for the full breakdown.
@@ -67,7 +67,7 @@ The bootcamp UI (sidebar, instructions panel, solution toggle, completion tracki
 
 ## Why Hey API Gets a Whole Part
 
-The workshop is designed to make the value concrete, not theoretical. Attendees compare manual axios against generated SDK calls, replace hand-written request/response assumptions with generated contracts, use generated TanStack Query `*Options` and `*QueryKey` helpers, validate mutation payloads with generated Zod schemas, and see how an OpenAPI spec change turns into a useful TypeScript diff instead of a production surprise.
+The workshop is designed to make the value concrete, not theoretical. Attendees compare manual axios against generated SDK calls, replace hand-written request/response assumptions with generated contracts, use generated TanStack Query `*Options` and `*QueryKey` helpers, validate mutation payloads with generated Zod schemas, and practice the real workflow of pulling a changed Swagger file, regenerating, and deciding whether the frontend must ship follow-up UI work.
 
 ## Recommended Workflow
 

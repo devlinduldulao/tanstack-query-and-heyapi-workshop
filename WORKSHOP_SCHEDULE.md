@@ -27,7 +27,8 @@ The 4-hour track lives under `src/challenges/4-hour/`. It keeps only the activit
 | 4    | Generated Query Options as Query Factories | `*Options`, `*QueryKey`, `select`, generated detail queries           |
 | 5    | Generated Mutations + Zod Validation       | `*Mutation`, generated keys, runtime schema validation                |
 | 6    | Pagination, Search & Cache Shape           | derived local views, variable inputs, responsive filtering            |
-| 7    | **Bug Challenge:** Cache Races             | Mismatched keys, missing cancellation, rollback, over-broad refreshes |
+| 7    | Contract Drift Drill                       | sync swagger, regenerate, triage impact, ship a new generated slice   |
+| 8    | **Bug Challenge:** Cache Races             | Mismatched keys, missing cancellation, rollback, over-broad refreshes |
 | HW   | Compressed Capstone                        | Apply the highest-impact patterns to one production slice             |
 
 ## 8-Hour Workshop
@@ -62,6 +63,7 @@ The 8-hour track lives under `src/challenges/8-hour/`. It keeps the full curricu
 | --- | ---------------------------------- | ------------------------------------------------------------------------ |
 | 12  | Warm Cache UX                      | generated detail contracts, cache freshness, and when app pages prefetch |
 | 13  | Pagination, Search & Cache Shape   | derived local views, variable inputs, responsive filtering               |
+| 14  | Contract Drift Drill               | sync swagger, regenerate, triage impact, ship a new generated slice      |
 | C1  | **Feature Challenge:** Author CRUD | Generated helpers, create/edit/delete, toast feedback                    |
 | C2  | **Bug Challenge:** Cache Races     | Mismatched keys, missing cancellation, rollback, over-broad refreshes    |
 | HW  | Capstone Homework                  | Production-ready Books/Admin slice using every pattern from the track    |

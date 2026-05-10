@@ -127,6 +127,7 @@ export const navigationData: Day[] = [
       { id: "exercise-4", title: "Lab 4 · Generated Factories", type: "exercise" },
       { id: "exercise-5", title: "Lab 5 · Mutation + Zod", type: "exercise" },
       { id: "exercise-6", title: "Lab 6 · Pagination + Search", type: "exercise" },
+      { id: "exercise-7", title: "Lab 7 · Contract Drift Drill", type: "exercise" },
       { id: "challenge-2-bug", title: "Challenge · Cache Races", type: "bug-challenge" },
       { id: "homework", title: "4-hour Capstone", type: "homework" },
     ],
@@ -161,6 +162,7 @@ export const navigationData: Day[] = [
     exercises: [
       { id: "exercise-12", title: "Exercise 12 · Warm Cache UX", type: "exercise" },
       { id: "exercise-13", title: "Exercise 13 · Pagination + Search", type: "exercise" },
+      { id: "exercise-14", title: "Exercise 14 · Contract Drift Drill", type: "exercise" },
       { id: "challenge-1-feature", title: "Challenge 1 · Author CRUD", type: "feature-challenge" },
       { id: "challenge-2-bug", title: "Challenge 2 · Cache Races", type: "bug-challenge" },
       { id: "homework", title: "Capstone Homework", type: "homework" },
