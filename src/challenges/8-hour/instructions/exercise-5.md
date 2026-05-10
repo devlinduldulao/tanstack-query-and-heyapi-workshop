@@ -7,7 +7,7 @@ A successful write that leaves the list stale is still a broken feature. This ex
 - Keep the generated books list helper as the screen source of truth.
 - After a successful create, refresh the generated books-list identifier.
 - Confirm the list updates automatically after success.
-- Bonus: prepend the new record optimistically to that same generated list before the refresh finishes.
+- Bonus: add clear success and failure toasts for the create flow.
 
 > The critical rule is consistency: the same generated list identity should back both the visible screen and the post-create refresh.
 

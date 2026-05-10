@@ -6,6 +6,7 @@
 
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { z } from "zod";
 import { getApiV1BooksQueryKey, postApiV1BooksMutation } from "@/api/client/@tanstack/react-query.gen";
 import { zBook } from "@/api/client/zod.gen";
@@ -24,7 +25,11 @@ export default function Exercise11() {
   const mutation = useMutation({
     ...postApiV1BooksMutation(),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() });
+      toast.success("Book created");
+      void queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() });
+    },
+    onError: (error) => {
+      toast.error(`Create failed: ${error.message}`);
     },
   });
 
@@ -65,7 +70,6 @@ export default function Exercise11() {
         onChange={(e) => setPageCount(e.target.value)}
       />
       {validationError && <p className="text-xs text-red-500">{validationError}</p>}
-      {mutation.isError && <p className="text-xs text-red-500">{mutation.error.message}</p>}
       <button type="submit" disabled={mutation.isPending} className="rounded border px-3 py-1 disabled:opacity-50">
         {mutation.isPending ? "Saving…" : "Add book with generated mutation"}
       </button>

@@ -122,7 +122,7 @@ export const navigationData: Day[] = [
     exercises: [
       { id: "exercise-0", title: "Start · Setup", type: "exercise" },
       { id: "exercise-1", title: "Lab 1 · Query Options", type: "exercise" },
-      { id: "exercise-2", title: "Lab 2 · Optimistic Cache", type: "exercise" },
+      { id: "exercise-2", title: "Lab 2 · Delete Feedback", type: "exercise" },
       { id: "exercise-3", title: "Lab 3 · Why Hey API", type: "exercise" },
       { id: "exercise-4", title: "Lab 4 · Generated Factories", type: "exercise" },
       { id: "exercise-5", title: "Lab 5 · Mutation + Zod", type: "exercise" },
@@ -141,7 +141,7 @@ export const navigationData: Day[] = [
       { id: "exercise-3", title: "Exercise 3 · Retry + Refresh UX", type: "exercise" },
       { id: "exercise-4", title: "Exercise 4 · Mutation Lifecycle", type: "exercise" },
       { id: "exercise-2", title: "Exercise 5 · Smart Invalidation", type: "exercise" },
-      { id: "exercise-2", title: "Exercise 6 · Race-Free Optimistic", type: "exercise" },
+      { id: "exercise-2", title: "Exercise 6 · Delete Recovery", type: "exercise" },
     ],
   },
   {
@@ -159,7 +159,7 @@ export const navigationData: Day[] = [
     id: "8-hour",
     title: "8-hour workshop · Part 3",
     exercises: [
-      { id: "exercise-12", title: "Exercise 12 · Prefetch UX", type: "exercise" },
+      { id: "exercise-12", title: "Exercise 12 · Warm Cache UX", type: "exercise" },
       { id: "exercise-6", title: "Exercise 13 · Pagination + Search", type: "exercise" },
       { id: "challenge-1-feature", title: "Challenge 1 · Author CRUD", type: "feature-challenge" },
       { id: "challenge-2-bug", title: "Challenge 2 · Cache Races", type: "bug-challenge" },

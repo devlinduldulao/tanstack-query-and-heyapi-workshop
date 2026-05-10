@@ -8,9 +8,11 @@ Both tracks are designed around production judgment:
 
 - Where should query keys, query options, and cache policy live?
 - When do you invalidate, when do you update cache directly, and when do you do both?
-- How do you avoid races in optimistic updates?
+- How do you keep writes simple with generated invalidation and clear toast feedback?
 - What does Hey API remove from a React codebase that hand-written API layers usually get wrong?
 - How do generated SDK functions, query options, mutation options, query keys, and Zod schemas work together?
+
+Tutorial note: the workshop exercises intentionally avoid route prefetch so attendees learn the generated contracts first. The demo app pages still keep prefetch because that remains the preferred production pattern.
 
 ## 4-Hour Workshop
 
@@ -20,29 +22,29 @@ The 4-hour track lives under `src/challenges/4-hour/`. It keeps only the activit
 | ---- | ------------------------------------------ | --------------------------------------------------------------------- |
 | 0    | Setup                                      | Verify generator output, devtools, sidebar, completion tracking       |
 | 1    | Query Options as a Contract                | Stable keys, abort signals, `select`, `staleTime`, `gcTime`           |
-| 2    | Optimistic Updates Without Races           | `cancelQueries`, snapshots, rollback, `onSettled` reconciliation      |
+| 2    | Delete Feedback with Generated Contracts   | generated delete flows, success/error handlers, toast feedback        |
 | 3    | Why Hey API Wins                           | Generated artifacts, trade-off matrix, spec-change workflow           |
 | 4    | Generated Query Options as Query Factories | `*Options`, `*QueryKey`, `select`, generated detail queries           |
 | 5    | Generated Mutations + Zod Validation       | `*Mutation`, generated keys, runtime schema validation                |
-| 6    | Pagination, Search & Cache Shape           | `keepPreviousData`, variable keys, next-page prefetching              |
+| 6    | Pagination, Search & Cache Shape           | derived local views, variable inputs, responsive filtering            |
 | 7    | **Bug Challenge:** Cache Races             | Mismatched keys, missing cancellation, rollback, over-broad refreshes |
 | HW   | Compressed Capstone                        | Apply the highest-impact patterns to one production slice             |
 
 ## 8-Hour Workshop
 
-The 8-hour track lives under `src/challenges/8-hour/`. It keeps the full curriculum and adds more practice around state UX, mutation lifecycle, manual-to-generated migration, Suspense, prefetching, and feature work.
+The 8-hour track lives under `src/challenges/8-hour/`. It keeps the full curriculum and adds more practice around state UX, mutation feedback, manual-to-generated migration, Suspense, and feature work. The surrounding demo app pages still model prefetch separately from the tutorial exercises.
 
 ### Part 1 · Advanced TanStack Query Patterns
 
-| #   | Title                              | Focus                                                            |
-| --- | ---------------------------------- | ---------------------------------------------------------------- |
-| 0   | Workshop Setup                     | Verify generator output, devtools, sidebar, completion tracking  |
-| 1   | Query Options as a Contract        | Stable keys, abort signals, `select`, `staleTime`, `gcTime`      |
-| 2   | Parallel + Dependent Queries       | `enabled`, variable keys, master/detail, avoiding waterfalls     |
-| 3   | State Machines, Retry & Refresh UX | `isPending` vs `isFetching`, retry policy, non-janky refetching  |
-| 4   | Mutation Lifecycle Design          | Pending/error surfaces and typed mutation payloads               |
-| 5   | Smart Invalidation                 | Generated-style key discipline, targeted invalidation, cache set |
-| 6   | Optimistic Updates Without Races   | `cancelQueries`, snapshots, rollback, `onSettled` reconciliation |
+| #   | Title                                    | Focus                                                            |
+| --- | ---------------------------------------- | ---------------------------------------------------------------- |
+| 0   | Workshop Setup                           | Verify generator output, devtools, sidebar, completion tracking  |
+| 1   | Query Options as a Contract              | Stable keys, abort signals, `select`, `staleTime`, `gcTime`      |
+| 2   | Parallel + Dependent Queries             | `enabled`, variable keys, master/detail, avoiding waterfalls     |
+| 3   | State Machines, Retry & Refresh UX       | `isPending` vs `isFetching`, retry policy, non-janky refetching  |
+| 4   | Mutation Lifecycle Design                | Pending/error surfaces and typed mutation payloads               |
+| 5   | Smart Invalidation                       | Generated-style key discipline, targeted invalidation, cache set |
+| 6   | Delete Recovery with Generated Contracts | generated delete flows, success/error handlers, toast feedback   |
 
 ### Part 2 · Hey API Adoption Lab
 
@@ -56,13 +58,13 @@ The 8-hour track lives under `src/challenges/8-hour/`. It keeps the full curricu
 
 ### Part 3 · Production Patterns + Challenges
 
-| #   | Title                              | Focus                                                                 |
-| --- | ---------------------------------- | --------------------------------------------------------------------- |
-| 12  | Prefetching That Users Feel        | `prefetchQuery`, route-loader mental model, warm-cache measurement    |
-| 13  | Pagination, Search & Cache Shape   | `keepPreviousData`, variable keys, next-page prefetching              |
-| C1  | **Feature Challenge:** Author CRUD | Generated helpers, create/edit/delete, optimistic delete              |
-| C2  | **Bug Challenge:** Cache Races     | Mismatched keys, missing cancellation, rollback, over-broad refreshes |
-| HW  | Capstone Homework                  | Production-ready Books/Admin slice using every pattern from the track |
+| #   | Title                              | Focus                                                                    |
+| --- | ---------------------------------- | ------------------------------------------------------------------------ |
+| 12  | Warm Cache UX                      | generated detail contracts, cache freshness, and when app pages prefetch |
+| 13  | Pagination, Search & Cache Shape   | derived local views, variable inputs, responsive filtering               |
+| C1  | **Feature Challenge:** Author CRUD | Generated helpers, create/edit/delete, toast feedback                    |
+| C2  | **Bug Challenge:** Cache Races     | Mismatched keys, missing cancellation, rollback, over-broad refreshes    |
+| HW  | Capstone Homework                  | Production-ready Books/Admin slice using every pattern from the track    |
 
 ## Why Hey API Is the Pitch
 

@@ -4,15 +4,15 @@
 //  2. Rapid clicks delete the wrong rows.
 //
 // Hint: keep the generated books key in one place.
-// Hint: onMutate is missing critical steps.
+// Hint: use success and error handlers only.
 
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import {
   deleteApiV1BooksByIdMutation,
   getApiV1BooksOptions,
   getApiV1BooksQueryKey,
 } from "@/api/client/@tanstack/react-query.gen";
-import type { Book } from "@/api/client";
 
 export default function Challenge2Bug() {
   const queryClient = useQueryClient();
@@ -22,14 +22,12 @@ export default function Challenge2Bug() {
 
   const remove = useMutation({
     ...deleteApiV1BooksByIdMutation(),
-    onMutate: (vars) => {
-      // BUG 1: no cancelQueries; no snapshot
-      const previous = queryClient.getQueryData<Book[]>(queryKey);
-      queryClient.setQueryData<Book[]>(queryKey, (old) => (old ? old.filter((b) => b.id !== vars.path.id) : old));
-      return { previous };
-    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey });
+      toast.success("Book deleted");
+      void queryClient.invalidateQueries({ queryKey });
+    },
+    onError: (error) => {
+      toast.error(`Delete failed: ${error.message}`);
     },
   });
 

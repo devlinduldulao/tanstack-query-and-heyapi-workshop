@@ -5,7 +5,7 @@
 // Required:
 // - List authors with getApiV1AuthorsOptions + useSuspenseQuery
 // - Create author (postApiV1AuthorsMutation) + invalidate list on success
-// - Delete author (deleteApiV1AuthorsByIdMutation) with optimistic UI
+// - Delete author (deleteApiV1AuthorsByIdMutation) + invalidate list on success
 // - Edit author (putApiV1AuthorsByIdMutation) inline
 
 import { useSuspenseQuery } from "@tanstack/react-query";
@@ -24,7 +24,7 @@ export default function Challenge1Feature() {
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-xs opacity-70">TODO: Add create / edit / delete with optimistic UI.</p>
+      <p className="mt-3 text-xs opacity-70">TODO: Add create / edit / delete with success and error toasts.</p>
     </div>
   );
 }

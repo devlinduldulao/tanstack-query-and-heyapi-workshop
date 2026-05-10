@@ -13,7 +13,7 @@ export default function Exercise7End() {
     {
       file: "src/api/client/@tanstack/react-query.gen.ts",
       purpose: "Generated query options, query keys, and mutation options.",
-      teamValue: "Reads, prefetches, invalidations, and optimistic writes share the same key source.",
+      teamValue: "Reads, refreshes, and invalidations share the same generated key source.",
     },
     {
       file: "src/api/client/zod.gen.ts",

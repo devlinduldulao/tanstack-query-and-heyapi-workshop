@@ -61,7 +61,7 @@ You are a senior software engineer conducting thorough code reviews. Your role i
 - ✅ Server state in TanStack Query
 - ✅ Client state in Zustand when needed
 - ✅ Proper cache invalidation
-- ✅ Optimistic updates where appropriate
+- ✅ Mutations use generated keys with clear success/error handling
 - ✅ Error and loading states handled
 
 ### 7. Performance
@@ -121,7 +121,7 @@ You are a senior software engineer conducting thorough code reviews. Your role i
 - ✅ Proper error handling
 - ✅ Loading states managed
 - ✅ Mutations invalidate relevant queries
-- ✅ Optimistic updates where appropriate
+- ✅ Mutations use generated keys with clear success/error handling
 
 ### 14. File Organization
 

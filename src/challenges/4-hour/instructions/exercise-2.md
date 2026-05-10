@@ -1,21 +1,20 @@
-# Exercise 2: Optimistic Deletes with Generated Contracts
+# Exercise 2: Delete Feedback with Generated Contracts
 
-Slow networks should not make the UI feel slow. In this lab you will finish an optimistic delete flow without inventing any manual endpoint strings or cache identifiers.
+This lab focuses on a clean delete flow that uses generated contracts, refreshes the right list after success, and surfaces failures clearly.
 
 ## Requirements
 
 - Use the generated delete contract for a single book.
-- Use the generated books-list identifier everywhere in the optimistic flow.
-- Before writing optimistic state, stop any in-flight refresh for that same list.
-- Snapshot the previous list, remove the deleted row immediately, and return the snapshot as context.
-- If the request fails, restore the snapshot.
-- When the request finishes, refresh the same generated list identifier.
+- Use the generated books-list identifier for the post-delete refresh.
+- In the success handler, refresh the same generated list identifier.
+- In the error handler, show a failure toast.
+- Do not add manual cache writes, snapshots, or rollback logic.
 
-> The most common bug here is mixing two different cache identities for the same screen. One generated list identifier should drive snapshot, optimistic update, rollback, and reconciliation.
+> The important habit here is consistency: one generated list identifier should back the visible read and the post-delete refresh.
 
 ## Why This Matters
 
-Optimistic updates feel great only when the read contract and the write contract stay aligned. Generated helpers reduce the chance of subtle cache drift.
+Generated helpers keep delete flows simple. You do not need a second hand-managed cache path to give users good feedback.
 
 ## Training Resources
 

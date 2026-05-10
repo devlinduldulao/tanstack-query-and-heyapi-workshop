@@ -1,20 +1,31 @@
-// TODO: Implement an optimistic delete using onMutate / onError / onSettled
-// 1. cancelQueries(getApiV1BooksQueryKey())
-// 2. snapshot previous = getQueryData(getApiV1BooksQueryKey())
-// 3. setQueryData(getApiV1BooksQueryKey(), (old) => old.filter(b => b.id !== id))
-// 4. return { previous } as context
-// 5. onError -> setQueryData(["books-6"], context.previous)
-// 6. onSettled -> invalidateQueries(getApiV1BooksQueryKey())
+// TODO: Replace the delete mutation with success/error-only handlers.
+// 1. Use useQueryClient() and getApiV1BooksQueryKey().
+// 2. In onSuccess, invalidate that generated key and show toast.success(...).
+// 3. In onError, show toast.error(...).
+// 4. Do not add manual cache writes or extra mutation lifecycle hooks.
 
-import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
-import { deleteApiV1BooksByIdMutation, getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
+import {
+  deleteApiV1BooksByIdMutation,
+  getApiV1BooksOptions,
+  getApiV1BooksQueryKey,
+} from "@/api/client/@tanstack/react-query.gen";
 
 export default function Exercise2() {
+  const queryClient = useQueryClient();
+  const queryKey = getApiV1BooksQueryKey();
   const { data } = useSuspenseQuery(getApiV1BooksOptions());
 
   const deleteBook = useMutation({
     ...deleteApiV1BooksByIdMutation(),
-    // TODO: onMutate, onError, onSettled
+    onSuccess: () => {
+      toast.success("Book deleted");
+      void queryClient.invalidateQueries({ queryKey });
+    },
+    onError: (error) => {
+      toast.error(`Delete failed: ${error.message}`);
+    },
   });
 
   return (

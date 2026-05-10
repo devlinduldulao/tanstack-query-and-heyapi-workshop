@@ -38,8 +38,8 @@ function BootcampHome() {
               <Clock className="text-primary mb-3 h-5 w-5" />
               <h3 className="text-xl font-semibold">4-hour workshop</h3>
               <p className="text-muted-foreground mt-2 text-sm">
-                The compressed track: query options, optimistic cache discipline, Hey API adoption, generated factories,
-                Zod mutations, pagination/search, and cache-race debugging.
+                The compressed track: generated reads, mutation feedback, Hey API adoption, generated factories,
+                validated writes, pagination/search, and cache-debugging.
               </p>
             </Link>
             <Link
@@ -50,8 +50,8 @@ function BootcampHome() {
               <Trophy className="text-primary mb-3 h-5 w-5" />
               <h3 className="text-xl font-semibold">8-hour workshop</h3>
               <p className="text-muted-foreground mt-2 text-sm">
-                The full track with every lab: state/refetch UX, mutation lifecycle, invalidation, Suspense, feature
-                challenge, and capstone homework.
+                The full track with every lab: refresh UX, mutation feedback, invalidation, Suspense, feature challenge,
+                and capstone homework.
               </p>
             </Link>
           </div>

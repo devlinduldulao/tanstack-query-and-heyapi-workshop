@@ -127,7 +127,7 @@ describe("ComponentName", () => {
 
 ✅ **Mutations**
 
-- Optimistic updates
+- Success/error handling
 - Cache invalidation
 - Success/error handling
 - Loading states

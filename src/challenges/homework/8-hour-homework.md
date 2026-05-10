@@ -10,26 +10,26 @@ Your team is adopting Hey API for an existing REST backend. Build a Books/Admin 
 
 1. **Generated-only API layer** — remove hand-written axios calls from the Books/Admin flow. Use generated SDK functions, `*Options`, `*Mutation`, and `*QueryKey` helpers.
 2. **Query options module** — create a feature-level module that exports reusable query options for list, detail, search, and author-by-book views.
-3. **Search + pagination** — include `search`, `page`, and `pageSize` in the query key. Use `keepPreviousData` and prefetch the next page.
-4. **Detail route prefetch** — use a TanStack Router loader with `context.queryClient.ensureQueryData(...)` for a book detail route.
+3. **Search + pagination** — derive `search`, `page`, and `pageSize` from generated reads while keeping the UI responsive as those values change.
+4. **Detail route loading** — reuse one generated detail contract from both the screen and a route-level data loading step.
 5. **Validated create/edit form** — import generated Zod schemas and extend them with UI-specific constraints before calling generated mutations.
-6. **Optimistic delete** — implement full `onMutate`, `cancelQueries`, snapshot, rollback, and generated-key invalidation.
+6. **Delete flow with feedback** — use the generated delete contract, invalidate the generated list key on success, and show success/error toast notifications.
 7. **Author join** — show authors for the selected book using the generated `getApiV1AuthorsAuthorsBooksByIdBookOptions` helper.
 8. **Error boundaries** — convert one route to `useSuspenseQuery` with `<Suspense>` and `ErrorBoundary`.
-9. **Devtools proof** — open TanStack Query Devtools and verify that query keys are predictable, specific, and reused across reads, prefetches, invalidations, and optimistic writes.
+9. **Devtools proof** — open TanStack Query Devtools and verify that generated keys are predictable, specific, and reused across reads and post-mutation refreshes.
 
 ## Acceptance Criteria
 
 - No API URL strings are written in feature components.
-- Query keys include every variable that changes the result.
+- Generated keys remain the source of truth for reads and post-mutation refresh.
 - Mutations invalidate generated keys, not string guesses.
 - Form validation catches bad payloads before the network call.
-- Optimistic delete never resurrects rows after a background refetch.
-- Route navigation feels instant after hover or loader prefetch.
+- Delete actions show clear success and failure feedback through toast notifications.
+- Route navigation reuses the same generated detail contract regardless of where loading begins.
 
 ## Stretch Goals
 
-1. Add mutation success/error toasts with `sonner`.
+1. Add a consistent toast message style for create, update, and delete actions.
 2. Add a small cache-debug panel that prints the generated query key used by the current route.
 3. Temporarily change a field in `swagger.yaml`, regenerate, and write down which compile errors were useful.
 

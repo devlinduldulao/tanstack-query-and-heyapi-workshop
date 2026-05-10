@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import {
   deleteApiV1AuthorsByIdMutation,
   getApiV1AuthorsOptions,
@@ -7,7 +8,6 @@ import {
   postApiV1AuthorsMutation,
   putApiV1AuthorsByIdMutation,
 } from "@/api/client/@tanstack/react-query.gen";
-import type { Author } from "@/api/client";
 
 export default function Challenge1FeatureEnd() {
   const queryClient = useQueryClient();
@@ -17,26 +17,35 @@ export default function Challenge1FeatureEnd() {
 
   const create = useMutation({
     ...postApiV1AuthorsMutation(),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
+    onSuccess: () => {
+      toast.success("Author created");
+      void queryClient.invalidateQueries({ queryKey });
+    },
+    onError: (error) => {
+      toast.error(`Create failed: ${error.message}`);
+    },
   });
 
   const update = useMutation({
     ...putApiV1AuthorsByIdMutation(),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
+    onSuccess: () => {
+      toast.success("Author updated");
+      void queryClient.invalidateQueries({ queryKey });
+    },
+    onError: (error) => {
+      toast.error(`Update failed: ${error.message}`);
+    },
   });
 
   const remove = useMutation({
     ...deleteApiV1AuthorsByIdMutation(),
-    onMutate: async (vars) => {
-      await queryClient.cancelQueries({ queryKey });
-      const previous = queryClient.getQueryData<Author[]>(queryKey);
-      queryClient.setQueryData<Author[]>(queryKey, (old) => (old ? old.filter((a) => a.id !== vars.path.id) : old));
-      return { previous };
+    onSuccess: () => {
+      toast.success("Author deleted");
+      void queryClient.invalidateQueries({ queryKey });
     },
-    onError: (_e, _v, ctx) => {
-      if (ctx?.previous) queryClient.setQueryData(queryKey, ctx.previous);
+    onError: (error) => {
+      toast.error(`Delete failed: ${error.message}`);
     },
-    onSettled: () => queryClient.invalidateQueries({ queryKey }),
   });
 
   const [first, setFirst] = useState("");
@@ -105,7 +114,11 @@ export default function Challenge1FeatureEnd() {
                           lastName: editLast,
                         },
                       },
-                      { onSuccess: () => setEditingId(null) },
+                      {
+                        onSuccess: () => {
+                          setEditingId(null);
+                        },
+                      },
                     );
                   }}
                 >

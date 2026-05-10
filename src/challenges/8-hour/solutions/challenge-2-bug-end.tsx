@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import {
   deleteApiV1BooksByIdMutation,
   getApiV1BooksOptions,
   getApiV1BooksQueryKey,
 } from "@/api/client/@tanstack/react-query.gen";
-import type { Book } from "@/api/client";
 
 export default function Challenge2BugEnd() {
   const queryClient = useQueryClient();
@@ -14,18 +14,13 @@ export default function Challenge2BugEnd() {
 
   const remove = useMutation({
     ...deleteApiV1BooksByIdMutation(),
-    onMutate: async (vars) => {
-      // FIX 1: cancel inflight queries so they don't overwrite our optimistic update
-      await queryClient.cancelQueries({ queryKey });
-      const previous = queryClient.getQueryData<Book[]>(queryKey);
-      queryClient.setQueryData<Book[]>(queryKey, (old) => (old ? old.filter((b) => b.id !== vars.path.id) : old));
-      return { previous };
+    onSuccess: () => {
+      toast.success("Book deleted");
+      void queryClient.invalidateQueries({ queryKey });
     },
-    onError: (_e, _v, ctx) => {
-      if (ctx?.previous) queryClient.setQueryData(queryKey, ctx.previous);
+    onError: (error) => {
+      toast.error(`Delete failed: ${error.message}`);
     },
-    // FIX 2: invalidate the SAME generated key the read uses
-    onSettled: () => queryClient.invalidateQueries({ queryKey }),
   });
 
   return (

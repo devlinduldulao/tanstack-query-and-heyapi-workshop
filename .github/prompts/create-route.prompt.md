@@ -96,14 +96,14 @@ function RouteComponent() {
 loader: ({ context: { queryClient }, params }) => {
   // Prefetch multiple data sources using void pattern
   void queryClient.ensureQueryData(
-    applicationGetOptions({ path: { applicationId: params.applicationId } })
-  );
+      applicationGetOptions({ path: { applicationId: params.applicationId } })
+    );
   void queryClient.ensureQueryData(
-    getEnvironmentsOptions({ path: { applicationId: params.applicationId } })
-  );
+      getEnvironmentsOptions({ path: { applicationId: params.applicationId } })
+    );
   void queryClient.ensureQueryData(
-    servicesGetOptions({ path: { applicationId: params.applicationId } })
-  );
+      servicesGetOptions({ path: { applicationId: params.applicationId } })
+    );
 },
 ```
 

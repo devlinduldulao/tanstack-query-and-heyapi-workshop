@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import { z } from "zod";
 import {
   getApiV1BooksOptions,
@@ -24,7 +25,11 @@ export default function Exercise11End() {
   const mutation = useMutation({
     ...postApiV1BooksMutation(),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() });
+      toast.success("Book created");
+      void queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() });
+    },
+    onError: (error) => {
+      toast.error(`Create failed: ${error.message}`);
     },
   });
 
@@ -74,7 +79,6 @@ export default function Exercise11End() {
         </button>
       </form>
       {validationError && <p className="text-xs text-red-500">{validationError}</p>}
-      {mutation.isError && <p className="text-xs text-red-500">{mutation.error.message}</p>}
       <ul className="space-y-1">
         {books?.slice(0, 5).map((b) => (
           <li key={b.id}>{b.title}</li>

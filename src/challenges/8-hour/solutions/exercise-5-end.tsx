@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import {
   getApiV1BooksOptions,
   getApiV1BooksQueryKey,
   postApiV1BooksMutation,
 } from "@/api/client/@tanstack/react-query.gen";
-import type { Book } from "@/api/client";
 
 export default function Exercise5End() {
   const [title, setTitle] = useState("");
@@ -16,12 +16,12 @@ export default function Exercise5End() {
 
   const mutation = useMutation({
     ...postApiV1BooksMutation(),
-    onSuccess: (_created, variables) => {
-      const createdBook = variables.body as Book;
-      // Bonus: prepend immediately
-      queryClient.setQueryData<Book[]>(queryKey, (old) => (old ? [createdBook, ...old] : [createdBook]));
-      // Then reconcile with server
-      queryClient.invalidateQueries({ queryKey });
+    onSuccess: () => {
+      toast.success("Book created");
+      void queryClient.invalidateQueries({ queryKey });
+    },
+    onError: (error) => {
+      toast.error(`Create failed: ${error.message}`);
     },
   });
 

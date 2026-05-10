@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
 import {
   deleteApiV1BooksByIdMutation,
   getApiV1BooksOptions,
   getApiV1BooksQueryKey,
 } from "@/api/client/@tanstack/react-query.gen";
-import type { Book } from "@/api/client";
 
 export default function Exercise6End() {
   const queryClient = useQueryClient();
@@ -14,19 +14,12 @@ export default function Exercise6End() {
 
   const deleteBook = useMutation({
     ...deleteApiV1BooksByIdMutation(),
-    onMutate: async (vars) => {
-      await queryClient.cancelQueries({ queryKey });
-      const previous = queryClient.getQueryData<Book[]>(queryKey);
-      queryClient.setQueryData<Book[]>(queryKey, (old) => (old ? old.filter((b) => b.id !== vars.path.id) : old));
-      return { previous };
+    onSuccess: () => {
+      toast.success("Book deleted");
+      void queryClient.invalidateQueries({ queryKey });
     },
-    onError: (_err, _vars, context) => {
-      if (context?.previous) {
-        queryClient.setQueryData(queryKey, context.previous);
-      }
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey });
+    onError: (error) => {
+      toast.error(`Delete failed: ${error.message}`);
     },
   });
 

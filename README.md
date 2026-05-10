@@ -22,16 +22,18 @@ The root `/` route still hosts the original demo app (Books / Authors / Activiti
 
 This is built for senior React developers who have shipped production React apps and have used TanStack Query at least once. It assumes you are comfortable with hooks, TypeScript object types, async/await, REST APIs, and reading generated code.
 
-This is intentionally not a beginner React course. The first TanStack Query exercises move quickly from `useQuery` into cache policy, query factories, cancellation, optimistic rollback, generated query keys, Zod validation, prefetching, and production debugging.
+This is intentionally not a beginner React course. The first data-fetching exercises move quickly from generated read contracts into cache policy, query factories, generated keys, validated writes, toast-based mutation feedback, and production debugging.
+
+The workshop tutorials intentionally avoid route prefetch in the exercise files so attendees can focus on the generated Hey API abstractions first. The demo app pages outside the tutorials still keep prefetch patterns, because that remains a production best practice in the app itself.
 
 ## What You'll Build
 
 Two versions of the same senior-level curriculum:
 
-| Track  | Use When                              | Skills Unlocked                                                              |
-| ------ | ------------------------------------- | ---------------------------------------------------------------------------- |
-| 4-hour | You need the compressed essentials    | Query options, optimistic cache, Hey API adoption, Zod mutations, cache bugs |
-| 8-hour | You want the full hands-on experience | Everything in 4-hour plus state UX, invalidation, Suspense, prefetch, CRUD   |
+| Track  | Use When                              | Skills Unlocked                                                                                 |
+| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| 4-hour | You need the compressed essentials    | Generated reads, mutation feedback, Hey API adoption, validated writes, cache bugs              |
+| 8-hour | You want the full hands-on experience | Everything in 4-hour plus state UX, invalidation, Suspense, CRUD, and app-vs-tutorial tradeoffs |
 
 See [WORKSHOP_SCHEDULE.md](./WORKSHOP_SCHEDULE.md) for the full breakdown.
 
@@ -485,7 +487,7 @@ const mutation = useMutation({
   onSuccess: () => toast.success("Created!"),
 });
 
-// Prefetching in route loaders — same options factory
+// Prefetching in route loaders — same generated options factory
 void queryClient.ensureQueryData(getApiV1ActivitiesOptions());
 ```
 

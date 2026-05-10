@@ -1,20 +1,34 @@
 // TODO:
 // 1. Use useQueryClient()
 // 2. In useMutation onSuccess, invalidate getApiV1BooksQueryKey().
-// 3. Bonus: setQueryData to prepend the new book immediately.
+// 3. Show toast.success(...) on success and toast.error(...) on failure.
+// 4. Do not manually prepend records into the cache.
 
 import { useState } from "react";
 import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
-import { getApiV1BooksOptions, postApiV1BooksMutation } from "@/api/client/@tanstack/react-query.gen";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  getApiV1BooksOptions,
+  getApiV1BooksQueryKey,
+  postApiV1BooksMutation,
+} from "@/api/client/@tanstack/react-query.gen";
 
 export default function Exercise5() {
   const [title, setTitle] = useState("");
+  const queryClient = useQueryClient();
 
   const { data } = useSuspenseQuery(getApiV1BooksOptions());
 
   const mutation = useMutation({
     ...postApiV1BooksMutation(),
-    // TODO: onSuccess: () => queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() })
+    onSuccess: () => {
+      toast.success("Book created");
+      void queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() });
+    },
+    onError: (error) => {
+      toast.error(`Create failed: ${error.message}`);
+    },
   });
 
   return (
