@@ -4,6 +4,15 @@ const STORAGE_KEY = "workshop-completed-exercises";
 
 type CompletedMap = Record<string, boolean>;
 
+export function getCompletionKey(day: string, exercise: string) {
+  return `${day}/${exercise}`;
+}
+
+export function toggleCompletedMap(completed: CompletedMap, day: string, exercise: string): CompletedMap {
+  const key = getCompletionKey(day, exercise);
+  return { ...completed, [key]: !completed[key] };
+}
+
 function read(): CompletedMap {
   if (typeof window === "undefined") return {};
   try {
@@ -30,12 +39,11 @@ export function useExerciseCompletion() {
     return () => window.removeEventListener("storage", onStorage);
   }, []);
 
-  const isCompleted = useCallback((day: string, exercise: string) => !!completed[`${day}/${exercise}`], [completed]);
+  const isCompleted = useCallback((day: string, exercise: string) => !!completed[getCompletionKey(day, exercise)], [completed]);
 
   const toggleCompletion = useCallback(
     (day: string, exercise: string) => {
-      const key = `${day}/${exercise}`;
-      const next = { ...completed, [key]: !completed[key] };
+      const next = toggleCompletedMap(completed, day, exercise);
 
       setCompleted(next);
       write(next);
