@@ -50,8 +50,8 @@ function BootcampHome() {
               <Trophy className="text-primary mb-3 h-5 w-5" />
               <h3 className="text-xl font-semibold">8-hour workshop</h3>
               <p className="text-muted-foreground mt-2 text-sm">
-                The full track with every lab: state/refetch UX, mutation lifecycle, invalidation, Suspense,
-                prefetching, feature challenge, and capstone homework.
+                The full track with every lab: state/refetch UX, mutation lifecycle, invalidation, Suspense, feature
+                challenge, and capstone homework.
               </p>
             </Link>
           </div>

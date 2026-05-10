@@ -1,33 +1,12 @@
 // TODO:
-// 1. Move this anonymous query into reusable queryOptions.
-// 2. Include minPages in the query key.
-// 3. Pass the AbortSignal to axios.
-// 4. Tune staleTime, gcTime, retry, and select for a production list.
+// 1. Start from getApiV1BooksOptions() instead of a hand-written request.
+// 2. Keep the generated query key and derive the filtered catalog with select.
+// 3. Tune staleTime, gcTime, and retry for a production list.
+// 4. Let Hey API own the transport layer and DTO shape.
 
-import { queryOptions, useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
-type Book = {
-  id: number;
-  title: string;
-  description: string;
-  pageCount: number;
-};
-
-const BOOKS_URL = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
 const MIN_PAGES = 200;
-
-const bookCatalogOptions = queryOptions({
-  queryKey: ["books", "catalog", { minPages: MIN_PAGES }] as const,
-  queryFn: async ({ signal }) => {
-    const response = await axios.get<Book[]>(BOOKS_URL, { signal });
-    return response.data;
-  },
-  staleTime: 0,
-  gcTime: 5 * 60 * 1000,
-  retry: 0,
-  select: (books) => books.slice(0, 10),
-});
 
 function formatUpdatedAt(timestamp: number) {
   if (!timestamp) return "never";
@@ -39,10 +18,21 @@ function formatUpdatedAt(timestamp: number) {
 }
 
 export default function Exercise1() {
-  const { data = [], dataUpdatedAt, error, isError, isFetching, isPending } = useQuery(bookCatalogOptions);
-
-  if (isPending) return <p className="text-sm">Loading catalog…</p>;
-  if (isError) return <p className="text-sm text-red-500">{error.message}</p>;
+  const {
+    data = [],
+    dataUpdatedAt,
+    isFetching,
+  } = useSuspenseQuery({
+    ...getApiV1BooksOptions(),
+    staleTime: 0,
+    gcTime: 5 * 60 * 1000,
+    retry: 0,
+    select: (books) =>
+      books
+        .filter((book) => (book.pageCount ?? 0) >= MIN_PAGES)
+        .sort((left, right) => (right.pageCount ?? 0) - (left.pageCount ?? 0))
+        .slice(0, 10),
+  });
 
   return (
     <div className="space-y-3 text-sm">

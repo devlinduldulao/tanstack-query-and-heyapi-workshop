@@ -1,28 +1,26 @@
-# Exercise 4: Generated Options as Query Factories
+# Exercise 4: Generated Screen Contracts
 
-The TanStack Query plugin is where Hey API becomes hard to give up. It generates the query function, the query key, and the mutation options from the same OpenAPI operation.
+This exercise uses generated books helpers as the only source of truth for both the list and the detail panel. Your job is to add screen-level behavior without recreating request logic by hand.
 
 ## Requirements
 
-- Import `getApiV1BooksOptions`, `getApiV1BooksByIdOptions`, and `getApiV1BooksQueryKey` from the generated TanStack Query file.
-- Use `useQuery(getApiV1BooksOptions())` for the list.
-- Use a selected book id and `getApiV1BooksByIdOptions({ path: { id } })` for details.
-- Add `enabled` to the detail query so it does not run before a selection exists.
-- Layer app-specific behavior on top of generated options:
-  - `select` only the fields needed by the list UI
-  - `staleTime` for the list
-  - a targeted invalidation button that uses `getApiV1BooksQueryKey()`
+- Use the generated books list helper for the primary screen data.
+- Use the generated single-book helper for the detail panel.
+- Render the detail panel only after a valid selection exists.
+- Layer screen-specific behavior on top of the generated helpers:
+  - transform only the fields the list actually needs
+  - set a useful freshness window for the list
+  - wire a targeted refresh action through the generated books-list identifier
+- Do not introduce manual endpoint strings or hand-written cache identifiers.
 
 ## Discussion Prompt
 
-When your backend adds a required path/query/body parameter, which approach fails louder: manual query objects or generated options?
+When the backend adds a new required parameter, which approach fails earlier: generated contracts or hand-built request objects?
 
 ## Why This Matters
 
-Generated options are query factories without the maintenance burden. They give you consistent keys for reads, invalidation, prefetching, loaders, and optimistic updates.
+Generated read helpers are valuable because every screen uses the same contract surface. That keeps reads, refreshes, and future refactors consistent.
 
 ## Training Resources
 
-- [Hey API — TanStack Query Plugin](https://heyapi.dev/openapi-ts/plugins/tanstack-query)
-- [TanStack Query — Query Options](https://tanstack.com/query/latest/docs/framework/react/guides/query-options)
-- [TanStack Query — Query Invalidation](https://tanstack.com/query/latest/docs/framework/react/guides/query-invalidation)
+- [Hey API - Plugins](https://heyapi.dev/openapi-ts/plugins)

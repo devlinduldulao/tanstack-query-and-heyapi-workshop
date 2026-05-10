@@ -1,21 +1,20 @@
-# Exercise 10: Suspense Queries
+# Exercise 10: Suspense-Ready Generated Reads
 
-`useSuspenseQuery` lets you delete loading branches from your component bodies and rely on Suspense boundaries instead.
+This lab is about using the project's suspense-ready data pattern so component bodies can assume data is present once they render.
 
 ## Requirements
 
-- Replace `useQuery` with `useSuspenseQuery`.
-- Wrap the consuming component in `<Suspense fallback={...}>`.
-- Wrap that in an `ErrorBoundary` (from `react-error-boundary`).
-- Notice your component no longer needs `isPending` / `isError` checks — `data` is always defined.
+- Keep the screen on the generated read contract already used in the starter.
+- Let the surrounding loading and error boundaries own first-load and failure UI.
+- Remove local branches that assume data might be missing after the component has rendered.
+- Keep the component focused on rendering the resolved data.
 
-> 💡 Suspense queries assume the data exists. Always pair them with both an `ErrorBoundary` and a `Suspense` boundary.
+> The goal is not a new request pattern. The goal is a simpler component body because the surrounding app already handles loading and failure states.
 
 ## Why This Matters
 
-Suspense + TanStack Router loaders + `useSuspenseQuery` is the modern recommended data-fetching pattern. It composes beautifully and removes huge amounts of conditional UI logic.
+When the app shell owns loading and failure boundaries, feature components stay smaller and easier to reason about.
 
 ## Training Resources
 
-- [`useSuspenseQuery`](https://tanstack.com/query/latest/docs/framework/react/reference/useSuspenseQuery)
-- [Suspense Guide](https://tanstack.com/query/latest/docs/framework/react/guides/suspense)
+- [Hey API - Get Started](https://heyapi.dev/openapi-ts/get-started)

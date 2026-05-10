@@ -34,16 +34,6 @@ const router = createRouter({
   // background fetch after 24 hours
   defaultGcTime: 1000 * 60 * 60 * 24 * 7,
 
-  // will preload the route when the user hovers over a link
-  defaultPreload: "intent",
-
-  // will preload the route when the user scrolls to it
-  // defaultPreload: "viewport",
-
-  // Since we're using React Query, we don't want loader calls to ever be stale
-  // This will ensure that the loader is always called when the route is preloaded or visited
-  defaultPreloadStaleTime: 1000 * 60 * 60 * 24,
-
   // Preloading by "intent" works by using hover and touch start events on <Link> components to preload the dependencies for the destination route.
   // gcTime means garbage collection time and it is set to one week
   defaultStaleTime: 1000 * 60 * 60 * 24,

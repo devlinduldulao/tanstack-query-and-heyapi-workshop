@@ -15,16 +15,16 @@ Your job: find and fix the cache bugs in `challenge-2-bug.tsx`.
 
 ## Hints
 
-- Compare the read query key against every key used in `onMutate` and invalidation.
-- `onMutate` should cancel in-flight list reads before writing optimistic cache state.
-- A rollback needs a snapshot from the same cache entry that gets edited.
-- Prefer generated query keys for reads, writes, invalidation, prefetching, and rollbacks.
+- Compare the generated books-list identifier against every cache touch in the delete flow.
+- Stop in-flight list refreshes before writing optimistic state.
+- A rollback snapshot must come from the exact same generated list entry that you update.
+- Use one generated list identifier for snapshot, optimistic update, rollback, and final reconciliation.
 
 ## Checklist
 
 - ✅ Deleting a book removes it permanently (no reappearance).
 - ✅ Rapid-clicking three different delete buttons removes those exact three books — never the wrong ones.
-- ✅ The mutation uses generated helpers and one generated query key for snapshot, optimistic update, rollback, and invalidation.
+- ✅ The mutation uses generated helpers and one generated list identifier for snapshot, optimistic update, rollback, and reconciliation.
 - ✅ Optimistic update rolls back on error.
 
-> Race conditions in TanStack Query almost always trace back to **missing `cancelQueries`**, **mismatched query keys**, or **rollback snapshots from the wrong cache entry**.
+> Race conditions in this kind of UI almost always trace back to a missing stop-before-write step, mismatched cache identity, or a rollback snapshot taken from the wrong place.

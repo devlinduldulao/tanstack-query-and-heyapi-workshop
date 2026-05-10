@@ -1,24 +1,22 @@
-# Exercise 2: Optimistic Updates
+# Exercise 2: Optimistic Deletes with Generated Contracts
 
-Slow networks shouldn't make your UI feel slow. Implement an optimistic delete using the full `onMutate / onError / onSettled` lifecycle.
+Slow networks should not make the UI feel slow. In this lab you will finish an optimistic delete flow without inventing any manual endpoint strings or cache identifiers.
 
 ## Requirements
 
-- Implement a `useDeleteBook` hook that DELETEs `/api/v1/Books/{id}`.
-- In `onMutate`:
-  - `await queryClient.cancelQueries({ queryKey: ["books"] })`
-  - Snapshot the previous list with `getQueryData`
-  - Optimistically remove the deleted book via `setQueryData`
-  - Return `{ previous }` as context
-- In `onError`, roll back using the snapshot from context.
-- In `onSettled`, invalidate `["books"]` to reconcile with the server.
+- Use the generated delete contract for a single book.
+- Use the generated books-list identifier everywhere in the optimistic flow.
+- Before writing optimistic state, stop any in-flight refresh for that same list.
+- Snapshot the previous list, remove the deleted row immediately, and return the snapshot as context.
+- If the request fails, restore the snapshot.
+- When the request finishes, refresh the same generated list identifier.
 
-> 💡 Always cancel inflight queries first or your optimistic update will be overwritten by a stale response.
+> The most common bug here is mixing two different cache identities for the same screen. One generated list identifier should drive snapshot, optimistic update, rollback, and reconciliation.
 
 ## Why This Matters
 
-This pattern is the difference between a snappy enterprise app and one that feels broken. It's also a frequent senior-level interview question.
+Optimistic updates feel great only when the read contract and the write contract stay aligned. Generated helpers reduce the chance of subtle cache drift.
 
 ## Training Resources
 
-- [Optimistic Updates](https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates)
+- [Hey API - Get Started](https://heyapi.dev/openapi-ts/get-started)

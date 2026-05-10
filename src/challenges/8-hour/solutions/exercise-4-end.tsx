@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import { postApiV1BooksMutation } from "@/api/client/@tanstack/react-query.gen";
 
 type NewBook = { title: string; description: string };
 
@@ -8,15 +8,23 @@ export default function Exercise4End() {
   const [form, setForm] = useState<NewBook>({ title: "", description: "" });
 
   const mutation = useMutation({
-    mutationFn: async (book: NewBook) =>
-      (await axios.post("https://fakerestapi.azurewebsites.net/api/v1/Books", book)).data,
+    ...postApiV1BooksMutation(),
   });
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        mutation.mutate(form);
+        mutation.mutate({
+          body: {
+            id: 0,
+            title: form.title,
+            description: form.description,
+            pageCount: 1,
+            excerpt: form.description,
+            publishDate: new Date().toISOString(),
+          },
+        });
       }}
       className="max-w-sm space-y-2 text-sm"
     >

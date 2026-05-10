@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { z } from "zod";
 import {
   getApiV1BooksOptions,
@@ -19,7 +19,7 @@ export default function Exercise11End() {
   const [validationError, setValidationError] = useState<string | null>(null);
   const queryClient = useQueryClient();
 
-  const { data: books } = useQuery(getApiV1BooksOptions());
+  const { data: books } = useSuspenseQuery(getApiV1BooksOptions());
 
   const mutation = useMutation({
     ...postApiV1BooksMutation(),

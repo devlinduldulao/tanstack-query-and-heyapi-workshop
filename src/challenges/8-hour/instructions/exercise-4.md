@@ -1,24 +1,22 @@
-# Exercise 4: Mutations with `useMutation`
+# Exercise 4: Generated Create Contracts
 
-Reads are easy. Writes are where TanStack Query truly shines. You will create a new book using `useMutation`.
+Reads are only half the story. In this exercise you will create a new book through the generated write contract instead of building a manual POST flow.
 
 ## Requirements
 
-- Import `useMutation` from `@tanstack/react-query`.
 - Build a small form with `title` and `description`.
-- Call `useMutation` with a `mutationFn` that POSTs to `/api/v1/Books`.
-- On submit, call `mutate({ title, description })`.
-- Disable the submit button while `isPending` is `true`.
-- Show a success toast (or simple text) when `isSuccess` is `true`.
-- Surface `error.message` when the mutation fails.
+- Use the generated create-book contract already referenced in the starter file.
+- Submit a request body that matches the generated shape the API expects.
+- Disable submit while the request is in flight.
+- Show a success message when the request completes.
+- Surface the request failure message when the write fails.
 
-> 💡 Don't worry that the fake API doesn't actually persist — you can still observe the request, response, and lifecycle.
+> The fake API may not persist forever, but the exercise still teaches the right structure: generated contract in, UI state out.
 
 ## Why This Matters
 
-`useMutation` separates "imperative side effect" from "declarative cache state" — the cleanest mental model for writes in React.
+Write paths are where manual API layers get messy fastest. A generated contract keeps the endpoint, body shape, and response wiring consistent.
 
 ## Training Resources
 
-- [Mutations](https://tanstack.com/query/latest/docs/framework/react/guides/mutations)
-- [`useMutation` Reference](https://tanstack.com/query/latest/docs/framework/react/reference/useMutation)
+- [Hey API - Plugins](https://heyapi.dev/openapi-ts/plugins)

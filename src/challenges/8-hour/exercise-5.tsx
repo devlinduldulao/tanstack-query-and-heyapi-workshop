@@ -1,27 +1,20 @@
 // TODO:
 // 1. Use useQueryClient()
-// 2. In useMutation onSuccess, invalidate ["books-5"]
-// 3. Bonus: setQueryData to prepend the new book immediately
+// 2. In useMutation onSuccess, invalidate getApiV1BooksQueryKey().
+// 3. Bonus: setQueryData to prepend the new book immediately.
 
 import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
-type Book = { id: number; title: string; description: string };
-
-const API = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
+import { getApiV1BooksOptions, postApiV1BooksMutation } from "@/api/client/@tanstack/react-query.gen";
 
 export default function Exercise5() {
   const [title, setTitle] = useState("");
 
-  const { data } = useQuery({
-    queryKey: ["books-5"],
-    queryFn: async () => (await axios.get<Book[]>(API)).data,
-  });
+  const { data } = useSuspenseQuery(getApiV1BooksOptions());
 
   const mutation = useMutation({
-    mutationFn: async (t: string) => (await axios.post<Book>(API, { title: t, description: "" })).data,
-    // TODO: onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books-5"] })
+    ...postApiV1BooksMutation(),
+    // TODO: onSuccess: () => queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() })
   });
 
   return (
@@ -33,7 +26,21 @@ export default function Exercise5() {
           className="flex-1 rounded border px-2 py-1"
           placeholder="New book title"
         />
-        <button onClick={() => mutation.mutate(title)} className="rounded border px-3 py-1">
+        <button
+          onClick={() =>
+            mutation.mutate({
+              body: {
+                id: 0,
+                title,
+                description: "",
+                pageCount: 1,
+                excerpt: "",
+                publishDate: new Date().toISOString(),
+              },
+            })
+          }
+          className="rounded border px-3 py-1"
+        >
           Add
         </button>
       </div>

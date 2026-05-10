@@ -1,30 +1,41 @@
 // TODO:
-// 1. Replace the disabled detail query with generated getApiV1BooksByIdOptions.
-// 2. Add enabled: selectedId != null.
+// 1. Keep the generated getApiV1BooksByIdOptions for the detail panel.
+// 2. Mount the detail query only when selectedId != null.
 // 3. Use getApiV1BooksQueryKey() for the invalidation button.
 // 4. Keep the list select small so components only receive the fields they render.
 
-import { useState } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getApiV1BooksByIdOptions, getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
+import { Suspense, useState } from "react";
+import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  getApiV1BooksByIdOptions,
+  getApiV1BooksOptions,
+  getApiV1BooksQueryKey,
+} from "@/api/client/@tanstack/react-query.gen";
+import type { Book } from "@/api/client";
+
+function SelectedBookPanel({ selectedId }: { selectedId: number }) {
+  const { data: book } = useSuspenseQuery(getApiV1BooksByIdOptions({ path: { id: selectedId } }));
+
+  return (
+    <div>
+      <p className="font-medium">{book.title}</p>
+      <p className="text-muted-foreground mt-1 text-xs">{book.description}</p>
+    </div>
+  );
+}
 
 export default function Exercise4() {
   const queryClient = useQueryClient();
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
-  const { data: books = [] } = useQuery({
+  const { data: books = [] } = useSuspenseQuery({
     ...getApiV1BooksOptions(),
     staleTime: 0,
-    select: (books) =>
+    select: (books: Book[]) =>
       books.slice(0, 8).map((book, index) => ({
         id: book.id ?? index,
         title: book.title ?? "Untitled",
       })),
-  });
-
-  const detailQuery = useQuery({
-    ...getApiV1BooksByIdOptions({ path: { id: selectedId ?? 1 } }),
-    enabled: false,
   });
 
   return (
@@ -34,7 +45,7 @@ export default function Exercise4() {
           <h3 className="font-semibold">Books</h3>
           <button
             className="rounded border px-2 py-1 text-xs"
-            onClick={() => queryClient.invalidateQueries({ queryKey: ["TODO"] })}
+            onClick={() => queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() })}
           >
             Invalidate list
           </button>
@@ -53,14 +64,10 @@ export default function Exercise4() {
       <section className="border-l pl-4">
         <h3 className="mb-2 font-semibold">Selected book</h3>
         {!selectedId && <p className="text-muted-foreground">Select a book to run the generated detail query.</p>}
-        {selectedId && !detailQuery.data && (
-          <p className="text-muted-foreground">TODO: enable the generated detail query.</p>
-        )}
-        {detailQuery.data && (
-          <div>
-            <p className="font-medium">{detailQuery.data.title}</p>
-            <p className="text-muted-foreground mt-1 text-xs">{detailQuery.data.description}</p>
-          </div>
+        {selectedId && (
+          <Suspense fallback={<p className="text-muted-foreground">Loading selected book...</p>}>
+            <SelectedBookPanel selectedId={selectedId} />
+          </Suspense>
         )}
       </section>
     </div>

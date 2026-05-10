@@ -1,27 +1,25 @@
 # Exercise 8: Replace Manual API Drift
 
-The starter intentionally has the problems we see in production: a hand-written DTO, a string URL, and a query function that silently drifts from the backend contract.
+The starter intentionally shows the kind of drift teams create under deadline pressure: a hand-written model, a string endpoint, and a manual read path. Your job is to delete that drift and move the screen onto generated contracts only.
 
 ## Requirements
 
-- Delete the hand-written `BookPreview` type.
-- Import `getApiV1Books` and the generated `Book` type from `@/api/client`.
-- Replace `axios.get(...)` with the generated SDK call.
-- Preserve an explicit query key for now so you can compare this approach with generated `*Options` in the next exercise.
+- Delete the hand-written preview type from the starter.
+- Replace the manual read path with the generated books helper already available in the client.
+- Keep the UI focused on presentation, not request wiring.
 - Add a small contract panel that shows:
   - endpoint path
-  - source file that generated the SDK function
+  - the generated file that owns the API surface
   - what the UI code no longer owns
 
 ## Discussion Prompt
 
-What breaks first in a manual axios layer when the backend changes: the URL, the request body, the response shape, the query key, or the runtime validation? Which of those does Hey API remove?
+When the backend changes, what breaks first in a manual data layer: endpoint path, request shape, response shape, cache identity, or runtime behavior? Which of those does generation remove from the component?
 
 ## Why This Matters
 
-This is the first adoption win: your React component no longer owns endpoint strings or response DTOs. The OpenAPI contract does.
+This is the first adoption win: the UI stops owning endpoint strings and response models. The OpenAPI contract does.
 
 ## Training Resources
 
-- [Hey API — Client (Axios)](https://heyapi.dev/openapi-ts/clients/axios)
-- [TanStack Query — Query Functions](https://tanstack.com/query/latest/docs/framework/react/guides/query-functions)
+- [Hey API - Get Started](https://heyapi.dev/openapi-ts/get-started)

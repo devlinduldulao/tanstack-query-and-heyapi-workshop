@@ -1,23 +1,22 @@
-# Exercise 2: Query Keys & Dependent Queries
+# Exercise 2: Master-Detail with Generated Contracts
 
-Query keys are how TanStack Query identifies, deduplicates, and invalidates cached data. They also unlock **dependent queries**.
+This screen already has the right contract surface available. Your job is to wire list selection to a generated detail read without inventing a second manual data path.
 
 ## Requirements
 
-- Implement `useBook(id)` that calls `useQuery` with key `["book", id]`.
-- Use the `enabled` option so the query only fires when `id` is truthy.
-- In the component, hold the selected book id in state.
-- When the user clicks a book in the list, fetch its details using your hook.
-- Display the selected book's title and description in a side panel.
+- Use the generated books list helper for the left side of the screen.
+- Hold the selected book id in component state.
+- Use the generated single-book helper for the detail panel.
+- Render the detail panel only after a valid selection exists.
+- Display the selected book's title and description in the side panel.
+- Do not add a hand-written cache identifier or endpoint string.
 
-> 💡 The structure of your query key matters: keep it serializable, keep variables in the array, and put the most specific identifier last.
+> The important idea is simple: one generated helper for the collection, one generated helper for the selected record, and no duplicated request logic.
 
 ## Why This Matters
 
-- Bad keys = stale data and impossible cache invalidation.
-- `enabled` is the canonical way to model dependent fetches without `useEffect`.
+Master-detail screens become fragile when teams build one-off fetch logic for the detail side. Generated contracts keep both halves aligned with the same backend source.
 
 ## Training Resources
 
-- [Query Keys](https://tanstack.com/query/latest/docs/framework/react/guides/query-keys)
-- [Dependent Queries](https://tanstack.com/query/latest/docs/framework/react/guides/dependent-queries)
+- [Hey API - Plugins](https://heyapi.dev/openapi-ts/plugins)

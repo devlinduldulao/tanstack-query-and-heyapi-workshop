@@ -1,22 +1,22 @@
-# Exercise 3: Loading, Error & Background States
+# Exercise 3: Refresh UX on Top of Generated Reads
 
-`isPending`, `isFetching`, `isError`, `isRefetching` — they look similar but mean very different things. Get them right and your UX feels instant.
+The generated read contract already handles the data source. This exercise is about the screen behavior around it: first render, friendly failure messaging, and subtle background refresh feedback.
 
 ## Requirements
 
-- Display a **full skeleton** when `isPending` is `true` (first load, no cache).
-- Display a **subtle "Refreshing…" indicator** when `isFetching && !isPending` (background refetch).
-- Render the friendly `error.message` when `isError` is `true`.
-- Add a **Retry** button that calls `refetch()`.
-- Wire a manual **Refresh** button that calls `refetch()` even when data is fresh.
+- Keep the generated list contract as the only source of data.
+- Show a full-screen loading treatment for the first render.
+- Show a smaller refresh indicator when the screen is updating in the background.
+- Render a friendly failure message when the read fails.
+- Add a visible retry action.
+- Add a user-triggered refresh action without replacing the whole screen with a blocking loading state.
 
-> 💡 `isPending` only flips back to `true` when there is no cached data. Background refreshes use `isFetching`.
+> Good data UX is mostly about not confusing first load, retry, and background refresh. The contract stays the same; the presentation changes.
 
 ## Why This Matters
 
-Most teams ship apps that flash a spinner on every revalidation. Knowing the difference is the mark of a senior React dev.
+Most teams make refresh feel like a full reload. Clear state separation makes the app feel much faster even when the network did not change.
 
 ## Training Resources
 
-- [Query Status](https://tanstack.com/query/latest/docs/framework/react/reference/useQuery)
-- [Background Fetching Indicators](https://tanstack.com/query/latest/docs/framework/react/guides/background-fetching-indicators)
+- [Hey API - Get Started](https://heyapi.dev/openapi-ts/get-started)

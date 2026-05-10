@@ -1,21 +1,20 @@
-# Exercise 5: Cache Invalidation
+# Exercise 5: Refresh Generated Reads After Writes
 
-A successful mutation that doesn't update the UI is a failed feature. Use `queryClient.invalidateQueries` to keep your reads fresh.
+A successful write that leaves the list stale is still a broken feature. This exercise is about reconnecting the create flow to the generated books-list identity.
 
 ## Requirements
 
-- Use `useQueryClient()` to grab the client.
-- After a successful book creation, call `queryClient.invalidateQueries({ queryKey: ["books"] })` in `onSuccess`.
-- Confirm the books list re-fetches automatically.
-- Bonus: use `setQueryData(["books"], updater)` to **immediately** prepend the new book without waiting for the network.
+- Keep the generated books list helper as the screen source of truth.
+- After a successful create, refresh the generated books-list identifier.
+- Confirm the list updates automatically after success.
+- Bonus: prepend the new record optimistically to that same generated list before the refresh finishes.
 
-> 💡 `invalidateQueries` marks the cache stale and triggers an active refetch — it does not blow the cache away.
+> The critical rule is consistency: the same generated list identity should back both the visible screen and the post-create refresh.
 
 ## Why This Matters
 
-This is the single most important pattern in TanStack Query. Master it and 80% of cache management problems disappear.
+Most stale UI bugs are not network bugs. They come from refreshing the wrong cache entry or forgetting to reconnect a write to the read that users are actually seeing.
 
 ## Training Resources
 
-- [Invalidations from Mutations](https://tanstack.com/query/latest/docs/framework/react/guides/invalidations-from-mutations)
-- [Updates from Mutation Responses](https://tanstack.com/query/latest/docs/framework/react/guides/updates-from-mutation-responses)
+- [Hey API - Get Started](https://heyapi.dev/openapi-ts/get-started)

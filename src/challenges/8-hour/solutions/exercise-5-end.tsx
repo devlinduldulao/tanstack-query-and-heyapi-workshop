@@ -1,27 +1,27 @@
 import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-
-type Book = { id: number; title: string; description: string };
-
-const API = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  getApiV1BooksOptions,
+  getApiV1BooksQueryKey,
+  postApiV1BooksMutation,
+} from "@/api/client/@tanstack/react-query.gen";
+import type { Book } from "@/api/client";
 
 export default function Exercise5End() {
   const [title, setTitle] = useState("");
   const queryClient = useQueryClient();
+  const queryKey = getApiV1BooksQueryKey();
 
-  const { data } = useQuery({
-    queryKey: ["books-5"],
-    queryFn: async () => (await axios.get<Book[]>(API)).data,
-  });
+  const { data } = useSuspenseQuery(getApiV1BooksOptions());
 
   const mutation = useMutation({
-    mutationFn: async (t: string) => (await axios.post<Book>(API, { title: t, description: "" })).data,
-    onSuccess: (created) => {
+    ...postApiV1BooksMutation(),
+    onSuccess: (_created, variables) => {
+      const createdBook = variables.body as Book;
       // Bonus: prepend immediately
-      queryClient.setQueryData<Book[]>(["books-5"], (old) => (old ? [created, ...old] : [created]));
+      queryClient.setQueryData<Book[]>(queryKey, (old) => (old ? [createdBook, ...old] : [createdBook]));
       // Then reconcile with server
-      queryClient.invalidateQueries({ queryKey: ["books-5"] });
+      queryClient.invalidateQueries({ queryKey });
     },
   });
 
@@ -36,7 +36,18 @@ export default function Exercise5End() {
         />
         <button
           onClick={() => {
-            if (title) mutation.mutate(title);
+            if (title) {
+              mutation.mutate({
+                body: {
+                  id: 0,
+                  title,
+                  description: "",
+                  pageCount: 1,
+                  excerpt: "",
+                  publishDate: new Date().toISOString(),
+                },
+              });
+            }
             setTitle("");
           }}
           className="rounded border px-3 py-1"

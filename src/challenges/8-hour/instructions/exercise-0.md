@@ -1,6 +1,6 @@
 # Exercise 0: Workshop Setup
 
-Welcome to the **8-hour TanStack Query × Hey API** workshop. This exercise verifies your environment is wired correctly so the full track runs smoothly.
+Welcome to the **8-hour Hey API workshop**. This exercise verifies the project is running and sets the rule for the full track: use the generated client contracts instead of hand-building request logic, cache identity, or validation layers.
 
 ## Requirements
 
@@ -11,17 +11,17 @@ Welcome to the **8-hour TanStack Query × Hey API** workshop. This exercise veri
 - Toggle **Show Solution** to compare the starter and finished code.
 - Click **Mark Complete** to track your progress (persisted in `localStorage`).
 
-> 💡 Each exercise contains three files:
+> Each exercise contains three files:
 >
-> - `exercise-N.tsx` — your starting point with `// TODO` markers
-> - `solutions/exercise-N-end.tsx` — the working reference solution
-> - `instructions/exercise-N.md` — this guide
+> - `exercise-N.tsx` - your starting point with `// TODO` markers
+> - `solutions/exercise-N-end.tsx` - the working reference solution
+> - `instructions/exercise-N.md` - this guide
 
 ## What You'll Build
 
-Across the full track you will improve a **Books / Authors / Activities** dashboard backed by [`fakerestapi.azurewebsites.net`](https://fakerestapi.azurewebsites.net/), using advanced TanStack Query patterns and a Hey API generated client.
+Across the full track you will improve a **Books / Authors / Activities** dashboard backed by [`fakerestapi.azurewebsites.net`](https://fakerestapi.azurewebsites.net/). The focus is contract-driven UI: generated reads, generated writes, generated cache identifiers, derived local views, and debugging the failures that happen when teams bypass the generated layer.
 
 ## Training Resources
 
-- [TanStack Query Overview](https://tanstack.com/query/latest/docs/framework/react/overview)
-- [Hey API — Get Started](https://heyapi.dev/openapi-ts/get-started)
+- [Hey API - Get Started](https://heyapi.dev/openapi-ts/get-started)
+- [Hey API - Plugins](https://heyapi.dev/openapi-ts/plugins)

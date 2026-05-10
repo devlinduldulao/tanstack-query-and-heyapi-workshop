@@ -1,20 +1,33 @@
 // TODO:
-// 1. Wrap the form submit in useMutation
-// 2. mutationFn POSTs to /api/v1/Books
-// 3. Disable submit while isPending; show success / error states
+// 1. Wrap the form submit in useMutation.
+// 2. Use the generated postApiV1BooksMutation helper.
+// 3. Disable submit while isPending; show success / error states.
 
 import { useState } from "react";
-import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { postApiV1BooksMutation } from "@/api/client/@tanstack/react-query.gen";
 
 type NewBook = { title: string; description: string };
 
 export default function Exercise4() {
   const [form, setForm] = useState<NewBook>({ title: "", description: "" });
+  const mutation = useMutation({
+    ...postApiV1BooksMutation(),
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: replace with mutation.mutate(form)
-    await axios.post("https://fakerestapi.azurewebsites.net/api/v1/Books", form);
+    mutation.mutate({
+      body: {
+        id: 0,
+        title: form.title,
+        description: form.description,
+        pageCount: 1,
+        excerpt: form.description,
+        publishDate: new Date().toISOString(),
+      },
+    });
   };
 
   return (
@@ -31,9 +44,15 @@ export default function Exercise4() {
         value={form.description}
         onChange={(e) => setForm({ ...form, description: e.target.value })}
       />
-      <button type="submit" className="bg-primary text-primary-foreground rounded border px-3 py-1">
-        Create book
+      <button
+        type="submit"
+        disabled={mutation.isPending}
+        className="bg-primary text-primary-foreground rounded border px-3 py-1 disabled:opacity-50"
+      >
+        {mutation.isPending ? "Creating..." : "Create book"}
       </button>
+      {mutation.isSuccess && <p className="text-xs text-green-600">Book created.</p>}
+      {mutation.isError && <p className="text-xs text-red-500">{mutation.error.message}</p>}
     </form>
   );
 }

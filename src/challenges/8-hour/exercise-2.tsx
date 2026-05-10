@@ -1,30 +1,31 @@
 // TODO:
-// 1. Implement useBook(id) with queryKey ["book", id] and `enabled: !!id`
-// 2. When user clicks a book in the list, set selectedId
-// 3. Render the selected book's title + description in the side panel
+// 1. Start from getApiV1BooksOptions() and getApiV1BooksByIdOptions().
+// 2. Mount the detail reader only when selectedId != null.
+// 3. When user clicks a book in the list, set selectedId.
+// 4. Render the selected book's title + description in the side panel.
 
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
-type Book = { id: number; title: string; description: string };
-
-const API = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+import { Suspense, useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getApiV1BooksByIdOptions, getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
 
 function useBooks() {
-  return useQuery({
-    queryKey: ["books"],
-    queryFn: async () => (await axios.get<Book[]>(API)).data,
-  });
+  return useSuspenseQuery(getApiV1BooksOptions());
 }
 
-// TODO: implement useBook
-// function useBook(id: number | null) { ... }
+function SelectedBookPanel({ selectedId }: { selectedId: number }) {
+  const { data: book } = useSuspenseQuery(getApiV1BooksByIdOptions({ path: { id: selectedId } }));
+
+  return (
+    <>
+      <h3 className="mb-2 font-semibold">{book.title}</h3>
+      <p className="text-xs opacity-80">{book.description}</p>
+    </>
+  );
+}
 
 export default function Exercise2() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { data: books } = useBooks();
-  // TODO: const { data: book, isFetching } = useBook(selectedId);
 
   return (
     <div className="grid grid-cols-2 gap-4 text-sm">
@@ -32,7 +33,7 @@ export default function Exercise2() {
         {books?.slice(0, 10).map((b) => (
           <li key={b.id}>
             <button
-              onClick={() => setSelectedId(b.id)}
+              onClick={() => setSelectedId(b.id ?? null)}
               className={`text-left hover:underline ${selectedId === b.id ? "font-semibold" : ""}`}
             >
               {b.title}
@@ -41,7 +42,12 @@ export default function Exercise2() {
         ))}
       </ul>
       <aside className="border-l pl-4 opacity-70">
-        <p>Select a book to see its details…</p>
+        {!selectedId && <p>Select a book to see its details...</p>}
+        {selectedId && (
+          <Suspense fallback={<p>Loading...</p>}>
+            <SelectedBookPanel selectedId={selectedId} />
+          </Suspense>
+        )}
       </aside>
     </div>
   );

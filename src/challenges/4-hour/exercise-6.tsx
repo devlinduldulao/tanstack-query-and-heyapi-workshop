@@ -1,32 +1,35 @@
 // TODO:
-// 1. Include page, pageSize, and search in the derived query key.
-// 2. Use useDeferredValue(search) before querying.
-// 3. Add placeholderData: keepPreviousData.
-// 4. Prefetch the next page once you know one exists.
+// 1. Start from getApiV1BooksOptions() so Hey API owns the request and query key.
+// 2. Use useDeferredValue(search) before deriving the visible items.
+// 3. Keep paging local because the API call is still the generated books list query.
+// 4. Remove manual prefetching and let one shared query feed the derived UI state.
 
 import { useDeferredValue, useState } from "react";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
+import type { Book } from "@/api/client";
 
 const PAGE_SIZE = 10;
+
+type BooksPage = {
+  items: Book[];
+  pageCount: number;
+  total: number;
+};
 
 export default function Exercise6() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const deferredSearch = useDeferredValue(search);
 
-  const { data, isFetching } = useQuery({
-    ...getApiV1BooksOptions(),
-    placeholderData: keepPreviousData,
-    select: (books) => {
-      const filtered = books.filter((book) => book.title?.toLowerCase().includes(deferredSearch.toLowerCase()));
-      return {
-        items: filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
-        pageCount: Math.max(1, Math.ceil(filtered.length / PAGE_SIZE)),
-        total: filtered.length,
-      };
-    },
-  });
+  const { data: books, isFetching } = useSuspenseQuery(getApiV1BooksOptions());
+  const normalizedSearch = deferredSearch.trim().toLowerCase();
+  const filteredBooks = books.filter((book: Book) => book.title?.toLowerCase().includes(normalizedSearch));
+  const data: BooksPage = {
+    items: filteredBooks.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+    pageCount: Math.max(1, Math.ceil(filteredBooks.length / PAGE_SIZE)),
+    total: filteredBooks.length,
+  };
 
   return (
     <div className="space-y-3 text-sm">

@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import {
   deleteApiV1BooksByIdMutation,
   getApiV1BooksOptions,
@@ -10,7 +10,7 @@ export default function Challenge2BugEnd() {
   const queryClient = useQueryClient();
   const queryKey = getApiV1BooksQueryKey();
 
-  const { data: books } = useQuery(getApiV1BooksOptions());
+  const { data: books } = useSuspenseQuery(getApiV1BooksOptions());
 
   const remove = useMutation({
     ...deleteApiV1BooksByIdMutation(),
@@ -18,9 +18,7 @@ export default function Challenge2BugEnd() {
       // FIX 1: cancel inflight queries so they don't overwrite our optimistic update
       await queryClient.cancelQueries({ queryKey });
       const previous = queryClient.getQueryData<Book[]>(queryKey);
-      queryClient.setQueryData<Book[]>(queryKey, (old) =>
-        old ? old.filter((b) => b.id !== vars.path.id) : old,
-      );
+      queryClient.setQueryData<Book[]>(queryKey, (old) => (old ? old.filter((b) => b.id !== vars.path.id) : old));
       return { previous };
     },
     onError: (_e, _v, ctx) => {
@@ -31,14 +29,11 @@ export default function Challenge2BugEnd() {
   });
 
   return (
-    <ul className="text-sm space-y-1 max-h-72 overflow-auto">
+    <ul className="max-h-72 space-y-1 overflow-auto text-sm">
       {books?.slice(0, 8).map((b) => (
         <li key={b.id} className="flex justify-between border-b py-1">
           <span>{b.title}</span>
-          <button
-            className="text-xs text-red-500"
-            onClick={() => remove.mutate({ path: { id: b.id! } })}
-          >
+          <button className="text-xs text-red-500" onClick={() => remove.mutate({ path: { id: b.id! } })}>
             delete
           </button>
         </li>

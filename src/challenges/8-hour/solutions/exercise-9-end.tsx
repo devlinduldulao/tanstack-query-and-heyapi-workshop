@@ -1,17 +1,31 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { useQueryClient } from "@tanstack/react-query";
+import { Suspense, useState } from "react";
+import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import {
   getApiV1BooksByIdOptions,
   getApiV1BooksOptions,
   getApiV1BooksQueryKey,
 } from "@/api/client/@tanstack/react-query.gen";
 
+function SelectedBookPanel({ selectedId }: { selectedId: number }) {
+  const { data: book, isFetching } = useSuspenseQuery(getApiV1BooksByIdOptions({ path: { id: selectedId } }));
+
+  return (
+    <>
+      <div className="mb-2 flex items-center gap-2">
+        <h3 className="font-semibold">Selected book</h3>
+        {isFetching && <span className="text-muted-foreground text-xs">Refreshing...</span>}
+      </div>
+      <p className="font-medium">{book.title}</p>
+      <p className="text-muted-foreground mt-1 text-xs">{book.description}</p>
+    </>
+  );
+}
+
 export default function Exercise9End() {
   const queryClient = useQueryClient();
   const [selectedId, setSelectedId] = useState<number | null>(1);
 
-  const { data: books = [] } = useQuery({
+  const { data: books = [] } = useSuspenseQuery({
     ...getApiV1BooksOptions(),
     staleTime: 60 * 1000,
     select: (books) =>
@@ -19,11 +33,6 @@ export default function Exercise9End() {
         id: book.id ?? index,
         title: book.title ?? "Untitled",
       })),
-  });
-
-  const { data: book, isFetching } = useQuery({
-    ...getApiV1BooksByIdOptions({ path: { id: selectedId ?? 1 } }),
-    enabled: selectedId != null,
   });
 
   return (
@@ -53,15 +62,10 @@ export default function Exercise9End() {
       </section>
 
       <section className="border-l pl-4">
-        <div className="mb-2 flex items-center gap-2">
-          <h3 className="font-semibold">Selected book</h3>
-          {isFetching && <span className="text-muted-foreground text-xs">Refreshing…</span>}
-        </div>
-        {book && (
-          <>
-            <p className="font-medium">{book.title}</p>
-            <p className="text-muted-foreground mt-1 text-xs">{book.description}</p>
-          </>
+        {selectedId && (
+          <Suspense fallback={<p className="text-muted-foreground">Loading selected book...</p>}>
+            <SelectedBookPanel selectedId={selectedId} />
+          </Suspense>
         )}
       </section>
     </div>

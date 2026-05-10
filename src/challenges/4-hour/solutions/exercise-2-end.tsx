@@ -1,36 +1,32 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-
-type Book = { id: number; title: string };
-
-const API = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import {
+  deleteApiV1BooksByIdMutation,
+  getApiV1BooksOptions,
+  getApiV1BooksQueryKey,
+} from "@/api/client/@tanstack/react-query.gen";
+import type { Book } from "@/api/client";
 
 export default function Exercise2End() {
   const queryClient = useQueryClient();
+  const queryKey = getApiV1BooksQueryKey();
 
-  const { data } = useQuery({
-    queryKey: ["books-6"],
-    queryFn: async () => (await axios.get<Book[]>(API)).data,
-  });
+  const { data } = useSuspenseQuery(getApiV1BooksOptions());
 
   const deleteBook = useMutation({
-    mutationFn: async (id: number) => axios.delete(`${API}/${id}`),
-    onMutate: async (id) => {
-      await queryClient.cancelQueries({ queryKey: ["books-6"] });
-      const previous = queryClient.getQueryData<Book[]>(["books-6"]);
-      queryClient.setQueryData<Book[]>(["books-6"], (old) => (old ? old.filter((b) => b.id !== id) : old));
+    ...deleteApiV1BooksByIdMutation(),
+    onMutate: async (vars) => {
+      await queryClient.cancelQueries({ queryKey });
+      const previous = queryClient.getQueryData<Book[]>(queryKey);
+      queryClient.setQueryData<Book[]>(queryKey, (old) => (old ? old.filter((b) => b.id !== vars.path.id) : old));
       return { previous };
     },
-    onError: (_err, _id, context) => {
+    onError: (_err, _vars, context) => {
       if (context?.previous) {
-        queryClient.setQueryData(["books-6"], context.previous);
+        queryClient.setQueryData(queryKey, context.previous);
       }
     },
     onSettled: () => {
-      alert(
-        "Book deleted! Refetching... But this is a fake API, so the deletion won't persist. The book will reappear after the refetch.",
-      );
-      queryClient.invalidateQueries({ queryKey: ["books-6"] });
+      queryClient.invalidateQueries({ queryKey });
     },
   });
 
@@ -39,7 +35,7 @@ export default function Exercise2End() {
       {data?.slice(0, 5).map((b) => (
         <li key={b.id} className="flex justify-between">
           <span>{b.title}</span>
-          <button onClick={() => deleteBook.mutate(b.id)} className="text-xs text-red-500">
+          <button onClick={() => deleteBook.mutate({ path: { id: b.id! } })} className="text-xs text-red-500">
             delete
           </button>
         </li>

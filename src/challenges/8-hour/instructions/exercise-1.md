@@ -1,29 +1,27 @@
-# Exercise 1: Query Options as a Contract
+# Exercise 1: Generated Read Contracts
 
-You already know `useQuery`. This exercise is about turning a query into a reusable contract: stable key, abortable fetcher, cache policy, transformed data, and a UI that does not flash on every background refresh.
+This exercise starts from a generated books contract and turns it into a reusable screen-level read. The component should add only screen behavior, not reimplement transport details.
 
 ## Requirements
 
-- Move the query definition into a `bookCatalogOptions` object created with `queryOptions()`.
-- Use a serializable key that includes the business input: `minPages`.
-- Pass TanStack Query's `signal` to `axios` so abandoned requests are cancelled.
-- Set intentional cache policy:
+- Start from the generated books list helper already hinted in the starter file.
+- Add screen-level cache policy:
   - `staleTime`: 60 seconds
   - `gcTime`: 15 minutes
   - `retry`: at most 2 retries
-- Use `select` to return only books with at least 200 pages, sorted by `pageCount` descending.
-- Render `isPending`, `isError`, `isFetching`, and `dataUpdatedAt` as separate states.
+- Add a transform that returns only books with at least 200 pages, sorted by `pageCount` descending.
+- Show clearly when the screen is refreshing in the background.
+- Render the last successful update time.
+- Do not add a hand-written URL, fetcher, or cache identifier.
 
 ## Discussion Prompt
 
-Where should this options object live in a real codebase: next to the route, next to the API module, or in a feature-level `queries.ts` file? What makes invalidation easier six months later?
+If the backend changes this endpoint later, what should remain stable in the screen and what should be regenerated from the contract?
 
 ## Why This Matters
 
-Senior teams do not sprinkle anonymous query objects across components. They make cache behavior explicit, reusable, testable, and easy to invalidate.
+Senior teams keep components focused on presentation and screen rules. Generated contracts own the request details so refactors stay predictable.
 
 ## Training Resources
 
-- [Query Options](https://tanstack.com/query/latest/docs/framework/react/guides/query-options)
-- [Important Defaults](https://tanstack.com/query/latest/docs/framework/react/guides/important-defaults)
-- [Query Functions](https://tanstack.com/query/latest/docs/framework/react/guides/query-functions)
+- [Hey API - Get Started](https://heyapi.dev/openapi-ts/get-started)

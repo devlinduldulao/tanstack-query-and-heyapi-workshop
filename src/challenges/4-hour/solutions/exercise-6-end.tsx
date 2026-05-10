@@ -1,12 +1,5 @@
-import { useDeferredValue, useEffect, useState } from "react";
-import {
-  keepPreviousData,
-  type QueryFunction,
-  type QueryKey,
-  type UseQueryOptions,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useDeferredValue, useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
 import type { Book } from "@/api/client";
 
@@ -14,45 +7,23 @@ const PAGE_SIZE = 10;
 
 type BooksPage = {
   items: Book[];
-  page: number;
   pageCount: number;
   total: number;
 };
 
-function booksPageOptions(page: number, search: string): UseQueryOptions<Book[], Error, BooksPage, QueryKey> {
-  const normalizedSearch = search.trim().toLowerCase();
-  const baseOptions = getApiV1BooksOptions();
-
-  return {
-    queryFn: baseOptions.queryFn as QueryFunction<Book[], QueryKey>,
-    queryKey: [...baseOptions.queryKey, "page", { page, pageSize: PAGE_SIZE, search: normalizedSearch }],
-    placeholderData: keepPreviousData,
-    staleTime: 30 * 1000,
-    select: (books): BooksPage => {
-      const filtered = books.filter((book) => book.title?.toLowerCase().includes(normalizedSearch));
-      const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-      return {
-        items: filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
-        page,
-        pageCount,
-        total: filtered.length,
-      };
-    },
-  };
-}
-
 export default function Exercise6End() {
-  const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const deferredSearch = useDeferredValue(search);
 
-  const { data, isFetching } = useQuery(booksPageOptions(page, deferredSearch));
-
-  useEffect(() => {
-    if (!data || page >= data.pageCount) return;
-    queryClient.prefetchQuery(booksPageOptions(page + 1, deferredSearch));
-  }, [data, deferredSearch, page, queryClient]);
+  const { data: books, isFetching } = useSuspenseQuery(getApiV1BooksOptions());
+  const normalizedSearch = deferredSearch.trim().toLowerCase();
+  const filteredBooks = books.filter((book) => book.title?.toLowerCase().includes(normalizedSearch));
+  const data: BooksPage = {
+    items: filteredBooks.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+    pageCount: Math.max(1, Math.ceil(filteredBooks.length / PAGE_SIZE)),
+    total: filteredBooks.length,
+  };
 
   return (
     <div className="space-y-3 text-sm">
