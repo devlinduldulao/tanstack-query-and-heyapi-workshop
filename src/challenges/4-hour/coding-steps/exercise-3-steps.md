@@ -72,7 +72,24 @@ const generatedArtifacts: GeneratedArtifact[] = [
 ];
 ```
 
-Replace each TODO with the real description. The solution file gives you five entries — `sdk.gen.ts`, `types.gen.ts`, `@tanstack/react-query.gen.ts`, `zod.gen.ts`, and `client.gen.ts`. You can keep three or expand to five; the requirement is to cover endpoints, types, query helpers, runtime schemas, and the configured client.
+Replace each TODO with the real description, then expand the array from three entries to five so it matches the solution. The solution file includes `sdk.gen.ts`, `types.gen.ts`, `@tanstack/react-query.gen.ts`, `zod.gen.ts`, and `client.gen.ts`.
+
+Add the two missing entries yourself:
+
+```tsx
+{
+  file: "src/api/client/types.gen.ts",
+  purpose: "Models plus request/response types generated from swagger.yaml.",
+  teamValue: "DTOs change with the backend contract instead of drifting in app code.",
+},
+{
+  file: "src/api/client/client.gen.ts",
+  purpose: "Singleton Axios client configured once in app startup.",
+  teamValue: "Base URL, auth headers, interceptors, and transport choices live outside feature UI.",
+},
+```
+
+The final array should cover endpoints, types, query helpers, runtime schemas, and the configured client.
 
 **Why write these in your own words:** if you copy the solution verbatim, you are not internalizing why your team would adopt this. In an actual architecture review you will be asked "what does each generated file remove from app code?" Practice answering that now.
 
@@ -138,7 +155,7 @@ The instructions ask you to:
 
 | Section                        | Action                                          |
 | ------------------------------ | ----------------------------------------------- |
-| `generatedArtifacts` array     | Replace every `"TODO: ..."` with a real value   |
+| `generatedArtifacts` array     | Replace every `"TODO: ..."` and expand from 3 entries to 5 |
 | `decisionRows` array           | Replace every `"TODO"` with a concrete sentence |
 | Position of those arrays       | Optional: move inside `Exercise3` for clarity   |
 | `// TODO:` header              | Delete once arrays are real                      |

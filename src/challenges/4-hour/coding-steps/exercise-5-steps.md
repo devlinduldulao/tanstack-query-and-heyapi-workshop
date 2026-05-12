@@ -133,11 +133,46 @@ Two different surfaces, two different state owners. Senior code review will look
 
 ---
 
-## Step 6 — Verify the submit button is disabled while pending
+## Step 6 — Tighten the form layout to match the solution
+
+The starter returns the `<form>` directly and stacks the controls vertically. The solution wraps the form in a parent `<div>` and makes the form itself a responsive grid:
+
+```tsx
+return (
+  <div className="max-w-sm space-y-3 text-sm">
+    <form
+      onSubmit={(e) => {
+        // submit handler from Step 4
+      }}
+      className="grid gap-2 sm:grid-cols-[1fr_100px_auto]"
+    >
+      {/* inputs + button */}
+    </form>
+    {validationError && <p className="text-xs text-red-500">{validationError}</p>}
+    {/* books list from Step 8 */}
+  </div>
+);
+```
+
+Make these small visual edits inside the form:
+
+```tsx
+<input className="flex-1 rounded border px-2 py-1" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+<input className="rounded border px-2 py-1" placeholder="Pages" value={pageCount} onChange={(e) => setPageCount(e.target.value)} />
+<button type="submit" disabled={mutation.isPending} className="rounded border px-3 py-1 disabled:opacity-50">
+  {mutation.isPending ? "…" : "Add"}
+</button>
+```
+
+**Why this matters:** the data behavior is the lesson, but the reference solution also shows a compact control row. Moving `max-w-sm space-y-3 text-sm` to the parent keeps the form, validation error, and list aligned as one small panel.
+
+---
+
+## Step 7 — Verify the submit button is disabled while pending
 
 ```tsx
 <button type="submit" disabled={mutation.isPending} className="rounded border px-3 py-1 disabled:opacity-50">
-  {mutation.isPending ? "Saving…" : "Add book with generated mutation"}
+  {mutation.isPending ? "…" : "Add"}
 </button>
 ```
 
@@ -145,7 +180,7 @@ Two different surfaces, two different state owners. Senior code review will look
 
 ---
 
-## Step 7 — (Optional) Add a books list under the form
+## Step 8 — Add the books list under the form
 
 The **solution** also reads the books list and renders the first 5 underneath the form:
 
@@ -159,7 +194,7 @@ const { data: books } = useSuspenseQuery(getApiV1BooksOptions());
 
 **Why this is in the solution:** it visually proves the invalidation worked. The moment the mutation's `onSuccess` fires, this list re-renders with the new book. Without the list, you can only verify success through the toast.
 
-This is optional but recommended — it is the live demo of why generated keys matter.
+This is required if you want to match the reference solution. It is the live demo of why generated keys matter.
 
 If you add it, you also need to:
 
@@ -168,13 +203,13 @@ If you add it, you also need to:
 
 ---
 
-## Step 8 — Delete the `// TODO:` header
+## Step 9 — Delete the `// TODO:` header
 
 Once `mutation.mutate(...)` is in place, delete the four-line TODO at the top.
 
 ---
 
-## Step 9 — Verify in the browser
+## Step 10 — Verify in the browser
 
 1. Save.
 2. Type a 2-character title and click submit → red validation message appears, **no** network request.
@@ -189,7 +224,8 @@ Once `mutation.mutate(...)` is in place, delete the four-line TODO at the top.
 | Change                                          | Required? | Why                                                  |
 | ----------------------------------------------- | --------- | ---------------------------------------------------- |
 | Replace `// TODO: call mutation.mutate(...)` with `mutation.mutate({ body: parsed.data })` + `setTitle("")` + `setPageCount("120")` | ✅ yes | Actually submit and reset for next entry             |
-| Add a books list below the form                 | optional  | Live proof that invalidation re-renders consumers    |
+| Move the form into `<div className="max-w-sm space-y-3 text-sm">` and use the grid form layout | ✅ yes | Matches the reference solution and makes room for the list |
+| Add a books list below the form                 | ✅ yes | Live proof that invalidation re-renders consumers    |
 | Delete `// TODO:` header                        | ✅ yes    | Acceptance complete                                  |
 | Anywhere else                                   | **leave alone** | Schema, mutation handlers, and validation are correct |
 

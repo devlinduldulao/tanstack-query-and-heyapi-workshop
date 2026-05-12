@@ -129,11 +129,46 @@ Two surfaces, two state owners. Senior code review looks for exactly this separa
 
 ---
 
-## Step 6 — Confirm the disabled-while-pending button
+## Step 6 — Tighten the form layout to match the solution
+
+The starter returns the `<form>` directly and stacks the controls vertically. The solution wraps everything in a parent panel and turns the form into a responsive grid:
+
+```tsx
+return (
+  <div className="max-w-sm space-y-3 text-sm">
+    <form
+      onSubmit={(e) => {
+        // submit handler from Step 4
+      }}
+      className="grid gap-2 sm:grid-cols-[1fr_100px_auto]"
+    >
+      {/* inputs + button */}
+    </form>
+    {validationError && <p className="text-xs text-red-500">{validationError}</p>}
+    {/* books list from Step 8 */}
+  </div>
+);
+```
+
+Make these small visual edits inside the form:
+
+```tsx
+<input className="flex-1 rounded border px-2 py-1" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+<input className="rounded border px-2 py-1" placeholder="Pages" value={pageCount} onChange={(e) => setPageCount(e.target.value)} />
+<button type="submit" disabled={mutation.isPending} className="rounded border px-3 py-1 disabled:opacity-50">
+  {mutation.isPending ? "…" : "Add"}
+</button>
+```
+
+**Why this matters:** the mutation behavior is the main lesson, but the solution also demonstrates a compact form row and places the validation message outside the form. That keeps layout and form semantics cleaner.
+
+---
+
+## Step 7 — Confirm the disabled-while-pending button
 
 ```tsx
 <button type="submit" disabled={mutation.isPending} className="rounded border px-3 py-1 disabled:opacity-50">
-  {mutation.isPending ? "Saving…" : "Add book with generated mutation"}
+  {mutation.isPending ? "…" : "Add"}
 </button>
 ```
 
@@ -141,7 +176,7 @@ Two surfaces, two state owners. Senior code review looks for exactly this separa
 
 ---
 
-## Step 7 — (Optional) Add a books list below the form
+## Step 8 — Add the books list below the form
 
 The solution reads the books list and renders the first 5 underneath:
 
@@ -153,7 +188,7 @@ const { data: books } = useSuspenseQuery(getApiV1BooksOptions());
 </ul>
 ```
 
-**Why:** it visually proves invalidation worked. The moment `onSuccess` fires, this list re-renders with the new book. Optional but recommended.
+**Why:** it visually proves invalidation worked. The moment `onSuccess` fires, this list re-renders with the new book. This is required if you want to match the reference solution.
 
 If you add it, also:
 
@@ -162,13 +197,13 @@ If you add it, also:
 
 ---
 
-## Step 8 — Delete the `// TODO:` header
+## Step 9 — Delete the `// TODO:` header
 
 Remove the four-line block.
 
 ---
 
-## Step 9 — Verify in the browser
+## Step 10 — Verify in the browser
 
 1. Save.
 2. Type a 2-character title → red validation message, **no** network request.
@@ -183,7 +218,8 @@ Remove the four-line block.
 | Change                                                                                                  | Required? |
 | ------------------------------------------------------------------------------------------------------- | --------- |
 | Replace `// TODO: ...` with `mutation.mutate({ body: parsed.data })` + `setTitle("")` + `setPageCount("120")` | ✅ yes    |
-| Add a books list below the form                                                                         | optional  |
+| Move the form into `<div className="max-w-sm space-y-3 text-sm">` and use the grid form layout               | ✅ yes    |
+| Add a books list below the form                                                                         | ✅ yes    |
 | Delete `// TODO:` header                                                                                | ✅ yes    |
 | Anywhere else                                                                                           | leave alone |
 
