@@ -45,6 +45,9 @@ src/challenges/
 │   ├── exercise-N.tsx                  ← compressed starter files
 │   ├── challenge-2-bug.tsx             ← compressed bug challenge
 │   ├── instructions/                   ← markdown guidance for selected activities
+│   ├── coding-steps/                   ← ordered step-by-step walkthroughs (NEW)
+│   │   ├── exercise-N-steps.md         ← delete / edit / add sequence + explanations
+│   │   └── challenge-2-bug.md
 │   └── solutions/                      ← reference solutions
 ├── 8-hour/
 │   ├── exercise-N.tsx                  ← starter file with TODOs (you edit this)
@@ -53,6 +56,10 @@ src/challenges/
 │   ├── instructions/                   ← markdown guidance for each item
 │   │   ├── exercise-N.md
 │   │   ├── challenge-1-feature.md
+│   │   └── challenge-2-bug.md
+│   ├── coding-steps/                   ← ordered step-by-step walkthroughs (NEW)
+│   │   ├── exercise-N-steps.md         ← delete / edit / add sequence + explanations
+│   │   ├── challenge-1-feature-steps.md
 │   │   └── challenge-2-bug.md
 │   └── solutions/                      ← reference solutions
 │       ├── exercise-N-end.tsx
@@ -74,9 +81,20 @@ The workshop is designed to make the value concrete, not theoretical. Attendees 
 1. Open an exercise from the sidebar.
 2. Read the **Challenge Instructions** panel.
 3. Edit the matching file under `src/challenges/4-hour/` or `src/challenges/8-hour/` — hot reload shows your changes instantly.
-4. Stuck? Click **Show Solution** to load `solutions/exercise-N-end.tsx` side by side.
-5. Done? Click **Mark Complete** to update your progress.
-6. After the workshop: complete the **Homework** entry for extra practice.
+4. Stuck on the _order_ of edits? Open the matching file in `coding-steps/` (e.g. `coding-steps/exercise-3-steps.md`) — it lists every delete / edit / add in build order with the reasoning behind each step.
+5. Still stuck? Click **Show Solution** to load `solutions/exercise-N-end.tsx` side by side.
+6. Done? Click **Mark Complete** to update your progress.
+7. After the workshop: complete the **Homework** entry for extra practice.
+
+### Three layers of guidance per exercise
+
+| Layer                      | Where                              | When to use it                                                              |
+| -------------------------- | ---------------------------------- | --------------------------------------------------------------------------- |
+| **Goals & context**        | `instructions/exercise-N.md`       | Always read first — explains _what_ to build and _why_.                     |
+| **Ordered build steps**    | `coding-steps/exercise-N-steps.md` | When you know _what_ but not _how to get there_ without skipping ahead.     |
+| **Reference solution**     | `solutions/exercise-N-end.tsx`     | Last resort — verifies the final shape after you've attempted it yourself.  |
+
+The `coding-steps/` files include mental models, before → after snippets, a code-change cheat sheet table, and a "common mistakes" section per exercise. They are written for senior engineers who want the _sequence_ of edits without being handed the entire solution at once.
 
 ## Useful Commands
 
