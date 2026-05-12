@@ -11,7 +11,32 @@ type ThemeState = {
 
 const themeStorageKey = "ui-theme";
 
+const fallbackStorage: Storage = {
+  length: 0,
+  clear() {},
+  getItem() {
+    return null;
+  },
+  key() {
+    return null;
+  },
+  removeItem() {},
+  setItem() {},
+};
+
 const isTheme = (value: unknown): value is Theme => value === "light" || value === "dark" || value === "dim";
+
+const getStorage = (): Storage | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+};
 
 const getInitialTheme = (): Theme => {
   if (typeof window === "undefined") {
@@ -23,7 +48,7 @@ const getInitialTheme = (): Theme => {
     return dataTheme;
   }
 
-  const storedTheme = window.localStorage.getItem(themeStorageKey);
+  const storedTheme = getStorage()?.getItem(themeStorageKey);
   if (isTheme(storedTheme)) {
     return storedTheme;
   }
@@ -63,7 +88,7 @@ export const useThemeStore = create<ThemeState>()(
     })),
     {
       name: themeStorageKey,
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => getStorage() ?? fallbackStorage),
       partialize: (state) => ({ theme: state.theme }),
       version: 1,
     },
