@@ -20,22 +20,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  test: {
-    environment: "jsdom",
-    setupFiles: ["./src/testing/setup.ts"],
-    css: false,
-    env: {
-      NODE_ENV: "test",
-    },
-    server: {
-      deps: {
-        inline: ["@base-ui/react"],
-      },
-    },
-    environmentOptions: {
-      jsdom: {
-        url: "http://localhost/",
-      },
-    },
-  },
 });
