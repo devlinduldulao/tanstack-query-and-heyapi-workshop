@@ -1,5 +1,16 @@
 // Reference solution — Orders Operations Console capstone.
 //
+// HEADS UP: This file intentionally does NOT typecheck on a fresh clone.
+// The repo's swagger.yaml is deliberately trimmed (missing GET/PUT/PATCH/DELETE
+// /api/v1/Orders/{id}, GET /api/v1/Orders/{id}/items, GET /api/v1/Orders/{id}/notes,
+// POST /api/v1/OrderNotes), so the generated client at src/api/client/ is missing
+// the 7 helpers this file imports. Run the regen pipeline to fix it:
+//
+//   pnpm run update-swagger-bash
+//   pnpm run openapi-ts
+//
+// That is the lesson — do not silence the errors with @ts-expect-error.
+//
 // Patterns demonstrated:
 //   * Master / detail with one selectedId state.
 //   * Three parallel sub-resource queries (order, items, notes), each behind its own

@@ -6,6 +6,29 @@ checkpoint.
 
 ---
 
+## Step 0 — Sync the contract first
+
+The solution file ships **broken on purpose**. The repo's `swagger.yaml` is missing four endpoints (`GET/PUT/PATCH/DELETE /api/v1/Orders/{id}`, `GET /api/v1/Orders/{id}/items`, `GET /api/v1/Orders/{id}/notes`, `POST /api/v1/OrderNotes`), so the generated client at `src/api/client/` does not expose the helpers the solution imports.
+
+Before you write a single line, refresh the contract:
+
+```bash
+pnpm run update-swagger-bash   # pull live swagger.yaml from fakerestapi.vercel.app
+pnpm run openapi-ts            # regenerate src/api/client/ from it
+```
+
+Now `pnpm run typecheck` should pass and the helpers below exist:
+
+- `getApiV1OrdersByIdOptions` / `getApiV1OrdersByIdQueryKey`
+- `patchApiV1OrdersByIdMutation`
+- `getApiV1OrdersByIdItemsOptions`
+- `getApiV1OrdersByIdNotesOptions` / `getApiV1OrdersByIdNotesQueryKey`
+- `postApiV1OrderNotesMutation`
+
+This is the realism: in your day job, the contract moves first and the UI catches up via the regen pipeline. Feel the loop once, then build.
+
+---
+
 ## Step 1 — Master list with `useSuspenseQuery` + `select`
 
 The starter already wires up `getApiV1OrdersOptions()`. Add a `select` that maps

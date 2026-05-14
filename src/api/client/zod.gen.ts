@@ -4369,53 +4369,6 @@ export const zPostApiV1OrdersBody = zOrder;
  */
 export const zPostApiV1OrdersResponse = zOrder;
 
-export const zDeleteApiV1OrdersByIdPath = z.object({
-  id: z
-    .int()
-    .min(-2147483648, { error: "Invalid value: Expected int32 to be >= -2147483648" })
-    .max(2147483647, { error: "Invalid value: Expected int32 to be <= 2147483647" }),
-});
-
-export const zGetApiV1OrdersByIdPath = z.object({
-  id: z
-    .int()
-    .min(-2147483648, { error: "Invalid value: Expected int32 to be >= -2147483648" })
-    .max(2147483647, { error: "Invalid value: Expected int32 to be <= 2147483647" }),
-});
-
-/**
- * Success
- */
-export const zGetApiV1OrdersByIdResponse = zOrder;
-
-export const zPatchApiV1OrdersByIdBody = zOrder;
-
-export const zPatchApiV1OrdersByIdPath = z.object({
-  id: z
-    .int()
-    .min(-2147483648, { error: "Invalid value: Expected int32 to be >= -2147483648" })
-    .max(2147483647, { error: "Invalid value: Expected int32 to be <= 2147483647" }),
-});
-
-/**
- * Success
- */
-export const zPatchApiV1OrdersByIdResponse = zOrder;
-
-export const zPutApiV1OrdersByIdBody = zOrder;
-
-export const zPutApiV1OrdersByIdPath = z.object({
-  id: z
-    .int()
-    .min(-2147483648, { error: "Invalid value: Expected int32 to be >= -2147483648" })
-    .max(2147483647, { error: "Invalid value: Expected int32 to be <= 2147483647" }),
-});
-
-/**
- * Success
- */
-export const zPutApiV1OrdersByIdResponse = zOrder;
-
 /**
  * Success
  */
@@ -9434,18 +9387,6 @@ export const zPutApiV1CustomerAddressesByIdPath = z.object({
  */
 export const zPutApiV1CustomerAddressesByIdResponse = zCustomerAddresse;
 
-/**
- * Success
- */
-export const zGetApiV1OrderNotesResponse = z.array(zOrderNote);
-
-export const zPostApiV1OrderNotesBody = zOrderNote;
-
-/**
- * Success
- */
-export const zPostApiV1OrderNotesResponse = zOrderNote;
-
 export const zDeleteApiV1OrderNotesByIdPath = z.object({
   id: z
     .int()
@@ -10604,30 +10545,6 @@ export const zGetApiV1CustomersByIdReviewsQuery = z.object({
  */
 export const zGetApiV1CustomersByIdReviewsResponse = z.array(zReview);
 
-export const zGetApiV1OrdersByIdItemsPath = z.object({
-  id: z
-    .int()
-    .min(-2147483648, { error: "Invalid value: Expected int32 to be >= -2147483648" })
-    .max(2147483647, { error: "Invalid value: Expected int32 to be <= 2147483647" }),
-});
-
-export const zGetApiV1OrdersByIdItemsQuery = z.object({
-  page: z.int().gte(1).optional().default(1),
-  limit: z.int().gte(1).lte(100).optional(),
-  offset: z.int().gte(0).optional(),
-  q: z.string().optional(),
-  search: z.string().optional(),
-  sort: z.string().optional(),
-  order: z.enum(["asc", "desc"]).optional(),
-  fields: z.string().optional(),
-  "<field>": z.string().optional(),
-});
-
-/**
- * Success
- */
-export const zGetApiV1OrdersByIdItemsResponse = z.array(z.record(z.string(), z.unknown()));
-
 export const zGetApiV1OrdersByIdRefundsPath = z.object({
   id: z
     .int()
@@ -11263,30 +11180,6 @@ export const zGetApiV1OrdersByIdReturnsQuery = z.object({
  * Success
  */
 export const zGetApiV1OrdersByIdReturnsResponse = z.array(z.record(z.string(), z.unknown()));
-
-export const zGetApiV1OrdersByIdNotesPath = z.object({
-  id: z
-    .int()
-    .min(-2147483648, { error: "Invalid value: Expected int32 to be >= -2147483648" })
-    .max(2147483647, { error: "Invalid value: Expected int32 to be <= 2147483647" }),
-});
-
-export const zGetApiV1OrdersByIdNotesQuery = z.object({
-  page: z.int().gte(1).optional().default(1),
-  limit: z.int().gte(1).lte(100).optional(),
-  offset: z.int().gte(0).optional(),
-  q: z.string().optional(),
-  search: z.string().optional(),
-  sort: z.string().optional(),
-  order: z.enum(["asc", "desc"]).optional(),
-  fields: z.string().optional(),
-  "<field>": z.string().optional(),
-});
-
-/**
- * Success
- */
-export const zGetApiV1OrdersByIdNotesResponse = z.array(z.record(z.string(), z.unknown()));
 
 export const zGetApiV1OrdersByIdCouponUsagesPath = z.object({
   id: z

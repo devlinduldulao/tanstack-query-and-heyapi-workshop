@@ -6,6 +6,29 @@ checkpoint.
 
 ---
 
+## Step 0 — Sync the contract first
+
+The solution file ships **broken on purpose**. The repo's `swagger.yaml` is missing four endpoints (`GET/PUT/PATCH/DELETE /api/v1/Orders/{id}`, `GET /api/v1/Orders/{id}/items`, `GET /api/v1/Orders/{id}/notes`, `POST /api/v1/OrderNotes`), so the generated client at `src/api/client/` does not expose the helpers the solution imports.
+
+Before you write a single line, refresh the contract:
+
+```bash
+pnpm run update-swagger-bash   # pull live swagger.yaml from fakerestapi.vercel.app
+pnpm run openapi-ts            # regenerate src/api/client/ from it
+```
+
+Now `pnpm run typecheck` should pass and the helpers below exist:
+
+- `getApiV1OrdersByIdOptions` / `getApiV1OrdersByIdQueryKey`
+- `patchApiV1OrdersByIdMutation`
+- `getApiV1OrdersByIdItemsOptions`
+- `getApiV1OrdersByIdNotesOptions` / `getApiV1OrdersByIdNotesQueryKey`
+- `postApiV1OrderNotesMutation`
+
+This is the realism: in your day job, the contract moves first and the UI catches up via the regen pipeline. Feel the loop once, then build.
+
+---
+
 ## Step 1 — Master list with `useSuspenseQuery` + `select`
 
 The starter already wires up `getApiV1OrdersOptions()`. Add a `select` that maps
@@ -21,8 +44,7 @@ const { data: orders } = useSuspenseQuery({
       id: order.id ?? index + 1,
       status: order.status ?? "pending",
       customerName:
-        [order.customer?.firstName, order.customer?.lastName].filter(Boolean).join(" ") ||
-        "Unknown customer",
+        [order.customer?.firstName, order.customer?.lastName].filter(Boolean).join(" ") || "Unknown customer",
       total: order.total ?? 0,
       currency: order.currency ?? "USD",
       orderDate: order.orderDate?.slice(0, 10) ?? "—",
@@ -64,12 +86,12 @@ boundaries cleanly.
 
 ```tsx
 function OrderHeaderPanel({ orderId }: { orderId: number }) {
-  const { data: order } = useSuspenseQuery(
-    getApiV1OrdersByIdOptions({ path: { id: orderId } }),
-  );
+  const { data: order } = useSuspenseQuery(getApiV1OrdersByIdOptions({ path: { id: orderId } }));
   return (
     <div>
-      <p>#{order.id} · {order.customer?.firstName} {order.customer?.lastName}</p>
+      <p>
+        #{order.id} · {order.customer?.firstName} {order.customer?.lastName}
+      </p>
       <p>{order.customer?.email}</p>
     </div>
   );
@@ -220,16 +242,16 @@ the others.
 Open devtools and confirm each:
 
 - [ ] **Network waterfall** — clicking an order kicks off three GETs in parallel
-  (header, items, notes), not in sequence.
+      (header, items, notes), not in sequence.
 - [ ] **Optimistic flip** — clicking a status pill changes the badge before
-  the PATCH response returns. Throttle to 3G to make the gap visible.
+      the PATCH response returns. Throttle to 3G to make the gap visible.
 - [ ] **Rollback** — temporarily change the PATCH URL in devtools' request
-  blocker; the badge should snap back to the previous status.
+      blocker; the badge should snap back to the previous status.
 - [ ] **Master/detail consistency** — after a status change, the row in the
-  table on the left also reflects the new status (proves the master-list
-  invalidation works).
+      table on the left also reflects the new status (proves the master-list
+      invalidation works).
 - [ ] **Note POST** — submitting clears the textarea, the new note appears in
-  the list after the response, and the response includes server-stamped
-  `createdAt`.
+      the list after the response, and the response includes server-stamped
+      `createdAt`.
 - [ ] **No hand-written keys** — every `invalidateQueries` call uses a
-  `get*QueryKey()` helper, never a raw array.
+      `get*QueryKey()` helper, never a raw array.

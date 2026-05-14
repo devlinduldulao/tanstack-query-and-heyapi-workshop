@@ -11,6 +11,28 @@ You ship an "Orders Operations Console" that an ops team would actually use:
 
 All API calls go through generated Hey API + TanStack Query helpers — no hand-written `fetch`, no hand-written query keys.
 
+## Step 0 — Sync the contract (the drift drill)
+
+The repo ships in a **deliberately drifted** state. The local `swagger.yaml` is missing four endpoints that the live backend actually exposes:
+
+- `GET /api/v1/Orders/{id}` (and PUT/PATCH/DELETE on the same path)
+- `GET /api/v1/Orders/{id}/items`
+- `GET /api/v1/Orders/{id}/notes`
+- `POST /api/v1/OrderNotes`
+
+That means the generated client at `src/api/client/` does **not** export the helpers your solution needs. Open `src/challenges/4-hour/solutions/exercise-7-end.tsx` right now — TypeScript will scream about ~20 errors. The starter on the other hand only uses `getApiV1OrdersOptions` and compiles fine.
+
+Real teams hit this every sprint: backend ships a new endpoint, frontend has to (a) notice, (b) refetch the spec, (c) regenerate, (d) rebuild around the new surface. Walk that workflow now:
+
+```bash
+pnpm run update-swagger-bash   # curl the live swagger.yaml from fakerestapi.vercel.app
+pnpm run openapi-ts            # regenerate src/api/client/ from the refreshed spec
+git diff -- swagger.yaml src/api/client   # inspect what came back
+pnpm run typecheck             # solution should compile now
+```
+
+After regen, the four helpers below appear in `src/api/client/@tanstack/react-query.gen.ts` and the solution typechecks. **Do not** silence the errors with `// @ts-expect-error` or by commenting out imports — that defeats the drill. The whole point is to feel the workflow.
+
 ## Starter
 
 Open `src/challenges/4-hour/exercise-7.tsx`. You already have:
@@ -28,7 +50,7 @@ The reference solution lives at `src/challenges/4-hour/solutions/exercise-7-end.
 When `selectedId !== null`, mount a child component that calls:
 
 ```ts
-useSuspenseQuery(getApiV1OrdersByIdOptions({ path: { id: selectedId } }))
+useSuspenseQuery(getApiV1OrdersByIdOptions({ path: { id: selectedId } }));
 ```
 
 Render the customer name + email and the shipping city. This component lives **inside its own `<Suspense>`** so the rest of the panel does not block on it.
