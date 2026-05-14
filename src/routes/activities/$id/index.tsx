@@ -193,7 +193,7 @@ function RouteComponent() {
                 <Sparkles className="h-4 w-4" />
                 <p>
                   Data fetched from{" "}
-                  <span className="text-foreground font-mono font-semibold">fakerestapi.azurewebsites.net</span> using
+                  <span className="text-foreground font-mono font-semibold">fakerestapi.vercel.app</span> using
                   <span className="text-foreground font-semibold"> TanStack Query</span> and
                   <span className="text-foreground font-semibold"> HeyAPI</span> generated hooks
                 </p>

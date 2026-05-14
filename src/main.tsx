@@ -7,7 +7,7 @@ import { client } from "./api/client/client.gen";
 import { Toaster } from "./components/ui/sonner";
 
 client.setConfig({
-  baseURL: "https://fakerestapi.azurewebsites.net",
+  baseURL: "https://fakerestapi.vercel.app",
 });
 
 const queryClient = new QueryClient({

@@ -30,10 +30,10 @@ The workshop tutorials intentionally avoid route prefetch in the exercise files 
 
 Two versions of the same senior-level curriculum:
 
-| Track  | Use When                              | Skills Unlocked                                                                                 |
-| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Track  | Use When                              | Skills Unlocked                                                                                           |
+| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | 4-hour | You need the compressed essentials    | Generated reads, mutation feedback, Hey API adoption, validated writes, contract drift triage, cache bugs |
-| 8-hour | You want the full hands-on experience | Everything in 4-hour plus state UX, invalidation, Suspense, CRUD, and app-vs-tutorial tradeoffs |
+| 8-hour | You want the full hands-on experience | Everything in 4-hour plus state UX, invalidation, Suspense, CRUD, and app-vs-tutorial tradeoffs           |
 
 See [WORKSHOP_SCHEDULE.md](./WORKSHOP_SCHEDULE.md) for the full breakdown.
 
@@ -88,11 +88,11 @@ The workshop is designed to make the value concrete, not theoretical. Attendees 
 
 ### Three layers of guidance per exercise
 
-| Layer                      | Where                              | When to use it                                                              |
-| -------------------------- | ---------------------------------- | --------------------------------------------------------------------------- |
-| **Goals & context**        | `instructions/exercise-N.md`       | Always read first — explains _what_ to build and _why_.                     |
-| **Ordered build steps**    | `coding-steps/exercise-N-steps.md` | When you know _what_ but not _how to get there_ without skipping ahead.     |
-| **Reference solution**     | `solutions/exercise-N-end.tsx`     | Last resort — verifies the final shape after you've attempted it yourself.  |
+| Layer                   | Where                              | When to use it                                                             |
+| ----------------------- | ---------------------------------- | -------------------------------------------------------------------------- |
+| **Goals & context**     | `instructions/exercise-N.md`       | Always read first — explains _what_ to build and _why_.                    |
+| **Ordered build steps** | `coding-steps/exercise-N-steps.md` | When you know _what_ but not _how to get there_ without skipping ahead.    |
+| **Reference solution**  | `solutions/exercise-N-end.tsx`     | Last resort — verifies the final shape after you've attempted it yourself. |
 
 The `coding-steps/` files include mental models, before → after snippets, a code-change cheat sheet table, and a "common mistakes" section per exercise. They are written for senior engineers who want the _sequence_ of edits without being handed the entire solution at once.
 
@@ -247,7 +247,7 @@ export const client = createClient(createConfig<ClientOptions2>());
 import { client } from "@/api/client/client.gen";
 
 // Configure the base URL (typically done once at app startup)
-client.setConfig({ baseURL: "https://fakerestapi.azurewebsites.net" });
+client.setConfig({ baseURL: "https://fakerestapi.vercel.app" });
 ```
 
 ---

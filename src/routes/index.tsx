@@ -174,7 +174,7 @@ const { data } = useSuspenseQuery(
               icon: Globe,
               title: "REST API",
               description:
-                "Connects to fakerestapi.azurewebsites.net to demonstrate real-world data fetching and manipulation.",
+                "Connects to fakerestapi.vercel.app to demonstrate real-world data fetching and manipulation.",
               color: "text-green-500",
               delay: 0.4,
             },

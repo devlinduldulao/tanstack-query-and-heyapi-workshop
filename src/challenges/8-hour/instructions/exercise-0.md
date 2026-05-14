@@ -19,7 +19,7 @@ Welcome to the **8-hour Hey API workshop**. This exercise verifies the project i
 
 ## What You'll Build
 
-Across the full track you will improve a **Books / Authors / Activities** dashboard backed by [`fakerestapi.azurewebsites.net`](https://fakerestapi.azurewebsites.net/). The focus is contract-driven UI: generated reads, generated writes, generated cache identifiers, derived local views, and debugging the failures that happen when teams bypass the generated layer.
+Across the full track you will improve a **Books / Authors / Activities** dashboard backed by [`fakerestapi.vercel.app`](https://fakerestapi.vercel.app/). The focus is contract-driven UI: generated reads, generated writes, generated cache identifiers, derived local views, and debugging the failures that happen when teams bypass the generated layer.
 
 ## Training Resources
 
