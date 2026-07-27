@@ -1,6 +1,7 @@
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { MotionConfig } from "framer-motion";
 import ReactDOM from "react-dom/client";
 import { routeTree } from "./route-tree.gen";
 import { client } from "./api/client/client.gen";
@@ -56,8 +57,10 @@ function InnerApp() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <InnerApp />
-      <Toaster richColors position="top-right" />
+      <MotionConfig reducedMotion="user">
+        <InnerApp />
+        <Toaster richColors position="top-right" />
+      </MotionConfig>
     </QueryClientProvider>
   );
 }
