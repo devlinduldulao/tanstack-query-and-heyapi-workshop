@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, FileJson, Globe, Database, Zap, Sparkles, Code2, Layers } from "lucide-react";
+import { ArrowRight, FileJson, Globe, Database, Zap, Sparkles, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Route = createFileRoute("/")({

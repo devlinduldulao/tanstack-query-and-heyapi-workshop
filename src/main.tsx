@@ -6,10 +6,15 @@ import ReactDOM from "react-dom/client";
 import { routeTree } from "./route-tree.gen";
 import { client } from "./api/client/client.gen";
 import { Toaster } from "./components/ui/sonner";
+import { TooltipProvider } from "./components/ui/tooltip";
+import { applyThemeToDocument, useThemeStore } from "./lib/theme-store";
 
 client.setConfig({
   baseURL: "https://fakerestapi.vercel.app",
 });
+
+// Keep document theme in sync after Zustand rehydrates from localStorage.
+applyThemeToDocument(useThemeStore.getState().theme);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,10 +62,13 @@ function InnerApp() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <MotionConfig reducedMotion="user">
-        <InnerApp />
-        <Toaster richColors position="top-right" />
-      </MotionConfig>
+      {/* Required by shadcn Tooltip / Sidebar tooltips: https://ui.shadcn.com/docs/components/base/tooltip */}
+      <TooltipProvider>
+        <MotionConfig reducedMotion="user">
+          <InnerApp />
+          <Toaster richColors position="top-right" />
+        </MotionConfig>
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
