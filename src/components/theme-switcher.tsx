@@ -19,7 +19,7 @@ export function ThemeSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={<Button variant="ghost" size="icon" aria-label="Toggle theme" className="hover-lift relative" />}
+        render={<Button variant="ghost" size="icon" aria-label="Toggle theme" className="relative" />}
       >
         <AnimatePresence mode="wait">
           <motion.div

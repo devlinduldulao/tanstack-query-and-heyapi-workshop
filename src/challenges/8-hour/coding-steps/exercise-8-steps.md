@@ -47,7 +47,7 @@ Compare to what a manual version would look like:
 ```tsx
 // What you do NOT have to write anymore:
 type Book = { id?: number; title?: string; description?: string; pageCount?: number; ... };
-const BOOKS_URL = "https://fakerestapi.azurewebsites.net/api/v1/Books";
+const BOOKS_URL = "https://fakerestapi.vercel.app/api/v1/Books";
 async function fetchBooks(): Promise<Book[]> { /* ... */ }
 const queryKey = ["books"] as const;
 const { data = [] } = useSuspenseQuery({ queryKey, queryFn: fetchBooks });
@@ -123,12 +123,12 @@ Open `src/api/client/@tanstack/react-query.gen.ts` and search for `getApiV1Books
 
 ## Code-change cheat sheet
 
-| Change                                                          | Required? |
-| --------------------------------------------------------------- | --------- |
-| Add `<p>Query options: src/api/client/@tanstack/react-query.gen.ts</p>` | ✅ yes |
-| Reword final `<p>` to "UI no longer owns URL strings, request functions, or query keys." | ✅ yes |
-| Delete `// TODO:` header                                        | ✅ yes    |
-| Anywhere else                                                   | leave alone |
+| Change                                                                                   | Required?   |
+| ---------------------------------------------------------------------------------------- | ----------- |
+| Add `<p>Query options: src/api/client/@tanstack/react-query.gen.ts</p>`                  | ✅ yes      |
+| Reword final `<p>` to "UI no longer owns URL strings, request functions, or query keys." | ✅ yes      |
+| Delete `// TODO:` header                                                                 | ✅ yes      |
+| Anywhere else                                                                            | leave alone |
 
 ---
 

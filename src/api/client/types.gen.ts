@@ -6,7 +6,7 @@ export type ClientOptions = {
 
 export type Activity = {
   id?: number;
-  title?: string | null;
+  title?: string;
   dueDate?: string;
   completed?: boolean;
 };
@@ -14,23 +14,1673 @@ export type Activity = {
 export type Author = {
   id?: number;
   idBook?: number;
-  firstName?: string | null;
-  lastName?: string | null;
+  firstName?: string;
+  lastName?: string;
 };
 
 export type Book = {
   id?: number;
-  title?: string | null;
-  description?: string | null;
+  title?: string;
+  description?: string;
   pageCount?: number;
-  excerpt?: string | null;
+  excerpt?: string;
   publishDate?: string;
+  authors?: Array<{
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+  }>;
+  coverPhotos?: Array<{
+    id?: number;
+    url?: string;
+  }>;
+};
+
+export type CoverPhoto = {
+  id?: number;
+  idBook?: number;
+  url?: string;
 };
 
 export type User = {
   id?: number;
-  userName?: string | null;
-  password?: string | null;
+  userName?: string;
+  password?: string;
+  badges?: Array<{
+    id?: number;
+    badgeId?: number;
+    earnedAt?: string;
+  }>;
+  preferences?: {
+    language?: string;
+    currency?: string;
+    timezone?: string;
+    notifications?: boolean;
+    newsletter?: boolean;
+  };
+};
+
+export type Product = {
+  id?: number;
+  sku?: string;
+  name?: string;
+  description?: string;
+  price?: number;
+  stock?: number;
+  color?: string;
+  size?: string;
+  categoryId?: number;
+  brandId?: number;
+  category?: {
+    id?: number;
+    name?: string;
+    slug?: string;
+  };
+  reviews?: Array<{
+    id?: number;
+    customerId?: number;
+    rating?: number;
+    title?: string;
+    body?: string;
+    createdAt?: string;
+    customer?: {
+      id?: number;
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+    };
+  }>;
+  inventory?: Array<{
+    id?: number;
+    warehouseId?: number;
+    quantity?: number;
+    lastChecked?: string;
+    warehouse?: {
+      id?: number;
+      name?: string;
+      location?: string;
+    };
+  }>;
+};
+
+export type Category = {
+  id?: number;
+  name?: string;
+  slug?: string;
+  parentId?: string | null;
+  description?: string;
+};
+
+export type Order = {
+  id?: number;
+  customerId?: number;
+  orderDate?: string;
+  status?: string;
+  total?: number;
+  currency?: string;
+  shippingAddressId?: number;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+  };
+  shippingAddress?: {
+    id?: number;
+    line1?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+  };
+  items?: Array<{
+    id?: number;
+    productId?: number;
+    quantity?: number;
+    unitPrice?: number;
+    discount?: number;
+    product?: {
+      id?: number;
+      sku?: string;
+      name?: string;
+      price?: number;
+    };
+  }>;
+  invoice?: {
+    id?: number;
+    number?: string;
+    issueDate?: string;
+    dueDate?: string;
+    amount?: number;
+    currency?: string;
+    paid?: boolean;
+  };
+  shipment?: {
+    id?: number;
+    trackingNumber?: string;
+    carrier?: string;
+    status?: string;
+    shippedAt?: string;
+    deliveredAt?: string;
+  };
+};
+
+export type OrderItem = {
+  id?: number;
+  orderId?: number;
+  productId?: number;
+  quantity?: number;
+  unitPrice?: number;
+  discount?: number;
+};
+
+export type Customer = {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+  registeredAt?: string;
+  orders?: Array<{
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+    currency?: string;
+  }>;
+  carts?: Array<{
+    id?: number;
+    createdAt?: string;
+    updatedAt?: string;
+    itemCount?: number;
+  }>;
+  wishlists?: Array<{
+    id?: number;
+    name?: string;
+    productIds?: Array<number>;
+  }>;
+  paymentMethods?: Array<{
+    id?: number;
+    type?: string;
+    brand?: string;
+    last4?: string;
+    expiresAt?: string;
+    isDefault?: boolean;
+  }>;
+  addresses?: Array<{
+    id?: number;
+    addressId?: number;
+    label?: string;
+    isDefault?: boolean;
+    address?: {
+      id?: number;
+      line1?: string;
+      city?: string;
+      state?: string;
+      country?: string;
+    };
+  }>;
+  loyaltyAccounts?: Array<{
+    id?: number;
+    tier?: string;
+    points?: number;
+    lifetimePoints?: number;
+    joinedAt?: string;
+  }>;
+};
+
+export type Employee = {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  departmentId?: number;
+  salary?: number;
+  hiredAt?: string;
+  managerId?: string | null;
+  department?: {
+    id?: number;
+    name?: string;
+    code?: string;
+    budget?: number;
+  };
+  manager?: string | null;
+  projects?: Array<{
+    id?: number;
+    name?: string;
+    status?: string;
+    startDate?: string;
+    endDate?: string;
+  }>;
+};
+
+export type Department = {
+  id?: number;
+  name?: string;
+  code?: string;
+  headEmployeeId?: number;
+  budget?: number;
+  headEmployee?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  employees?: Array<{
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    salary?: number;
+    hiredAt?: string;
+  }>;
+};
+
+export type Company = {
+  id?: number;
+  name?: string;
+  industry?: string;
+  founded?: number;
+  website?: string;
+  offices?: Array<{
+    id?: number;
+    addressId?: number;
+    name?: string;
+    phone?: string;
+    address?: {
+      id?: number;
+      line1?: string;
+      city?: string;
+      state?: string;
+      country?: string;
+    };
+  }>;
+};
+
+export type Project = {
+  id?: number;
+  name?: string;
+  description?: string;
+  status?: string;
+  startDate?: string;
+  endDate?: string;
+  ownerId?: number;
+  owner?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  tasks?: Array<{
+    id?: number;
+    title?: string;
+    priority?: string;
+    status?: string;
+    dueDate?: string;
+    assignee?: {
+      id?: number;
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+    };
+  }>;
+};
+
+export type Task = {
+  id?: number;
+  projectId?: number;
+  title?: string;
+  description?: string;
+  priority?: string;
+  status?: string;
+  dueDate?: string;
+  assigneeId?: number;
+  project?: {
+    id?: number;
+    name?: string;
+    status?: string;
+    startDate?: string;
+    endDate?: string;
+  };
+  assignee?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+};
+
+export type Tag = {
+  id?: number;
+  name?: string;
+  color?: string;
+};
+
+export type Comment = {
+  id?: number;
+  postId?: number;
+  authorId?: number;
+  body?: string;
+  createdAt?: string;
+};
+
+export type Post = {
+  id?: number;
+  title?: string;
+  body?: string;
+  authorId?: number;
+  publishedAt?: string;
+  tags?: Array<string>;
+  author?: {
+    id?: number;
+    userName?: string;
+  };
+  comments?: Array<{
+    id?: number;
+    authorId?: number;
+    body?: string;
+    createdAt?: string;
+    author?: {
+      id?: number;
+      userName?: string;
+    };
+  }>;
+};
+
+export type Article = {
+  id?: number;
+  title?: string;
+  slug?: string;
+  content?: string;
+  authorId?: number;
+  publishedAt?: string;
+  readTime?: number;
+  author?: {
+    id?: number;
+    userName?: string;
+  };
+  tags?: Array<{
+    id?: number;
+    tagId?: number;
+    tag?: {
+      id?: number;
+      name?: string;
+      color?: string;
+    };
+  }>;
+};
+
+export type Review = {
+  id?: number;
+  productId?: number;
+  customerId?: number;
+  rating?: number;
+  title?: string;
+  body?: string;
+  createdAt?: string;
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+  };
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  replies?: Array<{
+    id?: number;
+    body?: string;
+    createdAt?: string;
+    author?: {
+      id?: number;
+      userName?: string;
+    };
+  }>;
+};
+
+export type Notification = {
+  id?: number;
+  userId?: number;
+  message?: string;
+  read?: boolean;
+  createdAt?: string;
+};
+
+export type Event = {
+  id?: number;
+  name?: string;
+  description?: string;
+  location?: string;
+  startTime?: string;
+  endTime?: string;
+  capacity?: number;
+  venue?: {
+    id?: number;
+    name?: string;
+    address?: string;
+    city?: string;
+    capacity?: number;
+  };
+  attendees?: Array<{
+    id?: number;
+    userId?: number;
+    ticketId?: number;
+    status?: string;
+    checkedInAt?: string | null;
+    user?: {
+      id?: number;
+      userName?: string;
+    };
+  }>;
+};
+
+export type Ticket = {
+  id?: number;
+  eventId?: number;
+  holderName?: string;
+  seat?: string;
+  price?: number;
+  status?: string;
+};
+
+export type Venue = {
+  id?: number;
+  name?: string;
+  address?: string;
+  city?: string;
+  capacity?: number;
+};
+
+export type City = {
+  id?: number;
+  name?: string;
+  countryId?: number;
+  population?: number;
+  latitude?: number;
+  longitude?: number;
+};
+
+export type Country = {
+  id?: number;
+  name?: string;
+  code?: string;
+  currencyCode?: string;
+};
+
+export type Addresse = {
+  id?: number;
+  line1?: string;
+  line2?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+};
+
+export type Supplier = {
+  id?: number;
+  name?: string;
+  contactEmail?: string;
+  phone?: string;
+  country?: string;
+};
+
+export type Warehouse = {
+  id?: number;
+  name?: string;
+  location?: string;
+  capacity?: number;
+};
+
+export type Inventory = {
+  id?: number;
+  productId?: number;
+  warehouseId?: number;
+  quantity?: number;
+  lastChecked?: string;
+};
+
+export type Shipment = {
+  id?: number;
+  orderId?: number;
+  trackingNumber?: string;
+  carrier?: string;
+  shippedAt?: string;
+  deliveredAt?: string;
+  status?: string;
+};
+
+export type Invoice = {
+  id?: number;
+  orderId?: number;
+  number?: string;
+  issueDate?: string;
+  dueDate?: string;
+  amount?: number;
+  currency?: string;
+  paid?: boolean;
+  payments?: Array<{
+    id?: number;
+    amount?: number;
+    currency?: string;
+    method?: string;
+    paidAt?: string;
+  }>;
+  items?: Array<{
+    id?: number;
+    productId?: number;
+    description?: string;
+    quantity?: number;
+    unitPrice?: number;
+    total?: number;
+    product?: {
+      id?: number;
+      sku?: string;
+      name?: string;
+      price?: number;
+    };
+  }>;
+};
+
+export type Payment = {
+  id?: number;
+  invoiceId?: number;
+  amount?: number;
+  currency?: string;
+  method?: string;
+  paidAt?: string;
+};
+
+export type Coupon = {
+  id?: number;
+  code?: string;
+  percentage?: number;
+  validFrom?: string;
+  validTo?: string;
+  active?: boolean;
+};
+
+export type Cart = {
+  id?: number;
+  customerId?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  itemCount?: number;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  items?: Array<{
+    id?: number;
+    productId?: number;
+    quantity?: number;
+    addedAt?: string;
+    product?: {
+      id?: number;
+      sku?: string;
+      name?: string;
+      price?: number;
+    };
+  }>;
+};
+
+export type Wishlist = {
+  id?: number;
+  customerId?: number;
+  name?: string;
+  productIds?: Array<number>;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  items?: Array<{
+    id?: number;
+    productId?: number;
+    addedAt?: string;
+    product?: {
+      id?: number;
+      sku?: string;
+      name?: string;
+      price?: number;
+    };
+  }>;
+};
+
+export type Subscription = {
+  id?: number;
+  customerId?: number;
+  planId?: number;
+  startedAt?: string;
+  renewsAt?: string;
+  status?: string;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  plan?: {
+    id?: number;
+    name?: string;
+    price?: number;
+    interval?: string;
+  };
+};
+
+export type Plan = {
+  id?: number;
+  name?: string;
+  price?: number;
+  interval?: string;
+  features?: Array<string>;
+};
+
+export type Role = {
+  id?: number;
+  name?: string;
+  description?: string;
+};
+
+export type Permission = {
+  id?: number;
+  code?: string;
+  description?: string;
+};
+
+export type Session = {
+  id?: number;
+  userId?: number;
+  token?: string;
+  createdAt?: string;
+  expiresAt?: string;
+  ip?: string;
+};
+
+export type Log = {
+  id?: number;
+  level?: string;
+  message?: string;
+  timestamp?: string;
+  source?: string;
+};
+
+export type File = {
+  id?: number;
+  name?: string;
+  mimeType?: string;
+  size?: number;
+  folderId?: number;
+  uploadedAt?: string;
+};
+
+export type Folder = {
+  id?: number;
+  name?: string;
+  parentId?: string | null;
+  createdAt?: string;
+};
+
+export type Genre = {
+  id?: number;
+  name?: string;
+};
+
+export type Movy = {
+  id?: number;
+  title?: string;
+  year?: number;
+  genreId?: number;
+  rating?: number;
+  runtimeMinutes?: number;
+};
+
+export type Song = {
+  id?: number;
+  title?: string;
+  artistId?: number;
+  albumId?: number;
+  durationSeconds?: number;
+  genreId?: number;
+};
+
+export type Album = {
+  id?: number;
+  title?: string;
+  artistId?: number;
+  releaseDate?: string;
+  trackCount?: number;
+};
+
+export type Artist = {
+  id?: number;
+  name?: string;
+  country?: string;
+  genreId?: number;
+};
+
+export type Playlist = {
+  id?: number;
+  name?: string;
+  userId?: number;
+  songIds?: Array<number>;
+  createdAt?: string;
+  items?: Array<{
+    id?: number;
+    songId?: number;
+    position?: number;
+    addedAt?: string;
+    song?: {
+      id?: number;
+      title?: string;
+      artistId?: number;
+      durationSeconds?: number;
+    };
+  }>;
+};
+
+export type Team = {
+  id?: number;
+  name?: string;
+  city?: string;
+  founded?: number;
+};
+
+export type Player = {
+  id?: number;
+  firstName?: string;
+  lastName?: string;
+  teamId?: number;
+  position?: string;
+  number?: number;
+};
+
+export type Matche = {
+  id?: number;
+  homeTeamId?: number;
+  awayTeamId?: number;
+  scheduledAt?: string;
+  homeScore?: number;
+  awayScore?: number;
+};
+
+export type Recipe = {
+  id?: number;
+  name?: string;
+  ingredients?: Array<{
+    id?: number;
+    name?: string;
+    quantity?: number;
+    unit?: string;
+  }>;
+  instructions?: string;
+  prepMinutes?: number;
+  servings?: number;
+};
+
+export type Restaurant = {
+  id?: number;
+  name?: string;
+  cuisine?: string;
+  city?: string;
+  rating?: number;
+  menus?: Array<{
+    id?: number;
+    name?: string;
+    active?: boolean;
+    updatedAt?: string;
+  }>;
+};
+
+export type Hotel = {
+  id?: number;
+  name?: string;
+  city?: string;
+  stars?: number;
+  pricePerNight?: number;
+  bookings?: Array<{
+    id?: number;
+    customerId?: number;
+    checkIn?: string;
+    checkOut?: string;
+    guests?: number;
+    total?: number;
+  }>;
+};
+
+export type Booking = {
+  id?: number;
+  hotelId?: number;
+  customerId?: number;
+  checkIn?: string;
+  checkOut?: string;
+  guests?: number;
+  total?: number;
+  hotel?: {
+    id?: number;
+    name?: string;
+    city?: string;
+    stars?: number;
+    pricePerNight?: number;
+  };
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+  };
+};
+
+export type Flight = {
+  id?: number;
+  flightNumber?: string;
+  origin?: string;
+  destination?: string;
+  departure?: string;
+  arrival?: string;
+  airline?: string;
+  bookings?: Array<{
+    id?: number;
+    customerId?: number;
+    seat?: string;
+    status?: string;
+    price?: number;
+    customer?: {
+      id?: number;
+      firstName?: string;
+      lastName?: string;
+      email?: string;
+    };
+  }>;
+};
+
+export type Car = {
+  id?: number;
+  make?: string;
+  model?: string;
+  year?: number;
+  color?: string;
+  price?: number;
+};
+
+export type Currency = {
+  id?: number;
+  code?: string;
+  name?: string;
+  symbol?: string;
+  rateToUsd?: number;
+};
+
+export type Language = {
+  id?: number;
+  code?: string;
+  name?: string;
+  nativeName?: string;
+};
+
+export type Brand = {
+  id?: number;
+  name?: string;
+  logo?: string;
+  country?: string;
+  founded?: number;
+};
+
+export type CartItem = {
+  id?: number;
+  cartId?: number;
+  productId?: number;
+  quantity?: number;
+  addedAt?: string;
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+    price?: number;
+    color?: string;
+    size?: string;
+  };
+};
+
+export type WishlistItem = {
+  id?: number;
+  wishlistId?: number;
+  productId?: number;
+  addedAt?: string;
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+    price?: number;
+    categoryId?: number;
+  };
+};
+
+export type Like = {
+  id?: number;
+  userId?: number;
+  postId?: number;
+  type?: string;
+  createdAt?: string;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type Follow = {
+  id?: number;
+  followerId?: number;
+  followingId?: number;
+  createdAt?: string;
+  follower?: {
+    id?: number;
+    userName?: string;
+  };
+  following?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type Message = {
+  id?: number;
+  conversationId?: number;
+  senderId?: number;
+  body?: string;
+  createdAt?: string;
+  read?: boolean;
+  sender?: {
+    id?: number;
+    userName?: string;
+  };
+  conversation?: {
+    id?: number;
+    lastMessageAt?: string;
+  };
+};
+
+export type Conversation = {
+  id?: number;
+  userId1?: number;
+  userId2?: number;
+  lastMessageAt?: string;
+  messageCount?: number;
+  user1?: {
+    id?: number;
+    userName?: string;
+  };
+  user2?: {
+    id?: number;
+    userName?: string;
+  };
+  messages?: Array<{
+    id?: number;
+    senderId?: number;
+    body?: string;
+    createdAt?: string;
+    read?: boolean;
+  }>;
+};
+
+export type ProductVariant = {
+  id?: number;
+  productId?: number;
+  sku?: string;
+  color?: string;
+  size?: string;
+  stock?: number;
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+    price?: number;
+  };
+};
+
+export type Return = {
+  id?: number;
+  orderId?: number;
+  reason?: string;
+  status?: string;
+  requestedAt?: string;
+  resolvedAt?: string;
+  order?: {
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+  };
+};
+
+export type ReviewReply = {
+  id?: number;
+  reviewId?: number;
+  body?: string;
+  authorId?: number;
+  createdAt?: string;
+  review?: {
+    id?: number;
+    productId?: number;
+    rating?: number;
+    title?: string;
+  };
+  author?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type ArticleTag = {
+  id?: number;
+  articleId?: number;
+  tagId?: number;
+  assignedAt?: string;
+  article?: {
+    id?: number;
+    title?: string;
+    slug?: string;
+  };
+  tag?: {
+    id?: number;
+    name?: string;
+    color?: string;
+  };
+};
+
+export type PageView = {
+  id?: number;
+  userId?: number;
+  pageUrl?: string;
+  referrer?: string;
+  viewedAt?: string;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type UserActivity = {
+  id?: number;
+  userId?: number;
+  action?: string;
+  details?: string;
+  timestamp?: string;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type Rating = {
+  id?: number;
+  targetId?: number;
+  targetType?: string;
+  score?: number;
+  userId?: number;
+  createdAt?: string;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type Banner = {
+  id?: number;
+  title?: string;
+  imageUrl?: string;
+  link?: string;
+  active?: boolean;
+  startDate?: string;
+  endDate?: string;
+  placements?: Array<{
+    id?: number;
+    page?: string;
+    slot?: string;
+    startsAt?: string;
+    endsAt?: string;
+  }>;
+};
+
+export type Promotion = {
+  id?: number;
+  name?: string;
+  description?: string;
+  discount?: number;
+  startDate?: string;
+  endDate?: string;
+  active?: boolean;
+  products?: Array<{
+    id?: number;
+    productId?: number;
+    featured?: boolean;
+    sortOrder?: number;
+    product?: {
+      id?: number;
+      sku?: string;
+      name?: string;
+      price?: number;
+    };
+  }>;
+};
+
+export type Discount = {
+  id?: number;
+  code?: string;
+  percentage?: number;
+  minAmount?: number;
+  maxUses?: number;
+  used?: number;
+  active?: boolean;
+};
+
+export type Favorite = {
+  id?: number;
+  userId?: number;
+  productId?: number;
+  addedAt?: string;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+    price?: number;
+  };
+};
+
+export type SearchQuery = {
+  id?: number;
+  userId?: number;
+  query?: string;
+  resultsCount?: number;
+  searchedAt?: string;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type Badge = {
+  id?: number;
+  name?: string;
+  description?: string;
+  icon?: string;
+  criteria?: string;
+};
+
+export type UserBadge = {
+  id?: number;
+  userId?: number;
+  badgeId?: number;
+  earnedAt?: string;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+  badge?: {
+    id?: number;
+    name?: string;
+    icon?: string;
+  };
+};
+
+export type Report = {
+  id?: number;
+  type?: string;
+  period?: string;
+  generatedAt?: string;
+  data?: string;
+};
+
+export type Refund = {
+  id?: number;
+  orderId?: number;
+  amount?: number;
+  reason?: string;
+  status?: string;
+  initiatedAt?: string;
+  completedAt?: string;
+  order?: {
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+  };
+};
+
+export type Vendor = {
+  id?: number;
+  name?: string;
+  email?: string;
+  status?: string;
+  rating?: number;
+  joinedAt?: string;
+  transactions?: Array<{
+    id?: number;
+    orderId?: number;
+    amount?: number;
+    commission?: number;
+    status?: string;
+    createdAt?: string;
+  }>;
+};
+
+export type Transaction = {
+  id?: number;
+  vendorId?: number;
+  orderId?: number;
+  amount?: number;
+  commission?: number;
+  status?: string;
+  createdAt?: string;
+  vendor?: {
+    id?: number;
+    name?: string;
+    email?: string;
+    rating?: number;
+  };
+  order?: {
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+  };
+};
+
+export type CouponUsage = {
+  id?: number;
+  couponId?: number;
+  orderId?: number;
+  discount?: number;
+  appliedAt?: string;
+  coupon?: {
+    id?: number;
+    code?: string;
+    percentage?: number;
+  };
+  order?: {
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+  };
+};
+
+export type Preference = {
+  id?: number;
+  userId?: number;
+  language?: string;
+  currency?: string;
+  timezone?: string;
+  notifications?: boolean;
+  newsletter?: boolean;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type PaymentMethod = {
+  id?: number;
+  customerId?: number;
+  type?: string;
+  brand?: string;
+  last4?: string;
+  expiresAt?: string;
+  isDefault?: boolean;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+};
+
+export type CustomerAddresse = {
+  id?: number;
+  customerId?: number;
+  addressId?: number;
+  label?: string;
+  isDefault?: boolean;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  address?: {
+    id?: number;
+    line1?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+  };
+};
+
+export type OrderNote = {
+  id?: number;
+  orderId?: number;
+  authorId?: number;
+  body?: string;
+  createdAt?: string;
+  order?: {
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+  };
+  author?: {
+    id?: number;
+    userName?: string;
+  };
+};
+
+export type ShipmentEvent = {
+  id?: number;
+  shipmentId?: number;
+  status?: string;
+  location?: string;
+  occurredAt?: string;
+  details?: string;
+  shipment?: {
+    id?: number;
+    trackingNumber?: string;
+    carrier?: string;
+    status?: string;
+  };
+};
+
+export type InvoiceItem = {
+  id?: number;
+  invoiceId?: number;
+  productId?: number;
+  description?: string;
+  quantity?: number;
+  unitPrice?: number;
+  total?: number;
+  invoice?: {
+    id?: number;
+    number?: string;
+    amount?: number;
+    currency?: string;
+    paid?: boolean;
+  };
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+    price?: number;
+  };
+};
+
+export type LoyaltyAccount = {
+  id?: number;
+  customerId?: number;
+  tier?: string;
+  points?: number;
+  lifetimePoints?: number;
+  joinedAt?: string;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  transactions?: Array<{
+    id?: number;
+    orderId?: number;
+    type?: string;
+    points?: number;
+    createdAt?: string;
+  }>;
+};
+
+export type LoyaltyTransaction = {
+  id?: number;
+  accountId?: number;
+  orderId?: number;
+  type?: string;
+  points?: number;
+  createdAt?: string;
+  account?: {
+    id?: number;
+    tier?: string;
+    points?: number;
+    lifetimePoints?: number;
+  };
+  order?: {
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+  };
+};
+
+export type EventAttendee = {
+  id?: number;
+  eventId?: number;
+  userId?: number;
+  ticketId?: number;
+  status?: string;
+  checkedInAt?: string | null;
+  user?: {
+    id?: number;
+    userName?: string;
+  };
+  ticket?: {
+    id?: number;
+    holderName?: string;
+    seat?: string;
+    price?: number;
+    status?: string;
+  };
+};
+
+export type PlaylistItem = {
+  id?: number;
+  playlistId?: number;
+  songId?: number;
+  position?: number;
+  addedAt?: string;
+  song?: {
+    id?: number;
+    title?: string;
+    artistId?: number;
+    durationSeconds?: number;
+  };
+};
+
+export type RecipeIngredient = {
+  id?: number;
+  recipeId?: number;
+  name?: string;
+  quantity?: number;
+  unit?: string;
+};
+
+export type RestaurantMenu = {
+  id?: number;
+  restaurantId?: number;
+  name?: string;
+  active?: boolean;
+  updatedAt?: string;
+  items?: Array<{
+    id?: number;
+    name?: string;
+    category?: string;
+    price?: number;
+    available?: boolean;
+  }>;
+};
+
+export type MenuItem = {
+  id?: number;
+  menuId?: number;
+  name?: string;
+  category?: string;
+  price?: number;
+  available?: boolean;
+  menu?: {
+    id?: number;
+    restaurantId?: number;
+    name?: string;
+    active?: boolean;
+  };
+};
+
+export type CompanyOffice = {
+  id?: number;
+  companyId?: number;
+  addressId?: number;
+  name?: string;
+  phone?: string;
+  company?: {
+    id?: number;
+    name?: string;
+    industry?: string;
+    website?: string;
+  };
+  address?: {
+    id?: number;
+    line1?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+  };
+};
+
+export type EmployeeSkill = {
+  id?: number;
+  employeeId?: number;
+  name?: string;
+  level?: string;
+  certified?: boolean;
+  employee?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+};
+
+export type SupplierProduct = {
+  id?: number;
+  supplierId?: number;
+  productId?: number;
+  cost?: number;
+  currency?: string;
+  leadTimeDays?: number;
+  supplier?: {
+    id?: number;
+    name?: string;
+    contactEmail?: string;
+    country?: string;
+  };
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+    price?: number;
+  };
+};
+
+export type FlightBooking = {
+  id?: number;
+  flightId?: number;
+  customerId?: number;
+  seat?: string;
+  status?: string;
+  price?: number;
+  flight?: {
+    id?: number;
+    flightNumber?: string;
+    origin?: string;
+    destination?: string;
+    departure?: string;
+    arrival?: string;
+  };
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+};
+
+export type PromotionProduct = {
+  id?: number;
+  promotionId?: number;
+  productId?: number;
+  featured?: boolean;
+  sortOrder?: number;
+  product?: {
+    id?: number;
+    sku?: string;
+    name?: string;
+    price?: number;
+  };
+};
+
+export type BannerPlacement = {
+  id?: number;
+  bannerId?: number;
+  page?: string;
+  slot?: string;
+  startsAt?: string;
+  endsAt?: string;
+};
+
+export type SupportTicket = {
+  id?: number;
+  customerId?: number;
+  orderId?: number;
+  subject?: string;
+  status?: string;
+  priority?: string;
+  createdAt?: string;
+  customer?: {
+    id?: number;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+  };
+  order?: {
+    id?: number;
+    orderDate?: string;
+    status?: string;
+    total?: number;
+  };
+  replies?: Array<{
+    id?: number;
+    authorType?: string;
+    authorId?: number;
+    body?: string;
+    createdAt?: string;
+  }>;
+};
+
+export type TicketReply = {
+  id?: number;
+  ticketId?: number;
+  authorType?: string;
+  authorId?: number;
+  body?: string;
+  createdAt?: string;
+  ticket?: {
+    id?: number;
+    subject?: string;
+    status?: string;
+    priority?: string;
+  };
 };
 
 export type GetApiV1ActivitiesData = {
@@ -50,7 +1700,7 @@ export type GetApiV1ActivitiesResponses = {
 export type GetApiV1ActivitiesResponse = GetApiV1ActivitiesResponses[keyof GetApiV1ActivitiesResponses];
 
 export type PostApiV1ActivitiesData = {
-  body?: Activity;
+  body: Activity;
   path?: never;
   query?: never;
   url: "/api/v1/Activities";
@@ -90,6 +1740,13 @@ export type GetApiV1ActivitiesByIdData = {
   url: "/api/v1/Activities/{id}";
 };
 
+export type GetApiV1ActivitiesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
 export type GetApiV1ActivitiesByIdResponses = {
   /**
    * Success
@@ -99,8 +1756,27 @@ export type GetApiV1ActivitiesByIdResponses = {
 
 export type GetApiV1ActivitiesByIdResponse = GetApiV1ActivitiesByIdResponses[keyof GetApiV1ActivitiesByIdResponses];
 
+export type PatchApiV1ActivitiesByIdData = {
+  body: Activity;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Activities/{id}";
+};
+
+export type PatchApiV1ActivitiesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Activity;
+};
+
+export type PatchApiV1ActivitiesByIdResponse =
+  PatchApiV1ActivitiesByIdResponses[keyof PatchApiV1ActivitiesByIdResponses];
+
 export type PutApiV1ActivitiesByIdData = {
-  body?: Activity;
+  body: Activity;
   path: {
     id: number;
   };
@@ -134,7 +1810,7 @@ export type GetApiV1AuthorsResponses = {
 export type GetApiV1AuthorsResponse = GetApiV1AuthorsResponses[keyof GetApiV1AuthorsResponses];
 
 export type PostApiV1AuthorsData = {
-  body?: Author;
+  body: Author;
   path?: never;
   query?: never;
   url: "/api/v1/Authors";
@@ -148,25 +1824,6 @@ export type PostApiV1AuthorsResponses = {
 };
 
 export type PostApiV1AuthorsResponse = PostApiV1AuthorsResponses[keyof PostApiV1AuthorsResponses];
-
-export type GetApiV1AuthorsAuthorsBooksByIdBookData = {
-  body?: never;
-  path: {
-    idBook: number;
-  };
-  query?: never;
-  url: "/api/v1/Authors/authors/books/{idBook}";
-};
-
-export type GetApiV1AuthorsAuthorsBooksByIdBookResponses = {
-  /**
-   * Success
-   */
-  200: Array<Author>;
-};
-
-export type GetApiV1AuthorsAuthorsBooksByIdBookResponse =
-  GetApiV1AuthorsAuthorsBooksByIdBookResponses[keyof GetApiV1AuthorsAuthorsBooksByIdBookResponses];
 
 export type DeleteApiV1AuthorsByIdData = {
   body?: never;
@@ -193,6 +1850,13 @@ export type GetApiV1AuthorsByIdData = {
   url: "/api/v1/Authors/{id}";
 };
 
+export type GetApiV1AuthorsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
 export type GetApiV1AuthorsByIdResponses = {
   /**
    * Success
@@ -202,8 +1866,26 @@ export type GetApiV1AuthorsByIdResponses = {
 
 export type GetApiV1AuthorsByIdResponse = GetApiV1AuthorsByIdResponses[keyof GetApiV1AuthorsByIdResponses];
 
+export type PatchApiV1AuthorsByIdData = {
+  body: Author;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Authors/{id}";
+};
+
+export type PatchApiV1AuthorsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Author;
+};
+
+export type PatchApiV1AuthorsByIdResponse = PatchApiV1AuthorsByIdResponses[keyof PatchApiV1AuthorsByIdResponses];
+
 export type PutApiV1AuthorsByIdData = {
-  body?: Author;
+  body: Author;
   path: {
     id: number;
   };
@@ -237,7 +1919,7 @@ export type GetApiV1BooksResponses = {
 export type GetApiV1BooksResponse = GetApiV1BooksResponses[keyof GetApiV1BooksResponses];
 
 export type PostApiV1BooksData = {
-  body?: Book;
+  body: Book;
   path?: never;
   query?: never;
   url: "/api/v1/Books";
@@ -247,8 +1929,10 @@ export type PostApiV1BooksResponses = {
   /**
    * Success
    */
-  200: unknown;
+  200: Book;
 };
+
+export type PostApiV1BooksResponse = PostApiV1BooksResponses[keyof PostApiV1BooksResponses];
 
 export type DeleteApiV1BooksByIdData = {
   body?: never;
@@ -275,6 +1959,13 @@ export type GetApiV1BooksByIdData = {
   url: "/api/v1/Books/{id}";
 };
 
+export type GetApiV1BooksByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
 export type GetApiV1BooksByIdResponses = {
   /**
    * Success
@@ -284,8 +1975,26 @@ export type GetApiV1BooksByIdResponses = {
 
 export type GetApiV1BooksByIdResponse = GetApiV1BooksByIdResponses[keyof GetApiV1BooksByIdResponses];
 
+export type PatchApiV1BooksByIdData = {
+  body: Book;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Books/{id}";
+};
+
+export type PatchApiV1BooksByIdResponses = {
+  /**
+   * Success
+   */
+  200: Book;
+};
+
+export type PatchApiV1BooksByIdResponse = PatchApiV1BooksByIdResponses[keyof PatchApiV1BooksByIdResponses];
+
 export type PutApiV1BooksByIdData = {
-  body?: Book;
+  body: Book;
   path: {
     id: number;
   };
@@ -297,13 +2006,162 @@ export type PutApiV1BooksByIdResponses = {
   /**
    * Success
    */
+  200: Book;
+};
+
+export type PutApiV1BooksByIdResponse = PutApiV1BooksByIdResponses[keyof PutApiV1BooksByIdResponses];
+
+export type GetApiV1CoverPhotosData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CoverPhotos";
+};
+
+export type GetApiV1CoverPhotosResponses = {
+  /**
+   * Success
+   */
+  200: Array<CoverPhoto>;
+};
+
+export type GetApiV1CoverPhotosResponse = GetApiV1CoverPhotosResponses[keyof GetApiV1CoverPhotosResponses];
+
+export type PostApiV1CoverPhotosData = {
+  body: CoverPhoto;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CoverPhotos";
+};
+
+export type PostApiV1CoverPhotosResponses = {
+  /**
+   * Success
+   */
+  200: CoverPhoto;
+};
+
+export type PostApiV1CoverPhotosResponse = PostApiV1CoverPhotosResponses[keyof PostApiV1CoverPhotosResponses];
+
+export type DeleteApiV1CoverPhotosByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CoverPhotos/{id}";
+};
+
+export type DeleteApiV1CoverPhotosByIdResponses = {
+  /**
+   * Success
+   */
   200: unknown;
 };
+
+export type GetApiV1CoverPhotosByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CoverPhotos/{id}";
+};
+
+export type GetApiV1CoverPhotosByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CoverPhotosByIdResponses = {
+  /**
+   * Success
+   */
+  200: CoverPhoto;
+};
+
+export type GetApiV1CoverPhotosByIdResponse = GetApiV1CoverPhotosByIdResponses[keyof GetApiV1CoverPhotosByIdResponses];
+
+export type PatchApiV1CoverPhotosByIdData = {
+  body: CoverPhoto;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CoverPhotos/{id}";
+};
+
+export type PatchApiV1CoverPhotosByIdResponses = {
+  /**
+   * Success
+   */
+  200: CoverPhoto;
+};
+
+export type PatchApiV1CoverPhotosByIdResponse =
+  PatchApiV1CoverPhotosByIdResponses[keyof PatchApiV1CoverPhotosByIdResponses];
+
+export type PutApiV1CoverPhotosByIdData = {
+  body: CoverPhoto;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CoverPhotos/{id}";
+};
+
+export type PutApiV1CoverPhotosByIdResponses = {
+  /**
+   * Success
+   */
+  200: CoverPhoto;
+};
+
+export type PutApiV1CoverPhotosByIdResponse = PutApiV1CoverPhotosByIdResponses[keyof PutApiV1CoverPhotosByIdResponses];
 
 export type GetApiV1UsersData = {
   body?: never;
   path?: never;
-  query?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
   url: "/api/v1/Users";
 };
 
@@ -317,7 +2175,7 @@ export type GetApiV1UsersResponses = {
 export type GetApiV1UsersResponse = GetApiV1UsersResponses[keyof GetApiV1UsersResponses];
 
 export type PostApiV1UsersData = {
-  body?: User;
+  body: User;
   path?: never;
   query?: never;
   url: "/api/v1/Users";
@@ -327,8 +2185,10 @@ export type PostApiV1UsersResponses = {
   /**
    * Success
    */
-  200: unknown;
+  200: User;
 };
+
+export type PostApiV1UsersResponse = PostApiV1UsersResponses[keyof PostApiV1UsersResponses];
 
 export type DeleteApiV1UsersByIdData = {
   body?: never;
@@ -355,15 +2215,42 @@ export type GetApiV1UsersByIdData = {
   url: "/api/v1/Users/{id}";
 };
 
+export type GetApiV1UsersByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
 export type GetApiV1UsersByIdResponses = {
   /**
    * Success
    */
-  200: unknown;
+  200: User;
 };
 
+export type GetApiV1UsersByIdResponse = GetApiV1UsersByIdResponses[keyof GetApiV1UsersByIdResponses];
+
+export type PatchApiV1UsersByIdData = {
+  body: User;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}";
+};
+
+export type PatchApiV1UsersByIdResponses = {
+  /**
+   * Success
+   */
+  200: User;
+};
+
+export type PatchApiV1UsersByIdResponse = PatchApiV1UsersByIdResponses[keyof PatchApiV1UsersByIdResponses];
+
 export type PutApiV1UsersByIdData = {
-  body?: User;
+  body: User;
   path: {
     id: number;
   };
@@ -375,5 +2262,14022 @@ export type PutApiV1UsersByIdResponses = {
   /**
    * Success
    */
+  200: User;
+};
+
+export type PutApiV1UsersByIdResponse = PutApiV1UsersByIdResponses[keyof PutApiV1UsersByIdResponses];
+
+export type GetApiV1ProductsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Products";
+};
+
+export type GetApiV1ProductsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Product>;
+};
+
+export type GetApiV1ProductsResponse = GetApiV1ProductsResponses[keyof GetApiV1ProductsResponses];
+
+export type PostApiV1ProductsData = {
+  body: Product;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Products";
+};
+
+export type PostApiV1ProductsResponses = {
+  /**
+   * Success
+   */
+  200: Product;
+};
+
+export type PostApiV1ProductsResponse = PostApiV1ProductsResponses[keyof PostApiV1ProductsResponses];
+
+export type DeleteApiV1ProductsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}";
+};
+
+export type DeleteApiV1ProductsByIdResponses = {
+  /**
+   * Success
+   */
   200: unknown;
 };
+
+export type GetApiV1ProductsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}";
+};
+
+export type GetApiV1ProductsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Product;
+};
+
+export type GetApiV1ProductsByIdResponse = GetApiV1ProductsByIdResponses[keyof GetApiV1ProductsByIdResponses];
+
+export type PatchApiV1ProductsByIdData = {
+  body: Product;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}";
+};
+
+export type PatchApiV1ProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Product;
+};
+
+export type PatchApiV1ProductsByIdResponse = PatchApiV1ProductsByIdResponses[keyof PatchApiV1ProductsByIdResponses];
+
+export type PutApiV1ProductsByIdData = {
+  body: Product;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}";
+};
+
+export type PutApiV1ProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Product;
+};
+
+export type PutApiV1ProductsByIdResponse = PutApiV1ProductsByIdResponses[keyof PutApiV1ProductsByIdResponses];
+
+export type GetApiV1CategoriesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Categories";
+};
+
+export type GetApiV1CategoriesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Category>;
+};
+
+export type GetApiV1CategoriesResponse = GetApiV1CategoriesResponses[keyof GetApiV1CategoriesResponses];
+
+export type PostApiV1CategoriesData = {
+  body: Category;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Categories";
+};
+
+export type PostApiV1CategoriesResponses = {
+  /**
+   * Success
+   */
+  200: Category;
+};
+
+export type PostApiV1CategoriesResponse = PostApiV1CategoriesResponses[keyof PostApiV1CategoriesResponses];
+
+export type DeleteApiV1CategoriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Categories/{id}";
+};
+
+export type DeleteApiV1CategoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CategoriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Categories/{id}";
+};
+
+export type GetApiV1CategoriesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CategoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Category;
+};
+
+export type GetApiV1CategoriesByIdResponse = GetApiV1CategoriesByIdResponses[keyof GetApiV1CategoriesByIdResponses];
+
+export type PatchApiV1CategoriesByIdData = {
+  body: Category;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Categories/{id}";
+};
+
+export type PatchApiV1CategoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Category;
+};
+
+export type PatchApiV1CategoriesByIdResponse =
+  PatchApiV1CategoriesByIdResponses[keyof PatchApiV1CategoriesByIdResponses];
+
+export type PutApiV1CategoriesByIdData = {
+  body: Category;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Categories/{id}";
+};
+
+export type PutApiV1CategoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Category;
+};
+
+export type PutApiV1CategoriesByIdResponse = PutApiV1CategoriesByIdResponses[keyof PutApiV1CategoriesByIdResponses];
+
+export type GetApiV1OrdersData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Orders";
+};
+
+export type GetApiV1OrdersResponses = {
+  /**
+   * Success
+   */
+  200: Array<Order>;
+};
+
+export type GetApiV1OrdersResponse = GetApiV1OrdersResponses[keyof GetApiV1OrdersResponses];
+
+export type PostApiV1OrdersData = {
+  body: Order;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Orders";
+};
+
+export type PostApiV1OrdersResponses = {
+  /**
+   * Success
+   */
+  200: Order;
+};
+
+export type PostApiV1OrdersResponse = PostApiV1OrdersResponses[keyof PostApiV1OrdersResponses];
+
+export type GetApiV1OrderItemsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/OrderItems";
+};
+
+export type GetApiV1OrderItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<OrderItem>;
+};
+
+export type GetApiV1OrderItemsResponse = GetApiV1OrderItemsResponses[keyof GetApiV1OrderItemsResponses];
+
+export type PostApiV1OrderItemsData = {
+  body: OrderItem;
+  path?: never;
+  query?: never;
+  url: "/api/v1/OrderItems";
+};
+
+export type PostApiV1OrderItemsResponses = {
+  /**
+   * Success
+   */
+  200: OrderItem;
+};
+
+export type PostApiV1OrderItemsResponse = PostApiV1OrderItemsResponses[keyof PostApiV1OrderItemsResponses];
+
+export type DeleteApiV1OrderItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderItems/{id}";
+};
+
+export type DeleteApiV1OrderItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1OrderItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderItems/{id}";
+};
+
+export type GetApiV1OrderItemsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrderItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: OrderItem;
+};
+
+export type GetApiV1OrderItemsByIdResponse = GetApiV1OrderItemsByIdResponses[keyof GetApiV1OrderItemsByIdResponses];
+
+export type PatchApiV1OrderItemsByIdData = {
+  body: OrderItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderItems/{id}";
+};
+
+export type PatchApiV1OrderItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: OrderItem;
+};
+
+export type PatchApiV1OrderItemsByIdResponse =
+  PatchApiV1OrderItemsByIdResponses[keyof PatchApiV1OrderItemsByIdResponses];
+
+export type PutApiV1OrderItemsByIdData = {
+  body: OrderItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderItems/{id}";
+};
+
+export type PutApiV1OrderItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: OrderItem;
+};
+
+export type PutApiV1OrderItemsByIdResponse = PutApiV1OrderItemsByIdResponses[keyof PutApiV1OrderItemsByIdResponses];
+
+export type GetApiV1CustomersData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Customers";
+};
+
+export type GetApiV1CustomersResponses = {
+  /**
+   * Success
+   */
+  200: Array<Customer>;
+};
+
+export type GetApiV1CustomersResponse = GetApiV1CustomersResponses[keyof GetApiV1CustomersResponses];
+
+export type PostApiV1CustomersData = {
+  body: Customer;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Customers";
+};
+
+export type PostApiV1CustomersResponses = {
+  /**
+   * Success
+   */
+  200: Customer;
+};
+
+export type PostApiV1CustomersResponse = PostApiV1CustomersResponses[keyof PostApiV1CustomersResponses];
+
+export type DeleteApiV1CustomersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Customers/{id}";
+};
+
+export type DeleteApiV1CustomersByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CustomersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Customers/{id}";
+};
+
+export type GetApiV1CustomersByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Customer;
+};
+
+export type GetApiV1CustomersByIdResponse = GetApiV1CustomersByIdResponses[keyof GetApiV1CustomersByIdResponses];
+
+export type PatchApiV1CustomersByIdData = {
+  body: Customer;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Customers/{id}";
+};
+
+export type PatchApiV1CustomersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Customer;
+};
+
+export type PatchApiV1CustomersByIdResponse = PatchApiV1CustomersByIdResponses[keyof PatchApiV1CustomersByIdResponses];
+
+export type PutApiV1CustomersByIdData = {
+  body: Customer;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Customers/{id}";
+};
+
+export type PutApiV1CustomersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Customer;
+};
+
+export type PutApiV1CustomersByIdResponse = PutApiV1CustomersByIdResponses[keyof PutApiV1CustomersByIdResponses];
+
+export type GetApiV1EmployeesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Employees";
+};
+
+export type GetApiV1EmployeesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Employee>;
+};
+
+export type GetApiV1EmployeesResponse = GetApiV1EmployeesResponses[keyof GetApiV1EmployeesResponses];
+
+export type PostApiV1EmployeesData = {
+  body: Employee;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Employees";
+};
+
+export type PostApiV1EmployeesResponses = {
+  /**
+   * Success
+   */
+  200: Employee;
+};
+
+export type PostApiV1EmployeesResponse = PostApiV1EmployeesResponses[keyof PostApiV1EmployeesResponses];
+
+export type DeleteApiV1EmployeesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Employees/{id}";
+};
+
+export type DeleteApiV1EmployeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1EmployeesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Employees/{id}";
+};
+
+export type GetApiV1EmployeesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EmployeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Employee;
+};
+
+export type GetApiV1EmployeesByIdResponse = GetApiV1EmployeesByIdResponses[keyof GetApiV1EmployeesByIdResponses];
+
+export type PatchApiV1EmployeesByIdData = {
+  body: Employee;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Employees/{id}";
+};
+
+export type PatchApiV1EmployeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Employee;
+};
+
+export type PatchApiV1EmployeesByIdResponse = PatchApiV1EmployeesByIdResponses[keyof PatchApiV1EmployeesByIdResponses];
+
+export type PutApiV1EmployeesByIdData = {
+  body: Employee;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Employees/{id}";
+};
+
+export type PutApiV1EmployeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Employee;
+};
+
+export type PutApiV1EmployeesByIdResponse = PutApiV1EmployeesByIdResponses[keyof PutApiV1EmployeesByIdResponses];
+
+export type GetApiV1DepartmentsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Departments";
+};
+
+export type GetApiV1DepartmentsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Department>;
+};
+
+export type GetApiV1DepartmentsResponse = GetApiV1DepartmentsResponses[keyof GetApiV1DepartmentsResponses];
+
+export type PostApiV1DepartmentsData = {
+  body: Department;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Departments";
+};
+
+export type PostApiV1DepartmentsResponses = {
+  /**
+   * Success
+   */
+  200: Department;
+};
+
+export type PostApiV1DepartmentsResponse = PostApiV1DepartmentsResponses[keyof PostApiV1DepartmentsResponses];
+
+export type DeleteApiV1DepartmentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Departments/{id}";
+};
+
+export type DeleteApiV1DepartmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1DepartmentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Departments/{id}";
+};
+
+export type GetApiV1DepartmentsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1DepartmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Department;
+};
+
+export type GetApiV1DepartmentsByIdResponse = GetApiV1DepartmentsByIdResponses[keyof GetApiV1DepartmentsByIdResponses];
+
+export type PatchApiV1DepartmentsByIdData = {
+  body: Department;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Departments/{id}";
+};
+
+export type PatchApiV1DepartmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Department;
+};
+
+export type PatchApiV1DepartmentsByIdResponse =
+  PatchApiV1DepartmentsByIdResponses[keyof PatchApiV1DepartmentsByIdResponses];
+
+export type PutApiV1DepartmentsByIdData = {
+  body: Department;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Departments/{id}";
+};
+
+export type PutApiV1DepartmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Department;
+};
+
+export type PutApiV1DepartmentsByIdResponse = PutApiV1DepartmentsByIdResponses[keyof PutApiV1DepartmentsByIdResponses];
+
+export type GetApiV1CompaniesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Companies";
+};
+
+export type GetApiV1CompaniesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Company>;
+};
+
+export type GetApiV1CompaniesResponse = GetApiV1CompaniesResponses[keyof GetApiV1CompaniesResponses];
+
+export type PostApiV1CompaniesData = {
+  body: Company;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Companies";
+};
+
+export type PostApiV1CompaniesResponses = {
+  /**
+   * Success
+   */
+  200: Company;
+};
+
+export type PostApiV1CompaniesResponse = PostApiV1CompaniesResponses[keyof PostApiV1CompaniesResponses];
+
+export type DeleteApiV1CompaniesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Companies/{id}";
+};
+
+export type DeleteApiV1CompaniesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CompaniesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Companies/{id}";
+};
+
+export type GetApiV1CompaniesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CompaniesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Company;
+};
+
+export type GetApiV1CompaniesByIdResponse = GetApiV1CompaniesByIdResponses[keyof GetApiV1CompaniesByIdResponses];
+
+export type PatchApiV1CompaniesByIdData = {
+  body: Company;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Companies/{id}";
+};
+
+export type PatchApiV1CompaniesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Company;
+};
+
+export type PatchApiV1CompaniesByIdResponse = PatchApiV1CompaniesByIdResponses[keyof PatchApiV1CompaniesByIdResponses];
+
+export type PutApiV1CompaniesByIdData = {
+  body: Company;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Companies/{id}";
+};
+
+export type PutApiV1CompaniesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Company;
+};
+
+export type PutApiV1CompaniesByIdResponse = PutApiV1CompaniesByIdResponses[keyof PutApiV1CompaniesByIdResponses];
+
+export type GetApiV1ProjectsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Projects";
+};
+
+export type GetApiV1ProjectsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Project>;
+};
+
+export type GetApiV1ProjectsResponse = GetApiV1ProjectsResponses[keyof GetApiV1ProjectsResponses];
+
+export type PostApiV1ProjectsData = {
+  body: Project;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Projects";
+};
+
+export type PostApiV1ProjectsResponses = {
+  /**
+   * Success
+   */
+  200: Project;
+};
+
+export type PostApiV1ProjectsResponse = PostApiV1ProjectsResponses[keyof PostApiV1ProjectsResponses];
+
+export type DeleteApiV1ProjectsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Projects/{id}";
+};
+
+export type DeleteApiV1ProjectsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ProjectsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Projects/{id}";
+};
+
+export type GetApiV1ProjectsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProjectsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Project;
+};
+
+export type GetApiV1ProjectsByIdResponse = GetApiV1ProjectsByIdResponses[keyof GetApiV1ProjectsByIdResponses];
+
+export type PatchApiV1ProjectsByIdData = {
+  body: Project;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Projects/{id}";
+};
+
+export type PatchApiV1ProjectsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Project;
+};
+
+export type PatchApiV1ProjectsByIdResponse = PatchApiV1ProjectsByIdResponses[keyof PatchApiV1ProjectsByIdResponses];
+
+export type PutApiV1ProjectsByIdData = {
+  body: Project;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Projects/{id}";
+};
+
+export type PutApiV1ProjectsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Project;
+};
+
+export type PutApiV1ProjectsByIdResponse = PutApiV1ProjectsByIdResponses[keyof PutApiV1ProjectsByIdResponses];
+
+export type GetApiV1TasksData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Tasks";
+};
+
+export type GetApiV1TasksResponses = {
+  /**
+   * Success
+   */
+  200: Array<Task>;
+};
+
+export type GetApiV1TasksResponse = GetApiV1TasksResponses[keyof GetApiV1TasksResponses];
+
+export type PostApiV1TasksData = {
+  body: Task;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Tasks";
+};
+
+export type PostApiV1TasksResponses = {
+  /**
+   * Success
+   */
+  200: Task;
+};
+
+export type PostApiV1TasksResponse = PostApiV1TasksResponses[keyof PostApiV1TasksResponses];
+
+export type DeleteApiV1TasksByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tasks/{id}";
+};
+
+export type DeleteApiV1TasksByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1TasksByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tasks/{id}";
+};
+
+export type GetApiV1TasksByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1TasksByIdResponses = {
+  /**
+   * Success
+   */
+  200: Task;
+};
+
+export type GetApiV1TasksByIdResponse = GetApiV1TasksByIdResponses[keyof GetApiV1TasksByIdResponses];
+
+export type PatchApiV1TasksByIdData = {
+  body: Task;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tasks/{id}";
+};
+
+export type PatchApiV1TasksByIdResponses = {
+  /**
+   * Success
+   */
+  200: Task;
+};
+
+export type PatchApiV1TasksByIdResponse = PatchApiV1TasksByIdResponses[keyof PatchApiV1TasksByIdResponses];
+
+export type PutApiV1TasksByIdData = {
+  body: Task;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tasks/{id}";
+};
+
+export type PutApiV1TasksByIdResponses = {
+  /**
+   * Success
+   */
+  200: Task;
+};
+
+export type PutApiV1TasksByIdResponse = PutApiV1TasksByIdResponses[keyof PutApiV1TasksByIdResponses];
+
+export type GetApiV1TagsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Tags";
+};
+
+export type GetApiV1TagsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Tag>;
+};
+
+export type GetApiV1TagsResponse = GetApiV1TagsResponses[keyof GetApiV1TagsResponses];
+
+export type PostApiV1TagsData = {
+  body: Tag;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Tags";
+};
+
+export type PostApiV1TagsResponses = {
+  /**
+   * Success
+   */
+  200: Tag;
+};
+
+export type PostApiV1TagsResponse = PostApiV1TagsResponses[keyof PostApiV1TagsResponses];
+
+export type DeleteApiV1TagsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tags/{id}";
+};
+
+export type DeleteApiV1TagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1TagsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tags/{id}";
+};
+
+export type GetApiV1TagsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1TagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Tag;
+};
+
+export type GetApiV1TagsByIdResponse = GetApiV1TagsByIdResponses[keyof GetApiV1TagsByIdResponses];
+
+export type PatchApiV1TagsByIdData = {
+  body: Tag;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tags/{id}";
+};
+
+export type PatchApiV1TagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Tag;
+};
+
+export type PatchApiV1TagsByIdResponse = PatchApiV1TagsByIdResponses[keyof PatchApiV1TagsByIdResponses];
+
+export type PutApiV1TagsByIdData = {
+  body: Tag;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tags/{id}";
+};
+
+export type PutApiV1TagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Tag;
+};
+
+export type PutApiV1TagsByIdResponse = PutApiV1TagsByIdResponses[keyof PutApiV1TagsByIdResponses];
+
+export type GetApiV1CommentsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Comments";
+};
+
+export type GetApiV1CommentsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Comment>;
+};
+
+export type GetApiV1CommentsResponse = GetApiV1CommentsResponses[keyof GetApiV1CommentsResponses];
+
+export type PostApiV1CommentsData = {
+  body: Comment;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Comments";
+};
+
+export type PostApiV1CommentsResponses = {
+  /**
+   * Success
+   */
+  200: Comment;
+};
+
+export type PostApiV1CommentsResponse = PostApiV1CommentsResponses[keyof PostApiV1CommentsResponses];
+
+export type DeleteApiV1CommentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Comments/{id}";
+};
+
+export type DeleteApiV1CommentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CommentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Comments/{id}";
+};
+
+export type GetApiV1CommentsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CommentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Comment;
+};
+
+export type GetApiV1CommentsByIdResponse = GetApiV1CommentsByIdResponses[keyof GetApiV1CommentsByIdResponses];
+
+export type PatchApiV1CommentsByIdData = {
+  body: Comment;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Comments/{id}";
+};
+
+export type PatchApiV1CommentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Comment;
+};
+
+export type PatchApiV1CommentsByIdResponse = PatchApiV1CommentsByIdResponses[keyof PatchApiV1CommentsByIdResponses];
+
+export type PutApiV1CommentsByIdData = {
+  body: Comment;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Comments/{id}";
+};
+
+export type PutApiV1CommentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Comment;
+};
+
+export type PutApiV1CommentsByIdResponse = PutApiV1CommentsByIdResponses[keyof PutApiV1CommentsByIdResponses];
+
+export type GetApiV1PostsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Posts";
+};
+
+export type GetApiV1PostsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Post>;
+};
+
+export type GetApiV1PostsResponse = GetApiV1PostsResponses[keyof GetApiV1PostsResponses];
+
+export type PostApiV1PostsData = {
+  body: Post;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Posts";
+};
+
+export type PostApiV1PostsResponses = {
+  /**
+   * Success
+   */
+  200: Post;
+};
+
+export type PostApiV1PostsResponse = PostApiV1PostsResponses[keyof PostApiV1PostsResponses];
+
+export type DeleteApiV1PostsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Posts/{id}";
+};
+
+export type DeleteApiV1PostsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PostsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Posts/{id}";
+};
+
+export type GetApiV1PostsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PostsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Post;
+};
+
+export type GetApiV1PostsByIdResponse = GetApiV1PostsByIdResponses[keyof GetApiV1PostsByIdResponses];
+
+export type PatchApiV1PostsByIdData = {
+  body: Post;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Posts/{id}";
+};
+
+export type PatchApiV1PostsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Post;
+};
+
+export type PatchApiV1PostsByIdResponse = PatchApiV1PostsByIdResponses[keyof PatchApiV1PostsByIdResponses];
+
+export type PutApiV1PostsByIdData = {
+  body: Post;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Posts/{id}";
+};
+
+export type PutApiV1PostsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Post;
+};
+
+export type PutApiV1PostsByIdResponse = PutApiV1PostsByIdResponses[keyof PutApiV1PostsByIdResponses];
+
+export type GetApiV1ArticlesData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Articles";
+};
+
+export type GetApiV1ArticlesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Article>;
+};
+
+export type GetApiV1ArticlesResponse = GetApiV1ArticlesResponses[keyof GetApiV1ArticlesResponses];
+
+export type PostApiV1ArticlesData = {
+  body: Article;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Articles";
+};
+
+export type PostApiV1ArticlesResponses = {
+  /**
+   * Success
+   */
+  200: Article;
+};
+
+export type PostApiV1ArticlesResponse = PostApiV1ArticlesResponses[keyof PostApiV1ArticlesResponses];
+
+export type DeleteApiV1ArticlesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Articles/{id}";
+};
+
+export type DeleteApiV1ArticlesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ArticlesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Articles/{id}";
+};
+
+export type GetApiV1ArticlesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ArticlesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Article;
+};
+
+export type GetApiV1ArticlesByIdResponse = GetApiV1ArticlesByIdResponses[keyof GetApiV1ArticlesByIdResponses];
+
+export type PatchApiV1ArticlesByIdData = {
+  body: Article;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Articles/{id}";
+};
+
+export type PatchApiV1ArticlesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Article;
+};
+
+export type PatchApiV1ArticlesByIdResponse = PatchApiV1ArticlesByIdResponses[keyof PatchApiV1ArticlesByIdResponses];
+
+export type PutApiV1ArticlesByIdData = {
+  body: Article;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Articles/{id}";
+};
+
+export type PutApiV1ArticlesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Article;
+};
+
+export type PutApiV1ArticlesByIdResponse = PutApiV1ArticlesByIdResponses[keyof PutApiV1ArticlesByIdResponses];
+
+export type GetApiV1ReviewsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Reviews";
+};
+
+export type GetApiV1ReviewsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Review>;
+};
+
+export type GetApiV1ReviewsResponse = GetApiV1ReviewsResponses[keyof GetApiV1ReviewsResponses];
+
+export type PostApiV1ReviewsData = {
+  body: Review;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Reviews";
+};
+
+export type PostApiV1ReviewsResponses = {
+  /**
+   * Success
+   */
+  200: Review;
+};
+
+export type PostApiV1ReviewsResponse = PostApiV1ReviewsResponses[keyof PostApiV1ReviewsResponses];
+
+export type DeleteApiV1ReviewsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reviews/{id}";
+};
+
+export type DeleteApiV1ReviewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ReviewsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reviews/{id}";
+};
+
+export type GetApiV1ReviewsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ReviewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Review;
+};
+
+export type GetApiV1ReviewsByIdResponse = GetApiV1ReviewsByIdResponses[keyof GetApiV1ReviewsByIdResponses];
+
+export type PatchApiV1ReviewsByIdData = {
+  body: Review;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reviews/{id}";
+};
+
+export type PatchApiV1ReviewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Review;
+};
+
+export type PatchApiV1ReviewsByIdResponse = PatchApiV1ReviewsByIdResponses[keyof PatchApiV1ReviewsByIdResponses];
+
+export type PutApiV1ReviewsByIdData = {
+  body: Review;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reviews/{id}";
+};
+
+export type PutApiV1ReviewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Review;
+};
+
+export type PutApiV1ReviewsByIdResponse = PutApiV1ReviewsByIdResponses[keyof PutApiV1ReviewsByIdResponses];
+
+export type GetApiV1NotificationsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Notifications";
+};
+
+export type GetApiV1NotificationsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Notification>;
+};
+
+export type GetApiV1NotificationsResponse = GetApiV1NotificationsResponses[keyof GetApiV1NotificationsResponses];
+
+export type PostApiV1NotificationsData = {
+  body: Notification;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Notifications";
+};
+
+export type PostApiV1NotificationsResponses = {
+  /**
+   * Success
+   */
+  200: Notification;
+};
+
+export type PostApiV1NotificationsResponse = PostApiV1NotificationsResponses[keyof PostApiV1NotificationsResponses];
+
+export type DeleteApiV1NotificationsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Notifications/{id}";
+};
+
+export type DeleteApiV1NotificationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1NotificationsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Notifications/{id}";
+};
+
+export type GetApiV1NotificationsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1NotificationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Notification;
+};
+
+export type GetApiV1NotificationsByIdResponse =
+  GetApiV1NotificationsByIdResponses[keyof GetApiV1NotificationsByIdResponses];
+
+export type PatchApiV1NotificationsByIdData = {
+  body: Notification;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Notifications/{id}";
+};
+
+export type PatchApiV1NotificationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Notification;
+};
+
+export type PatchApiV1NotificationsByIdResponse =
+  PatchApiV1NotificationsByIdResponses[keyof PatchApiV1NotificationsByIdResponses];
+
+export type PutApiV1NotificationsByIdData = {
+  body: Notification;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Notifications/{id}";
+};
+
+export type PutApiV1NotificationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Notification;
+};
+
+export type PutApiV1NotificationsByIdResponse =
+  PutApiV1NotificationsByIdResponses[keyof PutApiV1NotificationsByIdResponses];
+
+export type GetApiV1EventsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Events";
+};
+
+export type GetApiV1EventsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Event>;
+};
+
+export type GetApiV1EventsResponse = GetApiV1EventsResponses[keyof GetApiV1EventsResponses];
+
+export type PostApiV1EventsData = {
+  body: Event;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Events";
+};
+
+export type PostApiV1EventsResponses = {
+  /**
+   * Success
+   */
+  200: Event;
+};
+
+export type PostApiV1EventsResponse = PostApiV1EventsResponses[keyof PostApiV1EventsResponses];
+
+export type DeleteApiV1EventsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Events/{id}";
+};
+
+export type DeleteApiV1EventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1EventsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Events/{id}";
+};
+
+export type GetApiV1EventsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Event;
+};
+
+export type GetApiV1EventsByIdResponse = GetApiV1EventsByIdResponses[keyof GetApiV1EventsByIdResponses];
+
+export type PatchApiV1EventsByIdData = {
+  body: Event;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Events/{id}";
+};
+
+export type PatchApiV1EventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Event;
+};
+
+export type PatchApiV1EventsByIdResponse = PatchApiV1EventsByIdResponses[keyof PatchApiV1EventsByIdResponses];
+
+export type PutApiV1EventsByIdData = {
+  body: Event;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Events/{id}";
+};
+
+export type PutApiV1EventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Event;
+};
+
+export type PutApiV1EventsByIdResponse = PutApiV1EventsByIdResponses[keyof PutApiV1EventsByIdResponses];
+
+export type GetApiV1TicketsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Tickets";
+};
+
+export type GetApiV1TicketsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Ticket>;
+};
+
+export type GetApiV1TicketsResponse = GetApiV1TicketsResponses[keyof GetApiV1TicketsResponses];
+
+export type PostApiV1TicketsData = {
+  body: Ticket;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Tickets";
+};
+
+export type PostApiV1TicketsResponses = {
+  /**
+   * Success
+   */
+  200: Ticket;
+};
+
+export type PostApiV1TicketsResponse = PostApiV1TicketsResponses[keyof PostApiV1TicketsResponses];
+
+export type DeleteApiV1TicketsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tickets/{id}";
+};
+
+export type DeleteApiV1TicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1TicketsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tickets/{id}";
+};
+
+export type GetApiV1TicketsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1TicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Ticket;
+};
+
+export type GetApiV1TicketsByIdResponse = GetApiV1TicketsByIdResponses[keyof GetApiV1TicketsByIdResponses];
+
+export type PatchApiV1TicketsByIdData = {
+  body: Ticket;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tickets/{id}";
+};
+
+export type PatchApiV1TicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Ticket;
+};
+
+export type PatchApiV1TicketsByIdResponse = PatchApiV1TicketsByIdResponses[keyof PatchApiV1TicketsByIdResponses];
+
+export type PutApiV1TicketsByIdData = {
+  body: Ticket;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Tickets/{id}";
+};
+
+export type PutApiV1TicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Ticket;
+};
+
+export type PutApiV1TicketsByIdResponse = PutApiV1TicketsByIdResponses[keyof PutApiV1TicketsByIdResponses];
+
+export type GetApiV1VenuesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Venues";
+};
+
+export type GetApiV1VenuesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Venue>;
+};
+
+export type GetApiV1VenuesResponse = GetApiV1VenuesResponses[keyof GetApiV1VenuesResponses];
+
+export type PostApiV1VenuesData = {
+  body: Venue;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Venues";
+};
+
+export type PostApiV1VenuesResponses = {
+  /**
+   * Success
+   */
+  200: Venue;
+};
+
+export type PostApiV1VenuesResponse = PostApiV1VenuesResponses[keyof PostApiV1VenuesResponses];
+
+export type DeleteApiV1VenuesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Venues/{id}";
+};
+
+export type DeleteApiV1VenuesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1VenuesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Venues/{id}";
+};
+
+export type GetApiV1VenuesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1VenuesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Venue;
+};
+
+export type GetApiV1VenuesByIdResponse = GetApiV1VenuesByIdResponses[keyof GetApiV1VenuesByIdResponses];
+
+export type PatchApiV1VenuesByIdData = {
+  body: Venue;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Venues/{id}";
+};
+
+export type PatchApiV1VenuesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Venue;
+};
+
+export type PatchApiV1VenuesByIdResponse = PatchApiV1VenuesByIdResponses[keyof PatchApiV1VenuesByIdResponses];
+
+export type PutApiV1VenuesByIdData = {
+  body: Venue;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Venues/{id}";
+};
+
+export type PutApiV1VenuesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Venue;
+};
+
+export type PutApiV1VenuesByIdResponse = PutApiV1VenuesByIdResponses[keyof PutApiV1VenuesByIdResponses];
+
+export type GetApiV1CitiesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Cities";
+};
+
+export type GetApiV1CitiesResponses = {
+  /**
+   * Success
+   */
+  200: Array<City>;
+};
+
+export type GetApiV1CitiesResponse = GetApiV1CitiesResponses[keyof GetApiV1CitiesResponses];
+
+export type PostApiV1CitiesData = {
+  body: City;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Cities";
+};
+
+export type PostApiV1CitiesResponses = {
+  /**
+   * Success
+   */
+  200: City;
+};
+
+export type PostApiV1CitiesResponse = PostApiV1CitiesResponses[keyof PostApiV1CitiesResponses];
+
+export type DeleteApiV1CitiesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cities/{id}";
+};
+
+export type DeleteApiV1CitiesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CitiesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cities/{id}";
+};
+
+export type GetApiV1CitiesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CitiesByIdResponses = {
+  /**
+   * Success
+   */
+  200: City;
+};
+
+export type GetApiV1CitiesByIdResponse = GetApiV1CitiesByIdResponses[keyof GetApiV1CitiesByIdResponses];
+
+export type PatchApiV1CitiesByIdData = {
+  body: City;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cities/{id}";
+};
+
+export type PatchApiV1CitiesByIdResponses = {
+  /**
+   * Success
+   */
+  200: City;
+};
+
+export type PatchApiV1CitiesByIdResponse = PatchApiV1CitiesByIdResponses[keyof PatchApiV1CitiesByIdResponses];
+
+export type PutApiV1CitiesByIdData = {
+  body: City;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cities/{id}";
+};
+
+export type PutApiV1CitiesByIdResponses = {
+  /**
+   * Success
+   */
+  200: City;
+};
+
+export type PutApiV1CitiesByIdResponse = PutApiV1CitiesByIdResponses[keyof PutApiV1CitiesByIdResponses];
+
+export type GetApiV1CountriesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Countries";
+};
+
+export type GetApiV1CountriesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Country>;
+};
+
+export type GetApiV1CountriesResponse = GetApiV1CountriesResponses[keyof GetApiV1CountriesResponses];
+
+export type PostApiV1CountriesData = {
+  body: Country;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Countries";
+};
+
+export type PostApiV1CountriesResponses = {
+  /**
+   * Success
+   */
+  200: Country;
+};
+
+export type PostApiV1CountriesResponse = PostApiV1CountriesResponses[keyof PostApiV1CountriesResponses];
+
+export type DeleteApiV1CountriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Countries/{id}";
+};
+
+export type DeleteApiV1CountriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CountriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Countries/{id}";
+};
+
+export type GetApiV1CountriesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CountriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Country;
+};
+
+export type GetApiV1CountriesByIdResponse = GetApiV1CountriesByIdResponses[keyof GetApiV1CountriesByIdResponses];
+
+export type PatchApiV1CountriesByIdData = {
+  body: Country;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Countries/{id}";
+};
+
+export type PatchApiV1CountriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Country;
+};
+
+export type PatchApiV1CountriesByIdResponse = PatchApiV1CountriesByIdResponses[keyof PatchApiV1CountriesByIdResponses];
+
+export type PutApiV1CountriesByIdData = {
+  body: Country;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Countries/{id}";
+};
+
+export type PutApiV1CountriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Country;
+};
+
+export type PutApiV1CountriesByIdResponse = PutApiV1CountriesByIdResponses[keyof PutApiV1CountriesByIdResponses];
+
+export type GetApiV1AddressesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Addresses";
+};
+
+export type GetApiV1AddressesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Addresse>;
+};
+
+export type GetApiV1AddressesResponse = GetApiV1AddressesResponses[keyof GetApiV1AddressesResponses];
+
+export type PostApiV1AddressesData = {
+  body: Addresse;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Addresses";
+};
+
+export type PostApiV1AddressesResponses = {
+  /**
+   * Success
+   */
+  200: Addresse;
+};
+
+export type PostApiV1AddressesResponse = PostApiV1AddressesResponses[keyof PostApiV1AddressesResponses];
+
+export type DeleteApiV1AddressesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Addresses/{id}";
+};
+
+export type DeleteApiV1AddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1AddressesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Addresses/{id}";
+};
+
+export type GetApiV1AddressesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1AddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Addresse;
+};
+
+export type GetApiV1AddressesByIdResponse = GetApiV1AddressesByIdResponses[keyof GetApiV1AddressesByIdResponses];
+
+export type PatchApiV1AddressesByIdData = {
+  body: Addresse;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Addresses/{id}";
+};
+
+export type PatchApiV1AddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Addresse;
+};
+
+export type PatchApiV1AddressesByIdResponse = PatchApiV1AddressesByIdResponses[keyof PatchApiV1AddressesByIdResponses];
+
+export type PutApiV1AddressesByIdData = {
+  body: Addresse;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Addresses/{id}";
+};
+
+export type PutApiV1AddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Addresse;
+};
+
+export type PutApiV1AddressesByIdResponse = PutApiV1AddressesByIdResponses[keyof PutApiV1AddressesByIdResponses];
+
+export type GetApiV1SuppliersData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Suppliers";
+};
+
+export type GetApiV1SuppliersResponses = {
+  /**
+   * Success
+   */
+  200: Array<Supplier>;
+};
+
+export type GetApiV1SuppliersResponse = GetApiV1SuppliersResponses[keyof GetApiV1SuppliersResponses];
+
+export type PostApiV1SuppliersData = {
+  body: Supplier;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Suppliers";
+};
+
+export type PostApiV1SuppliersResponses = {
+  /**
+   * Success
+   */
+  200: Supplier;
+};
+
+export type PostApiV1SuppliersResponse = PostApiV1SuppliersResponses[keyof PostApiV1SuppliersResponses];
+
+export type DeleteApiV1SuppliersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Suppliers/{id}";
+};
+
+export type DeleteApiV1SuppliersByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1SuppliersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Suppliers/{id}";
+};
+
+export type GetApiV1SuppliersByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SuppliersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Supplier;
+};
+
+export type GetApiV1SuppliersByIdResponse = GetApiV1SuppliersByIdResponses[keyof GetApiV1SuppliersByIdResponses];
+
+export type PatchApiV1SuppliersByIdData = {
+  body: Supplier;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Suppliers/{id}";
+};
+
+export type PatchApiV1SuppliersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Supplier;
+};
+
+export type PatchApiV1SuppliersByIdResponse = PatchApiV1SuppliersByIdResponses[keyof PatchApiV1SuppliersByIdResponses];
+
+export type PutApiV1SuppliersByIdData = {
+  body: Supplier;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Suppliers/{id}";
+};
+
+export type PutApiV1SuppliersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Supplier;
+};
+
+export type PutApiV1SuppliersByIdResponse = PutApiV1SuppliersByIdResponses[keyof PutApiV1SuppliersByIdResponses];
+
+export type GetApiV1WarehousesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Warehouses";
+};
+
+export type GetApiV1WarehousesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Warehouse>;
+};
+
+export type GetApiV1WarehousesResponse = GetApiV1WarehousesResponses[keyof GetApiV1WarehousesResponses];
+
+export type PostApiV1WarehousesData = {
+  body: Warehouse;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Warehouses";
+};
+
+export type PostApiV1WarehousesResponses = {
+  /**
+   * Success
+   */
+  200: Warehouse;
+};
+
+export type PostApiV1WarehousesResponse = PostApiV1WarehousesResponses[keyof PostApiV1WarehousesResponses];
+
+export type DeleteApiV1WarehousesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Warehouses/{id}";
+};
+
+export type DeleteApiV1WarehousesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1WarehousesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Warehouses/{id}";
+};
+
+export type GetApiV1WarehousesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1WarehousesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Warehouse;
+};
+
+export type GetApiV1WarehousesByIdResponse = GetApiV1WarehousesByIdResponses[keyof GetApiV1WarehousesByIdResponses];
+
+export type PatchApiV1WarehousesByIdData = {
+  body: Warehouse;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Warehouses/{id}";
+};
+
+export type PatchApiV1WarehousesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Warehouse;
+};
+
+export type PatchApiV1WarehousesByIdResponse =
+  PatchApiV1WarehousesByIdResponses[keyof PatchApiV1WarehousesByIdResponses];
+
+export type PutApiV1WarehousesByIdData = {
+  body: Warehouse;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Warehouses/{id}";
+};
+
+export type PutApiV1WarehousesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Warehouse;
+};
+
+export type PutApiV1WarehousesByIdResponse = PutApiV1WarehousesByIdResponses[keyof PutApiV1WarehousesByIdResponses];
+
+export type GetApiV1InventoriesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Inventories";
+};
+
+export type GetApiV1InventoriesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Inventory>;
+};
+
+export type GetApiV1InventoriesResponse = GetApiV1InventoriesResponses[keyof GetApiV1InventoriesResponses];
+
+export type PostApiV1InventoriesData = {
+  body: Inventory;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Inventories";
+};
+
+export type PostApiV1InventoriesResponses = {
+  /**
+   * Success
+   */
+  200: Inventory;
+};
+
+export type PostApiV1InventoriesResponse = PostApiV1InventoriesResponses[keyof PostApiV1InventoriesResponses];
+
+export type DeleteApiV1InventoriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Inventories/{id}";
+};
+
+export type DeleteApiV1InventoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1InventoriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Inventories/{id}";
+};
+
+export type GetApiV1InventoriesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1InventoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Inventory;
+};
+
+export type GetApiV1InventoriesByIdResponse = GetApiV1InventoriesByIdResponses[keyof GetApiV1InventoriesByIdResponses];
+
+export type PatchApiV1InventoriesByIdData = {
+  body: Inventory;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Inventories/{id}";
+};
+
+export type PatchApiV1InventoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Inventory;
+};
+
+export type PatchApiV1InventoriesByIdResponse =
+  PatchApiV1InventoriesByIdResponses[keyof PatchApiV1InventoriesByIdResponses];
+
+export type PutApiV1InventoriesByIdData = {
+  body: Inventory;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Inventories/{id}";
+};
+
+export type PutApiV1InventoriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Inventory;
+};
+
+export type PutApiV1InventoriesByIdResponse = PutApiV1InventoriesByIdResponses[keyof PutApiV1InventoriesByIdResponses];
+
+export type GetApiV1ShipmentsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Shipments";
+};
+
+export type GetApiV1ShipmentsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Shipment>;
+};
+
+export type GetApiV1ShipmentsResponse = GetApiV1ShipmentsResponses[keyof GetApiV1ShipmentsResponses];
+
+export type PostApiV1ShipmentsData = {
+  body: Shipment;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Shipments";
+};
+
+export type PostApiV1ShipmentsResponses = {
+  /**
+   * Success
+   */
+  200: Shipment;
+};
+
+export type PostApiV1ShipmentsResponse = PostApiV1ShipmentsResponses[keyof PostApiV1ShipmentsResponses];
+
+export type DeleteApiV1ShipmentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Shipments/{id}";
+};
+
+export type DeleteApiV1ShipmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ShipmentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Shipments/{id}";
+};
+
+export type GetApiV1ShipmentsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ShipmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Shipment;
+};
+
+export type GetApiV1ShipmentsByIdResponse = GetApiV1ShipmentsByIdResponses[keyof GetApiV1ShipmentsByIdResponses];
+
+export type PatchApiV1ShipmentsByIdData = {
+  body: Shipment;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Shipments/{id}";
+};
+
+export type PatchApiV1ShipmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Shipment;
+};
+
+export type PatchApiV1ShipmentsByIdResponse = PatchApiV1ShipmentsByIdResponses[keyof PatchApiV1ShipmentsByIdResponses];
+
+export type PutApiV1ShipmentsByIdData = {
+  body: Shipment;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Shipments/{id}";
+};
+
+export type PutApiV1ShipmentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Shipment;
+};
+
+export type PutApiV1ShipmentsByIdResponse = PutApiV1ShipmentsByIdResponses[keyof PutApiV1ShipmentsByIdResponses];
+
+export type GetApiV1InvoicesData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Invoices";
+};
+
+export type GetApiV1InvoicesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Invoice>;
+};
+
+export type GetApiV1InvoicesResponse = GetApiV1InvoicesResponses[keyof GetApiV1InvoicesResponses];
+
+export type PostApiV1InvoicesData = {
+  body: Invoice;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Invoices";
+};
+
+export type PostApiV1InvoicesResponses = {
+  /**
+   * Success
+   */
+  200: Invoice;
+};
+
+export type PostApiV1InvoicesResponse = PostApiV1InvoicesResponses[keyof PostApiV1InvoicesResponses];
+
+export type DeleteApiV1InvoicesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Invoices/{id}";
+};
+
+export type DeleteApiV1InvoicesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1InvoicesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Invoices/{id}";
+};
+
+export type GetApiV1InvoicesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1InvoicesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Invoice;
+};
+
+export type GetApiV1InvoicesByIdResponse = GetApiV1InvoicesByIdResponses[keyof GetApiV1InvoicesByIdResponses];
+
+export type PatchApiV1InvoicesByIdData = {
+  body: Invoice;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Invoices/{id}";
+};
+
+export type PatchApiV1InvoicesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Invoice;
+};
+
+export type PatchApiV1InvoicesByIdResponse = PatchApiV1InvoicesByIdResponses[keyof PatchApiV1InvoicesByIdResponses];
+
+export type PutApiV1InvoicesByIdData = {
+  body: Invoice;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Invoices/{id}";
+};
+
+export type PutApiV1InvoicesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Invoice;
+};
+
+export type PutApiV1InvoicesByIdResponse = PutApiV1InvoicesByIdResponses[keyof PutApiV1InvoicesByIdResponses];
+
+export type GetApiV1PaymentsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Payments";
+};
+
+export type GetApiV1PaymentsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Payment>;
+};
+
+export type GetApiV1PaymentsResponse = GetApiV1PaymentsResponses[keyof GetApiV1PaymentsResponses];
+
+export type PostApiV1PaymentsData = {
+  body: Payment;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Payments";
+};
+
+export type PostApiV1PaymentsResponses = {
+  /**
+   * Success
+   */
+  200: Payment;
+};
+
+export type PostApiV1PaymentsResponse = PostApiV1PaymentsResponses[keyof PostApiV1PaymentsResponses];
+
+export type DeleteApiV1PaymentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Payments/{id}";
+};
+
+export type DeleteApiV1PaymentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PaymentsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Payments/{id}";
+};
+
+export type GetApiV1PaymentsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PaymentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Payment;
+};
+
+export type GetApiV1PaymentsByIdResponse = GetApiV1PaymentsByIdResponses[keyof GetApiV1PaymentsByIdResponses];
+
+export type PatchApiV1PaymentsByIdData = {
+  body: Payment;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Payments/{id}";
+};
+
+export type PatchApiV1PaymentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Payment;
+};
+
+export type PatchApiV1PaymentsByIdResponse = PatchApiV1PaymentsByIdResponses[keyof PatchApiV1PaymentsByIdResponses];
+
+export type PutApiV1PaymentsByIdData = {
+  body: Payment;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Payments/{id}";
+};
+
+export type PutApiV1PaymentsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Payment;
+};
+
+export type PutApiV1PaymentsByIdResponse = PutApiV1PaymentsByIdResponses[keyof PutApiV1PaymentsByIdResponses];
+
+export type GetApiV1CouponsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Coupons";
+};
+
+export type GetApiV1CouponsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Coupon>;
+};
+
+export type GetApiV1CouponsResponse = GetApiV1CouponsResponses[keyof GetApiV1CouponsResponses];
+
+export type PostApiV1CouponsData = {
+  body: Coupon;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Coupons";
+};
+
+export type PostApiV1CouponsResponses = {
+  /**
+   * Success
+   */
+  200: Coupon;
+};
+
+export type PostApiV1CouponsResponse = PostApiV1CouponsResponses[keyof PostApiV1CouponsResponses];
+
+export type DeleteApiV1CouponsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Coupons/{id}";
+};
+
+export type DeleteApiV1CouponsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CouponsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Coupons/{id}";
+};
+
+export type GetApiV1CouponsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CouponsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Coupon;
+};
+
+export type GetApiV1CouponsByIdResponse = GetApiV1CouponsByIdResponses[keyof GetApiV1CouponsByIdResponses];
+
+export type PatchApiV1CouponsByIdData = {
+  body: Coupon;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Coupons/{id}";
+};
+
+export type PatchApiV1CouponsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Coupon;
+};
+
+export type PatchApiV1CouponsByIdResponse = PatchApiV1CouponsByIdResponses[keyof PatchApiV1CouponsByIdResponses];
+
+export type PutApiV1CouponsByIdData = {
+  body: Coupon;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Coupons/{id}";
+};
+
+export type PutApiV1CouponsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Coupon;
+};
+
+export type PutApiV1CouponsByIdResponse = PutApiV1CouponsByIdResponses[keyof PutApiV1CouponsByIdResponses];
+
+export type GetApiV1CartsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Carts";
+};
+
+export type GetApiV1CartsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Cart>;
+};
+
+export type GetApiV1CartsResponse = GetApiV1CartsResponses[keyof GetApiV1CartsResponses];
+
+export type PostApiV1CartsData = {
+  body: Cart;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Carts";
+};
+
+export type PostApiV1CartsResponses = {
+  /**
+   * Success
+   */
+  200: Cart;
+};
+
+export type PostApiV1CartsResponse = PostApiV1CartsResponses[keyof PostApiV1CartsResponses];
+
+export type DeleteApiV1CartsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Carts/{id}";
+};
+
+export type DeleteApiV1CartsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CartsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Carts/{id}";
+};
+
+export type GetApiV1CartsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CartsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Cart;
+};
+
+export type GetApiV1CartsByIdResponse = GetApiV1CartsByIdResponses[keyof GetApiV1CartsByIdResponses];
+
+export type PatchApiV1CartsByIdData = {
+  body: Cart;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Carts/{id}";
+};
+
+export type PatchApiV1CartsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Cart;
+};
+
+export type PatchApiV1CartsByIdResponse = PatchApiV1CartsByIdResponses[keyof PatchApiV1CartsByIdResponses];
+
+export type PutApiV1CartsByIdData = {
+  body: Cart;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Carts/{id}";
+};
+
+export type PutApiV1CartsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Cart;
+};
+
+export type PutApiV1CartsByIdResponse = PutApiV1CartsByIdResponses[keyof PutApiV1CartsByIdResponses];
+
+export type GetApiV1WishlistsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Wishlists";
+};
+
+export type GetApiV1WishlistsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Wishlist>;
+};
+
+export type GetApiV1WishlistsResponse = GetApiV1WishlistsResponses[keyof GetApiV1WishlistsResponses];
+
+export type PostApiV1WishlistsData = {
+  body: Wishlist;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Wishlists";
+};
+
+export type PostApiV1WishlistsResponses = {
+  /**
+   * Success
+   */
+  200: Wishlist;
+};
+
+export type PostApiV1WishlistsResponse = PostApiV1WishlistsResponses[keyof PostApiV1WishlistsResponses];
+
+export type DeleteApiV1WishlistsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Wishlists/{id}";
+};
+
+export type DeleteApiV1WishlistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1WishlistsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Wishlists/{id}";
+};
+
+export type GetApiV1WishlistsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1WishlistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Wishlist;
+};
+
+export type GetApiV1WishlistsByIdResponse = GetApiV1WishlistsByIdResponses[keyof GetApiV1WishlistsByIdResponses];
+
+export type PatchApiV1WishlistsByIdData = {
+  body: Wishlist;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Wishlists/{id}";
+};
+
+export type PatchApiV1WishlistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Wishlist;
+};
+
+export type PatchApiV1WishlistsByIdResponse = PatchApiV1WishlistsByIdResponses[keyof PatchApiV1WishlistsByIdResponses];
+
+export type PutApiV1WishlistsByIdData = {
+  body: Wishlist;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Wishlists/{id}";
+};
+
+export type PutApiV1WishlistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Wishlist;
+};
+
+export type PutApiV1WishlistsByIdResponse = PutApiV1WishlistsByIdResponses[keyof PutApiV1WishlistsByIdResponses];
+
+export type GetApiV1SubscriptionsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Subscriptions";
+};
+
+export type GetApiV1SubscriptionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Subscription>;
+};
+
+export type GetApiV1SubscriptionsResponse = GetApiV1SubscriptionsResponses[keyof GetApiV1SubscriptionsResponses];
+
+export type PostApiV1SubscriptionsData = {
+  body: Subscription;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Subscriptions";
+};
+
+export type PostApiV1SubscriptionsResponses = {
+  /**
+   * Success
+   */
+  200: Subscription;
+};
+
+export type PostApiV1SubscriptionsResponse = PostApiV1SubscriptionsResponses[keyof PostApiV1SubscriptionsResponses];
+
+export type DeleteApiV1SubscriptionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Subscriptions/{id}";
+};
+
+export type DeleteApiV1SubscriptionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1SubscriptionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Subscriptions/{id}";
+};
+
+export type GetApiV1SubscriptionsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SubscriptionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Subscription;
+};
+
+export type GetApiV1SubscriptionsByIdResponse =
+  GetApiV1SubscriptionsByIdResponses[keyof GetApiV1SubscriptionsByIdResponses];
+
+export type PatchApiV1SubscriptionsByIdData = {
+  body: Subscription;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Subscriptions/{id}";
+};
+
+export type PatchApiV1SubscriptionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Subscription;
+};
+
+export type PatchApiV1SubscriptionsByIdResponse =
+  PatchApiV1SubscriptionsByIdResponses[keyof PatchApiV1SubscriptionsByIdResponses];
+
+export type PutApiV1SubscriptionsByIdData = {
+  body: Subscription;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Subscriptions/{id}";
+};
+
+export type PutApiV1SubscriptionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Subscription;
+};
+
+export type PutApiV1SubscriptionsByIdResponse =
+  PutApiV1SubscriptionsByIdResponses[keyof PutApiV1SubscriptionsByIdResponses];
+
+export type GetApiV1PlansData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Plans";
+};
+
+export type GetApiV1PlansResponses = {
+  /**
+   * Success
+   */
+  200: Array<Plan>;
+};
+
+export type GetApiV1PlansResponse = GetApiV1PlansResponses[keyof GetApiV1PlansResponses];
+
+export type PostApiV1PlansData = {
+  body: Plan;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Plans";
+};
+
+export type PostApiV1PlansResponses = {
+  /**
+   * Success
+   */
+  200: Plan;
+};
+
+export type PostApiV1PlansResponse = PostApiV1PlansResponses[keyof PostApiV1PlansResponses];
+
+export type DeleteApiV1PlansByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Plans/{id}";
+};
+
+export type DeleteApiV1PlansByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PlansByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Plans/{id}";
+};
+
+export type GetApiV1PlansByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PlansByIdResponses = {
+  /**
+   * Success
+   */
+  200: Plan;
+};
+
+export type GetApiV1PlansByIdResponse = GetApiV1PlansByIdResponses[keyof GetApiV1PlansByIdResponses];
+
+export type PatchApiV1PlansByIdData = {
+  body: Plan;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Plans/{id}";
+};
+
+export type PatchApiV1PlansByIdResponses = {
+  /**
+   * Success
+   */
+  200: Plan;
+};
+
+export type PatchApiV1PlansByIdResponse = PatchApiV1PlansByIdResponses[keyof PatchApiV1PlansByIdResponses];
+
+export type PutApiV1PlansByIdData = {
+  body: Plan;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Plans/{id}";
+};
+
+export type PutApiV1PlansByIdResponses = {
+  /**
+   * Success
+   */
+  200: Plan;
+};
+
+export type PutApiV1PlansByIdResponse = PutApiV1PlansByIdResponses[keyof PutApiV1PlansByIdResponses];
+
+export type GetApiV1RolesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Roles";
+};
+
+export type GetApiV1RolesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Role>;
+};
+
+export type GetApiV1RolesResponse = GetApiV1RolesResponses[keyof GetApiV1RolesResponses];
+
+export type PostApiV1RolesData = {
+  body: Role;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Roles";
+};
+
+export type PostApiV1RolesResponses = {
+  /**
+   * Success
+   */
+  200: Role;
+};
+
+export type PostApiV1RolesResponse = PostApiV1RolesResponses[keyof PostApiV1RolesResponses];
+
+export type DeleteApiV1RolesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Roles/{id}";
+};
+
+export type DeleteApiV1RolesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1RolesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Roles/{id}";
+};
+
+export type GetApiV1RolesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RolesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Role;
+};
+
+export type GetApiV1RolesByIdResponse = GetApiV1RolesByIdResponses[keyof GetApiV1RolesByIdResponses];
+
+export type PatchApiV1RolesByIdData = {
+  body: Role;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Roles/{id}";
+};
+
+export type PatchApiV1RolesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Role;
+};
+
+export type PatchApiV1RolesByIdResponse = PatchApiV1RolesByIdResponses[keyof PatchApiV1RolesByIdResponses];
+
+export type PutApiV1RolesByIdData = {
+  body: Role;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Roles/{id}";
+};
+
+export type PutApiV1RolesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Role;
+};
+
+export type PutApiV1RolesByIdResponse = PutApiV1RolesByIdResponses[keyof PutApiV1RolesByIdResponses];
+
+export type GetApiV1PermissionsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Permissions";
+};
+
+export type GetApiV1PermissionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Permission>;
+};
+
+export type GetApiV1PermissionsResponse = GetApiV1PermissionsResponses[keyof GetApiV1PermissionsResponses];
+
+export type PostApiV1PermissionsData = {
+  body: Permission;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Permissions";
+};
+
+export type PostApiV1PermissionsResponses = {
+  /**
+   * Success
+   */
+  200: Permission;
+};
+
+export type PostApiV1PermissionsResponse = PostApiV1PermissionsResponses[keyof PostApiV1PermissionsResponses];
+
+export type DeleteApiV1PermissionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Permissions/{id}";
+};
+
+export type DeleteApiV1PermissionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PermissionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Permissions/{id}";
+};
+
+export type GetApiV1PermissionsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PermissionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Permission;
+};
+
+export type GetApiV1PermissionsByIdResponse = GetApiV1PermissionsByIdResponses[keyof GetApiV1PermissionsByIdResponses];
+
+export type PatchApiV1PermissionsByIdData = {
+  body: Permission;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Permissions/{id}";
+};
+
+export type PatchApiV1PermissionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Permission;
+};
+
+export type PatchApiV1PermissionsByIdResponse =
+  PatchApiV1PermissionsByIdResponses[keyof PatchApiV1PermissionsByIdResponses];
+
+export type PutApiV1PermissionsByIdData = {
+  body: Permission;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Permissions/{id}";
+};
+
+export type PutApiV1PermissionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Permission;
+};
+
+export type PutApiV1PermissionsByIdResponse = PutApiV1PermissionsByIdResponses[keyof PutApiV1PermissionsByIdResponses];
+
+export type GetApiV1SessionsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Sessions";
+};
+
+export type GetApiV1SessionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Session>;
+};
+
+export type GetApiV1SessionsResponse = GetApiV1SessionsResponses[keyof GetApiV1SessionsResponses];
+
+export type PostApiV1SessionsData = {
+  body: Session;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Sessions";
+};
+
+export type PostApiV1SessionsResponses = {
+  /**
+   * Success
+   */
+  200: Session;
+};
+
+export type PostApiV1SessionsResponse = PostApiV1SessionsResponses[keyof PostApiV1SessionsResponses];
+
+export type DeleteApiV1SessionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Sessions/{id}";
+};
+
+export type DeleteApiV1SessionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1SessionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Sessions/{id}";
+};
+
+export type GetApiV1SessionsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SessionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Session;
+};
+
+export type GetApiV1SessionsByIdResponse = GetApiV1SessionsByIdResponses[keyof GetApiV1SessionsByIdResponses];
+
+export type PatchApiV1SessionsByIdData = {
+  body: Session;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Sessions/{id}";
+};
+
+export type PatchApiV1SessionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Session;
+};
+
+export type PatchApiV1SessionsByIdResponse = PatchApiV1SessionsByIdResponses[keyof PatchApiV1SessionsByIdResponses];
+
+export type PutApiV1SessionsByIdData = {
+  body: Session;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Sessions/{id}";
+};
+
+export type PutApiV1SessionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Session;
+};
+
+export type PutApiV1SessionsByIdResponse = PutApiV1SessionsByIdResponses[keyof PutApiV1SessionsByIdResponses];
+
+export type GetApiV1LogsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Logs";
+};
+
+export type GetApiV1LogsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Log>;
+};
+
+export type GetApiV1LogsResponse = GetApiV1LogsResponses[keyof GetApiV1LogsResponses];
+
+export type PostApiV1LogsData = {
+  body: Log;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Logs";
+};
+
+export type PostApiV1LogsResponses = {
+  /**
+   * Success
+   */
+  200: Log;
+};
+
+export type PostApiV1LogsResponse = PostApiV1LogsResponses[keyof PostApiV1LogsResponses];
+
+export type DeleteApiV1LogsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Logs/{id}";
+};
+
+export type DeleteApiV1LogsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1LogsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Logs/{id}";
+};
+
+export type GetApiV1LogsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1LogsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Log;
+};
+
+export type GetApiV1LogsByIdResponse = GetApiV1LogsByIdResponses[keyof GetApiV1LogsByIdResponses];
+
+export type PatchApiV1LogsByIdData = {
+  body: Log;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Logs/{id}";
+};
+
+export type PatchApiV1LogsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Log;
+};
+
+export type PatchApiV1LogsByIdResponse = PatchApiV1LogsByIdResponses[keyof PatchApiV1LogsByIdResponses];
+
+export type PutApiV1LogsByIdData = {
+  body: Log;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Logs/{id}";
+};
+
+export type PutApiV1LogsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Log;
+};
+
+export type PutApiV1LogsByIdResponse = PutApiV1LogsByIdResponses[keyof PutApiV1LogsByIdResponses];
+
+export type GetApiV1FilesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Files";
+};
+
+export type GetApiV1FilesResponses = {
+  /**
+   * Success
+   */
+  200: Array<File>;
+};
+
+export type GetApiV1FilesResponse = GetApiV1FilesResponses[keyof GetApiV1FilesResponses];
+
+export type PostApiV1FilesData = {
+  body: File;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Files";
+};
+
+export type PostApiV1FilesResponses = {
+  /**
+   * Success
+   */
+  200: File;
+};
+
+export type PostApiV1FilesResponse = PostApiV1FilesResponses[keyof PostApiV1FilesResponses];
+
+export type DeleteApiV1FilesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Files/{id}";
+};
+
+export type DeleteApiV1FilesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1FilesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Files/{id}";
+};
+
+export type GetApiV1FilesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1FilesByIdResponses = {
+  /**
+   * Success
+   */
+  200: File;
+};
+
+export type GetApiV1FilesByIdResponse = GetApiV1FilesByIdResponses[keyof GetApiV1FilesByIdResponses];
+
+export type PatchApiV1FilesByIdData = {
+  body: File;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Files/{id}";
+};
+
+export type PatchApiV1FilesByIdResponses = {
+  /**
+   * Success
+   */
+  200: File;
+};
+
+export type PatchApiV1FilesByIdResponse = PatchApiV1FilesByIdResponses[keyof PatchApiV1FilesByIdResponses];
+
+export type PutApiV1FilesByIdData = {
+  body: File;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Files/{id}";
+};
+
+export type PutApiV1FilesByIdResponses = {
+  /**
+   * Success
+   */
+  200: File;
+};
+
+export type PutApiV1FilesByIdResponse = PutApiV1FilesByIdResponses[keyof PutApiV1FilesByIdResponses];
+
+export type GetApiV1FoldersData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Folders";
+};
+
+export type GetApiV1FoldersResponses = {
+  /**
+   * Success
+   */
+  200: Array<Folder>;
+};
+
+export type GetApiV1FoldersResponse = GetApiV1FoldersResponses[keyof GetApiV1FoldersResponses];
+
+export type PostApiV1FoldersData = {
+  body: Folder;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Folders";
+};
+
+export type PostApiV1FoldersResponses = {
+  /**
+   * Success
+   */
+  200: Folder;
+};
+
+export type PostApiV1FoldersResponse = PostApiV1FoldersResponses[keyof PostApiV1FoldersResponses];
+
+export type DeleteApiV1FoldersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Folders/{id}";
+};
+
+export type DeleteApiV1FoldersByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1FoldersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Folders/{id}";
+};
+
+export type GetApiV1FoldersByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1FoldersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Folder;
+};
+
+export type GetApiV1FoldersByIdResponse = GetApiV1FoldersByIdResponses[keyof GetApiV1FoldersByIdResponses];
+
+export type PatchApiV1FoldersByIdData = {
+  body: Folder;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Folders/{id}";
+};
+
+export type PatchApiV1FoldersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Folder;
+};
+
+export type PatchApiV1FoldersByIdResponse = PatchApiV1FoldersByIdResponses[keyof PatchApiV1FoldersByIdResponses];
+
+export type PutApiV1FoldersByIdData = {
+  body: Folder;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Folders/{id}";
+};
+
+export type PutApiV1FoldersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Folder;
+};
+
+export type PutApiV1FoldersByIdResponse = PutApiV1FoldersByIdResponses[keyof PutApiV1FoldersByIdResponses];
+
+export type GetApiV1GenresData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Genres";
+};
+
+export type GetApiV1GenresResponses = {
+  /**
+   * Success
+   */
+  200: Array<Genre>;
+};
+
+export type GetApiV1GenresResponse = GetApiV1GenresResponses[keyof GetApiV1GenresResponses];
+
+export type PostApiV1GenresData = {
+  body: Genre;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Genres";
+};
+
+export type PostApiV1GenresResponses = {
+  /**
+   * Success
+   */
+  200: Genre;
+};
+
+export type PostApiV1GenresResponse = PostApiV1GenresResponses[keyof PostApiV1GenresResponses];
+
+export type DeleteApiV1GenresByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Genres/{id}";
+};
+
+export type DeleteApiV1GenresByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1GenresByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Genres/{id}";
+};
+
+export type GetApiV1GenresByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1GenresByIdResponses = {
+  /**
+   * Success
+   */
+  200: Genre;
+};
+
+export type GetApiV1GenresByIdResponse = GetApiV1GenresByIdResponses[keyof GetApiV1GenresByIdResponses];
+
+export type PatchApiV1GenresByIdData = {
+  body: Genre;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Genres/{id}";
+};
+
+export type PatchApiV1GenresByIdResponses = {
+  /**
+   * Success
+   */
+  200: Genre;
+};
+
+export type PatchApiV1GenresByIdResponse = PatchApiV1GenresByIdResponses[keyof PatchApiV1GenresByIdResponses];
+
+export type PutApiV1GenresByIdData = {
+  body: Genre;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Genres/{id}";
+};
+
+export type PutApiV1GenresByIdResponses = {
+  /**
+   * Success
+   */
+  200: Genre;
+};
+
+export type PutApiV1GenresByIdResponse = PutApiV1GenresByIdResponses[keyof PutApiV1GenresByIdResponses];
+
+export type GetApiV1MoviesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Movies";
+};
+
+export type GetApiV1MoviesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Movy>;
+};
+
+export type GetApiV1MoviesResponse = GetApiV1MoviesResponses[keyof GetApiV1MoviesResponses];
+
+export type PostApiV1MoviesData = {
+  body: Movy;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Movies";
+};
+
+export type PostApiV1MoviesResponses = {
+  /**
+   * Success
+   */
+  200: Movy;
+};
+
+export type PostApiV1MoviesResponse = PostApiV1MoviesResponses[keyof PostApiV1MoviesResponses];
+
+export type DeleteApiV1MoviesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Movies/{id}";
+};
+
+export type DeleteApiV1MoviesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1MoviesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Movies/{id}";
+};
+
+export type GetApiV1MoviesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1MoviesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Movy;
+};
+
+export type GetApiV1MoviesByIdResponse = GetApiV1MoviesByIdResponses[keyof GetApiV1MoviesByIdResponses];
+
+export type PatchApiV1MoviesByIdData = {
+  body: Movy;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Movies/{id}";
+};
+
+export type PatchApiV1MoviesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Movy;
+};
+
+export type PatchApiV1MoviesByIdResponse = PatchApiV1MoviesByIdResponses[keyof PatchApiV1MoviesByIdResponses];
+
+export type PutApiV1MoviesByIdData = {
+  body: Movy;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Movies/{id}";
+};
+
+export type PutApiV1MoviesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Movy;
+};
+
+export type PutApiV1MoviesByIdResponse = PutApiV1MoviesByIdResponses[keyof PutApiV1MoviesByIdResponses];
+
+export type GetApiV1SongsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Songs";
+};
+
+export type GetApiV1SongsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Song>;
+};
+
+export type GetApiV1SongsResponse = GetApiV1SongsResponses[keyof GetApiV1SongsResponses];
+
+export type PostApiV1SongsData = {
+  body: Song;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Songs";
+};
+
+export type PostApiV1SongsResponses = {
+  /**
+   * Success
+   */
+  200: Song;
+};
+
+export type PostApiV1SongsResponse = PostApiV1SongsResponses[keyof PostApiV1SongsResponses];
+
+export type DeleteApiV1SongsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Songs/{id}";
+};
+
+export type DeleteApiV1SongsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1SongsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Songs/{id}";
+};
+
+export type GetApiV1SongsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SongsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Song;
+};
+
+export type GetApiV1SongsByIdResponse = GetApiV1SongsByIdResponses[keyof GetApiV1SongsByIdResponses];
+
+export type PatchApiV1SongsByIdData = {
+  body: Song;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Songs/{id}";
+};
+
+export type PatchApiV1SongsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Song;
+};
+
+export type PatchApiV1SongsByIdResponse = PatchApiV1SongsByIdResponses[keyof PatchApiV1SongsByIdResponses];
+
+export type PutApiV1SongsByIdData = {
+  body: Song;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Songs/{id}";
+};
+
+export type PutApiV1SongsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Song;
+};
+
+export type PutApiV1SongsByIdResponse = PutApiV1SongsByIdResponses[keyof PutApiV1SongsByIdResponses];
+
+export type GetApiV1AlbumsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Albums";
+};
+
+export type GetApiV1AlbumsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Album>;
+};
+
+export type GetApiV1AlbumsResponse = GetApiV1AlbumsResponses[keyof GetApiV1AlbumsResponses];
+
+export type PostApiV1AlbumsData = {
+  body: Album;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Albums";
+};
+
+export type PostApiV1AlbumsResponses = {
+  /**
+   * Success
+   */
+  200: Album;
+};
+
+export type PostApiV1AlbumsResponse = PostApiV1AlbumsResponses[keyof PostApiV1AlbumsResponses];
+
+export type DeleteApiV1AlbumsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Albums/{id}";
+};
+
+export type DeleteApiV1AlbumsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1AlbumsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Albums/{id}";
+};
+
+export type GetApiV1AlbumsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1AlbumsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Album;
+};
+
+export type GetApiV1AlbumsByIdResponse = GetApiV1AlbumsByIdResponses[keyof GetApiV1AlbumsByIdResponses];
+
+export type PatchApiV1AlbumsByIdData = {
+  body: Album;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Albums/{id}";
+};
+
+export type PatchApiV1AlbumsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Album;
+};
+
+export type PatchApiV1AlbumsByIdResponse = PatchApiV1AlbumsByIdResponses[keyof PatchApiV1AlbumsByIdResponses];
+
+export type PutApiV1AlbumsByIdData = {
+  body: Album;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Albums/{id}";
+};
+
+export type PutApiV1AlbumsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Album;
+};
+
+export type PutApiV1AlbumsByIdResponse = PutApiV1AlbumsByIdResponses[keyof PutApiV1AlbumsByIdResponses];
+
+export type GetApiV1ArtistsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Artists";
+};
+
+export type GetApiV1ArtistsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Artist>;
+};
+
+export type GetApiV1ArtistsResponse = GetApiV1ArtistsResponses[keyof GetApiV1ArtistsResponses];
+
+export type PostApiV1ArtistsData = {
+  body: Artist;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Artists";
+};
+
+export type PostApiV1ArtistsResponses = {
+  /**
+   * Success
+   */
+  200: Artist;
+};
+
+export type PostApiV1ArtistsResponse = PostApiV1ArtistsResponses[keyof PostApiV1ArtistsResponses];
+
+export type DeleteApiV1ArtistsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Artists/{id}";
+};
+
+export type DeleteApiV1ArtistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ArtistsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Artists/{id}";
+};
+
+export type GetApiV1ArtistsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ArtistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Artist;
+};
+
+export type GetApiV1ArtistsByIdResponse = GetApiV1ArtistsByIdResponses[keyof GetApiV1ArtistsByIdResponses];
+
+export type PatchApiV1ArtistsByIdData = {
+  body: Artist;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Artists/{id}";
+};
+
+export type PatchApiV1ArtistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Artist;
+};
+
+export type PatchApiV1ArtistsByIdResponse = PatchApiV1ArtistsByIdResponses[keyof PatchApiV1ArtistsByIdResponses];
+
+export type PutApiV1ArtistsByIdData = {
+  body: Artist;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Artists/{id}";
+};
+
+export type PutApiV1ArtistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Artist;
+};
+
+export type PutApiV1ArtistsByIdResponse = PutApiV1ArtistsByIdResponses[keyof PutApiV1ArtistsByIdResponses];
+
+export type GetApiV1PlaylistsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Playlists";
+};
+
+export type GetApiV1PlaylistsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Playlist>;
+};
+
+export type GetApiV1PlaylistsResponse = GetApiV1PlaylistsResponses[keyof GetApiV1PlaylistsResponses];
+
+export type PostApiV1PlaylistsData = {
+  body: Playlist;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Playlists";
+};
+
+export type PostApiV1PlaylistsResponses = {
+  /**
+   * Success
+   */
+  200: Playlist;
+};
+
+export type PostApiV1PlaylistsResponse = PostApiV1PlaylistsResponses[keyof PostApiV1PlaylistsResponses];
+
+export type DeleteApiV1PlaylistsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Playlists/{id}";
+};
+
+export type DeleteApiV1PlaylistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PlaylistsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Playlists/{id}";
+};
+
+export type GetApiV1PlaylistsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PlaylistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Playlist;
+};
+
+export type GetApiV1PlaylistsByIdResponse = GetApiV1PlaylistsByIdResponses[keyof GetApiV1PlaylistsByIdResponses];
+
+export type PatchApiV1PlaylistsByIdData = {
+  body: Playlist;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Playlists/{id}";
+};
+
+export type PatchApiV1PlaylistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Playlist;
+};
+
+export type PatchApiV1PlaylistsByIdResponse = PatchApiV1PlaylistsByIdResponses[keyof PatchApiV1PlaylistsByIdResponses];
+
+export type PutApiV1PlaylistsByIdData = {
+  body: Playlist;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Playlists/{id}";
+};
+
+export type PutApiV1PlaylistsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Playlist;
+};
+
+export type PutApiV1PlaylistsByIdResponse = PutApiV1PlaylistsByIdResponses[keyof PutApiV1PlaylistsByIdResponses];
+
+export type GetApiV1TeamsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Teams";
+};
+
+export type GetApiV1TeamsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Team>;
+};
+
+export type GetApiV1TeamsResponse = GetApiV1TeamsResponses[keyof GetApiV1TeamsResponses];
+
+export type PostApiV1TeamsData = {
+  body: Team;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Teams";
+};
+
+export type PostApiV1TeamsResponses = {
+  /**
+   * Success
+   */
+  200: Team;
+};
+
+export type PostApiV1TeamsResponse = PostApiV1TeamsResponses[keyof PostApiV1TeamsResponses];
+
+export type DeleteApiV1TeamsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Teams/{id}";
+};
+
+export type DeleteApiV1TeamsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1TeamsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Teams/{id}";
+};
+
+export type GetApiV1TeamsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1TeamsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Team;
+};
+
+export type GetApiV1TeamsByIdResponse = GetApiV1TeamsByIdResponses[keyof GetApiV1TeamsByIdResponses];
+
+export type PatchApiV1TeamsByIdData = {
+  body: Team;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Teams/{id}";
+};
+
+export type PatchApiV1TeamsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Team;
+};
+
+export type PatchApiV1TeamsByIdResponse = PatchApiV1TeamsByIdResponses[keyof PatchApiV1TeamsByIdResponses];
+
+export type PutApiV1TeamsByIdData = {
+  body: Team;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Teams/{id}";
+};
+
+export type PutApiV1TeamsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Team;
+};
+
+export type PutApiV1TeamsByIdResponse = PutApiV1TeamsByIdResponses[keyof PutApiV1TeamsByIdResponses];
+
+export type GetApiV1PlayersData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Players";
+};
+
+export type GetApiV1PlayersResponses = {
+  /**
+   * Success
+   */
+  200: Array<Player>;
+};
+
+export type GetApiV1PlayersResponse = GetApiV1PlayersResponses[keyof GetApiV1PlayersResponses];
+
+export type PostApiV1PlayersData = {
+  body: Player;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Players";
+};
+
+export type PostApiV1PlayersResponses = {
+  /**
+   * Success
+   */
+  200: Player;
+};
+
+export type PostApiV1PlayersResponse = PostApiV1PlayersResponses[keyof PostApiV1PlayersResponses];
+
+export type DeleteApiV1PlayersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Players/{id}";
+};
+
+export type DeleteApiV1PlayersByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PlayersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Players/{id}";
+};
+
+export type GetApiV1PlayersByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PlayersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Player;
+};
+
+export type GetApiV1PlayersByIdResponse = GetApiV1PlayersByIdResponses[keyof GetApiV1PlayersByIdResponses];
+
+export type PatchApiV1PlayersByIdData = {
+  body: Player;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Players/{id}";
+};
+
+export type PatchApiV1PlayersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Player;
+};
+
+export type PatchApiV1PlayersByIdResponse = PatchApiV1PlayersByIdResponses[keyof PatchApiV1PlayersByIdResponses];
+
+export type PutApiV1PlayersByIdData = {
+  body: Player;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Players/{id}";
+};
+
+export type PutApiV1PlayersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Player;
+};
+
+export type PutApiV1PlayersByIdResponse = PutApiV1PlayersByIdResponses[keyof PutApiV1PlayersByIdResponses];
+
+export type GetApiV1MatchesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Matches";
+};
+
+export type GetApiV1MatchesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Matche>;
+};
+
+export type GetApiV1MatchesResponse = GetApiV1MatchesResponses[keyof GetApiV1MatchesResponses];
+
+export type PostApiV1MatchesData = {
+  body: Matche;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Matches";
+};
+
+export type PostApiV1MatchesResponses = {
+  /**
+   * Success
+   */
+  200: Matche;
+};
+
+export type PostApiV1MatchesResponse = PostApiV1MatchesResponses[keyof PostApiV1MatchesResponses];
+
+export type DeleteApiV1MatchesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Matches/{id}";
+};
+
+export type DeleteApiV1MatchesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1MatchesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Matches/{id}";
+};
+
+export type GetApiV1MatchesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1MatchesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Matche;
+};
+
+export type GetApiV1MatchesByIdResponse = GetApiV1MatchesByIdResponses[keyof GetApiV1MatchesByIdResponses];
+
+export type PatchApiV1MatchesByIdData = {
+  body: Matche;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Matches/{id}";
+};
+
+export type PatchApiV1MatchesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Matche;
+};
+
+export type PatchApiV1MatchesByIdResponse = PatchApiV1MatchesByIdResponses[keyof PatchApiV1MatchesByIdResponses];
+
+export type PutApiV1MatchesByIdData = {
+  body: Matche;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Matches/{id}";
+};
+
+export type PutApiV1MatchesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Matche;
+};
+
+export type PutApiV1MatchesByIdResponse = PutApiV1MatchesByIdResponses[keyof PutApiV1MatchesByIdResponses];
+
+export type GetApiV1RecipesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Recipes";
+};
+
+export type GetApiV1RecipesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Recipe>;
+};
+
+export type GetApiV1RecipesResponse = GetApiV1RecipesResponses[keyof GetApiV1RecipesResponses];
+
+export type PostApiV1RecipesData = {
+  body: Recipe;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Recipes";
+};
+
+export type PostApiV1RecipesResponses = {
+  /**
+   * Success
+   */
+  200: Recipe;
+};
+
+export type PostApiV1RecipesResponse = PostApiV1RecipesResponses[keyof PostApiV1RecipesResponses];
+
+export type DeleteApiV1RecipesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Recipes/{id}";
+};
+
+export type DeleteApiV1RecipesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1RecipesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Recipes/{id}";
+};
+
+export type GetApiV1RecipesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RecipesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Recipe;
+};
+
+export type GetApiV1RecipesByIdResponse = GetApiV1RecipesByIdResponses[keyof GetApiV1RecipesByIdResponses];
+
+export type PatchApiV1RecipesByIdData = {
+  body: Recipe;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Recipes/{id}";
+};
+
+export type PatchApiV1RecipesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Recipe;
+};
+
+export type PatchApiV1RecipesByIdResponse = PatchApiV1RecipesByIdResponses[keyof PatchApiV1RecipesByIdResponses];
+
+export type PutApiV1RecipesByIdData = {
+  body: Recipe;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Recipes/{id}";
+};
+
+export type PutApiV1RecipesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Recipe;
+};
+
+export type PutApiV1RecipesByIdResponse = PutApiV1RecipesByIdResponses[keyof PutApiV1RecipesByIdResponses];
+
+export type GetApiV1RestaurantsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Restaurants";
+};
+
+export type GetApiV1RestaurantsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Restaurant>;
+};
+
+export type GetApiV1RestaurantsResponse = GetApiV1RestaurantsResponses[keyof GetApiV1RestaurantsResponses];
+
+export type PostApiV1RestaurantsData = {
+  body: Restaurant;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Restaurants";
+};
+
+export type PostApiV1RestaurantsResponses = {
+  /**
+   * Success
+   */
+  200: Restaurant;
+};
+
+export type PostApiV1RestaurantsResponse = PostApiV1RestaurantsResponses[keyof PostApiV1RestaurantsResponses];
+
+export type DeleteApiV1RestaurantsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Restaurants/{id}";
+};
+
+export type DeleteApiV1RestaurantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1RestaurantsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Restaurants/{id}";
+};
+
+export type GetApiV1RestaurantsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RestaurantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Restaurant;
+};
+
+export type GetApiV1RestaurantsByIdResponse = GetApiV1RestaurantsByIdResponses[keyof GetApiV1RestaurantsByIdResponses];
+
+export type PatchApiV1RestaurantsByIdData = {
+  body: Restaurant;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Restaurants/{id}";
+};
+
+export type PatchApiV1RestaurantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Restaurant;
+};
+
+export type PatchApiV1RestaurantsByIdResponse =
+  PatchApiV1RestaurantsByIdResponses[keyof PatchApiV1RestaurantsByIdResponses];
+
+export type PutApiV1RestaurantsByIdData = {
+  body: Restaurant;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Restaurants/{id}";
+};
+
+export type PutApiV1RestaurantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Restaurant;
+};
+
+export type PutApiV1RestaurantsByIdResponse = PutApiV1RestaurantsByIdResponses[keyof PutApiV1RestaurantsByIdResponses];
+
+export type GetApiV1HotelsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Hotels";
+};
+
+export type GetApiV1HotelsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Hotel>;
+};
+
+export type GetApiV1HotelsResponse = GetApiV1HotelsResponses[keyof GetApiV1HotelsResponses];
+
+export type PostApiV1HotelsData = {
+  body: Hotel;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Hotels";
+};
+
+export type PostApiV1HotelsResponses = {
+  /**
+   * Success
+   */
+  200: Hotel;
+};
+
+export type PostApiV1HotelsResponse = PostApiV1HotelsResponses[keyof PostApiV1HotelsResponses];
+
+export type DeleteApiV1HotelsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Hotels/{id}";
+};
+
+export type DeleteApiV1HotelsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1HotelsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Hotels/{id}";
+};
+
+export type GetApiV1HotelsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1HotelsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Hotel;
+};
+
+export type GetApiV1HotelsByIdResponse = GetApiV1HotelsByIdResponses[keyof GetApiV1HotelsByIdResponses];
+
+export type PatchApiV1HotelsByIdData = {
+  body: Hotel;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Hotels/{id}";
+};
+
+export type PatchApiV1HotelsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Hotel;
+};
+
+export type PatchApiV1HotelsByIdResponse = PatchApiV1HotelsByIdResponses[keyof PatchApiV1HotelsByIdResponses];
+
+export type PutApiV1HotelsByIdData = {
+  body: Hotel;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Hotels/{id}";
+};
+
+export type PutApiV1HotelsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Hotel;
+};
+
+export type PutApiV1HotelsByIdResponse = PutApiV1HotelsByIdResponses[keyof PutApiV1HotelsByIdResponses];
+
+export type GetApiV1BookingsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Bookings";
+};
+
+export type GetApiV1BookingsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Booking>;
+};
+
+export type GetApiV1BookingsResponse = GetApiV1BookingsResponses[keyof GetApiV1BookingsResponses];
+
+export type PostApiV1BookingsData = {
+  body: Booking;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Bookings";
+};
+
+export type PostApiV1BookingsResponses = {
+  /**
+   * Success
+   */
+  200: Booking;
+};
+
+export type PostApiV1BookingsResponse = PostApiV1BookingsResponses[keyof PostApiV1BookingsResponses];
+
+export type DeleteApiV1BookingsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Bookings/{id}";
+};
+
+export type DeleteApiV1BookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1BookingsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Bookings/{id}";
+};
+
+export type GetApiV1BookingsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Booking;
+};
+
+export type GetApiV1BookingsByIdResponse = GetApiV1BookingsByIdResponses[keyof GetApiV1BookingsByIdResponses];
+
+export type PatchApiV1BookingsByIdData = {
+  body: Booking;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Bookings/{id}";
+};
+
+export type PatchApiV1BookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Booking;
+};
+
+export type PatchApiV1BookingsByIdResponse = PatchApiV1BookingsByIdResponses[keyof PatchApiV1BookingsByIdResponses];
+
+export type PutApiV1BookingsByIdData = {
+  body: Booking;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Bookings/{id}";
+};
+
+export type PutApiV1BookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Booking;
+};
+
+export type PutApiV1BookingsByIdResponse = PutApiV1BookingsByIdResponses[keyof PutApiV1BookingsByIdResponses];
+
+export type GetApiV1FlightsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Flights";
+};
+
+export type GetApiV1FlightsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Flight>;
+};
+
+export type GetApiV1FlightsResponse = GetApiV1FlightsResponses[keyof GetApiV1FlightsResponses];
+
+export type PostApiV1FlightsData = {
+  body: Flight;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Flights";
+};
+
+export type PostApiV1FlightsResponses = {
+  /**
+   * Success
+   */
+  200: Flight;
+};
+
+export type PostApiV1FlightsResponse = PostApiV1FlightsResponses[keyof PostApiV1FlightsResponses];
+
+export type DeleteApiV1FlightsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Flights/{id}";
+};
+
+export type DeleteApiV1FlightsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1FlightsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Flights/{id}";
+};
+
+export type GetApiV1FlightsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1FlightsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Flight;
+};
+
+export type GetApiV1FlightsByIdResponse = GetApiV1FlightsByIdResponses[keyof GetApiV1FlightsByIdResponses];
+
+export type PatchApiV1FlightsByIdData = {
+  body: Flight;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Flights/{id}";
+};
+
+export type PatchApiV1FlightsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Flight;
+};
+
+export type PatchApiV1FlightsByIdResponse = PatchApiV1FlightsByIdResponses[keyof PatchApiV1FlightsByIdResponses];
+
+export type PutApiV1FlightsByIdData = {
+  body: Flight;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Flights/{id}";
+};
+
+export type PutApiV1FlightsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Flight;
+};
+
+export type PutApiV1FlightsByIdResponse = PutApiV1FlightsByIdResponses[keyof PutApiV1FlightsByIdResponses];
+
+export type GetApiV1CarsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Cars";
+};
+
+export type GetApiV1CarsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Car>;
+};
+
+export type GetApiV1CarsResponse = GetApiV1CarsResponses[keyof GetApiV1CarsResponses];
+
+export type PostApiV1CarsData = {
+  body: Car;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Cars";
+};
+
+export type PostApiV1CarsResponses = {
+  /**
+   * Success
+   */
+  200: Car;
+};
+
+export type PostApiV1CarsResponse = PostApiV1CarsResponses[keyof PostApiV1CarsResponses];
+
+export type DeleteApiV1CarsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cars/{id}";
+};
+
+export type DeleteApiV1CarsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CarsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cars/{id}";
+};
+
+export type GetApiV1CarsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CarsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Car;
+};
+
+export type GetApiV1CarsByIdResponse = GetApiV1CarsByIdResponses[keyof GetApiV1CarsByIdResponses];
+
+export type PatchApiV1CarsByIdData = {
+  body: Car;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cars/{id}";
+};
+
+export type PatchApiV1CarsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Car;
+};
+
+export type PatchApiV1CarsByIdResponse = PatchApiV1CarsByIdResponses[keyof PatchApiV1CarsByIdResponses];
+
+export type PutApiV1CarsByIdData = {
+  body: Car;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Cars/{id}";
+};
+
+export type PutApiV1CarsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Car;
+};
+
+export type PutApiV1CarsByIdResponse = PutApiV1CarsByIdResponses[keyof PutApiV1CarsByIdResponses];
+
+export type GetApiV1CurrenciesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Currencies";
+};
+
+export type GetApiV1CurrenciesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Currency>;
+};
+
+export type GetApiV1CurrenciesResponse = GetApiV1CurrenciesResponses[keyof GetApiV1CurrenciesResponses];
+
+export type PostApiV1CurrenciesData = {
+  body: Currency;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Currencies";
+};
+
+export type PostApiV1CurrenciesResponses = {
+  /**
+   * Success
+   */
+  200: Currency;
+};
+
+export type PostApiV1CurrenciesResponse = PostApiV1CurrenciesResponses[keyof PostApiV1CurrenciesResponses];
+
+export type DeleteApiV1CurrenciesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Currencies/{id}";
+};
+
+export type DeleteApiV1CurrenciesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CurrenciesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Currencies/{id}";
+};
+
+export type GetApiV1CurrenciesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CurrenciesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Currency;
+};
+
+export type GetApiV1CurrenciesByIdResponse = GetApiV1CurrenciesByIdResponses[keyof GetApiV1CurrenciesByIdResponses];
+
+export type PatchApiV1CurrenciesByIdData = {
+  body: Currency;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Currencies/{id}";
+};
+
+export type PatchApiV1CurrenciesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Currency;
+};
+
+export type PatchApiV1CurrenciesByIdResponse =
+  PatchApiV1CurrenciesByIdResponses[keyof PatchApiV1CurrenciesByIdResponses];
+
+export type PutApiV1CurrenciesByIdData = {
+  body: Currency;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Currencies/{id}";
+};
+
+export type PutApiV1CurrenciesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Currency;
+};
+
+export type PutApiV1CurrenciesByIdResponse = PutApiV1CurrenciesByIdResponses[keyof PutApiV1CurrenciesByIdResponses];
+
+export type GetApiV1LanguagesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Languages";
+};
+
+export type GetApiV1LanguagesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Language>;
+};
+
+export type GetApiV1LanguagesResponse = GetApiV1LanguagesResponses[keyof GetApiV1LanguagesResponses];
+
+export type PostApiV1LanguagesData = {
+  body: Language;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Languages";
+};
+
+export type PostApiV1LanguagesResponses = {
+  /**
+   * Success
+   */
+  200: Language;
+};
+
+export type PostApiV1LanguagesResponse = PostApiV1LanguagesResponses[keyof PostApiV1LanguagesResponses];
+
+export type DeleteApiV1LanguagesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Languages/{id}";
+};
+
+export type DeleteApiV1LanguagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1LanguagesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Languages/{id}";
+};
+
+export type GetApiV1LanguagesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1LanguagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Language;
+};
+
+export type GetApiV1LanguagesByIdResponse = GetApiV1LanguagesByIdResponses[keyof GetApiV1LanguagesByIdResponses];
+
+export type PatchApiV1LanguagesByIdData = {
+  body: Language;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Languages/{id}";
+};
+
+export type PatchApiV1LanguagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Language;
+};
+
+export type PatchApiV1LanguagesByIdResponse = PatchApiV1LanguagesByIdResponses[keyof PatchApiV1LanguagesByIdResponses];
+
+export type PutApiV1LanguagesByIdData = {
+  body: Language;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Languages/{id}";
+};
+
+export type PutApiV1LanguagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Language;
+};
+
+export type PutApiV1LanguagesByIdResponse = PutApiV1LanguagesByIdResponses[keyof PutApiV1LanguagesByIdResponses];
+
+export type GetApiV1BrandsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Brands";
+};
+
+export type GetApiV1BrandsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Brand>;
+};
+
+export type GetApiV1BrandsResponse = GetApiV1BrandsResponses[keyof GetApiV1BrandsResponses];
+
+export type PostApiV1BrandsData = {
+  body: Brand;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Brands";
+};
+
+export type PostApiV1BrandsResponses = {
+  /**
+   * Success
+   */
+  200: Brand;
+};
+
+export type PostApiV1BrandsResponse = PostApiV1BrandsResponses[keyof PostApiV1BrandsResponses];
+
+export type DeleteApiV1BrandsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Brands/{id}";
+};
+
+export type DeleteApiV1BrandsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1BrandsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Brands/{id}";
+};
+
+export type GetApiV1BrandsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BrandsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Brand;
+};
+
+export type GetApiV1BrandsByIdResponse = GetApiV1BrandsByIdResponses[keyof GetApiV1BrandsByIdResponses];
+
+export type PatchApiV1BrandsByIdData = {
+  body: Brand;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Brands/{id}";
+};
+
+export type PatchApiV1BrandsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Brand;
+};
+
+export type PatchApiV1BrandsByIdResponse = PatchApiV1BrandsByIdResponses[keyof PatchApiV1BrandsByIdResponses];
+
+export type PutApiV1BrandsByIdData = {
+  body: Brand;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Brands/{id}";
+};
+
+export type PutApiV1BrandsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Brand;
+};
+
+export type PutApiV1BrandsByIdResponse = PutApiV1BrandsByIdResponses[keyof PutApiV1BrandsByIdResponses];
+
+export type GetApiV1CartItemsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CartItems";
+};
+
+export type GetApiV1CartItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<CartItem>;
+};
+
+export type GetApiV1CartItemsResponse = GetApiV1CartItemsResponses[keyof GetApiV1CartItemsResponses];
+
+export type PostApiV1CartItemsData = {
+  body: CartItem;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CartItems";
+};
+
+export type PostApiV1CartItemsResponses = {
+  /**
+   * Success
+   */
+  200: CartItem;
+};
+
+export type PostApiV1CartItemsResponse = PostApiV1CartItemsResponses[keyof PostApiV1CartItemsResponses];
+
+export type DeleteApiV1CartItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CartItems/{id}";
+};
+
+export type DeleteApiV1CartItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CartItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CartItems/{id}";
+};
+
+export type GetApiV1CartItemsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CartItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: CartItem;
+};
+
+export type GetApiV1CartItemsByIdResponse = GetApiV1CartItemsByIdResponses[keyof GetApiV1CartItemsByIdResponses];
+
+export type PatchApiV1CartItemsByIdData = {
+  body: CartItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CartItems/{id}";
+};
+
+export type PatchApiV1CartItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: CartItem;
+};
+
+export type PatchApiV1CartItemsByIdResponse = PatchApiV1CartItemsByIdResponses[keyof PatchApiV1CartItemsByIdResponses];
+
+export type PutApiV1CartItemsByIdData = {
+  body: CartItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CartItems/{id}";
+};
+
+export type PutApiV1CartItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: CartItem;
+};
+
+export type PutApiV1CartItemsByIdResponse = PutApiV1CartItemsByIdResponses[keyof PutApiV1CartItemsByIdResponses];
+
+export type GetApiV1WishlistItemsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/WishlistItems";
+};
+
+export type GetApiV1WishlistItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<WishlistItem>;
+};
+
+export type GetApiV1WishlistItemsResponse = GetApiV1WishlistItemsResponses[keyof GetApiV1WishlistItemsResponses];
+
+export type PostApiV1WishlistItemsData = {
+  body: WishlistItem;
+  path?: never;
+  query?: never;
+  url: "/api/v1/WishlistItems";
+};
+
+export type PostApiV1WishlistItemsResponses = {
+  /**
+   * Success
+   */
+  200: WishlistItem;
+};
+
+export type PostApiV1WishlistItemsResponse = PostApiV1WishlistItemsResponses[keyof PostApiV1WishlistItemsResponses];
+
+export type DeleteApiV1WishlistItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/WishlistItems/{id}";
+};
+
+export type DeleteApiV1WishlistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1WishlistItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/WishlistItems/{id}";
+};
+
+export type GetApiV1WishlistItemsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1WishlistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: WishlistItem;
+};
+
+export type GetApiV1WishlistItemsByIdResponse =
+  GetApiV1WishlistItemsByIdResponses[keyof GetApiV1WishlistItemsByIdResponses];
+
+export type PatchApiV1WishlistItemsByIdData = {
+  body: WishlistItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/WishlistItems/{id}";
+};
+
+export type PatchApiV1WishlistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: WishlistItem;
+};
+
+export type PatchApiV1WishlistItemsByIdResponse =
+  PatchApiV1WishlistItemsByIdResponses[keyof PatchApiV1WishlistItemsByIdResponses];
+
+export type PutApiV1WishlistItemsByIdData = {
+  body: WishlistItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/WishlistItems/{id}";
+};
+
+export type PutApiV1WishlistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: WishlistItem;
+};
+
+export type PutApiV1WishlistItemsByIdResponse =
+  PutApiV1WishlistItemsByIdResponses[keyof PutApiV1WishlistItemsByIdResponses];
+
+export type GetApiV1LikesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Likes";
+};
+
+export type GetApiV1LikesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Like>;
+};
+
+export type GetApiV1LikesResponse = GetApiV1LikesResponses[keyof GetApiV1LikesResponses];
+
+export type PostApiV1LikesData = {
+  body: Like;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Likes";
+};
+
+export type PostApiV1LikesResponses = {
+  /**
+   * Success
+   */
+  200: Like;
+};
+
+export type PostApiV1LikesResponse = PostApiV1LikesResponses[keyof PostApiV1LikesResponses];
+
+export type DeleteApiV1LikesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Likes/{id}";
+};
+
+export type DeleteApiV1LikesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1LikesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Likes/{id}";
+};
+
+export type GetApiV1LikesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1LikesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Like;
+};
+
+export type GetApiV1LikesByIdResponse = GetApiV1LikesByIdResponses[keyof GetApiV1LikesByIdResponses];
+
+export type PatchApiV1LikesByIdData = {
+  body: Like;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Likes/{id}";
+};
+
+export type PatchApiV1LikesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Like;
+};
+
+export type PatchApiV1LikesByIdResponse = PatchApiV1LikesByIdResponses[keyof PatchApiV1LikesByIdResponses];
+
+export type PutApiV1LikesByIdData = {
+  body: Like;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Likes/{id}";
+};
+
+export type PutApiV1LikesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Like;
+};
+
+export type PutApiV1LikesByIdResponse = PutApiV1LikesByIdResponses[keyof PutApiV1LikesByIdResponses];
+
+export type GetApiV1FollowsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Follows";
+};
+
+export type GetApiV1FollowsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Follow>;
+};
+
+export type GetApiV1FollowsResponse = GetApiV1FollowsResponses[keyof GetApiV1FollowsResponses];
+
+export type PostApiV1FollowsData = {
+  body: Follow;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Follows";
+};
+
+export type PostApiV1FollowsResponses = {
+  /**
+   * Success
+   */
+  200: Follow;
+};
+
+export type PostApiV1FollowsResponse = PostApiV1FollowsResponses[keyof PostApiV1FollowsResponses];
+
+export type DeleteApiV1FollowsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Follows/{id}";
+};
+
+export type DeleteApiV1FollowsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1FollowsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Follows/{id}";
+};
+
+export type GetApiV1FollowsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1FollowsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Follow;
+};
+
+export type GetApiV1FollowsByIdResponse = GetApiV1FollowsByIdResponses[keyof GetApiV1FollowsByIdResponses];
+
+export type PatchApiV1FollowsByIdData = {
+  body: Follow;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Follows/{id}";
+};
+
+export type PatchApiV1FollowsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Follow;
+};
+
+export type PatchApiV1FollowsByIdResponse = PatchApiV1FollowsByIdResponses[keyof PatchApiV1FollowsByIdResponses];
+
+export type PutApiV1FollowsByIdData = {
+  body: Follow;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Follows/{id}";
+};
+
+export type PutApiV1FollowsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Follow;
+};
+
+export type PutApiV1FollowsByIdResponse = PutApiV1FollowsByIdResponses[keyof PutApiV1FollowsByIdResponses];
+
+export type GetApiV1MessagesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Messages";
+};
+
+export type GetApiV1MessagesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Message>;
+};
+
+export type GetApiV1MessagesResponse = GetApiV1MessagesResponses[keyof GetApiV1MessagesResponses];
+
+export type PostApiV1MessagesData = {
+  body: Message;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Messages";
+};
+
+export type PostApiV1MessagesResponses = {
+  /**
+   * Success
+   */
+  200: Message;
+};
+
+export type PostApiV1MessagesResponse = PostApiV1MessagesResponses[keyof PostApiV1MessagesResponses];
+
+export type DeleteApiV1MessagesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Messages/{id}";
+};
+
+export type DeleteApiV1MessagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1MessagesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Messages/{id}";
+};
+
+export type GetApiV1MessagesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1MessagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Message;
+};
+
+export type GetApiV1MessagesByIdResponse = GetApiV1MessagesByIdResponses[keyof GetApiV1MessagesByIdResponses];
+
+export type PatchApiV1MessagesByIdData = {
+  body: Message;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Messages/{id}";
+};
+
+export type PatchApiV1MessagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Message;
+};
+
+export type PatchApiV1MessagesByIdResponse = PatchApiV1MessagesByIdResponses[keyof PatchApiV1MessagesByIdResponses];
+
+export type PutApiV1MessagesByIdData = {
+  body: Message;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Messages/{id}";
+};
+
+export type PutApiV1MessagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Message;
+};
+
+export type PutApiV1MessagesByIdResponse = PutApiV1MessagesByIdResponses[keyof PutApiV1MessagesByIdResponses];
+
+export type GetApiV1ConversationsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Conversations";
+};
+
+export type GetApiV1ConversationsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Conversation>;
+};
+
+export type GetApiV1ConversationsResponse = GetApiV1ConversationsResponses[keyof GetApiV1ConversationsResponses];
+
+export type PostApiV1ConversationsData = {
+  body: Conversation;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Conversations";
+};
+
+export type PostApiV1ConversationsResponses = {
+  /**
+   * Success
+   */
+  200: Conversation;
+};
+
+export type PostApiV1ConversationsResponse = PostApiV1ConversationsResponses[keyof PostApiV1ConversationsResponses];
+
+export type DeleteApiV1ConversationsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Conversations/{id}";
+};
+
+export type DeleteApiV1ConversationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ConversationsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Conversations/{id}";
+};
+
+export type GetApiV1ConversationsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ConversationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Conversation;
+};
+
+export type GetApiV1ConversationsByIdResponse =
+  GetApiV1ConversationsByIdResponses[keyof GetApiV1ConversationsByIdResponses];
+
+export type PatchApiV1ConversationsByIdData = {
+  body: Conversation;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Conversations/{id}";
+};
+
+export type PatchApiV1ConversationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Conversation;
+};
+
+export type PatchApiV1ConversationsByIdResponse =
+  PatchApiV1ConversationsByIdResponses[keyof PatchApiV1ConversationsByIdResponses];
+
+export type PutApiV1ConversationsByIdData = {
+  body: Conversation;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Conversations/{id}";
+};
+
+export type PutApiV1ConversationsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Conversation;
+};
+
+export type PutApiV1ConversationsByIdResponse =
+  PutApiV1ConversationsByIdResponses[keyof PutApiV1ConversationsByIdResponses];
+
+export type GetApiV1ProductVariantsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ProductVariants";
+};
+
+export type GetApiV1ProductVariantsResponses = {
+  /**
+   * Success
+   */
+  200: Array<ProductVariant>;
+};
+
+export type GetApiV1ProductVariantsResponse = GetApiV1ProductVariantsResponses[keyof GetApiV1ProductVariantsResponses];
+
+export type PostApiV1ProductVariantsData = {
+  body: ProductVariant;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ProductVariants";
+};
+
+export type PostApiV1ProductVariantsResponses = {
+  /**
+   * Success
+   */
+  200: ProductVariant;
+};
+
+export type PostApiV1ProductVariantsResponse =
+  PostApiV1ProductVariantsResponses[keyof PostApiV1ProductVariantsResponses];
+
+export type DeleteApiV1ProductVariantsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ProductVariants/{id}";
+};
+
+export type DeleteApiV1ProductVariantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ProductVariantsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ProductVariants/{id}";
+};
+
+export type GetApiV1ProductVariantsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductVariantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ProductVariant;
+};
+
+export type GetApiV1ProductVariantsByIdResponse =
+  GetApiV1ProductVariantsByIdResponses[keyof GetApiV1ProductVariantsByIdResponses];
+
+export type PatchApiV1ProductVariantsByIdData = {
+  body: ProductVariant;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ProductVariants/{id}";
+};
+
+export type PatchApiV1ProductVariantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ProductVariant;
+};
+
+export type PatchApiV1ProductVariantsByIdResponse =
+  PatchApiV1ProductVariantsByIdResponses[keyof PatchApiV1ProductVariantsByIdResponses];
+
+export type PutApiV1ProductVariantsByIdData = {
+  body: ProductVariant;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ProductVariants/{id}";
+};
+
+export type PutApiV1ProductVariantsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ProductVariant;
+};
+
+export type PutApiV1ProductVariantsByIdResponse =
+  PutApiV1ProductVariantsByIdResponses[keyof PutApiV1ProductVariantsByIdResponses];
+
+export type GetApiV1ReturnsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Returns";
+};
+
+export type GetApiV1ReturnsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Return>;
+};
+
+export type GetApiV1ReturnsResponse = GetApiV1ReturnsResponses[keyof GetApiV1ReturnsResponses];
+
+export type PostApiV1ReturnsData = {
+  body: Return;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Returns";
+};
+
+export type PostApiV1ReturnsResponses = {
+  /**
+   * Success
+   */
+  200: Return;
+};
+
+export type PostApiV1ReturnsResponse = PostApiV1ReturnsResponses[keyof PostApiV1ReturnsResponses];
+
+export type DeleteApiV1ReturnsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Returns/{id}";
+};
+
+export type DeleteApiV1ReturnsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ReturnsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Returns/{id}";
+};
+
+export type GetApiV1ReturnsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ReturnsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Return;
+};
+
+export type GetApiV1ReturnsByIdResponse = GetApiV1ReturnsByIdResponses[keyof GetApiV1ReturnsByIdResponses];
+
+export type PatchApiV1ReturnsByIdData = {
+  body: Return;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Returns/{id}";
+};
+
+export type PatchApiV1ReturnsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Return;
+};
+
+export type PatchApiV1ReturnsByIdResponse = PatchApiV1ReturnsByIdResponses[keyof PatchApiV1ReturnsByIdResponses];
+
+export type PutApiV1ReturnsByIdData = {
+  body: Return;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Returns/{id}";
+};
+
+export type PutApiV1ReturnsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Return;
+};
+
+export type PutApiV1ReturnsByIdResponse = PutApiV1ReturnsByIdResponses[keyof PutApiV1ReturnsByIdResponses];
+
+export type GetApiV1ReviewRepliesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ReviewReplies";
+};
+
+export type GetApiV1ReviewRepliesResponses = {
+  /**
+   * Success
+   */
+  200: Array<ReviewReply>;
+};
+
+export type GetApiV1ReviewRepliesResponse = GetApiV1ReviewRepliesResponses[keyof GetApiV1ReviewRepliesResponses];
+
+export type PostApiV1ReviewRepliesData = {
+  body: ReviewReply;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ReviewReplies";
+};
+
+export type PostApiV1ReviewRepliesResponses = {
+  /**
+   * Success
+   */
+  200: ReviewReply;
+};
+
+export type PostApiV1ReviewRepliesResponse = PostApiV1ReviewRepliesResponses[keyof PostApiV1ReviewRepliesResponses];
+
+export type DeleteApiV1ReviewRepliesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ReviewReplies/{id}";
+};
+
+export type DeleteApiV1ReviewRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ReviewRepliesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ReviewReplies/{id}";
+};
+
+export type GetApiV1ReviewRepliesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ReviewRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: ReviewReply;
+};
+
+export type GetApiV1ReviewRepliesByIdResponse =
+  GetApiV1ReviewRepliesByIdResponses[keyof GetApiV1ReviewRepliesByIdResponses];
+
+export type PatchApiV1ReviewRepliesByIdData = {
+  body: ReviewReply;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ReviewReplies/{id}";
+};
+
+export type PatchApiV1ReviewRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: ReviewReply;
+};
+
+export type PatchApiV1ReviewRepliesByIdResponse =
+  PatchApiV1ReviewRepliesByIdResponses[keyof PatchApiV1ReviewRepliesByIdResponses];
+
+export type PutApiV1ReviewRepliesByIdData = {
+  body: ReviewReply;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ReviewReplies/{id}";
+};
+
+export type PutApiV1ReviewRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: ReviewReply;
+};
+
+export type PutApiV1ReviewRepliesByIdResponse =
+  PutApiV1ReviewRepliesByIdResponses[keyof PutApiV1ReviewRepliesByIdResponses];
+
+export type GetApiV1ArticleTagsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ArticleTags";
+};
+
+export type GetApiV1ArticleTagsResponses = {
+  /**
+   * Success
+   */
+  200: Array<ArticleTag>;
+};
+
+export type GetApiV1ArticleTagsResponse = GetApiV1ArticleTagsResponses[keyof GetApiV1ArticleTagsResponses];
+
+export type PostApiV1ArticleTagsData = {
+  body: ArticleTag;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ArticleTags";
+};
+
+export type PostApiV1ArticleTagsResponses = {
+  /**
+   * Success
+   */
+  200: ArticleTag;
+};
+
+export type PostApiV1ArticleTagsResponse = PostApiV1ArticleTagsResponses[keyof PostApiV1ArticleTagsResponses];
+
+export type DeleteApiV1ArticleTagsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ArticleTags/{id}";
+};
+
+export type DeleteApiV1ArticleTagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ArticleTagsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ArticleTags/{id}";
+};
+
+export type GetApiV1ArticleTagsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ArticleTagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ArticleTag;
+};
+
+export type GetApiV1ArticleTagsByIdResponse = GetApiV1ArticleTagsByIdResponses[keyof GetApiV1ArticleTagsByIdResponses];
+
+export type PatchApiV1ArticleTagsByIdData = {
+  body: ArticleTag;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ArticleTags/{id}";
+};
+
+export type PatchApiV1ArticleTagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ArticleTag;
+};
+
+export type PatchApiV1ArticleTagsByIdResponse =
+  PatchApiV1ArticleTagsByIdResponses[keyof PatchApiV1ArticleTagsByIdResponses];
+
+export type PutApiV1ArticleTagsByIdData = {
+  body: ArticleTag;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ArticleTags/{id}";
+};
+
+export type PutApiV1ArticleTagsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ArticleTag;
+};
+
+export type PutApiV1ArticleTagsByIdResponse = PutApiV1ArticleTagsByIdResponses[keyof PutApiV1ArticleTagsByIdResponses];
+
+export type GetApiV1PageViewsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PageViews";
+};
+
+export type GetApiV1PageViewsResponses = {
+  /**
+   * Success
+   */
+  200: Array<PageView>;
+};
+
+export type GetApiV1PageViewsResponse = GetApiV1PageViewsResponses[keyof GetApiV1PageViewsResponses];
+
+export type PostApiV1PageViewsData = {
+  body: PageView;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PageViews";
+};
+
+export type PostApiV1PageViewsResponses = {
+  /**
+   * Success
+   */
+  200: PageView;
+};
+
+export type PostApiV1PageViewsResponse = PostApiV1PageViewsResponses[keyof PostApiV1PageViewsResponses];
+
+export type DeleteApiV1PageViewsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PageViews/{id}";
+};
+
+export type DeleteApiV1PageViewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PageViewsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PageViews/{id}";
+};
+
+export type GetApiV1PageViewsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PageViewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PageView;
+};
+
+export type GetApiV1PageViewsByIdResponse = GetApiV1PageViewsByIdResponses[keyof GetApiV1PageViewsByIdResponses];
+
+export type PatchApiV1PageViewsByIdData = {
+  body: PageView;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PageViews/{id}";
+};
+
+export type PatchApiV1PageViewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PageView;
+};
+
+export type PatchApiV1PageViewsByIdResponse = PatchApiV1PageViewsByIdResponses[keyof PatchApiV1PageViewsByIdResponses];
+
+export type PutApiV1PageViewsByIdData = {
+  body: PageView;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PageViews/{id}";
+};
+
+export type PutApiV1PageViewsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PageView;
+};
+
+export type PutApiV1PageViewsByIdResponse = PutApiV1PageViewsByIdResponses[keyof PutApiV1PageViewsByIdResponses];
+
+export type GetApiV1UserActivityData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/UserActivity";
+};
+
+export type GetApiV1UserActivityResponses = {
+  /**
+   * Success
+   */
+  200: Array<UserActivity>;
+};
+
+export type GetApiV1UserActivityResponse = GetApiV1UserActivityResponses[keyof GetApiV1UserActivityResponses];
+
+export type PostApiV1UserActivityData = {
+  body: UserActivity;
+  path?: never;
+  query?: never;
+  url: "/api/v1/UserActivity";
+};
+
+export type PostApiV1UserActivityResponses = {
+  /**
+   * Success
+   */
+  200: UserActivity;
+};
+
+export type PostApiV1UserActivityResponse = PostApiV1UserActivityResponses[keyof PostApiV1UserActivityResponses];
+
+export type DeleteApiV1UserActivityByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserActivity/{id}";
+};
+
+export type DeleteApiV1UserActivityByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1UserActivityByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserActivity/{id}";
+};
+
+export type GetApiV1UserActivityByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UserActivityByIdResponses = {
+  /**
+   * Success
+   */
+  200: UserActivity;
+};
+
+export type GetApiV1UserActivityByIdResponse =
+  GetApiV1UserActivityByIdResponses[keyof GetApiV1UserActivityByIdResponses];
+
+export type PatchApiV1UserActivityByIdData = {
+  body: UserActivity;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserActivity/{id}";
+};
+
+export type PatchApiV1UserActivityByIdResponses = {
+  /**
+   * Success
+   */
+  200: UserActivity;
+};
+
+export type PatchApiV1UserActivityByIdResponse =
+  PatchApiV1UserActivityByIdResponses[keyof PatchApiV1UserActivityByIdResponses];
+
+export type PutApiV1UserActivityByIdData = {
+  body: UserActivity;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserActivity/{id}";
+};
+
+export type PutApiV1UserActivityByIdResponses = {
+  /**
+   * Success
+   */
+  200: UserActivity;
+};
+
+export type PutApiV1UserActivityByIdResponse =
+  PutApiV1UserActivityByIdResponses[keyof PutApiV1UserActivityByIdResponses];
+
+export type GetApiV1RatingsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Ratings";
+};
+
+export type GetApiV1RatingsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Rating>;
+};
+
+export type GetApiV1RatingsResponse = GetApiV1RatingsResponses[keyof GetApiV1RatingsResponses];
+
+export type PostApiV1RatingsData = {
+  body: Rating;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Ratings";
+};
+
+export type PostApiV1RatingsResponses = {
+  /**
+   * Success
+   */
+  200: Rating;
+};
+
+export type PostApiV1RatingsResponse = PostApiV1RatingsResponses[keyof PostApiV1RatingsResponses];
+
+export type DeleteApiV1RatingsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Ratings/{id}";
+};
+
+export type DeleteApiV1RatingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1RatingsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Ratings/{id}";
+};
+
+export type GetApiV1RatingsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RatingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Rating;
+};
+
+export type GetApiV1RatingsByIdResponse = GetApiV1RatingsByIdResponses[keyof GetApiV1RatingsByIdResponses];
+
+export type PatchApiV1RatingsByIdData = {
+  body: Rating;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Ratings/{id}";
+};
+
+export type PatchApiV1RatingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Rating;
+};
+
+export type PatchApiV1RatingsByIdResponse = PatchApiV1RatingsByIdResponses[keyof PatchApiV1RatingsByIdResponses];
+
+export type PutApiV1RatingsByIdData = {
+  body: Rating;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Ratings/{id}";
+};
+
+export type PutApiV1RatingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Rating;
+};
+
+export type PutApiV1RatingsByIdResponse = PutApiV1RatingsByIdResponses[keyof PutApiV1RatingsByIdResponses];
+
+export type GetApiV1BannersData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Banners";
+};
+
+export type GetApiV1BannersResponses = {
+  /**
+   * Success
+   */
+  200: Array<Banner>;
+};
+
+export type GetApiV1BannersResponse = GetApiV1BannersResponses[keyof GetApiV1BannersResponses];
+
+export type PostApiV1BannersData = {
+  body: Banner;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Banners";
+};
+
+export type PostApiV1BannersResponses = {
+  /**
+   * Success
+   */
+  200: Banner;
+};
+
+export type PostApiV1BannersResponse = PostApiV1BannersResponses[keyof PostApiV1BannersResponses];
+
+export type DeleteApiV1BannersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Banners/{id}";
+};
+
+export type DeleteApiV1BannersByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1BannersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Banners/{id}";
+};
+
+export type GetApiV1BannersByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BannersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Banner;
+};
+
+export type GetApiV1BannersByIdResponse = GetApiV1BannersByIdResponses[keyof GetApiV1BannersByIdResponses];
+
+export type PatchApiV1BannersByIdData = {
+  body: Banner;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Banners/{id}";
+};
+
+export type PatchApiV1BannersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Banner;
+};
+
+export type PatchApiV1BannersByIdResponse = PatchApiV1BannersByIdResponses[keyof PatchApiV1BannersByIdResponses];
+
+export type PutApiV1BannersByIdData = {
+  body: Banner;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Banners/{id}";
+};
+
+export type PutApiV1BannersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Banner;
+};
+
+export type PutApiV1BannersByIdResponse = PutApiV1BannersByIdResponses[keyof PutApiV1BannersByIdResponses];
+
+export type GetApiV1PromotionsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Promotions";
+};
+
+export type GetApiV1PromotionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Promotion>;
+};
+
+export type GetApiV1PromotionsResponse = GetApiV1PromotionsResponses[keyof GetApiV1PromotionsResponses];
+
+export type PostApiV1PromotionsData = {
+  body: Promotion;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Promotions";
+};
+
+export type PostApiV1PromotionsResponses = {
+  /**
+   * Success
+   */
+  200: Promotion;
+};
+
+export type PostApiV1PromotionsResponse = PostApiV1PromotionsResponses[keyof PostApiV1PromotionsResponses];
+
+export type DeleteApiV1PromotionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Promotions/{id}";
+};
+
+export type DeleteApiV1PromotionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PromotionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Promotions/{id}";
+};
+
+export type GetApiV1PromotionsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PromotionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Promotion;
+};
+
+export type GetApiV1PromotionsByIdResponse = GetApiV1PromotionsByIdResponses[keyof GetApiV1PromotionsByIdResponses];
+
+export type PatchApiV1PromotionsByIdData = {
+  body: Promotion;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Promotions/{id}";
+};
+
+export type PatchApiV1PromotionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Promotion;
+};
+
+export type PatchApiV1PromotionsByIdResponse =
+  PatchApiV1PromotionsByIdResponses[keyof PatchApiV1PromotionsByIdResponses];
+
+export type PutApiV1PromotionsByIdData = {
+  body: Promotion;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Promotions/{id}";
+};
+
+export type PutApiV1PromotionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Promotion;
+};
+
+export type PutApiV1PromotionsByIdResponse = PutApiV1PromotionsByIdResponses[keyof PutApiV1PromotionsByIdResponses];
+
+export type GetApiV1DiscountsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Discounts";
+};
+
+export type GetApiV1DiscountsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Discount>;
+};
+
+export type GetApiV1DiscountsResponse = GetApiV1DiscountsResponses[keyof GetApiV1DiscountsResponses];
+
+export type PostApiV1DiscountsData = {
+  body: Discount;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Discounts";
+};
+
+export type PostApiV1DiscountsResponses = {
+  /**
+   * Success
+   */
+  200: Discount;
+};
+
+export type PostApiV1DiscountsResponse = PostApiV1DiscountsResponses[keyof PostApiV1DiscountsResponses];
+
+export type DeleteApiV1DiscountsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Discounts/{id}";
+};
+
+export type DeleteApiV1DiscountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1DiscountsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Discounts/{id}";
+};
+
+export type GetApiV1DiscountsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1DiscountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Discount;
+};
+
+export type GetApiV1DiscountsByIdResponse = GetApiV1DiscountsByIdResponses[keyof GetApiV1DiscountsByIdResponses];
+
+export type PatchApiV1DiscountsByIdData = {
+  body: Discount;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Discounts/{id}";
+};
+
+export type PatchApiV1DiscountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Discount;
+};
+
+export type PatchApiV1DiscountsByIdResponse = PatchApiV1DiscountsByIdResponses[keyof PatchApiV1DiscountsByIdResponses];
+
+export type PutApiV1DiscountsByIdData = {
+  body: Discount;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Discounts/{id}";
+};
+
+export type PutApiV1DiscountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Discount;
+};
+
+export type PutApiV1DiscountsByIdResponse = PutApiV1DiscountsByIdResponses[keyof PutApiV1DiscountsByIdResponses];
+
+export type GetApiV1FavoritesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Favorites";
+};
+
+export type GetApiV1FavoritesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Favorite>;
+};
+
+export type GetApiV1FavoritesResponse = GetApiV1FavoritesResponses[keyof GetApiV1FavoritesResponses];
+
+export type PostApiV1FavoritesData = {
+  body: Favorite;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Favorites";
+};
+
+export type PostApiV1FavoritesResponses = {
+  /**
+   * Success
+   */
+  200: Favorite;
+};
+
+export type PostApiV1FavoritesResponse = PostApiV1FavoritesResponses[keyof PostApiV1FavoritesResponses];
+
+export type DeleteApiV1FavoritesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Favorites/{id}";
+};
+
+export type DeleteApiV1FavoritesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1FavoritesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Favorites/{id}";
+};
+
+export type GetApiV1FavoritesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1FavoritesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Favorite;
+};
+
+export type GetApiV1FavoritesByIdResponse = GetApiV1FavoritesByIdResponses[keyof GetApiV1FavoritesByIdResponses];
+
+export type PatchApiV1FavoritesByIdData = {
+  body: Favorite;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Favorites/{id}";
+};
+
+export type PatchApiV1FavoritesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Favorite;
+};
+
+export type PatchApiV1FavoritesByIdResponse = PatchApiV1FavoritesByIdResponses[keyof PatchApiV1FavoritesByIdResponses];
+
+export type PutApiV1FavoritesByIdData = {
+  body: Favorite;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Favorites/{id}";
+};
+
+export type PutApiV1FavoritesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Favorite;
+};
+
+export type PutApiV1FavoritesByIdResponse = PutApiV1FavoritesByIdResponses[keyof PutApiV1FavoritesByIdResponses];
+
+export type GetApiV1SearchQueriesData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/SearchQueries";
+};
+
+export type GetApiV1SearchQueriesResponses = {
+  /**
+   * Success
+   */
+  200: Array<SearchQuery>;
+};
+
+export type GetApiV1SearchQueriesResponse = GetApiV1SearchQueriesResponses[keyof GetApiV1SearchQueriesResponses];
+
+export type PostApiV1SearchQueriesData = {
+  body: SearchQuery;
+  path?: never;
+  query?: never;
+  url: "/api/v1/SearchQueries";
+};
+
+export type PostApiV1SearchQueriesResponses = {
+  /**
+   * Success
+   */
+  200: SearchQuery;
+};
+
+export type PostApiV1SearchQueriesResponse = PostApiV1SearchQueriesResponses[keyof PostApiV1SearchQueriesResponses];
+
+export type DeleteApiV1SearchQueriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SearchQueries/{id}";
+};
+
+export type DeleteApiV1SearchQueriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1SearchQueriesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SearchQueries/{id}";
+};
+
+export type GetApiV1SearchQueriesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SearchQueriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: SearchQuery;
+};
+
+export type GetApiV1SearchQueriesByIdResponse =
+  GetApiV1SearchQueriesByIdResponses[keyof GetApiV1SearchQueriesByIdResponses];
+
+export type PatchApiV1SearchQueriesByIdData = {
+  body: SearchQuery;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SearchQueries/{id}";
+};
+
+export type PatchApiV1SearchQueriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: SearchQuery;
+};
+
+export type PatchApiV1SearchQueriesByIdResponse =
+  PatchApiV1SearchQueriesByIdResponses[keyof PatchApiV1SearchQueriesByIdResponses];
+
+export type PutApiV1SearchQueriesByIdData = {
+  body: SearchQuery;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SearchQueries/{id}";
+};
+
+export type PutApiV1SearchQueriesByIdResponses = {
+  /**
+   * Success
+   */
+  200: SearchQuery;
+};
+
+export type PutApiV1SearchQueriesByIdResponse =
+  PutApiV1SearchQueriesByIdResponses[keyof PutApiV1SearchQueriesByIdResponses];
+
+export type GetApiV1BadgesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Badges";
+};
+
+export type GetApiV1BadgesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Badge>;
+};
+
+export type GetApiV1BadgesResponse = GetApiV1BadgesResponses[keyof GetApiV1BadgesResponses];
+
+export type PostApiV1BadgesData = {
+  body: Badge;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Badges";
+};
+
+export type PostApiV1BadgesResponses = {
+  /**
+   * Success
+   */
+  200: Badge;
+};
+
+export type PostApiV1BadgesResponse = PostApiV1BadgesResponses[keyof PostApiV1BadgesResponses];
+
+export type DeleteApiV1BadgesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Badges/{id}";
+};
+
+export type DeleteApiV1BadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1BadgesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Badges/{id}";
+};
+
+export type GetApiV1BadgesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Badge;
+};
+
+export type GetApiV1BadgesByIdResponse = GetApiV1BadgesByIdResponses[keyof GetApiV1BadgesByIdResponses];
+
+export type PatchApiV1BadgesByIdData = {
+  body: Badge;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Badges/{id}";
+};
+
+export type PatchApiV1BadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Badge;
+};
+
+export type PatchApiV1BadgesByIdResponse = PatchApiV1BadgesByIdResponses[keyof PatchApiV1BadgesByIdResponses];
+
+export type PutApiV1BadgesByIdData = {
+  body: Badge;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Badges/{id}";
+};
+
+export type PutApiV1BadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Badge;
+};
+
+export type PutApiV1BadgesByIdResponse = PutApiV1BadgesByIdResponses[keyof PutApiV1BadgesByIdResponses];
+
+export type GetApiV1UserBadgesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/UserBadges";
+};
+
+export type GetApiV1UserBadgesResponses = {
+  /**
+   * Success
+   */
+  200: Array<UserBadge>;
+};
+
+export type GetApiV1UserBadgesResponse = GetApiV1UserBadgesResponses[keyof GetApiV1UserBadgesResponses];
+
+export type PostApiV1UserBadgesData = {
+  body: UserBadge;
+  path?: never;
+  query?: never;
+  url: "/api/v1/UserBadges";
+};
+
+export type PostApiV1UserBadgesResponses = {
+  /**
+   * Success
+   */
+  200: UserBadge;
+};
+
+export type PostApiV1UserBadgesResponse = PostApiV1UserBadgesResponses[keyof PostApiV1UserBadgesResponses];
+
+export type DeleteApiV1UserBadgesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserBadges/{id}";
+};
+
+export type DeleteApiV1UserBadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1UserBadgesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserBadges/{id}";
+};
+
+export type GetApiV1UserBadgesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UserBadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: UserBadge;
+};
+
+export type GetApiV1UserBadgesByIdResponse = GetApiV1UserBadgesByIdResponses[keyof GetApiV1UserBadgesByIdResponses];
+
+export type PatchApiV1UserBadgesByIdData = {
+  body: UserBadge;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserBadges/{id}";
+};
+
+export type PatchApiV1UserBadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: UserBadge;
+};
+
+export type PatchApiV1UserBadgesByIdResponse =
+  PatchApiV1UserBadgesByIdResponses[keyof PatchApiV1UserBadgesByIdResponses];
+
+export type PutApiV1UserBadgesByIdData = {
+  body: UserBadge;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/UserBadges/{id}";
+};
+
+export type PutApiV1UserBadgesByIdResponses = {
+  /**
+   * Success
+   */
+  200: UserBadge;
+};
+
+export type PutApiV1UserBadgesByIdResponse = PutApiV1UserBadgesByIdResponses[keyof PutApiV1UserBadgesByIdResponses];
+
+export type GetApiV1ReportsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Reports";
+};
+
+export type GetApiV1ReportsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Report>;
+};
+
+export type GetApiV1ReportsResponse = GetApiV1ReportsResponses[keyof GetApiV1ReportsResponses];
+
+export type PostApiV1ReportsData = {
+  body: Report;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Reports";
+};
+
+export type PostApiV1ReportsResponses = {
+  /**
+   * Success
+   */
+  200: Report;
+};
+
+export type PostApiV1ReportsResponse = PostApiV1ReportsResponses[keyof PostApiV1ReportsResponses];
+
+export type DeleteApiV1ReportsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reports/{id}";
+};
+
+export type DeleteApiV1ReportsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ReportsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reports/{id}";
+};
+
+export type GetApiV1ReportsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ReportsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Report;
+};
+
+export type GetApiV1ReportsByIdResponse = GetApiV1ReportsByIdResponses[keyof GetApiV1ReportsByIdResponses];
+
+export type PatchApiV1ReportsByIdData = {
+  body: Report;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reports/{id}";
+};
+
+export type PatchApiV1ReportsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Report;
+};
+
+export type PatchApiV1ReportsByIdResponse = PatchApiV1ReportsByIdResponses[keyof PatchApiV1ReportsByIdResponses];
+
+export type PutApiV1ReportsByIdData = {
+  body: Report;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reports/{id}";
+};
+
+export type PutApiV1ReportsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Report;
+};
+
+export type PutApiV1ReportsByIdResponse = PutApiV1ReportsByIdResponses[keyof PutApiV1ReportsByIdResponses];
+
+export type GetApiV1RefundsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Refunds";
+};
+
+export type GetApiV1RefundsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Refund>;
+};
+
+export type GetApiV1RefundsResponse = GetApiV1RefundsResponses[keyof GetApiV1RefundsResponses];
+
+export type PostApiV1RefundsData = {
+  body: Refund;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Refunds";
+};
+
+export type PostApiV1RefundsResponses = {
+  /**
+   * Success
+   */
+  200: Refund;
+};
+
+export type PostApiV1RefundsResponse = PostApiV1RefundsResponses[keyof PostApiV1RefundsResponses];
+
+export type DeleteApiV1RefundsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Refunds/{id}";
+};
+
+export type DeleteApiV1RefundsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1RefundsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Refunds/{id}";
+};
+
+export type GetApiV1RefundsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RefundsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Refund;
+};
+
+export type GetApiV1RefundsByIdResponse = GetApiV1RefundsByIdResponses[keyof GetApiV1RefundsByIdResponses];
+
+export type PatchApiV1RefundsByIdData = {
+  body: Refund;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Refunds/{id}";
+};
+
+export type PatchApiV1RefundsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Refund;
+};
+
+export type PatchApiV1RefundsByIdResponse = PatchApiV1RefundsByIdResponses[keyof PatchApiV1RefundsByIdResponses];
+
+export type PutApiV1RefundsByIdData = {
+  body: Refund;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Refunds/{id}";
+};
+
+export type PutApiV1RefundsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Refund;
+};
+
+export type PutApiV1RefundsByIdResponse = PutApiV1RefundsByIdResponses[keyof PutApiV1RefundsByIdResponses];
+
+export type GetApiV1VendorsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Vendors";
+};
+
+export type GetApiV1VendorsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Vendor>;
+};
+
+export type GetApiV1VendorsResponse = GetApiV1VendorsResponses[keyof GetApiV1VendorsResponses];
+
+export type PostApiV1VendorsData = {
+  body: Vendor;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Vendors";
+};
+
+export type PostApiV1VendorsResponses = {
+  /**
+   * Success
+   */
+  200: Vendor;
+};
+
+export type PostApiV1VendorsResponse = PostApiV1VendorsResponses[keyof PostApiV1VendorsResponses];
+
+export type DeleteApiV1VendorsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Vendors/{id}";
+};
+
+export type DeleteApiV1VendorsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1VendorsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Vendors/{id}";
+};
+
+export type GetApiV1VendorsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1VendorsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Vendor;
+};
+
+export type GetApiV1VendorsByIdResponse = GetApiV1VendorsByIdResponses[keyof GetApiV1VendorsByIdResponses];
+
+export type PatchApiV1VendorsByIdData = {
+  body: Vendor;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Vendors/{id}";
+};
+
+export type PatchApiV1VendorsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Vendor;
+};
+
+export type PatchApiV1VendorsByIdResponse = PatchApiV1VendorsByIdResponses[keyof PatchApiV1VendorsByIdResponses];
+
+export type PutApiV1VendorsByIdData = {
+  body: Vendor;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Vendors/{id}";
+};
+
+export type PutApiV1VendorsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Vendor;
+};
+
+export type PutApiV1VendorsByIdResponse = PutApiV1VendorsByIdResponses[keyof PutApiV1VendorsByIdResponses];
+
+export type GetApiV1TransactionsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Transactions";
+};
+
+export type GetApiV1TransactionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Transaction>;
+};
+
+export type GetApiV1TransactionsResponse = GetApiV1TransactionsResponses[keyof GetApiV1TransactionsResponses];
+
+export type PostApiV1TransactionsData = {
+  body: Transaction;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Transactions";
+};
+
+export type PostApiV1TransactionsResponses = {
+  /**
+   * Success
+   */
+  200: Transaction;
+};
+
+export type PostApiV1TransactionsResponse = PostApiV1TransactionsResponses[keyof PostApiV1TransactionsResponses];
+
+export type DeleteApiV1TransactionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Transactions/{id}";
+};
+
+export type DeleteApiV1TransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1TransactionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Transactions/{id}";
+};
+
+export type GetApiV1TransactionsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1TransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Transaction;
+};
+
+export type GetApiV1TransactionsByIdResponse =
+  GetApiV1TransactionsByIdResponses[keyof GetApiV1TransactionsByIdResponses];
+
+export type PatchApiV1TransactionsByIdData = {
+  body: Transaction;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Transactions/{id}";
+};
+
+export type PatchApiV1TransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Transaction;
+};
+
+export type PatchApiV1TransactionsByIdResponse =
+  PatchApiV1TransactionsByIdResponses[keyof PatchApiV1TransactionsByIdResponses];
+
+export type PutApiV1TransactionsByIdData = {
+  body: Transaction;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Transactions/{id}";
+};
+
+export type PutApiV1TransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: Transaction;
+};
+
+export type PutApiV1TransactionsByIdResponse =
+  PutApiV1TransactionsByIdResponses[keyof PutApiV1TransactionsByIdResponses];
+
+export type GetApiV1CouponUsagesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CouponUsages";
+};
+
+export type GetApiV1CouponUsagesResponses = {
+  /**
+   * Success
+   */
+  200: Array<CouponUsage>;
+};
+
+export type GetApiV1CouponUsagesResponse = GetApiV1CouponUsagesResponses[keyof GetApiV1CouponUsagesResponses];
+
+export type PostApiV1CouponUsagesData = {
+  body: CouponUsage;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CouponUsages";
+};
+
+export type PostApiV1CouponUsagesResponses = {
+  /**
+   * Success
+   */
+  200: CouponUsage;
+};
+
+export type PostApiV1CouponUsagesResponse = PostApiV1CouponUsagesResponses[keyof PostApiV1CouponUsagesResponses];
+
+export type DeleteApiV1CouponUsagesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CouponUsages/{id}";
+};
+
+export type DeleteApiV1CouponUsagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CouponUsagesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CouponUsages/{id}";
+};
+
+export type GetApiV1CouponUsagesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CouponUsagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CouponUsage;
+};
+
+export type GetApiV1CouponUsagesByIdResponse =
+  GetApiV1CouponUsagesByIdResponses[keyof GetApiV1CouponUsagesByIdResponses];
+
+export type PatchApiV1CouponUsagesByIdData = {
+  body: CouponUsage;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CouponUsages/{id}";
+};
+
+export type PatchApiV1CouponUsagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CouponUsage;
+};
+
+export type PatchApiV1CouponUsagesByIdResponse =
+  PatchApiV1CouponUsagesByIdResponses[keyof PatchApiV1CouponUsagesByIdResponses];
+
+export type PutApiV1CouponUsagesByIdData = {
+  body: CouponUsage;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CouponUsages/{id}";
+};
+
+export type PutApiV1CouponUsagesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CouponUsage;
+};
+
+export type PutApiV1CouponUsagesByIdResponse =
+  PutApiV1CouponUsagesByIdResponses[keyof PutApiV1CouponUsagesByIdResponses];
+
+export type GetApiV1PreferencesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Preferences";
+};
+
+export type GetApiV1PreferencesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Preference>;
+};
+
+export type GetApiV1PreferencesResponse = GetApiV1PreferencesResponses[keyof GetApiV1PreferencesResponses];
+
+export type PostApiV1PreferencesData = {
+  body: Preference;
+  path?: never;
+  query?: never;
+  url: "/api/v1/Preferences";
+};
+
+export type PostApiV1PreferencesResponses = {
+  /**
+   * Success
+   */
+  200: Preference;
+};
+
+export type PostApiV1PreferencesResponse = PostApiV1PreferencesResponses[keyof PostApiV1PreferencesResponses];
+
+export type DeleteApiV1PreferencesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Preferences/{id}";
+};
+
+export type DeleteApiV1PreferencesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PreferencesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Preferences/{id}";
+};
+
+export type GetApiV1PreferencesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PreferencesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Preference;
+};
+
+export type GetApiV1PreferencesByIdResponse = GetApiV1PreferencesByIdResponses[keyof GetApiV1PreferencesByIdResponses];
+
+export type PatchApiV1PreferencesByIdData = {
+  body: Preference;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Preferences/{id}";
+};
+
+export type PatchApiV1PreferencesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Preference;
+};
+
+export type PatchApiV1PreferencesByIdResponse =
+  PatchApiV1PreferencesByIdResponses[keyof PatchApiV1PreferencesByIdResponses];
+
+export type PutApiV1PreferencesByIdData = {
+  body: Preference;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Preferences/{id}";
+};
+
+export type PutApiV1PreferencesByIdResponses = {
+  /**
+   * Success
+   */
+  200: Preference;
+};
+
+export type PutApiV1PreferencesByIdResponse = PutApiV1PreferencesByIdResponses[keyof PutApiV1PreferencesByIdResponses];
+
+export type GetApiV1PaymentMethodsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PaymentMethods";
+};
+
+export type GetApiV1PaymentMethodsResponses = {
+  /**
+   * Success
+   */
+  200: Array<PaymentMethod>;
+};
+
+export type GetApiV1PaymentMethodsResponse = GetApiV1PaymentMethodsResponses[keyof GetApiV1PaymentMethodsResponses];
+
+export type PostApiV1PaymentMethodsData = {
+  body: PaymentMethod;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PaymentMethods";
+};
+
+export type PostApiV1PaymentMethodsResponses = {
+  /**
+   * Success
+   */
+  200: PaymentMethod;
+};
+
+export type PostApiV1PaymentMethodsResponse = PostApiV1PaymentMethodsResponses[keyof PostApiV1PaymentMethodsResponses];
+
+export type DeleteApiV1PaymentMethodsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PaymentMethods/{id}";
+};
+
+export type DeleteApiV1PaymentMethodsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PaymentMethodsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PaymentMethods/{id}";
+};
+
+export type GetApiV1PaymentMethodsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PaymentMethodsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PaymentMethod;
+};
+
+export type GetApiV1PaymentMethodsByIdResponse =
+  GetApiV1PaymentMethodsByIdResponses[keyof GetApiV1PaymentMethodsByIdResponses];
+
+export type PatchApiV1PaymentMethodsByIdData = {
+  body: PaymentMethod;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PaymentMethods/{id}";
+};
+
+export type PatchApiV1PaymentMethodsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PaymentMethod;
+};
+
+export type PatchApiV1PaymentMethodsByIdResponse =
+  PatchApiV1PaymentMethodsByIdResponses[keyof PatchApiV1PaymentMethodsByIdResponses];
+
+export type PutApiV1PaymentMethodsByIdData = {
+  body: PaymentMethod;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PaymentMethods/{id}";
+};
+
+export type PutApiV1PaymentMethodsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PaymentMethod;
+};
+
+export type PutApiV1PaymentMethodsByIdResponse =
+  PutApiV1PaymentMethodsByIdResponses[keyof PutApiV1PaymentMethodsByIdResponses];
+
+export type GetApiV1CustomerAddressesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CustomerAddresses";
+};
+
+export type GetApiV1CustomerAddressesResponses = {
+  /**
+   * Success
+   */
+  200: Array<CustomerAddresse>;
+};
+
+export type GetApiV1CustomerAddressesResponse =
+  GetApiV1CustomerAddressesResponses[keyof GetApiV1CustomerAddressesResponses];
+
+export type PostApiV1CustomerAddressesData = {
+  body: CustomerAddresse;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CustomerAddresses";
+};
+
+export type PostApiV1CustomerAddressesResponses = {
+  /**
+   * Success
+   */
+  200: CustomerAddresse;
+};
+
+export type PostApiV1CustomerAddressesResponse =
+  PostApiV1CustomerAddressesResponses[keyof PostApiV1CustomerAddressesResponses];
+
+export type DeleteApiV1CustomerAddressesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CustomerAddresses/{id}";
+};
+
+export type DeleteApiV1CustomerAddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CustomerAddressesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CustomerAddresses/{id}";
+};
+
+export type GetApiV1CustomerAddressesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomerAddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CustomerAddresse;
+};
+
+export type GetApiV1CustomerAddressesByIdResponse =
+  GetApiV1CustomerAddressesByIdResponses[keyof GetApiV1CustomerAddressesByIdResponses];
+
+export type PatchApiV1CustomerAddressesByIdData = {
+  body: CustomerAddresse;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CustomerAddresses/{id}";
+};
+
+export type PatchApiV1CustomerAddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CustomerAddresse;
+};
+
+export type PatchApiV1CustomerAddressesByIdResponse =
+  PatchApiV1CustomerAddressesByIdResponses[keyof PatchApiV1CustomerAddressesByIdResponses];
+
+export type PutApiV1CustomerAddressesByIdData = {
+  body: CustomerAddresse;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CustomerAddresses/{id}";
+};
+
+export type PutApiV1CustomerAddressesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CustomerAddresse;
+};
+
+export type PutApiV1CustomerAddressesByIdResponse =
+  PutApiV1CustomerAddressesByIdResponses[keyof PutApiV1CustomerAddressesByIdResponses];
+
+export type DeleteApiV1OrderNotesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderNotes/{id}";
+};
+
+export type DeleteApiV1OrderNotesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1OrderNotesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderNotes/{id}";
+};
+
+export type GetApiV1OrderNotesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrderNotesByIdResponses = {
+  /**
+   * Success
+   */
+  200: OrderNote;
+};
+
+export type GetApiV1OrderNotesByIdResponse = GetApiV1OrderNotesByIdResponses[keyof GetApiV1OrderNotesByIdResponses];
+
+export type PatchApiV1OrderNotesByIdData = {
+  body: OrderNote;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderNotes/{id}";
+};
+
+export type PatchApiV1OrderNotesByIdResponses = {
+  /**
+   * Success
+   */
+  200: OrderNote;
+};
+
+export type PatchApiV1OrderNotesByIdResponse =
+  PatchApiV1OrderNotesByIdResponses[keyof PatchApiV1OrderNotesByIdResponses];
+
+export type PutApiV1OrderNotesByIdData = {
+  body: OrderNote;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/OrderNotes/{id}";
+};
+
+export type PutApiV1OrderNotesByIdResponses = {
+  /**
+   * Success
+   */
+  200: OrderNote;
+};
+
+export type PutApiV1OrderNotesByIdResponse = PutApiV1OrderNotesByIdResponses[keyof PutApiV1OrderNotesByIdResponses];
+
+export type GetApiV1ShipmentEventsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ShipmentEvents";
+};
+
+export type GetApiV1ShipmentEventsResponses = {
+  /**
+   * Success
+   */
+  200: Array<ShipmentEvent>;
+};
+
+export type GetApiV1ShipmentEventsResponse = GetApiV1ShipmentEventsResponses[keyof GetApiV1ShipmentEventsResponses];
+
+export type PostApiV1ShipmentEventsData = {
+  body: ShipmentEvent;
+  path?: never;
+  query?: never;
+  url: "/api/v1/ShipmentEvents";
+};
+
+export type PostApiV1ShipmentEventsResponses = {
+  /**
+   * Success
+   */
+  200: ShipmentEvent;
+};
+
+export type PostApiV1ShipmentEventsResponse = PostApiV1ShipmentEventsResponses[keyof PostApiV1ShipmentEventsResponses];
+
+export type DeleteApiV1ShipmentEventsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ShipmentEvents/{id}";
+};
+
+export type DeleteApiV1ShipmentEventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1ShipmentEventsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ShipmentEvents/{id}";
+};
+
+export type GetApiV1ShipmentEventsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ShipmentEventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ShipmentEvent;
+};
+
+export type GetApiV1ShipmentEventsByIdResponse =
+  GetApiV1ShipmentEventsByIdResponses[keyof GetApiV1ShipmentEventsByIdResponses];
+
+export type PatchApiV1ShipmentEventsByIdData = {
+  body: ShipmentEvent;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ShipmentEvents/{id}";
+};
+
+export type PatchApiV1ShipmentEventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ShipmentEvent;
+};
+
+export type PatchApiV1ShipmentEventsByIdResponse =
+  PatchApiV1ShipmentEventsByIdResponses[keyof PatchApiV1ShipmentEventsByIdResponses];
+
+export type PutApiV1ShipmentEventsByIdData = {
+  body: ShipmentEvent;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/ShipmentEvents/{id}";
+};
+
+export type PutApiV1ShipmentEventsByIdResponses = {
+  /**
+   * Success
+   */
+  200: ShipmentEvent;
+};
+
+export type PutApiV1ShipmentEventsByIdResponse =
+  PutApiV1ShipmentEventsByIdResponses[keyof PutApiV1ShipmentEventsByIdResponses];
+
+export type GetApiV1InvoiceItemsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/InvoiceItems";
+};
+
+export type GetApiV1InvoiceItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<InvoiceItem>;
+};
+
+export type GetApiV1InvoiceItemsResponse = GetApiV1InvoiceItemsResponses[keyof GetApiV1InvoiceItemsResponses];
+
+export type PostApiV1InvoiceItemsData = {
+  body: InvoiceItem;
+  path?: never;
+  query?: never;
+  url: "/api/v1/InvoiceItems";
+};
+
+export type PostApiV1InvoiceItemsResponses = {
+  /**
+   * Success
+   */
+  200: InvoiceItem;
+};
+
+export type PostApiV1InvoiceItemsResponse = PostApiV1InvoiceItemsResponses[keyof PostApiV1InvoiceItemsResponses];
+
+export type DeleteApiV1InvoiceItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/InvoiceItems/{id}";
+};
+
+export type DeleteApiV1InvoiceItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1InvoiceItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/InvoiceItems/{id}";
+};
+
+export type GetApiV1InvoiceItemsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1InvoiceItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: InvoiceItem;
+};
+
+export type GetApiV1InvoiceItemsByIdResponse =
+  GetApiV1InvoiceItemsByIdResponses[keyof GetApiV1InvoiceItemsByIdResponses];
+
+export type PatchApiV1InvoiceItemsByIdData = {
+  body: InvoiceItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/InvoiceItems/{id}";
+};
+
+export type PatchApiV1InvoiceItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: InvoiceItem;
+};
+
+export type PatchApiV1InvoiceItemsByIdResponse =
+  PatchApiV1InvoiceItemsByIdResponses[keyof PatchApiV1InvoiceItemsByIdResponses];
+
+export type PutApiV1InvoiceItemsByIdData = {
+  body: InvoiceItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/InvoiceItems/{id}";
+};
+
+export type PutApiV1InvoiceItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: InvoiceItem;
+};
+
+export type PutApiV1InvoiceItemsByIdResponse =
+  PutApiV1InvoiceItemsByIdResponses[keyof PutApiV1InvoiceItemsByIdResponses];
+
+export type GetApiV1LoyaltyAccountsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/LoyaltyAccounts";
+};
+
+export type GetApiV1LoyaltyAccountsResponses = {
+  /**
+   * Success
+   */
+  200: Array<LoyaltyAccount>;
+};
+
+export type GetApiV1LoyaltyAccountsResponse = GetApiV1LoyaltyAccountsResponses[keyof GetApiV1LoyaltyAccountsResponses];
+
+export type PostApiV1LoyaltyAccountsData = {
+  body: LoyaltyAccount;
+  path?: never;
+  query?: never;
+  url: "/api/v1/LoyaltyAccounts";
+};
+
+export type PostApiV1LoyaltyAccountsResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyAccount;
+};
+
+export type PostApiV1LoyaltyAccountsResponse =
+  PostApiV1LoyaltyAccountsResponses[keyof PostApiV1LoyaltyAccountsResponses];
+
+export type DeleteApiV1LoyaltyAccountsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyAccounts/{id}";
+};
+
+export type DeleteApiV1LoyaltyAccountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1LoyaltyAccountsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyAccounts/{id}";
+};
+
+export type GetApiV1LoyaltyAccountsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1LoyaltyAccountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyAccount;
+};
+
+export type GetApiV1LoyaltyAccountsByIdResponse =
+  GetApiV1LoyaltyAccountsByIdResponses[keyof GetApiV1LoyaltyAccountsByIdResponses];
+
+export type PatchApiV1LoyaltyAccountsByIdData = {
+  body: LoyaltyAccount;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyAccounts/{id}";
+};
+
+export type PatchApiV1LoyaltyAccountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyAccount;
+};
+
+export type PatchApiV1LoyaltyAccountsByIdResponse =
+  PatchApiV1LoyaltyAccountsByIdResponses[keyof PatchApiV1LoyaltyAccountsByIdResponses];
+
+export type PutApiV1LoyaltyAccountsByIdData = {
+  body: LoyaltyAccount;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyAccounts/{id}";
+};
+
+export type PutApiV1LoyaltyAccountsByIdResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyAccount;
+};
+
+export type PutApiV1LoyaltyAccountsByIdResponse =
+  PutApiV1LoyaltyAccountsByIdResponses[keyof PutApiV1LoyaltyAccountsByIdResponses];
+
+export type GetApiV1LoyaltyTransactionsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/LoyaltyTransactions";
+};
+
+export type GetApiV1LoyaltyTransactionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<LoyaltyTransaction>;
+};
+
+export type GetApiV1LoyaltyTransactionsResponse =
+  GetApiV1LoyaltyTransactionsResponses[keyof GetApiV1LoyaltyTransactionsResponses];
+
+export type PostApiV1LoyaltyTransactionsData = {
+  body: LoyaltyTransaction;
+  path?: never;
+  query?: never;
+  url: "/api/v1/LoyaltyTransactions";
+};
+
+export type PostApiV1LoyaltyTransactionsResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyTransaction;
+};
+
+export type PostApiV1LoyaltyTransactionsResponse =
+  PostApiV1LoyaltyTransactionsResponses[keyof PostApiV1LoyaltyTransactionsResponses];
+
+export type DeleteApiV1LoyaltyTransactionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyTransactions/{id}";
+};
+
+export type DeleteApiV1LoyaltyTransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1LoyaltyTransactionsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyTransactions/{id}";
+};
+
+export type GetApiV1LoyaltyTransactionsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1LoyaltyTransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyTransaction;
+};
+
+export type GetApiV1LoyaltyTransactionsByIdResponse =
+  GetApiV1LoyaltyTransactionsByIdResponses[keyof GetApiV1LoyaltyTransactionsByIdResponses];
+
+export type PatchApiV1LoyaltyTransactionsByIdData = {
+  body: LoyaltyTransaction;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyTransactions/{id}";
+};
+
+export type PatchApiV1LoyaltyTransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyTransaction;
+};
+
+export type PatchApiV1LoyaltyTransactionsByIdResponse =
+  PatchApiV1LoyaltyTransactionsByIdResponses[keyof PatchApiV1LoyaltyTransactionsByIdResponses];
+
+export type PutApiV1LoyaltyTransactionsByIdData = {
+  body: LoyaltyTransaction;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyTransactions/{id}";
+};
+
+export type PutApiV1LoyaltyTransactionsByIdResponses = {
+  /**
+   * Success
+   */
+  200: LoyaltyTransaction;
+};
+
+export type PutApiV1LoyaltyTransactionsByIdResponse =
+  PutApiV1LoyaltyTransactionsByIdResponses[keyof PutApiV1LoyaltyTransactionsByIdResponses];
+
+export type GetApiV1EventAttendeesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/EventAttendees";
+};
+
+export type GetApiV1EventAttendeesResponses = {
+  /**
+   * Success
+   */
+  200: Array<EventAttendee>;
+};
+
+export type GetApiV1EventAttendeesResponse = GetApiV1EventAttendeesResponses[keyof GetApiV1EventAttendeesResponses];
+
+export type PostApiV1EventAttendeesData = {
+  body: EventAttendee;
+  path?: never;
+  query?: never;
+  url: "/api/v1/EventAttendees";
+};
+
+export type PostApiV1EventAttendeesResponses = {
+  /**
+   * Success
+   */
+  200: EventAttendee;
+};
+
+export type PostApiV1EventAttendeesResponse = PostApiV1EventAttendeesResponses[keyof PostApiV1EventAttendeesResponses];
+
+export type DeleteApiV1EventAttendeesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EventAttendees/{id}";
+};
+
+export type DeleteApiV1EventAttendeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1EventAttendeesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EventAttendees/{id}";
+};
+
+export type GetApiV1EventAttendeesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EventAttendeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: EventAttendee;
+};
+
+export type GetApiV1EventAttendeesByIdResponse =
+  GetApiV1EventAttendeesByIdResponses[keyof GetApiV1EventAttendeesByIdResponses];
+
+export type PatchApiV1EventAttendeesByIdData = {
+  body: EventAttendee;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EventAttendees/{id}";
+};
+
+export type PatchApiV1EventAttendeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: EventAttendee;
+};
+
+export type PatchApiV1EventAttendeesByIdResponse =
+  PatchApiV1EventAttendeesByIdResponses[keyof PatchApiV1EventAttendeesByIdResponses];
+
+export type PutApiV1EventAttendeesByIdData = {
+  body: EventAttendee;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EventAttendees/{id}";
+};
+
+export type PutApiV1EventAttendeesByIdResponses = {
+  /**
+   * Success
+   */
+  200: EventAttendee;
+};
+
+export type PutApiV1EventAttendeesByIdResponse =
+  PutApiV1EventAttendeesByIdResponses[keyof PutApiV1EventAttendeesByIdResponses];
+
+export type GetApiV1PlaylistItemsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PlaylistItems";
+};
+
+export type GetApiV1PlaylistItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<PlaylistItem>;
+};
+
+export type GetApiV1PlaylistItemsResponse = GetApiV1PlaylistItemsResponses[keyof GetApiV1PlaylistItemsResponses];
+
+export type PostApiV1PlaylistItemsData = {
+  body: PlaylistItem;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PlaylistItems";
+};
+
+export type PostApiV1PlaylistItemsResponses = {
+  /**
+   * Success
+   */
+  200: PlaylistItem;
+};
+
+export type PostApiV1PlaylistItemsResponse = PostApiV1PlaylistItemsResponses[keyof PostApiV1PlaylistItemsResponses];
+
+export type DeleteApiV1PlaylistItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PlaylistItems/{id}";
+};
+
+export type DeleteApiV1PlaylistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PlaylistItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PlaylistItems/{id}";
+};
+
+export type GetApiV1PlaylistItemsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PlaylistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PlaylistItem;
+};
+
+export type GetApiV1PlaylistItemsByIdResponse =
+  GetApiV1PlaylistItemsByIdResponses[keyof GetApiV1PlaylistItemsByIdResponses];
+
+export type PatchApiV1PlaylistItemsByIdData = {
+  body: PlaylistItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PlaylistItems/{id}";
+};
+
+export type PatchApiV1PlaylistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PlaylistItem;
+};
+
+export type PatchApiV1PlaylistItemsByIdResponse =
+  PatchApiV1PlaylistItemsByIdResponses[keyof PatchApiV1PlaylistItemsByIdResponses];
+
+export type PutApiV1PlaylistItemsByIdData = {
+  body: PlaylistItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PlaylistItems/{id}";
+};
+
+export type PutApiV1PlaylistItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PlaylistItem;
+};
+
+export type PutApiV1PlaylistItemsByIdResponse =
+  PutApiV1PlaylistItemsByIdResponses[keyof PutApiV1PlaylistItemsByIdResponses];
+
+export type GetApiV1RecipeIngredientsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/RecipeIngredients";
+};
+
+export type GetApiV1RecipeIngredientsResponses = {
+  /**
+   * Success
+   */
+  200: Array<RecipeIngredient>;
+};
+
+export type GetApiV1RecipeIngredientsResponse =
+  GetApiV1RecipeIngredientsResponses[keyof GetApiV1RecipeIngredientsResponses];
+
+export type PostApiV1RecipeIngredientsData = {
+  body: RecipeIngredient;
+  path?: never;
+  query?: never;
+  url: "/api/v1/RecipeIngredients";
+};
+
+export type PostApiV1RecipeIngredientsResponses = {
+  /**
+   * Success
+   */
+  200: RecipeIngredient;
+};
+
+export type PostApiV1RecipeIngredientsResponse =
+  PostApiV1RecipeIngredientsResponses[keyof PostApiV1RecipeIngredientsResponses];
+
+export type DeleteApiV1RecipeIngredientsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RecipeIngredients/{id}";
+};
+
+export type DeleteApiV1RecipeIngredientsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1RecipeIngredientsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RecipeIngredients/{id}";
+};
+
+export type GetApiV1RecipeIngredientsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RecipeIngredientsByIdResponses = {
+  /**
+   * Success
+   */
+  200: RecipeIngredient;
+};
+
+export type GetApiV1RecipeIngredientsByIdResponse =
+  GetApiV1RecipeIngredientsByIdResponses[keyof GetApiV1RecipeIngredientsByIdResponses];
+
+export type PatchApiV1RecipeIngredientsByIdData = {
+  body: RecipeIngredient;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RecipeIngredients/{id}";
+};
+
+export type PatchApiV1RecipeIngredientsByIdResponses = {
+  /**
+   * Success
+   */
+  200: RecipeIngredient;
+};
+
+export type PatchApiV1RecipeIngredientsByIdResponse =
+  PatchApiV1RecipeIngredientsByIdResponses[keyof PatchApiV1RecipeIngredientsByIdResponses];
+
+export type PutApiV1RecipeIngredientsByIdData = {
+  body: RecipeIngredient;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RecipeIngredients/{id}";
+};
+
+export type PutApiV1RecipeIngredientsByIdResponses = {
+  /**
+   * Success
+   */
+  200: RecipeIngredient;
+};
+
+export type PutApiV1RecipeIngredientsByIdResponse =
+  PutApiV1RecipeIngredientsByIdResponses[keyof PutApiV1RecipeIngredientsByIdResponses];
+
+export type GetApiV1RestaurantMenusData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/RestaurantMenus";
+};
+
+export type GetApiV1RestaurantMenusResponses = {
+  /**
+   * Success
+   */
+  200: Array<RestaurantMenu>;
+};
+
+export type GetApiV1RestaurantMenusResponse = GetApiV1RestaurantMenusResponses[keyof GetApiV1RestaurantMenusResponses];
+
+export type PostApiV1RestaurantMenusData = {
+  body: RestaurantMenu;
+  path?: never;
+  query?: never;
+  url: "/api/v1/RestaurantMenus";
+};
+
+export type PostApiV1RestaurantMenusResponses = {
+  /**
+   * Success
+   */
+  200: RestaurantMenu;
+};
+
+export type PostApiV1RestaurantMenusResponse =
+  PostApiV1RestaurantMenusResponses[keyof PostApiV1RestaurantMenusResponses];
+
+export type DeleteApiV1RestaurantMenusByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RestaurantMenus/{id}";
+};
+
+export type DeleteApiV1RestaurantMenusByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1RestaurantMenusByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RestaurantMenus/{id}";
+};
+
+export type GetApiV1RestaurantMenusByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RestaurantMenusByIdResponses = {
+  /**
+   * Success
+   */
+  200: RestaurantMenu;
+};
+
+export type GetApiV1RestaurantMenusByIdResponse =
+  GetApiV1RestaurantMenusByIdResponses[keyof GetApiV1RestaurantMenusByIdResponses];
+
+export type PatchApiV1RestaurantMenusByIdData = {
+  body: RestaurantMenu;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RestaurantMenus/{id}";
+};
+
+export type PatchApiV1RestaurantMenusByIdResponses = {
+  /**
+   * Success
+   */
+  200: RestaurantMenu;
+};
+
+export type PatchApiV1RestaurantMenusByIdResponse =
+  PatchApiV1RestaurantMenusByIdResponses[keyof PatchApiV1RestaurantMenusByIdResponses];
+
+export type PutApiV1RestaurantMenusByIdData = {
+  body: RestaurantMenu;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RestaurantMenus/{id}";
+};
+
+export type PutApiV1RestaurantMenusByIdResponses = {
+  /**
+   * Success
+   */
+  200: RestaurantMenu;
+};
+
+export type PutApiV1RestaurantMenusByIdResponse =
+  PutApiV1RestaurantMenusByIdResponses[keyof PutApiV1RestaurantMenusByIdResponses];
+
+export type GetApiV1MenuItemsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/MenuItems";
+};
+
+export type GetApiV1MenuItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<MenuItem>;
+};
+
+export type GetApiV1MenuItemsResponse = GetApiV1MenuItemsResponses[keyof GetApiV1MenuItemsResponses];
+
+export type PostApiV1MenuItemsData = {
+  body: MenuItem;
+  path?: never;
+  query?: never;
+  url: "/api/v1/MenuItems";
+};
+
+export type PostApiV1MenuItemsResponses = {
+  /**
+   * Success
+   */
+  200: MenuItem;
+};
+
+export type PostApiV1MenuItemsResponse = PostApiV1MenuItemsResponses[keyof PostApiV1MenuItemsResponses];
+
+export type DeleteApiV1MenuItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/MenuItems/{id}";
+};
+
+export type DeleteApiV1MenuItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1MenuItemsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/MenuItems/{id}";
+};
+
+export type GetApiV1MenuItemsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1MenuItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: MenuItem;
+};
+
+export type GetApiV1MenuItemsByIdResponse = GetApiV1MenuItemsByIdResponses[keyof GetApiV1MenuItemsByIdResponses];
+
+export type PatchApiV1MenuItemsByIdData = {
+  body: MenuItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/MenuItems/{id}";
+};
+
+export type PatchApiV1MenuItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: MenuItem;
+};
+
+export type PatchApiV1MenuItemsByIdResponse = PatchApiV1MenuItemsByIdResponses[keyof PatchApiV1MenuItemsByIdResponses];
+
+export type PutApiV1MenuItemsByIdData = {
+  body: MenuItem;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/MenuItems/{id}";
+};
+
+export type PutApiV1MenuItemsByIdResponses = {
+  /**
+   * Success
+   */
+  200: MenuItem;
+};
+
+export type PutApiV1MenuItemsByIdResponse = PutApiV1MenuItemsByIdResponses[keyof PutApiV1MenuItemsByIdResponses];
+
+export type GetApiV1CompanyOfficesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CompanyOffices";
+};
+
+export type GetApiV1CompanyOfficesResponses = {
+  /**
+   * Success
+   */
+  200: Array<CompanyOffice>;
+};
+
+export type GetApiV1CompanyOfficesResponse = GetApiV1CompanyOfficesResponses[keyof GetApiV1CompanyOfficesResponses];
+
+export type PostApiV1CompanyOfficesData = {
+  body: CompanyOffice;
+  path?: never;
+  query?: never;
+  url: "/api/v1/CompanyOffices";
+};
+
+export type PostApiV1CompanyOfficesResponses = {
+  /**
+   * Success
+   */
+  200: CompanyOffice;
+};
+
+export type PostApiV1CompanyOfficesResponse = PostApiV1CompanyOfficesResponses[keyof PostApiV1CompanyOfficesResponses];
+
+export type DeleteApiV1CompanyOfficesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CompanyOffices/{id}";
+};
+
+export type DeleteApiV1CompanyOfficesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1CompanyOfficesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CompanyOffices/{id}";
+};
+
+export type GetApiV1CompanyOfficesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CompanyOfficesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CompanyOffice;
+};
+
+export type GetApiV1CompanyOfficesByIdResponse =
+  GetApiV1CompanyOfficesByIdResponses[keyof GetApiV1CompanyOfficesByIdResponses];
+
+export type PatchApiV1CompanyOfficesByIdData = {
+  body: CompanyOffice;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CompanyOffices/{id}";
+};
+
+export type PatchApiV1CompanyOfficesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CompanyOffice;
+};
+
+export type PatchApiV1CompanyOfficesByIdResponse =
+  PatchApiV1CompanyOfficesByIdResponses[keyof PatchApiV1CompanyOfficesByIdResponses];
+
+export type PutApiV1CompanyOfficesByIdData = {
+  body: CompanyOffice;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/CompanyOffices/{id}";
+};
+
+export type PutApiV1CompanyOfficesByIdResponses = {
+  /**
+   * Success
+   */
+  200: CompanyOffice;
+};
+
+export type PutApiV1CompanyOfficesByIdResponse =
+  PutApiV1CompanyOfficesByIdResponses[keyof PutApiV1CompanyOfficesByIdResponses];
+
+export type GetApiV1EmployeeSkillsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/EmployeeSkills";
+};
+
+export type GetApiV1EmployeeSkillsResponses = {
+  /**
+   * Success
+   */
+  200: Array<EmployeeSkill>;
+};
+
+export type GetApiV1EmployeeSkillsResponse = GetApiV1EmployeeSkillsResponses[keyof GetApiV1EmployeeSkillsResponses];
+
+export type PostApiV1EmployeeSkillsData = {
+  body: EmployeeSkill;
+  path?: never;
+  query?: never;
+  url: "/api/v1/EmployeeSkills";
+};
+
+export type PostApiV1EmployeeSkillsResponses = {
+  /**
+   * Success
+   */
+  200: EmployeeSkill;
+};
+
+export type PostApiV1EmployeeSkillsResponse = PostApiV1EmployeeSkillsResponses[keyof PostApiV1EmployeeSkillsResponses];
+
+export type DeleteApiV1EmployeeSkillsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EmployeeSkills/{id}";
+};
+
+export type DeleteApiV1EmployeeSkillsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1EmployeeSkillsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EmployeeSkills/{id}";
+};
+
+export type GetApiV1EmployeeSkillsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EmployeeSkillsByIdResponses = {
+  /**
+   * Success
+   */
+  200: EmployeeSkill;
+};
+
+export type GetApiV1EmployeeSkillsByIdResponse =
+  GetApiV1EmployeeSkillsByIdResponses[keyof GetApiV1EmployeeSkillsByIdResponses];
+
+export type PatchApiV1EmployeeSkillsByIdData = {
+  body: EmployeeSkill;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EmployeeSkills/{id}";
+};
+
+export type PatchApiV1EmployeeSkillsByIdResponses = {
+  /**
+   * Success
+   */
+  200: EmployeeSkill;
+};
+
+export type PatchApiV1EmployeeSkillsByIdResponse =
+  PatchApiV1EmployeeSkillsByIdResponses[keyof PatchApiV1EmployeeSkillsByIdResponses];
+
+export type PutApiV1EmployeeSkillsByIdData = {
+  body: EmployeeSkill;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/EmployeeSkills/{id}";
+};
+
+export type PutApiV1EmployeeSkillsByIdResponses = {
+  /**
+   * Success
+   */
+  200: EmployeeSkill;
+};
+
+export type PutApiV1EmployeeSkillsByIdResponse =
+  PutApiV1EmployeeSkillsByIdResponses[keyof PutApiV1EmployeeSkillsByIdResponses];
+
+export type GetApiV1SupplierProductsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/SupplierProducts";
+};
+
+export type GetApiV1SupplierProductsResponses = {
+  /**
+   * Success
+   */
+  200: Array<SupplierProduct>;
+};
+
+export type GetApiV1SupplierProductsResponse =
+  GetApiV1SupplierProductsResponses[keyof GetApiV1SupplierProductsResponses];
+
+export type PostApiV1SupplierProductsData = {
+  body: SupplierProduct;
+  path?: never;
+  query?: never;
+  url: "/api/v1/SupplierProducts";
+};
+
+export type PostApiV1SupplierProductsResponses = {
+  /**
+   * Success
+   */
+  200: SupplierProduct;
+};
+
+export type PostApiV1SupplierProductsResponse =
+  PostApiV1SupplierProductsResponses[keyof PostApiV1SupplierProductsResponses];
+
+export type DeleteApiV1SupplierProductsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupplierProducts/{id}";
+};
+
+export type DeleteApiV1SupplierProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1SupplierProductsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupplierProducts/{id}";
+};
+
+export type GetApiV1SupplierProductsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SupplierProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: SupplierProduct;
+};
+
+export type GetApiV1SupplierProductsByIdResponse =
+  GetApiV1SupplierProductsByIdResponses[keyof GetApiV1SupplierProductsByIdResponses];
+
+export type PatchApiV1SupplierProductsByIdData = {
+  body: SupplierProduct;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupplierProducts/{id}";
+};
+
+export type PatchApiV1SupplierProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: SupplierProduct;
+};
+
+export type PatchApiV1SupplierProductsByIdResponse =
+  PatchApiV1SupplierProductsByIdResponses[keyof PatchApiV1SupplierProductsByIdResponses];
+
+export type PutApiV1SupplierProductsByIdData = {
+  body: SupplierProduct;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupplierProducts/{id}";
+};
+
+export type PutApiV1SupplierProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: SupplierProduct;
+};
+
+export type PutApiV1SupplierProductsByIdResponse =
+  PutApiV1SupplierProductsByIdResponses[keyof PutApiV1SupplierProductsByIdResponses];
+
+export type GetApiV1FlightBookingsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/FlightBookings";
+};
+
+export type GetApiV1FlightBookingsResponses = {
+  /**
+   * Success
+   */
+  200: Array<FlightBooking>;
+};
+
+export type GetApiV1FlightBookingsResponse = GetApiV1FlightBookingsResponses[keyof GetApiV1FlightBookingsResponses];
+
+export type PostApiV1FlightBookingsData = {
+  body: FlightBooking;
+  path?: never;
+  query?: never;
+  url: "/api/v1/FlightBookings";
+};
+
+export type PostApiV1FlightBookingsResponses = {
+  /**
+   * Success
+   */
+  200: FlightBooking;
+};
+
+export type PostApiV1FlightBookingsResponse = PostApiV1FlightBookingsResponses[keyof PostApiV1FlightBookingsResponses];
+
+export type DeleteApiV1FlightBookingsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/FlightBookings/{id}";
+};
+
+export type DeleteApiV1FlightBookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1FlightBookingsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/FlightBookings/{id}";
+};
+
+export type GetApiV1FlightBookingsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1FlightBookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: FlightBooking;
+};
+
+export type GetApiV1FlightBookingsByIdResponse =
+  GetApiV1FlightBookingsByIdResponses[keyof GetApiV1FlightBookingsByIdResponses];
+
+export type PatchApiV1FlightBookingsByIdData = {
+  body: FlightBooking;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/FlightBookings/{id}";
+};
+
+export type PatchApiV1FlightBookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: FlightBooking;
+};
+
+export type PatchApiV1FlightBookingsByIdResponse =
+  PatchApiV1FlightBookingsByIdResponses[keyof PatchApiV1FlightBookingsByIdResponses];
+
+export type PutApiV1FlightBookingsByIdData = {
+  body: FlightBooking;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/FlightBookings/{id}";
+};
+
+export type PutApiV1FlightBookingsByIdResponses = {
+  /**
+   * Success
+   */
+  200: FlightBooking;
+};
+
+export type PutApiV1FlightBookingsByIdResponse =
+  PutApiV1FlightBookingsByIdResponses[keyof PutApiV1FlightBookingsByIdResponses];
+
+export type GetApiV1PromotionProductsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PromotionProducts";
+};
+
+export type GetApiV1PromotionProductsResponses = {
+  /**
+   * Success
+   */
+  200: Array<PromotionProduct>;
+};
+
+export type GetApiV1PromotionProductsResponse =
+  GetApiV1PromotionProductsResponses[keyof GetApiV1PromotionProductsResponses];
+
+export type PostApiV1PromotionProductsData = {
+  body: PromotionProduct;
+  path?: never;
+  query?: never;
+  url: "/api/v1/PromotionProducts";
+};
+
+export type PostApiV1PromotionProductsResponses = {
+  /**
+   * Success
+   */
+  200: PromotionProduct;
+};
+
+export type PostApiV1PromotionProductsResponse =
+  PostApiV1PromotionProductsResponses[keyof PostApiV1PromotionProductsResponses];
+
+export type DeleteApiV1PromotionProductsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PromotionProducts/{id}";
+};
+
+export type DeleteApiV1PromotionProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1PromotionProductsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PromotionProducts/{id}";
+};
+
+export type GetApiV1PromotionProductsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PromotionProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PromotionProduct;
+};
+
+export type GetApiV1PromotionProductsByIdResponse =
+  GetApiV1PromotionProductsByIdResponses[keyof GetApiV1PromotionProductsByIdResponses];
+
+export type PatchApiV1PromotionProductsByIdData = {
+  body: PromotionProduct;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PromotionProducts/{id}";
+};
+
+export type PatchApiV1PromotionProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PromotionProduct;
+};
+
+export type PatchApiV1PromotionProductsByIdResponse =
+  PatchApiV1PromotionProductsByIdResponses[keyof PatchApiV1PromotionProductsByIdResponses];
+
+export type PutApiV1PromotionProductsByIdData = {
+  body: PromotionProduct;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/PromotionProducts/{id}";
+};
+
+export type PutApiV1PromotionProductsByIdResponses = {
+  /**
+   * Success
+   */
+  200: PromotionProduct;
+};
+
+export type PutApiV1PromotionProductsByIdResponse =
+  PutApiV1PromotionProductsByIdResponses[keyof PutApiV1PromotionProductsByIdResponses];
+
+export type GetApiV1BannerPlacementsData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/BannerPlacements";
+};
+
+export type GetApiV1BannerPlacementsResponses = {
+  /**
+   * Success
+   */
+  200: Array<BannerPlacement>;
+};
+
+export type GetApiV1BannerPlacementsResponse =
+  GetApiV1BannerPlacementsResponses[keyof GetApiV1BannerPlacementsResponses];
+
+export type PostApiV1BannerPlacementsData = {
+  body: BannerPlacement;
+  path?: never;
+  query?: never;
+  url: "/api/v1/BannerPlacements";
+};
+
+export type PostApiV1BannerPlacementsResponses = {
+  /**
+   * Success
+   */
+  200: BannerPlacement;
+};
+
+export type PostApiV1BannerPlacementsResponse =
+  PostApiV1BannerPlacementsResponses[keyof PostApiV1BannerPlacementsResponses];
+
+export type DeleteApiV1BannerPlacementsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/BannerPlacements/{id}";
+};
+
+export type DeleteApiV1BannerPlacementsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1BannerPlacementsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/BannerPlacements/{id}";
+};
+
+export type GetApiV1BannerPlacementsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BannerPlacementsByIdResponses = {
+  /**
+   * Success
+   */
+  200: BannerPlacement;
+};
+
+export type GetApiV1BannerPlacementsByIdResponse =
+  GetApiV1BannerPlacementsByIdResponses[keyof GetApiV1BannerPlacementsByIdResponses];
+
+export type PatchApiV1BannerPlacementsByIdData = {
+  body: BannerPlacement;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/BannerPlacements/{id}";
+};
+
+export type PatchApiV1BannerPlacementsByIdResponses = {
+  /**
+   * Success
+   */
+  200: BannerPlacement;
+};
+
+export type PatchApiV1BannerPlacementsByIdResponse =
+  PatchApiV1BannerPlacementsByIdResponses[keyof PatchApiV1BannerPlacementsByIdResponses];
+
+export type PutApiV1BannerPlacementsByIdData = {
+  body: BannerPlacement;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/BannerPlacements/{id}";
+};
+
+export type PutApiV1BannerPlacementsByIdResponses = {
+  /**
+   * Success
+   */
+  200: BannerPlacement;
+};
+
+export type PutApiV1BannerPlacementsByIdResponse =
+  PutApiV1BannerPlacementsByIdResponses[keyof PutApiV1BannerPlacementsByIdResponses];
+
+export type GetApiV1SupportTicketsData = {
+  body?: never;
+  path?: never;
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/SupportTickets";
+};
+
+export type GetApiV1SupportTicketsResponses = {
+  /**
+   * Success
+   */
+  200: Array<SupportTicket>;
+};
+
+export type GetApiV1SupportTicketsResponse = GetApiV1SupportTicketsResponses[keyof GetApiV1SupportTicketsResponses];
+
+export type PostApiV1SupportTicketsData = {
+  body: SupportTicket;
+  path?: never;
+  query?: never;
+  url: "/api/v1/SupportTickets";
+};
+
+export type PostApiV1SupportTicketsResponses = {
+  /**
+   * Success
+   */
+  200: SupportTicket;
+};
+
+export type PostApiV1SupportTicketsResponse = PostApiV1SupportTicketsResponses[keyof PostApiV1SupportTicketsResponses];
+
+export type DeleteApiV1SupportTicketsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupportTickets/{id}";
+};
+
+export type DeleteApiV1SupportTicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1SupportTicketsByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupportTickets/{id}";
+};
+
+export type GetApiV1SupportTicketsByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SupportTicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: SupportTicket;
+};
+
+export type GetApiV1SupportTicketsByIdResponse =
+  GetApiV1SupportTicketsByIdResponses[keyof GetApiV1SupportTicketsByIdResponses];
+
+export type PatchApiV1SupportTicketsByIdData = {
+  body: SupportTicket;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupportTickets/{id}";
+};
+
+export type PatchApiV1SupportTicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: SupportTicket;
+};
+
+export type PatchApiV1SupportTicketsByIdResponse =
+  PatchApiV1SupportTicketsByIdResponses[keyof PatchApiV1SupportTicketsByIdResponses];
+
+export type PutApiV1SupportTicketsByIdData = {
+  body: SupportTicket;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/SupportTickets/{id}";
+};
+
+export type PutApiV1SupportTicketsByIdResponses = {
+  /**
+   * Success
+   */
+  200: SupportTicket;
+};
+
+export type PutApiV1SupportTicketsByIdResponse =
+  PutApiV1SupportTicketsByIdResponses[keyof PutApiV1SupportTicketsByIdResponses];
+
+export type GetApiV1TicketRepliesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/TicketReplies";
+};
+
+export type GetApiV1TicketRepliesResponses = {
+  /**
+   * Success
+   */
+  200: Array<TicketReply>;
+};
+
+export type GetApiV1TicketRepliesResponse = GetApiV1TicketRepliesResponses[keyof GetApiV1TicketRepliesResponses];
+
+export type PostApiV1TicketRepliesData = {
+  body: TicketReply;
+  path?: never;
+  query?: never;
+  url: "/api/v1/TicketReplies";
+};
+
+export type PostApiV1TicketRepliesResponses = {
+  /**
+   * Success
+   */
+  200: TicketReply;
+};
+
+export type PostApiV1TicketRepliesResponse = PostApiV1TicketRepliesResponses[keyof PostApiV1TicketRepliesResponses];
+
+export type DeleteApiV1TicketRepliesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/TicketReplies/{id}";
+};
+
+export type DeleteApiV1TicketRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1TicketRepliesByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/TicketReplies/{id}";
+};
+
+export type GetApiV1TicketRepliesByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1TicketRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: TicketReply;
+};
+
+export type GetApiV1TicketRepliesByIdResponse =
+  GetApiV1TicketRepliesByIdResponses[keyof GetApiV1TicketRepliesByIdResponses];
+
+export type PatchApiV1TicketRepliesByIdData = {
+  body: TicketReply;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/TicketReplies/{id}";
+};
+
+export type PatchApiV1TicketRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: TicketReply;
+};
+
+export type PatchApiV1TicketRepliesByIdResponse =
+  PatchApiV1TicketRepliesByIdResponses[keyof PatchApiV1TicketRepliesByIdResponses];
+
+export type PutApiV1TicketRepliesByIdData = {
+  body: TicketReply;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/TicketReplies/{id}";
+};
+
+export type PutApiV1TicketRepliesByIdResponses = {
+  /**
+   * Success
+   */
+  200: TicketReply;
+};
+
+export type PutApiV1TicketRepliesByIdResponse =
+  PutApiV1TicketRepliesByIdResponses[keyof PutApiV1TicketRepliesByIdResponses];
+
+export type GetApiV1AuthorsAuthorsBooksByIdBookData = {
+  body?: never;
+  path: {
+    idBook: number;
+  };
+  query?: never;
+  url: "/api/v1/Authors/authors/books/{idBook}";
+};
+
+export type GetApiV1AuthorsAuthorsBooksByIdBookResponses = {
+  /**
+   * Success
+   */
+  200: Array<Author>;
+};
+
+export type GetApiV1AuthorsAuthorsBooksByIdBookResponse =
+  GetApiV1AuthorsAuthorsBooksByIdBookResponses[keyof GetApiV1AuthorsAuthorsBooksByIdBookResponses];
+
+export type GetApiV1CoverPhotosBooksCoversByIdBookData = {
+  body?: never;
+  path: {
+    idBook: number;
+  };
+  query?: never;
+  url: "/api/v1/CoverPhotos/books/covers/{idBook}";
+};
+
+export type GetApiV1CoverPhotosBooksCoversByIdBookResponses = {
+  /**
+   * Success
+   */
+  200: Array<CoverPhoto>;
+};
+
+export type GetApiV1CoverPhotosBooksCoversByIdBookResponse =
+  GetApiV1CoverPhotosBooksCoversByIdBookResponses[keyof GetApiV1CoverPhotosBooksCoversByIdBookResponses];
+
+export type GetApiV1BooksByIdAuthorsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Books/{id}/authors";
+};
+
+export type GetApiV1BooksByIdAuthorsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BooksByIdAuthorsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Author>;
+};
+
+export type GetApiV1BooksByIdAuthorsResponse =
+  GetApiV1BooksByIdAuthorsResponses[keyof GetApiV1BooksByIdAuthorsResponses];
+
+export type GetApiV1BooksByIdCoverPhotosData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Books/{id}/coverPhotos";
+};
+
+export type GetApiV1BooksByIdCoverPhotosErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BooksByIdCoverPhotosResponses = {
+  /**
+   * Success
+   */
+  200: Array<CoverPhoto>;
+};
+
+export type GetApiV1BooksByIdCoverPhotosResponse =
+  GetApiV1BooksByIdCoverPhotosResponses[keyof GetApiV1BooksByIdCoverPhotosResponses];
+
+export type GetApiV1CustomersByIdOrdersData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Customers/{id}/orders";
+};
+
+export type GetApiV1CustomersByIdOrdersErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdOrdersResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CustomersByIdOrdersResponse =
+  GetApiV1CustomersByIdOrdersResponses[keyof GetApiV1CustomersByIdOrdersResponses];
+
+export type GetApiV1CustomersByIdReviewsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Customers/{id}/reviews";
+};
+
+export type GetApiV1CustomersByIdReviewsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdReviewsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Review>;
+};
+
+export type GetApiV1CustomersByIdReviewsResponse =
+  GetApiV1CustomersByIdReviewsResponses[keyof GetApiV1CustomersByIdReviewsResponses];
+
+export type GetApiV1OrdersByIdRefundsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Orders/{id}/refunds";
+};
+
+export type GetApiV1OrdersByIdRefundsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrdersByIdRefundsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Refund>;
+};
+
+export type GetApiV1OrdersByIdRefundsResponse =
+  GetApiV1OrdersByIdRefundsResponses[keyof GetApiV1OrdersByIdRefundsResponses];
+
+export type GetApiV1ProductsByIdReviewsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Products/{id}/reviews";
+};
+
+export type GetApiV1ProductsByIdReviewsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdReviewsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ProductsByIdReviewsResponse =
+  GetApiV1ProductsByIdReviewsResponses[keyof GetApiV1ProductsByIdReviewsResponses];
+
+export type GetApiV1ProductsByIdVariantsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Products/{id}/variants";
+};
+
+export type GetApiV1ProductsByIdVariantsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdVariantsResponses = {
+  /**
+   * Success
+   */
+  200: Array<ProductVariant>;
+};
+
+export type GetApiV1ProductsByIdVariantsResponse =
+  GetApiV1ProductsByIdVariantsResponses[keyof GetApiV1ProductsByIdVariantsResponses];
+
+export type GetApiV1ProductsByIdFavoritesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}/favorites";
+};
+
+export type GetApiV1ProductsByIdFavoritesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdFavoritesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Favorite>;
+};
+
+export type GetApiV1ProductsByIdFavoritesResponse =
+  GetApiV1ProductsByIdFavoritesResponses[keyof GetApiV1ProductsByIdFavoritesResponses];
+
+export type GetApiV1ProjectsByIdTasksData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Projects/{id}/tasks";
+};
+
+export type GetApiV1ProjectsByIdTasksErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProjectsByIdTasksResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ProjectsByIdTasksResponse =
+  GetApiV1ProjectsByIdTasksResponses[keyof GetApiV1ProjectsByIdTasksResponses];
+
+export type GetApiV1CartsByIdItemsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Carts/{id}/items";
+};
+
+export type GetApiV1CartsByIdItemsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CartsByIdItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<CartItem>;
+};
+
+export type GetApiV1CartsByIdItemsResponse = GetApiV1CartsByIdItemsResponses[keyof GetApiV1CartsByIdItemsResponses];
+
+export type GetApiV1WishlistsByIdItemsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Wishlists/{id}/items";
+};
+
+export type GetApiV1WishlistsByIdItemsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1WishlistsByIdItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<WishlistItem>;
+};
+
+export type GetApiV1WishlistsByIdItemsResponse =
+  GetApiV1WishlistsByIdItemsResponses[keyof GetApiV1WishlistsByIdItemsResponses];
+
+export type GetApiV1UsersByIdBadgesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/badges";
+};
+
+export type GetApiV1UsersByIdBadgesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdBadgesResponses = {
+  /**
+   * Success
+   */
+  200: Array<UserBadge>;
+};
+
+export type GetApiV1UsersByIdBadgesResponse = GetApiV1UsersByIdBadgesResponses[keyof GetApiV1UsersByIdBadgesResponses];
+
+export type GetApiV1HotelsByIdBookingsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Hotels/{id}/bookings";
+};
+
+export type GetApiV1HotelsByIdBookingsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1HotelsByIdBookingsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Booking>;
+};
+
+export type GetApiV1HotelsByIdBookingsResponse =
+  GetApiV1HotelsByIdBookingsResponses[keyof GetApiV1HotelsByIdBookingsResponses];
+
+export type GetApiV1ArticlesByIdTagsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Articles/{id}/tags";
+};
+
+export type GetApiV1ArticlesByIdTagsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ArticlesByIdTagsResponses = {
+  /**
+   * Success
+   */
+  200: Array<ArticleTag>;
+};
+
+export type GetApiV1ArticlesByIdTagsResponse =
+  GetApiV1ArticlesByIdTagsResponses[keyof GetApiV1ArticlesByIdTagsResponses];
+
+export type GetApiV1DepartmentsByIdEmployeesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Departments/{id}/employees";
+};
+
+export type GetApiV1DepartmentsByIdEmployeesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1DepartmentsByIdEmployeesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Employee>;
+};
+
+export type GetApiV1DepartmentsByIdEmployeesResponse =
+  GetApiV1DepartmentsByIdEmployeesResponses[keyof GetApiV1DepartmentsByIdEmployeesResponses];
+
+export type GetApiV1VendorsByIdTransactionsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Vendors/{id}/transactions";
+};
+
+export type GetApiV1VendorsByIdTransactionsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1VendorsByIdTransactionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Transaction>;
+};
+
+export type GetApiV1VendorsByIdTransactionsResponse =
+  GetApiV1VendorsByIdTransactionsResponses[keyof GetApiV1VendorsByIdTransactionsResponses];
+
+export type GetApiV1ReviewsByIdRepliesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Reviews/{id}/replies";
+};
+
+export type GetApiV1ReviewsByIdRepliesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ReviewsByIdRepliesResponses = {
+  /**
+   * Success
+   */
+  200: Array<ReviewReply>;
+};
+
+export type GetApiV1ReviewsByIdRepliesResponse =
+  GetApiV1ReviewsByIdRepliesResponses[keyof GetApiV1ReviewsByIdRepliesResponses];
+
+export type GetApiV1ConversationsByIdMessagesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Conversations/{id}/messages";
+};
+
+export type GetApiV1ConversationsByIdMessagesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ConversationsByIdMessagesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Message>;
+};
+
+export type GetApiV1ConversationsByIdMessagesResponse =
+  GetApiV1ConversationsByIdMessagesResponses[keyof GetApiV1ConversationsByIdMessagesResponses];
+
+export type GetApiV1CustomersByIdCartsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Customers/{id}/carts";
+};
+
+export type GetApiV1CustomersByIdCartsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdCartsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CustomersByIdCartsResponse =
+  GetApiV1CustomersByIdCartsResponses[keyof GetApiV1CustomersByIdCartsResponses];
+
+export type GetApiV1CustomersByIdWishlistsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Customers/{id}/wishlists";
+};
+
+export type GetApiV1CustomersByIdWishlistsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdWishlistsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CustomersByIdWishlistsResponse =
+  GetApiV1CustomersByIdWishlistsResponses[keyof GetApiV1CustomersByIdWishlistsResponses];
+
+export type GetApiV1CustomersByIdPaymentMethodsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Customers/{id}/paymentMethods";
+};
+
+export type GetApiV1CustomersByIdPaymentMethodsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdPaymentMethodsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CustomersByIdPaymentMethodsResponse =
+  GetApiV1CustomersByIdPaymentMethodsResponses[keyof GetApiV1CustomersByIdPaymentMethodsResponses];
+
+export type GetApiV1CustomersByIdAddressesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Customers/{id}/addresses";
+};
+
+export type GetApiV1CustomersByIdAddressesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdAddressesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CustomersByIdAddressesResponse =
+  GetApiV1CustomersByIdAddressesResponses[keyof GetApiV1CustomersByIdAddressesResponses];
+
+export type GetApiV1CustomersByIdLoyaltyAccountsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Customers/{id}/loyaltyAccounts";
+};
+
+export type GetApiV1CustomersByIdLoyaltyAccountsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdLoyaltyAccountsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CustomersByIdLoyaltyAccountsResponse =
+  GetApiV1CustomersByIdLoyaltyAccountsResponses[keyof GetApiV1CustomersByIdLoyaltyAccountsResponses];
+
+export type GetApiV1EmployeesByIdProjectsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Employees/{id}/projects";
+};
+
+export type GetApiV1EmployeesByIdProjectsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EmployeesByIdProjectsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1EmployeesByIdProjectsResponse =
+  GetApiV1EmployeesByIdProjectsResponses[keyof GetApiV1EmployeesByIdProjectsResponses];
+
+export type GetApiV1EmployeesByIdSkillsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Employees/{id}/skills";
+};
+
+export type GetApiV1EmployeesByIdSkillsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EmployeesByIdSkillsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1EmployeesByIdSkillsResponse =
+  GetApiV1EmployeesByIdSkillsResponses[keyof GetApiV1EmployeesByIdSkillsResponses];
+
+export type GetApiV1PostsByIdCommentsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Posts/{id}/comments";
+};
+
+export type GetApiV1PostsByIdCommentsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PostsByIdCommentsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1PostsByIdCommentsResponse =
+  GetApiV1PostsByIdCommentsResponses[keyof GetApiV1PostsByIdCommentsResponses];
+
+export type GetApiV1EventsByIdTicketsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Events/{id}/tickets";
+};
+
+export type GetApiV1EventsByIdTicketsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EventsByIdTicketsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1EventsByIdTicketsResponse =
+  GetApiV1EventsByIdTicketsResponses[keyof GetApiV1EventsByIdTicketsResponses];
+
+export type GetApiV1EventsByIdAttendeesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Events/{id}/attendees";
+};
+
+export type GetApiV1EventsByIdAttendeesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1EventsByIdAttendeesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1EventsByIdAttendeesResponse =
+  GetApiV1EventsByIdAttendeesResponses[keyof GetApiV1EventsByIdAttendeesResponses];
+
+export type GetApiV1PlaylistsByIdItemsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Playlists/{id}/items";
+};
+
+export type GetApiV1PlaylistsByIdItemsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PlaylistsByIdItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1PlaylistsByIdItemsResponse =
+  GetApiV1PlaylistsByIdItemsResponses[keyof GetApiV1PlaylistsByIdItemsResponses];
+
+export type GetApiV1ArtistsByIdAlbumsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Artists/{id}/albums";
+};
+
+export type GetApiV1ArtistsByIdAlbumsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ArtistsByIdAlbumsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ArtistsByIdAlbumsResponse =
+  GetApiV1ArtistsByIdAlbumsResponses[keyof GetApiV1ArtistsByIdAlbumsResponses];
+
+export type GetApiV1ArtistsByIdSongsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Artists/{id}/songs";
+};
+
+export type GetApiV1ArtistsByIdSongsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ArtistsByIdSongsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ArtistsByIdSongsResponse =
+  GetApiV1ArtistsByIdSongsResponses[keyof GetApiV1ArtistsByIdSongsResponses];
+
+export type GetApiV1AlbumsByIdSongsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Albums/{id}/songs";
+};
+
+export type GetApiV1AlbumsByIdSongsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1AlbumsByIdSongsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1AlbumsByIdSongsResponse = GetApiV1AlbumsByIdSongsResponses[keyof GetApiV1AlbumsByIdSongsResponses];
+
+export type GetApiV1GenresByIdMoviesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Genres/{id}/movies";
+};
+
+export type GetApiV1GenresByIdMoviesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1GenresByIdMoviesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1GenresByIdMoviesResponse =
+  GetApiV1GenresByIdMoviesResponses[keyof GetApiV1GenresByIdMoviesResponses];
+
+export type GetApiV1GenresByIdSongsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Genres/{id}/songs";
+};
+
+export type GetApiV1GenresByIdSongsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1GenresByIdSongsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1GenresByIdSongsResponse = GetApiV1GenresByIdSongsResponses[keyof GetApiV1GenresByIdSongsResponses];
+
+export type GetApiV1CountriesByIdCitiesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Countries/{id}/cities";
+};
+
+export type GetApiV1CountriesByIdCitiesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CountriesByIdCitiesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CountriesByIdCitiesResponse =
+  GetApiV1CountriesByIdCitiesResponses[keyof GetApiV1CountriesByIdCitiesResponses];
+
+export type GetApiV1WarehousesByIdInventoriesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Warehouses/{id}/inventories";
+};
+
+export type GetApiV1WarehousesByIdInventoriesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1WarehousesByIdInventoriesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1WarehousesByIdInventoriesResponse =
+  GetApiV1WarehousesByIdInventoriesResponses[keyof GetApiV1WarehousesByIdInventoriesResponses];
+
+export type GetApiV1InvoicesByIdPaymentsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Invoices/{id}/payments";
+};
+
+export type GetApiV1InvoicesByIdPaymentsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1InvoicesByIdPaymentsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1InvoicesByIdPaymentsResponse =
+  GetApiV1InvoicesByIdPaymentsResponses[keyof GetApiV1InvoicesByIdPaymentsResponses];
+
+export type GetApiV1InvoicesByIdItemsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Invoices/{id}/items";
+};
+
+export type GetApiV1InvoicesByIdItemsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1InvoicesByIdItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1InvoicesByIdItemsResponse =
+  GetApiV1InvoicesByIdItemsResponses[keyof GetApiV1InvoicesByIdItemsResponses];
+
+export type GetApiV1PlansByIdSubscriptionsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Plans/{id}/subscriptions";
+};
+
+export type GetApiV1PlansByIdSubscriptionsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PlansByIdSubscriptionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1PlansByIdSubscriptionsResponse =
+  GetApiV1PlansByIdSubscriptionsResponses[keyof GetApiV1PlansByIdSubscriptionsResponses];
+
+export type GetApiV1UsersByIdFavoritesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/favorites";
+};
+
+export type GetApiV1UsersByIdFavoritesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdFavoritesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1UsersByIdFavoritesResponse =
+  GetApiV1UsersByIdFavoritesResponses[keyof GetApiV1UsersByIdFavoritesResponses];
+
+export type GetApiV1UsersByIdNotificationsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/notifications";
+};
+
+export type GetApiV1UsersByIdNotificationsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdNotificationsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1UsersByIdNotificationsResponse =
+  GetApiV1UsersByIdNotificationsResponses[keyof GetApiV1UsersByIdNotificationsResponses];
+
+export type GetApiV1UsersByIdSessionsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/sessions";
+};
+
+export type GetApiV1UsersByIdSessionsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdSessionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1UsersByIdSessionsResponse =
+  GetApiV1UsersByIdSessionsResponses[keyof GetApiV1UsersByIdSessionsResponses];
+
+export type GetApiV1UsersByIdPageViewsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/pageViews";
+};
+
+export type GetApiV1UsersByIdPageViewsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdPageViewsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1UsersByIdPageViewsResponse =
+  GetApiV1UsersByIdPageViewsResponses[keyof GetApiV1UsersByIdPageViewsResponses];
+
+export type GetApiV1UsersByIdActivitiesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/activities";
+};
+
+export type GetApiV1UsersByIdActivitiesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdActivitiesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1UsersByIdActivitiesResponse =
+  GetApiV1UsersByIdActivitiesResponses[keyof GetApiV1UsersByIdActivitiesResponses];
+
+export type GetApiV1UsersByIdSearchQueriesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/searchQueries";
+};
+
+export type GetApiV1UsersByIdSearchQueriesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdSearchQueriesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1UsersByIdSearchQueriesResponse =
+  GetApiV1UsersByIdSearchQueriesResponses[keyof GetApiV1UsersByIdSearchQueriesResponses];
+
+export type GetApiV1ProductsByIdInventoryData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Products/{id}/inventory";
+};
+
+export type GetApiV1ProductsByIdInventoryErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdInventoryResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ProductsByIdInventoryResponse =
+  GetApiV1ProductsByIdInventoryResponses[keyof GetApiV1ProductsByIdInventoryResponses];
+
+export type GetApiV1ProductsByIdOrderItemsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}/orderItems";
+};
+
+export type GetApiV1ProductsByIdOrderItemsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdOrderItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ProductsByIdOrderItemsResponse =
+  GetApiV1ProductsByIdOrderItemsResponses[keyof GetApiV1ProductsByIdOrderItemsResponses];
+
+export type GetApiV1ProductsByIdSupplierProductsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}/supplierProducts";
+};
+
+export type GetApiV1ProductsByIdSupplierProductsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdSupplierProductsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ProductsByIdSupplierProductsResponse =
+  GetApiV1ProductsByIdSupplierProductsResponses[keyof GetApiV1ProductsByIdSupplierProductsResponses];
+
+export type GetApiV1OrdersByIdReturnsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Orders/{id}/returns";
+};
+
+export type GetApiV1OrdersByIdReturnsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrdersByIdReturnsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1OrdersByIdReturnsResponse =
+  GetApiV1OrdersByIdReturnsResponses[keyof GetApiV1OrdersByIdReturnsResponses];
+
+export type GetApiV1OrdersByIdCouponUsagesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Orders/{id}/couponUsages";
+};
+
+export type GetApiV1OrdersByIdCouponUsagesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrdersByIdCouponUsagesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1OrdersByIdCouponUsagesResponse =
+  GetApiV1OrdersByIdCouponUsagesResponses[keyof GetApiV1OrdersByIdCouponUsagesResponses];
+
+export type GetApiV1ShipmentsByIdEventsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Shipments/{id}/events";
+};
+
+export type GetApiV1ShipmentsByIdEventsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ShipmentsByIdEventsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1ShipmentsByIdEventsResponse =
+  GetApiV1ShipmentsByIdEventsResponses[keyof GetApiV1ShipmentsByIdEventsResponses];
+
+export type GetApiV1FlightsByIdBookingsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Flights/{id}/bookings";
+};
+
+export type GetApiV1FlightsByIdBookingsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1FlightsByIdBookingsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1FlightsByIdBookingsResponse =
+  GetApiV1FlightsByIdBookingsResponses[keyof GetApiV1FlightsByIdBookingsResponses];
+
+export type GetApiV1CompaniesByIdOfficesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Companies/{id}/offices";
+};
+
+export type GetApiV1CompaniesByIdOfficesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CompaniesByIdOfficesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1CompaniesByIdOfficesResponse =
+  GetApiV1CompaniesByIdOfficesResponses[keyof GetApiV1CompaniesByIdOfficesResponses];
+
+export type GetApiV1RecipesByIdIngredientsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Recipes/{id}/ingredients";
+};
+
+export type GetApiV1RecipesByIdIngredientsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RecipesByIdIngredientsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1RecipesByIdIngredientsResponse =
+  GetApiV1RecipesByIdIngredientsResponses[keyof GetApiV1RecipesByIdIngredientsResponses];
+
+export type GetApiV1RestaurantsByIdMenusData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Restaurants/{id}/menus";
+};
+
+export type GetApiV1RestaurantsByIdMenusErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RestaurantsByIdMenusResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1RestaurantsByIdMenusResponse =
+  GetApiV1RestaurantsByIdMenusResponses[keyof GetApiV1RestaurantsByIdMenusResponses];
+
+export type GetApiV1RestaurantMenusByIdItemsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/RestaurantMenus/{id}/items";
+};
+
+export type GetApiV1RestaurantMenusByIdItemsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1RestaurantMenusByIdItemsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1RestaurantMenusByIdItemsResponse =
+  GetApiV1RestaurantMenusByIdItemsResponses[keyof GetApiV1RestaurantMenusByIdItemsResponses];
+
+export type GetApiV1PromotionsByIdProductsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Promotions/{id}/products";
+};
+
+export type GetApiV1PromotionsByIdProductsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1PromotionsByIdProductsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1PromotionsByIdProductsResponse =
+  GetApiV1PromotionsByIdProductsResponses[keyof GetApiV1PromotionsByIdProductsResponses];
+
+export type GetApiV1BannersByIdPlacementsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Banners/{id}/placements";
+};
+
+export type GetApiV1BannersByIdPlacementsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1BannersByIdPlacementsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1BannersByIdPlacementsResponse =
+  GetApiV1BannersByIdPlacementsResponses[keyof GetApiV1BannersByIdPlacementsResponses];
+
+export type GetApiV1LoyaltyAccountsByIdTransactionsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/LoyaltyAccounts/{id}/transactions";
+};
+
+export type GetApiV1LoyaltyAccountsByIdTransactionsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1LoyaltyAccountsByIdTransactionsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1LoyaltyAccountsByIdTransactionsResponse =
+  GetApiV1LoyaltyAccountsByIdTransactionsResponses[keyof GetApiV1LoyaltyAccountsByIdTransactionsResponses];
+
+export type GetApiV1SupportTicketsByIdRepliesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/SupportTickets/{id}/replies";
+};
+
+export type GetApiV1SupportTicketsByIdRepliesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SupportTicketsByIdRepliesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1SupportTicketsByIdRepliesResponse =
+  GetApiV1SupportTicketsByIdRepliesResponses[keyof GetApiV1SupportTicketsByIdRepliesResponses];
+
+export type GetApiV1SuppliersByIdProductsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Suppliers/{id}/products";
+};
+
+export type GetApiV1SuppliersByIdProductsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1SuppliersByIdProductsResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1SuppliersByIdProductsResponse =
+  GetApiV1SuppliersByIdProductsResponses[keyof GetApiV1SuppliersByIdProductsResponses];

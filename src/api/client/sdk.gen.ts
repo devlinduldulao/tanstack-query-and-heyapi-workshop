@@ -5,46 +5,1582 @@ import { client } from "./client.gen";
 import type {
   DeleteApiV1ActivitiesByIdData,
   DeleteApiV1ActivitiesByIdResponses,
+  DeleteApiV1AddressesByIdData,
+  DeleteApiV1AddressesByIdResponses,
+  DeleteApiV1AlbumsByIdData,
+  DeleteApiV1AlbumsByIdResponses,
+  DeleteApiV1ArticlesByIdData,
+  DeleteApiV1ArticlesByIdResponses,
+  DeleteApiV1ArticleTagsByIdData,
+  DeleteApiV1ArticleTagsByIdResponses,
+  DeleteApiV1ArtistsByIdData,
+  DeleteApiV1ArtistsByIdResponses,
   DeleteApiV1AuthorsByIdData,
   DeleteApiV1AuthorsByIdResponses,
+  DeleteApiV1BadgesByIdData,
+  DeleteApiV1BadgesByIdResponses,
+  DeleteApiV1BannerPlacementsByIdData,
+  DeleteApiV1BannerPlacementsByIdResponses,
+  DeleteApiV1BannersByIdData,
+  DeleteApiV1BannersByIdResponses,
+  DeleteApiV1BookingsByIdData,
+  DeleteApiV1BookingsByIdResponses,
   DeleteApiV1BooksByIdData,
   DeleteApiV1BooksByIdResponses,
+  DeleteApiV1BrandsByIdData,
+  DeleteApiV1BrandsByIdResponses,
+  DeleteApiV1CarsByIdData,
+  DeleteApiV1CarsByIdResponses,
+  DeleteApiV1CartItemsByIdData,
+  DeleteApiV1CartItemsByIdResponses,
+  DeleteApiV1CartsByIdData,
+  DeleteApiV1CartsByIdResponses,
+  DeleteApiV1CategoriesByIdData,
+  DeleteApiV1CategoriesByIdResponses,
+  DeleteApiV1CitiesByIdData,
+  DeleteApiV1CitiesByIdResponses,
+  DeleteApiV1CommentsByIdData,
+  DeleteApiV1CommentsByIdResponses,
+  DeleteApiV1CompaniesByIdData,
+  DeleteApiV1CompaniesByIdResponses,
+  DeleteApiV1CompanyOfficesByIdData,
+  DeleteApiV1CompanyOfficesByIdResponses,
+  DeleteApiV1ConversationsByIdData,
+  DeleteApiV1ConversationsByIdResponses,
+  DeleteApiV1CountriesByIdData,
+  DeleteApiV1CountriesByIdResponses,
+  DeleteApiV1CouponsByIdData,
+  DeleteApiV1CouponsByIdResponses,
+  DeleteApiV1CouponUsagesByIdData,
+  DeleteApiV1CouponUsagesByIdResponses,
+  DeleteApiV1CoverPhotosByIdData,
+  DeleteApiV1CoverPhotosByIdResponses,
+  DeleteApiV1CurrenciesByIdData,
+  DeleteApiV1CurrenciesByIdResponses,
+  DeleteApiV1CustomerAddressesByIdData,
+  DeleteApiV1CustomerAddressesByIdResponses,
+  DeleteApiV1CustomersByIdData,
+  DeleteApiV1CustomersByIdResponses,
+  DeleteApiV1DepartmentsByIdData,
+  DeleteApiV1DepartmentsByIdResponses,
+  DeleteApiV1DiscountsByIdData,
+  DeleteApiV1DiscountsByIdResponses,
+  DeleteApiV1EmployeesByIdData,
+  DeleteApiV1EmployeesByIdResponses,
+  DeleteApiV1EmployeeSkillsByIdData,
+  DeleteApiV1EmployeeSkillsByIdResponses,
+  DeleteApiV1EventAttendeesByIdData,
+  DeleteApiV1EventAttendeesByIdResponses,
+  DeleteApiV1EventsByIdData,
+  DeleteApiV1EventsByIdResponses,
+  DeleteApiV1FavoritesByIdData,
+  DeleteApiV1FavoritesByIdResponses,
+  DeleteApiV1FilesByIdData,
+  DeleteApiV1FilesByIdResponses,
+  DeleteApiV1FlightBookingsByIdData,
+  DeleteApiV1FlightBookingsByIdResponses,
+  DeleteApiV1FlightsByIdData,
+  DeleteApiV1FlightsByIdResponses,
+  DeleteApiV1FoldersByIdData,
+  DeleteApiV1FoldersByIdResponses,
+  DeleteApiV1FollowsByIdData,
+  DeleteApiV1FollowsByIdResponses,
+  DeleteApiV1GenresByIdData,
+  DeleteApiV1GenresByIdResponses,
+  DeleteApiV1HotelsByIdData,
+  DeleteApiV1HotelsByIdResponses,
+  DeleteApiV1InventoriesByIdData,
+  DeleteApiV1InventoriesByIdResponses,
+  DeleteApiV1InvoiceItemsByIdData,
+  DeleteApiV1InvoiceItemsByIdResponses,
+  DeleteApiV1InvoicesByIdData,
+  DeleteApiV1InvoicesByIdResponses,
+  DeleteApiV1LanguagesByIdData,
+  DeleteApiV1LanguagesByIdResponses,
+  DeleteApiV1LikesByIdData,
+  DeleteApiV1LikesByIdResponses,
+  DeleteApiV1LogsByIdData,
+  DeleteApiV1LogsByIdResponses,
+  DeleteApiV1LoyaltyAccountsByIdData,
+  DeleteApiV1LoyaltyAccountsByIdResponses,
+  DeleteApiV1LoyaltyTransactionsByIdData,
+  DeleteApiV1LoyaltyTransactionsByIdResponses,
+  DeleteApiV1MatchesByIdData,
+  DeleteApiV1MatchesByIdResponses,
+  DeleteApiV1MenuItemsByIdData,
+  DeleteApiV1MenuItemsByIdResponses,
+  DeleteApiV1MessagesByIdData,
+  DeleteApiV1MessagesByIdResponses,
+  DeleteApiV1MoviesByIdData,
+  DeleteApiV1MoviesByIdResponses,
+  DeleteApiV1NotificationsByIdData,
+  DeleteApiV1NotificationsByIdResponses,
+  DeleteApiV1OrderItemsByIdData,
+  DeleteApiV1OrderItemsByIdResponses,
+  DeleteApiV1OrderNotesByIdData,
+  DeleteApiV1OrderNotesByIdResponses,
+  DeleteApiV1PageViewsByIdData,
+  DeleteApiV1PageViewsByIdResponses,
+  DeleteApiV1PaymentMethodsByIdData,
+  DeleteApiV1PaymentMethodsByIdResponses,
+  DeleteApiV1PaymentsByIdData,
+  DeleteApiV1PaymentsByIdResponses,
+  DeleteApiV1PermissionsByIdData,
+  DeleteApiV1PermissionsByIdResponses,
+  DeleteApiV1PlansByIdData,
+  DeleteApiV1PlansByIdResponses,
+  DeleteApiV1PlayersByIdData,
+  DeleteApiV1PlayersByIdResponses,
+  DeleteApiV1PlaylistItemsByIdData,
+  DeleteApiV1PlaylistItemsByIdResponses,
+  DeleteApiV1PlaylistsByIdData,
+  DeleteApiV1PlaylistsByIdResponses,
+  DeleteApiV1PostsByIdData,
+  DeleteApiV1PostsByIdResponses,
+  DeleteApiV1PreferencesByIdData,
+  DeleteApiV1PreferencesByIdResponses,
+  DeleteApiV1ProductsByIdData,
+  DeleteApiV1ProductsByIdResponses,
+  DeleteApiV1ProductVariantsByIdData,
+  DeleteApiV1ProductVariantsByIdResponses,
+  DeleteApiV1ProjectsByIdData,
+  DeleteApiV1ProjectsByIdResponses,
+  DeleteApiV1PromotionProductsByIdData,
+  DeleteApiV1PromotionProductsByIdResponses,
+  DeleteApiV1PromotionsByIdData,
+  DeleteApiV1PromotionsByIdResponses,
+  DeleteApiV1RatingsByIdData,
+  DeleteApiV1RatingsByIdResponses,
+  DeleteApiV1RecipeIngredientsByIdData,
+  DeleteApiV1RecipeIngredientsByIdResponses,
+  DeleteApiV1RecipesByIdData,
+  DeleteApiV1RecipesByIdResponses,
+  DeleteApiV1RefundsByIdData,
+  DeleteApiV1RefundsByIdResponses,
+  DeleteApiV1ReportsByIdData,
+  DeleteApiV1ReportsByIdResponses,
+  DeleteApiV1RestaurantMenusByIdData,
+  DeleteApiV1RestaurantMenusByIdResponses,
+  DeleteApiV1RestaurantsByIdData,
+  DeleteApiV1RestaurantsByIdResponses,
+  DeleteApiV1ReturnsByIdData,
+  DeleteApiV1ReturnsByIdResponses,
+  DeleteApiV1ReviewRepliesByIdData,
+  DeleteApiV1ReviewRepliesByIdResponses,
+  DeleteApiV1ReviewsByIdData,
+  DeleteApiV1ReviewsByIdResponses,
+  DeleteApiV1RolesByIdData,
+  DeleteApiV1RolesByIdResponses,
+  DeleteApiV1SearchQueriesByIdData,
+  DeleteApiV1SearchQueriesByIdResponses,
+  DeleteApiV1SessionsByIdData,
+  DeleteApiV1SessionsByIdResponses,
+  DeleteApiV1ShipmentEventsByIdData,
+  DeleteApiV1ShipmentEventsByIdResponses,
+  DeleteApiV1ShipmentsByIdData,
+  DeleteApiV1ShipmentsByIdResponses,
+  DeleteApiV1SongsByIdData,
+  DeleteApiV1SongsByIdResponses,
+  DeleteApiV1SubscriptionsByIdData,
+  DeleteApiV1SubscriptionsByIdResponses,
+  DeleteApiV1SupplierProductsByIdData,
+  DeleteApiV1SupplierProductsByIdResponses,
+  DeleteApiV1SuppliersByIdData,
+  DeleteApiV1SuppliersByIdResponses,
+  DeleteApiV1SupportTicketsByIdData,
+  DeleteApiV1SupportTicketsByIdResponses,
+  DeleteApiV1TagsByIdData,
+  DeleteApiV1TagsByIdResponses,
+  DeleteApiV1TasksByIdData,
+  DeleteApiV1TasksByIdResponses,
+  DeleteApiV1TeamsByIdData,
+  DeleteApiV1TeamsByIdResponses,
+  DeleteApiV1TicketRepliesByIdData,
+  DeleteApiV1TicketRepliesByIdResponses,
+  DeleteApiV1TicketsByIdData,
+  DeleteApiV1TicketsByIdResponses,
+  DeleteApiV1TransactionsByIdData,
+  DeleteApiV1TransactionsByIdResponses,
+  DeleteApiV1UserActivityByIdData,
+  DeleteApiV1UserActivityByIdResponses,
+  DeleteApiV1UserBadgesByIdData,
+  DeleteApiV1UserBadgesByIdResponses,
   DeleteApiV1UsersByIdData,
   DeleteApiV1UsersByIdResponses,
+  DeleteApiV1VendorsByIdData,
+  DeleteApiV1VendorsByIdResponses,
+  DeleteApiV1VenuesByIdData,
+  DeleteApiV1VenuesByIdResponses,
+  DeleteApiV1WarehousesByIdData,
+  DeleteApiV1WarehousesByIdResponses,
+  DeleteApiV1WishlistItemsByIdData,
+  DeleteApiV1WishlistItemsByIdResponses,
+  DeleteApiV1WishlistsByIdData,
+  DeleteApiV1WishlistsByIdResponses,
   GetApiV1ActivitiesByIdData,
+  GetApiV1ActivitiesByIdErrors,
   GetApiV1ActivitiesByIdResponses,
   GetApiV1ActivitiesData,
   GetApiV1ActivitiesResponses,
+  GetApiV1AddressesByIdData,
+  GetApiV1AddressesByIdErrors,
+  GetApiV1AddressesByIdResponses,
+  GetApiV1AddressesData,
+  GetApiV1AddressesResponses,
+  GetApiV1AlbumsByIdData,
+  GetApiV1AlbumsByIdErrors,
+  GetApiV1AlbumsByIdResponses,
+  GetApiV1AlbumsByIdSongsData,
+  GetApiV1AlbumsByIdSongsErrors,
+  GetApiV1AlbumsByIdSongsResponses,
+  GetApiV1AlbumsData,
+  GetApiV1AlbumsResponses,
+  GetApiV1ArticlesByIdData,
+  GetApiV1ArticlesByIdErrors,
+  GetApiV1ArticlesByIdResponses,
+  GetApiV1ArticlesByIdTagsData,
+  GetApiV1ArticlesByIdTagsErrors,
+  GetApiV1ArticlesByIdTagsResponses,
+  GetApiV1ArticlesData,
+  GetApiV1ArticlesResponses,
+  GetApiV1ArticleTagsByIdData,
+  GetApiV1ArticleTagsByIdErrors,
+  GetApiV1ArticleTagsByIdResponses,
+  GetApiV1ArticleTagsData,
+  GetApiV1ArticleTagsResponses,
+  GetApiV1ArtistsByIdAlbumsData,
+  GetApiV1ArtistsByIdAlbumsErrors,
+  GetApiV1ArtistsByIdAlbumsResponses,
+  GetApiV1ArtistsByIdData,
+  GetApiV1ArtistsByIdErrors,
+  GetApiV1ArtistsByIdResponses,
+  GetApiV1ArtistsByIdSongsData,
+  GetApiV1ArtistsByIdSongsErrors,
+  GetApiV1ArtistsByIdSongsResponses,
+  GetApiV1ArtistsData,
+  GetApiV1ArtistsResponses,
   GetApiV1AuthorsAuthorsBooksByIdBookData,
   GetApiV1AuthorsAuthorsBooksByIdBookResponses,
   GetApiV1AuthorsByIdData,
+  GetApiV1AuthorsByIdErrors,
   GetApiV1AuthorsByIdResponses,
   GetApiV1AuthorsData,
   GetApiV1AuthorsResponses,
+  GetApiV1BadgesByIdData,
+  GetApiV1BadgesByIdErrors,
+  GetApiV1BadgesByIdResponses,
+  GetApiV1BadgesData,
+  GetApiV1BadgesResponses,
+  GetApiV1BannerPlacementsByIdData,
+  GetApiV1BannerPlacementsByIdErrors,
+  GetApiV1BannerPlacementsByIdResponses,
+  GetApiV1BannerPlacementsData,
+  GetApiV1BannerPlacementsResponses,
+  GetApiV1BannersByIdData,
+  GetApiV1BannersByIdErrors,
+  GetApiV1BannersByIdPlacementsData,
+  GetApiV1BannersByIdPlacementsErrors,
+  GetApiV1BannersByIdPlacementsResponses,
+  GetApiV1BannersByIdResponses,
+  GetApiV1BannersData,
+  GetApiV1BannersResponses,
+  GetApiV1BookingsByIdData,
+  GetApiV1BookingsByIdErrors,
+  GetApiV1BookingsByIdResponses,
+  GetApiV1BookingsData,
+  GetApiV1BookingsResponses,
+  GetApiV1BooksByIdAuthorsData,
+  GetApiV1BooksByIdAuthorsErrors,
+  GetApiV1BooksByIdAuthorsResponses,
+  GetApiV1BooksByIdCoverPhotosData,
+  GetApiV1BooksByIdCoverPhotosErrors,
+  GetApiV1BooksByIdCoverPhotosResponses,
   GetApiV1BooksByIdData,
+  GetApiV1BooksByIdErrors,
   GetApiV1BooksByIdResponses,
   GetApiV1BooksData,
   GetApiV1BooksResponses,
+  GetApiV1BrandsByIdData,
+  GetApiV1BrandsByIdErrors,
+  GetApiV1BrandsByIdResponses,
+  GetApiV1BrandsData,
+  GetApiV1BrandsResponses,
+  GetApiV1CarsByIdData,
+  GetApiV1CarsByIdErrors,
+  GetApiV1CarsByIdResponses,
+  GetApiV1CarsData,
+  GetApiV1CarsResponses,
+  GetApiV1CartItemsByIdData,
+  GetApiV1CartItemsByIdErrors,
+  GetApiV1CartItemsByIdResponses,
+  GetApiV1CartItemsData,
+  GetApiV1CartItemsResponses,
+  GetApiV1CartsByIdData,
+  GetApiV1CartsByIdErrors,
+  GetApiV1CartsByIdItemsData,
+  GetApiV1CartsByIdItemsErrors,
+  GetApiV1CartsByIdItemsResponses,
+  GetApiV1CartsByIdResponses,
+  GetApiV1CartsData,
+  GetApiV1CartsResponses,
+  GetApiV1CategoriesByIdData,
+  GetApiV1CategoriesByIdErrors,
+  GetApiV1CategoriesByIdResponses,
+  GetApiV1CategoriesData,
+  GetApiV1CategoriesResponses,
+  GetApiV1CitiesByIdData,
+  GetApiV1CitiesByIdErrors,
+  GetApiV1CitiesByIdResponses,
+  GetApiV1CitiesData,
+  GetApiV1CitiesResponses,
+  GetApiV1CommentsByIdData,
+  GetApiV1CommentsByIdErrors,
+  GetApiV1CommentsByIdResponses,
+  GetApiV1CommentsData,
+  GetApiV1CommentsResponses,
+  GetApiV1CompaniesByIdData,
+  GetApiV1CompaniesByIdErrors,
+  GetApiV1CompaniesByIdOfficesData,
+  GetApiV1CompaniesByIdOfficesErrors,
+  GetApiV1CompaniesByIdOfficesResponses,
+  GetApiV1CompaniesByIdResponses,
+  GetApiV1CompaniesData,
+  GetApiV1CompaniesResponses,
+  GetApiV1CompanyOfficesByIdData,
+  GetApiV1CompanyOfficesByIdErrors,
+  GetApiV1CompanyOfficesByIdResponses,
+  GetApiV1CompanyOfficesData,
+  GetApiV1CompanyOfficesResponses,
+  GetApiV1ConversationsByIdData,
+  GetApiV1ConversationsByIdErrors,
+  GetApiV1ConversationsByIdMessagesData,
+  GetApiV1ConversationsByIdMessagesErrors,
+  GetApiV1ConversationsByIdMessagesResponses,
+  GetApiV1ConversationsByIdResponses,
+  GetApiV1ConversationsData,
+  GetApiV1ConversationsResponses,
+  GetApiV1CountriesByIdCitiesData,
+  GetApiV1CountriesByIdCitiesErrors,
+  GetApiV1CountriesByIdCitiesResponses,
+  GetApiV1CountriesByIdData,
+  GetApiV1CountriesByIdErrors,
+  GetApiV1CountriesByIdResponses,
+  GetApiV1CountriesData,
+  GetApiV1CountriesResponses,
+  GetApiV1CouponsByIdData,
+  GetApiV1CouponsByIdErrors,
+  GetApiV1CouponsByIdResponses,
+  GetApiV1CouponsData,
+  GetApiV1CouponsResponses,
+  GetApiV1CouponUsagesByIdData,
+  GetApiV1CouponUsagesByIdErrors,
+  GetApiV1CouponUsagesByIdResponses,
+  GetApiV1CouponUsagesData,
+  GetApiV1CouponUsagesResponses,
+  GetApiV1CoverPhotosBooksCoversByIdBookData,
+  GetApiV1CoverPhotosBooksCoversByIdBookResponses,
+  GetApiV1CoverPhotosByIdData,
+  GetApiV1CoverPhotosByIdErrors,
+  GetApiV1CoverPhotosByIdResponses,
+  GetApiV1CoverPhotosData,
+  GetApiV1CoverPhotosResponses,
+  GetApiV1CurrenciesByIdData,
+  GetApiV1CurrenciesByIdErrors,
+  GetApiV1CurrenciesByIdResponses,
+  GetApiV1CurrenciesData,
+  GetApiV1CurrenciesResponses,
+  GetApiV1CustomerAddressesByIdData,
+  GetApiV1CustomerAddressesByIdErrors,
+  GetApiV1CustomerAddressesByIdResponses,
+  GetApiV1CustomerAddressesData,
+  GetApiV1CustomerAddressesResponses,
+  GetApiV1CustomersByIdAddressesData,
+  GetApiV1CustomersByIdAddressesErrors,
+  GetApiV1CustomersByIdAddressesResponses,
+  GetApiV1CustomersByIdCartsData,
+  GetApiV1CustomersByIdCartsErrors,
+  GetApiV1CustomersByIdCartsResponses,
+  GetApiV1CustomersByIdData,
+  GetApiV1CustomersByIdErrors,
+  GetApiV1CustomersByIdLoyaltyAccountsData,
+  GetApiV1CustomersByIdLoyaltyAccountsErrors,
+  GetApiV1CustomersByIdLoyaltyAccountsResponses,
+  GetApiV1CustomersByIdOrdersData,
+  GetApiV1CustomersByIdOrdersErrors,
+  GetApiV1CustomersByIdOrdersResponses,
+  GetApiV1CustomersByIdPaymentMethodsData,
+  GetApiV1CustomersByIdPaymentMethodsErrors,
+  GetApiV1CustomersByIdPaymentMethodsResponses,
+  GetApiV1CustomersByIdResponses,
+  GetApiV1CustomersByIdReviewsData,
+  GetApiV1CustomersByIdReviewsErrors,
+  GetApiV1CustomersByIdReviewsResponses,
+  GetApiV1CustomersByIdWishlistsData,
+  GetApiV1CustomersByIdWishlistsErrors,
+  GetApiV1CustomersByIdWishlistsResponses,
+  GetApiV1CustomersData,
+  GetApiV1CustomersResponses,
+  GetApiV1DepartmentsByIdData,
+  GetApiV1DepartmentsByIdEmployeesData,
+  GetApiV1DepartmentsByIdEmployeesErrors,
+  GetApiV1DepartmentsByIdEmployeesResponses,
+  GetApiV1DepartmentsByIdErrors,
+  GetApiV1DepartmentsByIdResponses,
+  GetApiV1DepartmentsData,
+  GetApiV1DepartmentsResponses,
+  GetApiV1DiscountsByIdData,
+  GetApiV1DiscountsByIdErrors,
+  GetApiV1DiscountsByIdResponses,
+  GetApiV1DiscountsData,
+  GetApiV1DiscountsResponses,
+  GetApiV1EmployeesByIdData,
+  GetApiV1EmployeesByIdErrors,
+  GetApiV1EmployeesByIdProjectsData,
+  GetApiV1EmployeesByIdProjectsErrors,
+  GetApiV1EmployeesByIdProjectsResponses,
+  GetApiV1EmployeesByIdResponses,
+  GetApiV1EmployeesByIdSkillsData,
+  GetApiV1EmployeesByIdSkillsErrors,
+  GetApiV1EmployeesByIdSkillsResponses,
+  GetApiV1EmployeesData,
+  GetApiV1EmployeeSkillsByIdData,
+  GetApiV1EmployeeSkillsByIdErrors,
+  GetApiV1EmployeeSkillsByIdResponses,
+  GetApiV1EmployeeSkillsData,
+  GetApiV1EmployeeSkillsResponses,
+  GetApiV1EmployeesResponses,
+  GetApiV1EventAttendeesByIdData,
+  GetApiV1EventAttendeesByIdErrors,
+  GetApiV1EventAttendeesByIdResponses,
+  GetApiV1EventAttendeesData,
+  GetApiV1EventAttendeesResponses,
+  GetApiV1EventsByIdAttendeesData,
+  GetApiV1EventsByIdAttendeesErrors,
+  GetApiV1EventsByIdAttendeesResponses,
+  GetApiV1EventsByIdData,
+  GetApiV1EventsByIdErrors,
+  GetApiV1EventsByIdResponses,
+  GetApiV1EventsByIdTicketsData,
+  GetApiV1EventsByIdTicketsErrors,
+  GetApiV1EventsByIdTicketsResponses,
+  GetApiV1EventsData,
+  GetApiV1EventsResponses,
+  GetApiV1FavoritesByIdData,
+  GetApiV1FavoritesByIdErrors,
+  GetApiV1FavoritesByIdResponses,
+  GetApiV1FavoritesData,
+  GetApiV1FavoritesResponses,
+  GetApiV1FilesByIdData,
+  GetApiV1FilesByIdErrors,
+  GetApiV1FilesByIdResponses,
+  GetApiV1FilesData,
+  GetApiV1FilesResponses,
+  GetApiV1FlightBookingsByIdData,
+  GetApiV1FlightBookingsByIdErrors,
+  GetApiV1FlightBookingsByIdResponses,
+  GetApiV1FlightBookingsData,
+  GetApiV1FlightBookingsResponses,
+  GetApiV1FlightsByIdBookingsData,
+  GetApiV1FlightsByIdBookingsErrors,
+  GetApiV1FlightsByIdBookingsResponses,
+  GetApiV1FlightsByIdData,
+  GetApiV1FlightsByIdErrors,
+  GetApiV1FlightsByIdResponses,
+  GetApiV1FlightsData,
+  GetApiV1FlightsResponses,
+  GetApiV1FoldersByIdData,
+  GetApiV1FoldersByIdErrors,
+  GetApiV1FoldersByIdResponses,
+  GetApiV1FoldersData,
+  GetApiV1FoldersResponses,
+  GetApiV1FollowsByIdData,
+  GetApiV1FollowsByIdErrors,
+  GetApiV1FollowsByIdResponses,
+  GetApiV1FollowsData,
+  GetApiV1FollowsResponses,
+  GetApiV1GenresByIdData,
+  GetApiV1GenresByIdErrors,
+  GetApiV1GenresByIdMoviesData,
+  GetApiV1GenresByIdMoviesErrors,
+  GetApiV1GenresByIdMoviesResponses,
+  GetApiV1GenresByIdResponses,
+  GetApiV1GenresByIdSongsData,
+  GetApiV1GenresByIdSongsErrors,
+  GetApiV1GenresByIdSongsResponses,
+  GetApiV1GenresData,
+  GetApiV1GenresResponses,
+  GetApiV1HotelsByIdBookingsData,
+  GetApiV1HotelsByIdBookingsErrors,
+  GetApiV1HotelsByIdBookingsResponses,
+  GetApiV1HotelsByIdData,
+  GetApiV1HotelsByIdErrors,
+  GetApiV1HotelsByIdResponses,
+  GetApiV1HotelsData,
+  GetApiV1HotelsResponses,
+  GetApiV1InventoriesByIdData,
+  GetApiV1InventoriesByIdErrors,
+  GetApiV1InventoriesByIdResponses,
+  GetApiV1InventoriesData,
+  GetApiV1InventoriesResponses,
+  GetApiV1InvoiceItemsByIdData,
+  GetApiV1InvoiceItemsByIdErrors,
+  GetApiV1InvoiceItemsByIdResponses,
+  GetApiV1InvoiceItemsData,
+  GetApiV1InvoiceItemsResponses,
+  GetApiV1InvoicesByIdData,
+  GetApiV1InvoicesByIdErrors,
+  GetApiV1InvoicesByIdItemsData,
+  GetApiV1InvoicesByIdItemsErrors,
+  GetApiV1InvoicesByIdItemsResponses,
+  GetApiV1InvoicesByIdPaymentsData,
+  GetApiV1InvoicesByIdPaymentsErrors,
+  GetApiV1InvoicesByIdPaymentsResponses,
+  GetApiV1InvoicesByIdResponses,
+  GetApiV1InvoicesData,
+  GetApiV1InvoicesResponses,
+  GetApiV1LanguagesByIdData,
+  GetApiV1LanguagesByIdErrors,
+  GetApiV1LanguagesByIdResponses,
+  GetApiV1LanguagesData,
+  GetApiV1LanguagesResponses,
+  GetApiV1LikesByIdData,
+  GetApiV1LikesByIdErrors,
+  GetApiV1LikesByIdResponses,
+  GetApiV1LikesData,
+  GetApiV1LikesResponses,
+  GetApiV1LogsByIdData,
+  GetApiV1LogsByIdErrors,
+  GetApiV1LogsByIdResponses,
+  GetApiV1LogsData,
+  GetApiV1LogsResponses,
+  GetApiV1LoyaltyAccountsByIdData,
+  GetApiV1LoyaltyAccountsByIdErrors,
+  GetApiV1LoyaltyAccountsByIdResponses,
+  GetApiV1LoyaltyAccountsByIdTransactionsData,
+  GetApiV1LoyaltyAccountsByIdTransactionsErrors,
+  GetApiV1LoyaltyAccountsByIdTransactionsResponses,
+  GetApiV1LoyaltyAccountsData,
+  GetApiV1LoyaltyAccountsResponses,
+  GetApiV1LoyaltyTransactionsByIdData,
+  GetApiV1LoyaltyTransactionsByIdErrors,
+  GetApiV1LoyaltyTransactionsByIdResponses,
+  GetApiV1LoyaltyTransactionsData,
+  GetApiV1LoyaltyTransactionsResponses,
+  GetApiV1MatchesByIdData,
+  GetApiV1MatchesByIdErrors,
+  GetApiV1MatchesByIdResponses,
+  GetApiV1MatchesData,
+  GetApiV1MatchesResponses,
+  GetApiV1MenuItemsByIdData,
+  GetApiV1MenuItemsByIdErrors,
+  GetApiV1MenuItemsByIdResponses,
+  GetApiV1MenuItemsData,
+  GetApiV1MenuItemsResponses,
+  GetApiV1MessagesByIdData,
+  GetApiV1MessagesByIdErrors,
+  GetApiV1MessagesByIdResponses,
+  GetApiV1MessagesData,
+  GetApiV1MessagesResponses,
+  GetApiV1MoviesByIdData,
+  GetApiV1MoviesByIdErrors,
+  GetApiV1MoviesByIdResponses,
+  GetApiV1MoviesData,
+  GetApiV1MoviesResponses,
+  GetApiV1NotificationsByIdData,
+  GetApiV1NotificationsByIdErrors,
+  GetApiV1NotificationsByIdResponses,
+  GetApiV1NotificationsData,
+  GetApiV1NotificationsResponses,
+  GetApiV1OrderItemsByIdData,
+  GetApiV1OrderItemsByIdErrors,
+  GetApiV1OrderItemsByIdResponses,
+  GetApiV1OrderItemsData,
+  GetApiV1OrderItemsResponses,
+  GetApiV1OrderNotesByIdData,
+  GetApiV1OrderNotesByIdErrors,
+  GetApiV1OrderNotesByIdResponses,
+  GetApiV1OrdersByIdCouponUsagesData,
+  GetApiV1OrdersByIdCouponUsagesErrors,
+  GetApiV1OrdersByIdCouponUsagesResponses,
+  GetApiV1OrdersByIdRefundsData,
+  GetApiV1OrdersByIdRefundsErrors,
+  GetApiV1OrdersByIdRefundsResponses,
+  GetApiV1OrdersByIdReturnsData,
+  GetApiV1OrdersByIdReturnsErrors,
+  GetApiV1OrdersByIdReturnsResponses,
+  GetApiV1OrdersData,
+  GetApiV1OrdersResponses,
+  GetApiV1PageViewsByIdData,
+  GetApiV1PageViewsByIdErrors,
+  GetApiV1PageViewsByIdResponses,
+  GetApiV1PageViewsData,
+  GetApiV1PageViewsResponses,
+  GetApiV1PaymentMethodsByIdData,
+  GetApiV1PaymentMethodsByIdErrors,
+  GetApiV1PaymentMethodsByIdResponses,
+  GetApiV1PaymentMethodsData,
+  GetApiV1PaymentMethodsResponses,
+  GetApiV1PaymentsByIdData,
+  GetApiV1PaymentsByIdErrors,
+  GetApiV1PaymentsByIdResponses,
+  GetApiV1PaymentsData,
+  GetApiV1PaymentsResponses,
+  GetApiV1PermissionsByIdData,
+  GetApiV1PermissionsByIdErrors,
+  GetApiV1PermissionsByIdResponses,
+  GetApiV1PermissionsData,
+  GetApiV1PermissionsResponses,
+  GetApiV1PlansByIdData,
+  GetApiV1PlansByIdErrors,
+  GetApiV1PlansByIdResponses,
+  GetApiV1PlansByIdSubscriptionsData,
+  GetApiV1PlansByIdSubscriptionsErrors,
+  GetApiV1PlansByIdSubscriptionsResponses,
+  GetApiV1PlansData,
+  GetApiV1PlansResponses,
+  GetApiV1PlayersByIdData,
+  GetApiV1PlayersByIdErrors,
+  GetApiV1PlayersByIdResponses,
+  GetApiV1PlayersData,
+  GetApiV1PlayersResponses,
+  GetApiV1PlaylistItemsByIdData,
+  GetApiV1PlaylistItemsByIdErrors,
+  GetApiV1PlaylistItemsByIdResponses,
+  GetApiV1PlaylistItemsData,
+  GetApiV1PlaylistItemsResponses,
+  GetApiV1PlaylistsByIdData,
+  GetApiV1PlaylistsByIdErrors,
+  GetApiV1PlaylistsByIdItemsData,
+  GetApiV1PlaylistsByIdItemsErrors,
+  GetApiV1PlaylistsByIdItemsResponses,
+  GetApiV1PlaylistsByIdResponses,
+  GetApiV1PlaylistsData,
+  GetApiV1PlaylistsResponses,
+  GetApiV1PostsByIdCommentsData,
+  GetApiV1PostsByIdCommentsErrors,
+  GetApiV1PostsByIdCommentsResponses,
+  GetApiV1PostsByIdData,
+  GetApiV1PostsByIdErrors,
+  GetApiV1PostsByIdResponses,
+  GetApiV1PostsData,
+  GetApiV1PostsResponses,
+  GetApiV1PreferencesByIdData,
+  GetApiV1PreferencesByIdErrors,
+  GetApiV1PreferencesByIdResponses,
+  GetApiV1PreferencesData,
+  GetApiV1PreferencesResponses,
+  GetApiV1ProductsByIdData,
+  GetApiV1ProductsByIdErrors,
+  GetApiV1ProductsByIdFavoritesData,
+  GetApiV1ProductsByIdFavoritesErrors,
+  GetApiV1ProductsByIdFavoritesResponses,
+  GetApiV1ProductsByIdInventoryData,
+  GetApiV1ProductsByIdInventoryErrors,
+  GetApiV1ProductsByIdInventoryResponses,
+  GetApiV1ProductsByIdOrderItemsData,
+  GetApiV1ProductsByIdOrderItemsErrors,
+  GetApiV1ProductsByIdOrderItemsResponses,
+  GetApiV1ProductsByIdResponses,
+  GetApiV1ProductsByIdReviewsData,
+  GetApiV1ProductsByIdReviewsErrors,
+  GetApiV1ProductsByIdReviewsResponses,
+  GetApiV1ProductsByIdSupplierProductsData,
+  GetApiV1ProductsByIdSupplierProductsErrors,
+  GetApiV1ProductsByIdSupplierProductsResponses,
+  GetApiV1ProductsByIdVariantsData,
+  GetApiV1ProductsByIdVariantsErrors,
+  GetApiV1ProductsByIdVariantsResponses,
+  GetApiV1ProductsData,
+  GetApiV1ProductsResponses,
+  GetApiV1ProductVariantsByIdData,
+  GetApiV1ProductVariantsByIdErrors,
+  GetApiV1ProductVariantsByIdResponses,
+  GetApiV1ProductVariantsData,
+  GetApiV1ProductVariantsResponses,
+  GetApiV1ProjectsByIdData,
+  GetApiV1ProjectsByIdErrors,
+  GetApiV1ProjectsByIdResponses,
+  GetApiV1ProjectsByIdTasksData,
+  GetApiV1ProjectsByIdTasksErrors,
+  GetApiV1ProjectsByIdTasksResponses,
+  GetApiV1ProjectsData,
+  GetApiV1ProjectsResponses,
+  GetApiV1PromotionProductsByIdData,
+  GetApiV1PromotionProductsByIdErrors,
+  GetApiV1PromotionProductsByIdResponses,
+  GetApiV1PromotionProductsData,
+  GetApiV1PromotionProductsResponses,
+  GetApiV1PromotionsByIdData,
+  GetApiV1PromotionsByIdErrors,
+  GetApiV1PromotionsByIdProductsData,
+  GetApiV1PromotionsByIdProductsErrors,
+  GetApiV1PromotionsByIdProductsResponses,
+  GetApiV1PromotionsByIdResponses,
+  GetApiV1PromotionsData,
+  GetApiV1PromotionsResponses,
+  GetApiV1RatingsByIdData,
+  GetApiV1RatingsByIdErrors,
+  GetApiV1RatingsByIdResponses,
+  GetApiV1RatingsData,
+  GetApiV1RatingsResponses,
+  GetApiV1RecipeIngredientsByIdData,
+  GetApiV1RecipeIngredientsByIdErrors,
+  GetApiV1RecipeIngredientsByIdResponses,
+  GetApiV1RecipeIngredientsData,
+  GetApiV1RecipeIngredientsResponses,
+  GetApiV1RecipesByIdData,
+  GetApiV1RecipesByIdErrors,
+  GetApiV1RecipesByIdIngredientsData,
+  GetApiV1RecipesByIdIngredientsErrors,
+  GetApiV1RecipesByIdIngredientsResponses,
+  GetApiV1RecipesByIdResponses,
+  GetApiV1RecipesData,
+  GetApiV1RecipesResponses,
+  GetApiV1RefundsByIdData,
+  GetApiV1RefundsByIdErrors,
+  GetApiV1RefundsByIdResponses,
+  GetApiV1RefundsData,
+  GetApiV1RefundsResponses,
+  GetApiV1ReportsByIdData,
+  GetApiV1ReportsByIdErrors,
+  GetApiV1ReportsByIdResponses,
+  GetApiV1ReportsData,
+  GetApiV1ReportsResponses,
+  GetApiV1RestaurantMenusByIdData,
+  GetApiV1RestaurantMenusByIdErrors,
+  GetApiV1RestaurantMenusByIdItemsData,
+  GetApiV1RestaurantMenusByIdItemsErrors,
+  GetApiV1RestaurantMenusByIdItemsResponses,
+  GetApiV1RestaurantMenusByIdResponses,
+  GetApiV1RestaurantMenusData,
+  GetApiV1RestaurantMenusResponses,
+  GetApiV1RestaurantsByIdData,
+  GetApiV1RestaurantsByIdErrors,
+  GetApiV1RestaurantsByIdMenusData,
+  GetApiV1RestaurantsByIdMenusErrors,
+  GetApiV1RestaurantsByIdMenusResponses,
+  GetApiV1RestaurantsByIdResponses,
+  GetApiV1RestaurantsData,
+  GetApiV1RestaurantsResponses,
+  GetApiV1ReturnsByIdData,
+  GetApiV1ReturnsByIdErrors,
+  GetApiV1ReturnsByIdResponses,
+  GetApiV1ReturnsData,
+  GetApiV1ReturnsResponses,
+  GetApiV1ReviewRepliesByIdData,
+  GetApiV1ReviewRepliesByIdErrors,
+  GetApiV1ReviewRepliesByIdResponses,
+  GetApiV1ReviewRepliesData,
+  GetApiV1ReviewRepliesResponses,
+  GetApiV1ReviewsByIdData,
+  GetApiV1ReviewsByIdErrors,
+  GetApiV1ReviewsByIdRepliesData,
+  GetApiV1ReviewsByIdRepliesErrors,
+  GetApiV1ReviewsByIdRepliesResponses,
+  GetApiV1ReviewsByIdResponses,
+  GetApiV1ReviewsData,
+  GetApiV1ReviewsResponses,
+  GetApiV1RolesByIdData,
+  GetApiV1RolesByIdErrors,
+  GetApiV1RolesByIdResponses,
+  GetApiV1RolesData,
+  GetApiV1RolesResponses,
+  GetApiV1SearchQueriesByIdData,
+  GetApiV1SearchQueriesByIdErrors,
+  GetApiV1SearchQueriesByIdResponses,
+  GetApiV1SearchQueriesData,
+  GetApiV1SearchQueriesResponses,
+  GetApiV1SessionsByIdData,
+  GetApiV1SessionsByIdErrors,
+  GetApiV1SessionsByIdResponses,
+  GetApiV1SessionsData,
+  GetApiV1SessionsResponses,
+  GetApiV1ShipmentEventsByIdData,
+  GetApiV1ShipmentEventsByIdErrors,
+  GetApiV1ShipmentEventsByIdResponses,
+  GetApiV1ShipmentEventsData,
+  GetApiV1ShipmentEventsResponses,
+  GetApiV1ShipmentsByIdData,
+  GetApiV1ShipmentsByIdErrors,
+  GetApiV1ShipmentsByIdEventsData,
+  GetApiV1ShipmentsByIdEventsErrors,
+  GetApiV1ShipmentsByIdEventsResponses,
+  GetApiV1ShipmentsByIdResponses,
+  GetApiV1ShipmentsData,
+  GetApiV1ShipmentsResponses,
+  GetApiV1SongsByIdData,
+  GetApiV1SongsByIdErrors,
+  GetApiV1SongsByIdResponses,
+  GetApiV1SongsData,
+  GetApiV1SongsResponses,
+  GetApiV1SubscriptionsByIdData,
+  GetApiV1SubscriptionsByIdErrors,
+  GetApiV1SubscriptionsByIdResponses,
+  GetApiV1SubscriptionsData,
+  GetApiV1SubscriptionsResponses,
+  GetApiV1SupplierProductsByIdData,
+  GetApiV1SupplierProductsByIdErrors,
+  GetApiV1SupplierProductsByIdResponses,
+  GetApiV1SupplierProductsData,
+  GetApiV1SupplierProductsResponses,
+  GetApiV1SuppliersByIdData,
+  GetApiV1SuppliersByIdErrors,
+  GetApiV1SuppliersByIdProductsData,
+  GetApiV1SuppliersByIdProductsErrors,
+  GetApiV1SuppliersByIdProductsResponses,
+  GetApiV1SuppliersByIdResponses,
+  GetApiV1SuppliersData,
+  GetApiV1SuppliersResponses,
+  GetApiV1SupportTicketsByIdData,
+  GetApiV1SupportTicketsByIdErrors,
+  GetApiV1SupportTicketsByIdRepliesData,
+  GetApiV1SupportTicketsByIdRepliesErrors,
+  GetApiV1SupportTicketsByIdRepliesResponses,
+  GetApiV1SupportTicketsByIdResponses,
+  GetApiV1SupportTicketsData,
+  GetApiV1SupportTicketsResponses,
+  GetApiV1TagsByIdData,
+  GetApiV1TagsByIdErrors,
+  GetApiV1TagsByIdResponses,
+  GetApiV1TagsData,
+  GetApiV1TagsResponses,
+  GetApiV1TasksByIdData,
+  GetApiV1TasksByIdErrors,
+  GetApiV1TasksByIdResponses,
+  GetApiV1TasksData,
+  GetApiV1TasksResponses,
+  GetApiV1TeamsByIdData,
+  GetApiV1TeamsByIdErrors,
+  GetApiV1TeamsByIdResponses,
+  GetApiV1TeamsData,
+  GetApiV1TeamsResponses,
+  GetApiV1TicketRepliesByIdData,
+  GetApiV1TicketRepliesByIdErrors,
+  GetApiV1TicketRepliesByIdResponses,
+  GetApiV1TicketRepliesData,
+  GetApiV1TicketRepliesResponses,
+  GetApiV1TicketsByIdData,
+  GetApiV1TicketsByIdErrors,
+  GetApiV1TicketsByIdResponses,
+  GetApiV1TicketsData,
+  GetApiV1TicketsResponses,
+  GetApiV1TransactionsByIdData,
+  GetApiV1TransactionsByIdErrors,
+  GetApiV1TransactionsByIdResponses,
+  GetApiV1TransactionsData,
+  GetApiV1TransactionsResponses,
+  GetApiV1UserActivityByIdData,
+  GetApiV1UserActivityByIdErrors,
+  GetApiV1UserActivityByIdResponses,
+  GetApiV1UserActivityData,
+  GetApiV1UserActivityResponses,
+  GetApiV1UserBadgesByIdData,
+  GetApiV1UserBadgesByIdErrors,
+  GetApiV1UserBadgesByIdResponses,
+  GetApiV1UserBadgesData,
+  GetApiV1UserBadgesResponses,
+  GetApiV1UsersByIdActivitiesData,
+  GetApiV1UsersByIdActivitiesErrors,
+  GetApiV1UsersByIdActivitiesResponses,
+  GetApiV1UsersByIdBadgesData,
+  GetApiV1UsersByIdBadgesErrors,
+  GetApiV1UsersByIdBadgesResponses,
   GetApiV1UsersByIdData,
+  GetApiV1UsersByIdErrors,
+  GetApiV1UsersByIdFavoritesData,
+  GetApiV1UsersByIdFavoritesErrors,
+  GetApiV1UsersByIdFavoritesResponses,
+  GetApiV1UsersByIdNotificationsData,
+  GetApiV1UsersByIdNotificationsErrors,
+  GetApiV1UsersByIdNotificationsResponses,
+  GetApiV1UsersByIdPageViewsData,
+  GetApiV1UsersByIdPageViewsErrors,
+  GetApiV1UsersByIdPageViewsResponses,
   GetApiV1UsersByIdResponses,
+  GetApiV1UsersByIdSearchQueriesData,
+  GetApiV1UsersByIdSearchQueriesErrors,
+  GetApiV1UsersByIdSearchQueriesResponses,
+  GetApiV1UsersByIdSessionsData,
+  GetApiV1UsersByIdSessionsErrors,
+  GetApiV1UsersByIdSessionsResponses,
   GetApiV1UsersData,
   GetApiV1UsersResponses,
+  GetApiV1VendorsByIdData,
+  GetApiV1VendorsByIdErrors,
+  GetApiV1VendorsByIdResponses,
+  GetApiV1VendorsByIdTransactionsData,
+  GetApiV1VendorsByIdTransactionsErrors,
+  GetApiV1VendorsByIdTransactionsResponses,
+  GetApiV1VendorsData,
+  GetApiV1VendorsResponses,
+  GetApiV1VenuesByIdData,
+  GetApiV1VenuesByIdErrors,
+  GetApiV1VenuesByIdResponses,
+  GetApiV1VenuesData,
+  GetApiV1VenuesResponses,
+  GetApiV1WarehousesByIdData,
+  GetApiV1WarehousesByIdErrors,
+  GetApiV1WarehousesByIdInventoriesData,
+  GetApiV1WarehousesByIdInventoriesErrors,
+  GetApiV1WarehousesByIdInventoriesResponses,
+  GetApiV1WarehousesByIdResponses,
+  GetApiV1WarehousesData,
+  GetApiV1WarehousesResponses,
+  GetApiV1WishlistItemsByIdData,
+  GetApiV1WishlistItemsByIdErrors,
+  GetApiV1WishlistItemsByIdResponses,
+  GetApiV1WishlistItemsData,
+  GetApiV1WishlistItemsResponses,
+  GetApiV1WishlistsByIdData,
+  GetApiV1WishlistsByIdErrors,
+  GetApiV1WishlistsByIdItemsData,
+  GetApiV1WishlistsByIdItemsErrors,
+  GetApiV1WishlistsByIdItemsResponses,
+  GetApiV1WishlistsByIdResponses,
+  GetApiV1WishlistsData,
+  GetApiV1WishlistsResponses,
+  PatchApiV1ActivitiesByIdData,
+  PatchApiV1ActivitiesByIdResponses,
+  PatchApiV1AddressesByIdData,
+  PatchApiV1AddressesByIdResponses,
+  PatchApiV1AlbumsByIdData,
+  PatchApiV1AlbumsByIdResponses,
+  PatchApiV1ArticlesByIdData,
+  PatchApiV1ArticlesByIdResponses,
+  PatchApiV1ArticleTagsByIdData,
+  PatchApiV1ArticleTagsByIdResponses,
+  PatchApiV1ArtistsByIdData,
+  PatchApiV1ArtistsByIdResponses,
+  PatchApiV1AuthorsByIdData,
+  PatchApiV1AuthorsByIdResponses,
+  PatchApiV1BadgesByIdData,
+  PatchApiV1BadgesByIdResponses,
+  PatchApiV1BannerPlacementsByIdData,
+  PatchApiV1BannerPlacementsByIdResponses,
+  PatchApiV1BannersByIdData,
+  PatchApiV1BannersByIdResponses,
+  PatchApiV1BookingsByIdData,
+  PatchApiV1BookingsByIdResponses,
+  PatchApiV1BooksByIdData,
+  PatchApiV1BooksByIdResponses,
+  PatchApiV1BrandsByIdData,
+  PatchApiV1BrandsByIdResponses,
+  PatchApiV1CarsByIdData,
+  PatchApiV1CarsByIdResponses,
+  PatchApiV1CartItemsByIdData,
+  PatchApiV1CartItemsByIdResponses,
+  PatchApiV1CartsByIdData,
+  PatchApiV1CartsByIdResponses,
+  PatchApiV1CategoriesByIdData,
+  PatchApiV1CategoriesByIdResponses,
+  PatchApiV1CitiesByIdData,
+  PatchApiV1CitiesByIdResponses,
+  PatchApiV1CommentsByIdData,
+  PatchApiV1CommentsByIdResponses,
+  PatchApiV1CompaniesByIdData,
+  PatchApiV1CompaniesByIdResponses,
+  PatchApiV1CompanyOfficesByIdData,
+  PatchApiV1CompanyOfficesByIdResponses,
+  PatchApiV1ConversationsByIdData,
+  PatchApiV1ConversationsByIdResponses,
+  PatchApiV1CountriesByIdData,
+  PatchApiV1CountriesByIdResponses,
+  PatchApiV1CouponsByIdData,
+  PatchApiV1CouponsByIdResponses,
+  PatchApiV1CouponUsagesByIdData,
+  PatchApiV1CouponUsagesByIdResponses,
+  PatchApiV1CoverPhotosByIdData,
+  PatchApiV1CoverPhotosByIdResponses,
+  PatchApiV1CurrenciesByIdData,
+  PatchApiV1CurrenciesByIdResponses,
+  PatchApiV1CustomerAddressesByIdData,
+  PatchApiV1CustomerAddressesByIdResponses,
+  PatchApiV1CustomersByIdData,
+  PatchApiV1CustomersByIdResponses,
+  PatchApiV1DepartmentsByIdData,
+  PatchApiV1DepartmentsByIdResponses,
+  PatchApiV1DiscountsByIdData,
+  PatchApiV1DiscountsByIdResponses,
+  PatchApiV1EmployeesByIdData,
+  PatchApiV1EmployeesByIdResponses,
+  PatchApiV1EmployeeSkillsByIdData,
+  PatchApiV1EmployeeSkillsByIdResponses,
+  PatchApiV1EventAttendeesByIdData,
+  PatchApiV1EventAttendeesByIdResponses,
+  PatchApiV1EventsByIdData,
+  PatchApiV1EventsByIdResponses,
+  PatchApiV1FavoritesByIdData,
+  PatchApiV1FavoritesByIdResponses,
+  PatchApiV1FilesByIdData,
+  PatchApiV1FilesByIdResponses,
+  PatchApiV1FlightBookingsByIdData,
+  PatchApiV1FlightBookingsByIdResponses,
+  PatchApiV1FlightsByIdData,
+  PatchApiV1FlightsByIdResponses,
+  PatchApiV1FoldersByIdData,
+  PatchApiV1FoldersByIdResponses,
+  PatchApiV1FollowsByIdData,
+  PatchApiV1FollowsByIdResponses,
+  PatchApiV1GenresByIdData,
+  PatchApiV1GenresByIdResponses,
+  PatchApiV1HotelsByIdData,
+  PatchApiV1HotelsByIdResponses,
+  PatchApiV1InventoriesByIdData,
+  PatchApiV1InventoriesByIdResponses,
+  PatchApiV1InvoiceItemsByIdData,
+  PatchApiV1InvoiceItemsByIdResponses,
+  PatchApiV1InvoicesByIdData,
+  PatchApiV1InvoicesByIdResponses,
+  PatchApiV1LanguagesByIdData,
+  PatchApiV1LanguagesByIdResponses,
+  PatchApiV1LikesByIdData,
+  PatchApiV1LikesByIdResponses,
+  PatchApiV1LogsByIdData,
+  PatchApiV1LogsByIdResponses,
+  PatchApiV1LoyaltyAccountsByIdData,
+  PatchApiV1LoyaltyAccountsByIdResponses,
+  PatchApiV1LoyaltyTransactionsByIdData,
+  PatchApiV1LoyaltyTransactionsByIdResponses,
+  PatchApiV1MatchesByIdData,
+  PatchApiV1MatchesByIdResponses,
+  PatchApiV1MenuItemsByIdData,
+  PatchApiV1MenuItemsByIdResponses,
+  PatchApiV1MessagesByIdData,
+  PatchApiV1MessagesByIdResponses,
+  PatchApiV1MoviesByIdData,
+  PatchApiV1MoviesByIdResponses,
+  PatchApiV1NotificationsByIdData,
+  PatchApiV1NotificationsByIdResponses,
+  PatchApiV1OrderItemsByIdData,
+  PatchApiV1OrderItemsByIdResponses,
+  PatchApiV1OrderNotesByIdData,
+  PatchApiV1OrderNotesByIdResponses,
+  PatchApiV1PageViewsByIdData,
+  PatchApiV1PageViewsByIdResponses,
+  PatchApiV1PaymentMethodsByIdData,
+  PatchApiV1PaymentMethodsByIdResponses,
+  PatchApiV1PaymentsByIdData,
+  PatchApiV1PaymentsByIdResponses,
+  PatchApiV1PermissionsByIdData,
+  PatchApiV1PermissionsByIdResponses,
+  PatchApiV1PlansByIdData,
+  PatchApiV1PlansByIdResponses,
+  PatchApiV1PlayersByIdData,
+  PatchApiV1PlayersByIdResponses,
+  PatchApiV1PlaylistItemsByIdData,
+  PatchApiV1PlaylistItemsByIdResponses,
+  PatchApiV1PlaylistsByIdData,
+  PatchApiV1PlaylistsByIdResponses,
+  PatchApiV1PostsByIdData,
+  PatchApiV1PostsByIdResponses,
+  PatchApiV1PreferencesByIdData,
+  PatchApiV1PreferencesByIdResponses,
+  PatchApiV1ProductsByIdData,
+  PatchApiV1ProductsByIdResponses,
+  PatchApiV1ProductVariantsByIdData,
+  PatchApiV1ProductVariantsByIdResponses,
+  PatchApiV1ProjectsByIdData,
+  PatchApiV1ProjectsByIdResponses,
+  PatchApiV1PromotionProductsByIdData,
+  PatchApiV1PromotionProductsByIdResponses,
+  PatchApiV1PromotionsByIdData,
+  PatchApiV1PromotionsByIdResponses,
+  PatchApiV1RatingsByIdData,
+  PatchApiV1RatingsByIdResponses,
+  PatchApiV1RecipeIngredientsByIdData,
+  PatchApiV1RecipeIngredientsByIdResponses,
+  PatchApiV1RecipesByIdData,
+  PatchApiV1RecipesByIdResponses,
+  PatchApiV1RefundsByIdData,
+  PatchApiV1RefundsByIdResponses,
+  PatchApiV1ReportsByIdData,
+  PatchApiV1ReportsByIdResponses,
+  PatchApiV1RestaurantMenusByIdData,
+  PatchApiV1RestaurantMenusByIdResponses,
+  PatchApiV1RestaurantsByIdData,
+  PatchApiV1RestaurantsByIdResponses,
+  PatchApiV1ReturnsByIdData,
+  PatchApiV1ReturnsByIdResponses,
+  PatchApiV1ReviewRepliesByIdData,
+  PatchApiV1ReviewRepliesByIdResponses,
+  PatchApiV1ReviewsByIdData,
+  PatchApiV1ReviewsByIdResponses,
+  PatchApiV1RolesByIdData,
+  PatchApiV1RolesByIdResponses,
+  PatchApiV1SearchQueriesByIdData,
+  PatchApiV1SearchQueriesByIdResponses,
+  PatchApiV1SessionsByIdData,
+  PatchApiV1SessionsByIdResponses,
+  PatchApiV1ShipmentEventsByIdData,
+  PatchApiV1ShipmentEventsByIdResponses,
+  PatchApiV1ShipmentsByIdData,
+  PatchApiV1ShipmentsByIdResponses,
+  PatchApiV1SongsByIdData,
+  PatchApiV1SongsByIdResponses,
+  PatchApiV1SubscriptionsByIdData,
+  PatchApiV1SubscriptionsByIdResponses,
+  PatchApiV1SupplierProductsByIdData,
+  PatchApiV1SupplierProductsByIdResponses,
+  PatchApiV1SuppliersByIdData,
+  PatchApiV1SuppliersByIdResponses,
+  PatchApiV1SupportTicketsByIdData,
+  PatchApiV1SupportTicketsByIdResponses,
+  PatchApiV1TagsByIdData,
+  PatchApiV1TagsByIdResponses,
+  PatchApiV1TasksByIdData,
+  PatchApiV1TasksByIdResponses,
+  PatchApiV1TeamsByIdData,
+  PatchApiV1TeamsByIdResponses,
+  PatchApiV1TicketRepliesByIdData,
+  PatchApiV1TicketRepliesByIdResponses,
+  PatchApiV1TicketsByIdData,
+  PatchApiV1TicketsByIdResponses,
+  PatchApiV1TransactionsByIdData,
+  PatchApiV1TransactionsByIdResponses,
+  PatchApiV1UserActivityByIdData,
+  PatchApiV1UserActivityByIdResponses,
+  PatchApiV1UserBadgesByIdData,
+  PatchApiV1UserBadgesByIdResponses,
+  PatchApiV1UsersByIdData,
+  PatchApiV1UsersByIdResponses,
+  PatchApiV1VendorsByIdData,
+  PatchApiV1VendorsByIdResponses,
+  PatchApiV1VenuesByIdData,
+  PatchApiV1VenuesByIdResponses,
+  PatchApiV1WarehousesByIdData,
+  PatchApiV1WarehousesByIdResponses,
+  PatchApiV1WishlistItemsByIdData,
+  PatchApiV1WishlistItemsByIdResponses,
+  PatchApiV1WishlistsByIdData,
+  PatchApiV1WishlistsByIdResponses,
   PostApiV1ActivitiesData,
   PostApiV1ActivitiesResponses,
+  PostApiV1AddressesData,
+  PostApiV1AddressesResponses,
+  PostApiV1AlbumsData,
+  PostApiV1AlbumsResponses,
+  PostApiV1ArticlesData,
+  PostApiV1ArticlesResponses,
+  PostApiV1ArticleTagsData,
+  PostApiV1ArticleTagsResponses,
+  PostApiV1ArtistsData,
+  PostApiV1ArtistsResponses,
   PostApiV1AuthorsData,
   PostApiV1AuthorsResponses,
+  PostApiV1BadgesData,
+  PostApiV1BadgesResponses,
+  PostApiV1BannerPlacementsData,
+  PostApiV1BannerPlacementsResponses,
+  PostApiV1BannersData,
+  PostApiV1BannersResponses,
+  PostApiV1BookingsData,
+  PostApiV1BookingsResponses,
   PostApiV1BooksData,
   PostApiV1BooksResponses,
+  PostApiV1BrandsData,
+  PostApiV1BrandsResponses,
+  PostApiV1CarsData,
+  PostApiV1CarsResponses,
+  PostApiV1CartItemsData,
+  PostApiV1CartItemsResponses,
+  PostApiV1CartsData,
+  PostApiV1CartsResponses,
+  PostApiV1CategoriesData,
+  PostApiV1CategoriesResponses,
+  PostApiV1CitiesData,
+  PostApiV1CitiesResponses,
+  PostApiV1CommentsData,
+  PostApiV1CommentsResponses,
+  PostApiV1CompaniesData,
+  PostApiV1CompaniesResponses,
+  PostApiV1CompanyOfficesData,
+  PostApiV1CompanyOfficesResponses,
+  PostApiV1ConversationsData,
+  PostApiV1ConversationsResponses,
+  PostApiV1CountriesData,
+  PostApiV1CountriesResponses,
+  PostApiV1CouponsData,
+  PostApiV1CouponsResponses,
+  PostApiV1CouponUsagesData,
+  PostApiV1CouponUsagesResponses,
+  PostApiV1CoverPhotosData,
+  PostApiV1CoverPhotosResponses,
+  PostApiV1CurrenciesData,
+  PostApiV1CurrenciesResponses,
+  PostApiV1CustomerAddressesData,
+  PostApiV1CustomerAddressesResponses,
+  PostApiV1CustomersData,
+  PostApiV1CustomersResponses,
+  PostApiV1DepartmentsData,
+  PostApiV1DepartmentsResponses,
+  PostApiV1DiscountsData,
+  PostApiV1DiscountsResponses,
+  PostApiV1EmployeesData,
+  PostApiV1EmployeeSkillsData,
+  PostApiV1EmployeeSkillsResponses,
+  PostApiV1EmployeesResponses,
+  PostApiV1EventAttendeesData,
+  PostApiV1EventAttendeesResponses,
+  PostApiV1EventsData,
+  PostApiV1EventsResponses,
+  PostApiV1FavoritesData,
+  PostApiV1FavoritesResponses,
+  PostApiV1FilesData,
+  PostApiV1FilesResponses,
+  PostApiV1FlightBookingsData,
+  PostApiV1FlightBookingsResponses,
+  PostApiV1FlightsData,
+  PostApiV1FlightsResponses,
+  PostApiV1FoldersData,
+  PostApiV1FoldersResponses,
+  PostApiV1FollowsData,
+  PostApiV1FollowsResponses,
+  PostApiV1GenresData,
+  PostApiV1GenresResponses,
+  PostApiV1HotelsData,
+  PostApiV1HotelsResponses,
+  PostApiV1InventoriesData,
+  PostApiV1InventoriesResponses,
+  PostApiV1InvoiceItemsData,
+  PostApiV1InvoiceItemsResponses,
+  PostApiV1InvoicesData,
+  PostApiV1InvoicesResponses,
+  PostApiV1LanguagesData,
+  PostApiV1LanguagesResponses,
+  PostApiV1LikesData,
+  PostApiV1LikesResponses,
+  PostApiV1LogsData,
+  PostApiV1LogsResponses,
+  PostApiV1LoyaltyAccountsData,
+  PostApiV1LoyaltyAccountsResponses,
+  PostApiV1LoyaltyTransactionsData,
+  PostApiV1LoyaltyTransactionsResponses,
+  PostApiV1MatchesData,
+  PostApiV1MatchesResponses,
+  PostApiV1MenuItemsData,
+  PostApiV1MenuItemsResponses,
+  PostApiV1MessagesData,
+  PostApiV1MessagesResponses,
+  PostApiV1MoviesData,
+  PostApiV1MoviesResponses,
+  PostApiV1NotificationsData,
+  PostApiV1NotificationsResponses,
+  PostApiV1OrderItemsData,
+  PostApiV1OrderItemsResponses,
+  PostApiV1OrdersData,
+  PostApiV1OrdersResponses,
+  PostApiV1PageViewsData,
+  PostApiV1PageViewsResponses,
+  PostApiV1PaymentMethodsData,
+  PostApiV1PaymentMethodsResponses,
+  PostApiV1PaymentsData,
+  PostApiV1PaymentsResponses,
+  PostApiV1PermissionsData,
+  PostApiV1PermissionsResponses,
+  PostApiV1PlansData,
+  PostApiV1PlansResponses,
+  PostApiV1PlayersData,
+  PostApiV1PlayersResponses,
+  PostApiV1PlaylistItemsData,
+  PostApiV1PlaylistItemsResponses,
+  PostApiV1PlaylistsData,
+  PostApiV1PlaylistsResponses,
+  PostApiV1PostsData,
+  PostApiV1PostsResponses,
+  PostApiV1PreferencesData,
+  PostApiV1PreferencesResponses,
+  PostApiV1ProductsData,
+  PostApiV1ProductsResponses,
+  PostApiV1ProductVariantsData,
+  PostApiV1ProductVariantsResponses,
+  PostApiV1ProjectsData,
+  PostApiV1ProjectsResponses,
+  PostApiV1PromotionProductsData,
+  PostApiV1PromotionProductsResponses,
+  PostApiV1PromotionsData,
+  PostApiV1PromotionsResponses,
+  PostApiV1RatingsData,
+  PostApiV1RatingsResponses,
+  PostApiV1RecipeIngredientsData,
+  PostApiV1RecipeIngredientsResponses,
+  PostApiV1RecipesData,
+  PostApiV1RecipesResponses,
+  PostApiV1RefundsData,
+  PostApiV1RefundsResponses,
+  PostApiV1ReportsData,
+  PostApiV1ReportsResponses,
+  PostApiV1RestaurantMenusData,
+  PostApiV1RestaurantMenusResponses,
+  PostApiV1RestaurantsData,
+  PostApiV1RestaurantsResponses,
+  PostApiV1ReturnsData,
+  PostApiV1ReturnsResponses,
+  PostApiV1ReviewRepliesData,
+  PostApiV1ReviewRepliesResponses,
+  PostApiV1ReviewsData,
+  PostApiV1ReviewsResponses,
+  PostApiV1RolesData,
+  PostApiV1RolesResponses,
+  PostApiV1SearchQueriesData,
+  PostApiV1SearchQueriesResponses,
+  PostApiV1SessionsData,
+  PostApiV1SessionsResponses,
+  PostApiV1ShipmentEventsData,
+  PostApiV1ShipmentEventsResponses,
+  PostApiV1ShipmentsData,
+  PostApiV1ShipmentsResponses,
+  PostApiV1SongsData,
+  PostApiV1SongsResponses,
+  PostApiV1SubscriptionsData,
+  PostApiV1SubscriptionsResponses,
+  PostApiV1SupplierProductsData,
+  PostApiV1SupplierProductsResponses,
+  PostApiV1SuppliersData,
+  PostApiV1SuppliersResponses,
+  PostApiV1SupportTicketsData,
+  PostApiV1SupportTicketsResponses,
+  PostApiV1TagsData,
+  PostApiV1TagsResponses,
+  PostApiV1TasksData,
+  PostApiV1TasksResponses,
+  PostApiV1TeamsData,
+  PostApiV1TeamsResponses,
+  PostApiV1TicketRepliesData,
+  PostApiV1TicketRepliesResponses,
+  PostApiV1TicketsData,
+  PostApiV1TicketsResponses,
+  PostApiV1TransactionsData,
+  PostApiV1TransactionsResponses,
+  PostApiV1UserActivityData,
+  PostApiV1UserActivityResponses,
+  PostApiV1UserBadgesData,
+  PostApiV1UserBadgesResponses,
   PostApiV1UsersData,
   PostApiV1UsersResponses,
+  PostApiV1VendorsData,
+  PostApiV1VendorsResponses,
+  PostApiV1VenuesData,
+  PostApiV1VenuesResponses,
+  PostApiV1WarehousesData,
+  PostApiV1WarehousesResponses,
+  PostApiV1WishlistItemsData,
+  PostApiV1WishlistItemsResponses,
+  PostApiV1WishlistsData,
+  PostApiV1WishlistsResponses,
   PutApiV1ActivitiesByIdData,
   PutApiV1ActivitiesByIdResponses,
+  PutApiV1AddressesByIdData,
+  PutApiV1AddressesByIdResponses,
+  PutApiV1AlbumsByIdData,
+  PutApiV1AlbumsByIdResponses,
+  PutApiV1ArticlesByIdData,
+  PutApiV1ArticlesByIdResponses,
+  PutApiV1ArticleTagsByIdData,
+  PutApiV1ArticleTagsByIdResponses,
+  PutApiV1ArtistsByIdData,
+  PutApiV1ArtistsByIdResponses,
   PutApiV1AuthorsByIdData,
   PutApiV1AuthorsByIdResponses,
+  PutApiV1BadgesByIdData,
+  PutApiV1BadgesByIdResponses,
+  PutApiV1BannerPlacementsByIdData,
+  PutApiV1BannerPlacementsByIdResponses,
+  PutApiV1BannersByIdData,
+  PutApiV1BannersByIdResponses,
+  PutApiV1BookingsByIdData,
+  PutApiV1BookingsByIdResponses,
   PutApiV1BooksByIdData,
   PutApiV1BooksByIdResponses,
+  PutApiV1BrandsByIdData,
+  PutApiV1BrandsByIdResponses,
+  PutApiV1CarsByIdData,
+  PutApiV1CarsByIdResponses,
+  PutApiV1CartItemsByIdData,
+  PutApiV1CartItemsByIdResponses,
+  PutApiV1CartsByIdData,
+  PutApiV1CartsByIdResponses,
+  PutApiV1CategoriesByIdData,
+  PutApiV1CategoriesByIdResponses,
+  PutApiV1CitiesByIdData,
+  PutApiV1CitiesByIdResponses,
+  PutApiV1CommentsByIdData,
+  PutApiV1CommentsByIdResponses,
+  PutApiV1CompaniesByIdData,
+  PutApiV1CompaniesByIdResponses,
+  PutApiV1CompanyOfficesByIdData,
+  PutApiV1CompanyOfficesByIdResponses,
+  PutApiV1ConversationsByIdData,
+  PutApiV1ConversationsByIdResponses,
+  PutApiV1CountriesByIdData,
+  PutApiV1CountriesByIdResponses,
+  PutApiV1CouponsByIdData,
+  PutApiV1CouponsByIdResponses,
+  PutApiV1CouponUsagesByIdData,
+  PutApiV1CouponUsagesByIdResponses,
+  PutApiV1CoverPhotosByIdData,
+  PutApiV1CoverPhotosByIdResponses,
+  PutApiV1CurrenciesByIdData,
+  PutApiV1CurrenciesByIdResponses,
+  PutApiV1CustomerAddressesByIdData,
+  PutApiV1CustomerAddressesByIdResponses,
+  PutApiV1CustomersByIdData,
+  PutApiV1CustomersByIdResponses,
+  PutApiV1DepartmentsByIdData,
+  PutApiV1DepartmentsByIdResponses,
+  PutApiV1DiscountsByIdData,
+  PutApiV1DiscountsByIdResponses,
+  PutApiV1EmployeesByIdData,
+  PutApiV1EmployeesByIdResponses,
+  PutApiV1EmployeeSkillsByIdData,
+  PutApiV1EmployeeSkillsByIdResponses,
+  PutApiV1EventAttendeesByIdData,
+  PutApiV1EventAttendeesByIdResponses,
+  PutApiV1EventsByIdData,
+  PutApiV1EventsByIdResponses,
+  PutApiV1FavoritesByIdData,
+  PutApiV1FavoritesByIdResponses,
+  PutApiV1FilesByIdData,
+  PutApiV1FilesByIdResponses,
+  PutApiV1FlightBookingsByIdData,
+  PutApiV1FlightBookingsByIdResponses,
+  PutApiV1FlightsByIdData,
+  PutApiV1FlightsByIdResponses,
+  PutApiV1FoldersByIdData,
+  PutApiV1FoldersByIdResponses,
+  PutApiV1FollowsByIdData,
+  PutApiV1FollowsByIdResponses,
+  PutApiV1GenresByIdData,
+  PutApiV1GenresByIdResponses,
+  PutApiV1HotelsByIdData,
+  PutApiV1HotelsByIdResponses,
+  PutApiV1InventoriesByIdData,
+  PutApiV1InventoriesByIdResponses,
+  PutApiV1InvoiceItemsByIdData,
+  PutApiV1InvoiceItemsByIdResponses,
+  PutApiV1InvoicesByIdData,
+  PutApiV1InvoicesByIdResponses,
+  PutApiV1LanguagesByIdData,
+  PutApiV1LanguagesByIdResponses,
+  PutApiV1LikesByIdData,
+  PutApiV1LikesByIdResponses,
+  PutApiV1LogsByIdData,
+  PutApiV1LogsByIdResponses,
+  PutApiV1LoyaltyAccountsByIdData,
+  PutApiV1LoyaltyAccountsByIdResponses,
+  PutApiV1LoyaltyTransactionsByIdData,
+  PutApiV1LoyaltyTransactionsByIdResponses,
+  PutApiV1MatchesByIdData,
+  PutApiV1MatchesByIdResponses,
+  PutApiV1MenuItemsByIdData,
+  PutApiV1MenuItemsByIdResponses,
+  PutApiV1MessagesByIdData,
+  PutApiV1MessagesByIdResponses,
+  PutApiV1MoviesByIdData,
+  PutApiV1MoviesByIdResponses,
+  PutApiV1NotificationsByIdData,
+  PutApiV1NotificationsByIdResponses,
+  PutApiV1OrderItemsByIdData,
+  PutApiV1OrderItemsByIdResponses,
+  PutApiV1OrderNotesByIdData,
+  PutApiV1OrderNotesByIdResponses,
+  PutApiV1PageViewsByIdData,
+  PutApiV1PageViewsByIdResponses,
+  PutApiV1PaymentMethodsByIdData,
+  PutApiV1PaymentMethodsByIdResponses,
+  PutApiV1PaymentsByIdData,
+  PutApiV1PaymentsByIdResponses,
+  PutApiV1PermissionsByIdData,
+  PutApiV1PermissionsByIdResponses,
+  PutApiV1PlansByIdData,
+  PutApiV1PlansByIdResponses,
+  PutApiV1PlayersByIdData,
+  PutApiV1PlayersByIdResponses,
+  PutApiV1PlaylistItemsByIdData,
+  PutApiV1PlaylistItemsByIdResponses,
+  PutApiV1PlaylistsByIdData,
+  PutApiV1PlaylistsByIdResponses,
+  PutApiV1PostsByIdData,
+  PutApiV1PostsByIdResponses,
+  PutApiV1PreferencesByIdData,
+  PutApiV1PreferencesByIdResponses,
+  PutApiV1ProductsByIdData,
+  PutApiV1ProductsByIdResponses,
+  PutApiV1ProductVariantsByIdData,
+  PutApiV1ProductVariantsByIdResponses,
+  PutApiV1ProjectsByIdData,
+  PutApiV1ProjectsByIdResponses,
+  PutApiV1PromotionProductsByIdData,
+  PutApiV1PromotionProductsByIdResponses,
+  PutApiV1PromotionsByIdData,
+  PutApiV1PromotionsByIdResponses,
+  PutApiV1RatingsByIdData,
+  PutApiV1RatingsByIdResponses,
+  PutApiV1RecipeIngredientsByIdData,
+  PutApiV1RecipeIngredientsByIdResponses,
+  PutApiV1RecipesByIdData,
+  PutApiV1RecipesByIdResponses,
+  PutApiV1RefundsByIdData,
+  PutApiV1RefundsByIdResponses,
+  PutApiV1ReportsByIdData,
+  PutApiV1ReportsByIdResponses,
+  PutApiV1RestaurantMenusByIdData,
+  PutApiV1RestaurantMenusByIdResponses,
+  PutApiV1RestaurantsByIdData,
+  PutApiV1RestaurantsByIdResponses,
+  PutApiV1ReturnsByIdData,
+  PutApiV1ReturnsByIdResponses,
+  PutApiV1ReviewRepliesByIdData,
+  PutApiV1ReviewRepliesByIdResponses,
+  PutApiV1ReviewsByIdData,
+  PutApiV1ReviewsByIdResponses,
+  PutApiV1RolesByIdData,
+  PutApiV1RolesByIdResponses,
+  PutApiV1SearchQueriesByIdData,
+  PutApiV1SearchQueriesByIdResponses,
+  PutApiV1SessionsByIdData,
+  PutApiV1SessionsByIdResponses,
+  PutApiV1ShipmentEventsByIdData,
+  PutApiV1ShipmentEventsByIdResponses,
+  PutApiV1ShipmentsByIdData,
+  PutApiV1ShipmentsByIdResponses,
+  PutApiV1SongsByIdData,
+  PutApiV1SongsByIdResponses,
+  PutApiV1SubscriptionsByIdData,
+  PutApiV1SubscriptionsByIdResponses,
+  PutApiV1SupplierProductsByIdData,
+  PutApiV1SupplierProductsByIdResponses,
+  PutApiV1SuppliersByIdData,
+  PutApiV1SuppliersByIdResponses,
+  PutApiV1SupportTicketsByIdData,
+  PutApiV1SupportTicketsByIdResponses,
+  PutApiV1TagsByIdData,
+  PutApiV1TagsByIdResponses,
+  PutApiV1TasksByIdData,
+  PutApiV1TasksByIdResponses,
+  PutApiV1TeamsByIdData,
+  PutApiV1TeamsByIdResponses,
+  PutApiV1TicketRepliesByIdData,
+  PutApiV1TicketRepliesByIdResponses,
+  PutApiV1TicketsByIdData,
+  PutApiV1TicketsByIdResponses,
+  PutApiV1TransactionsByIdData,
+  PutApiV1TransactionsByIdResponses,
+  PutApiV1UserActivityByIdData,
+  PutApiV1UserActivityByIdResponses,
+  PutApiV1UserBadgesByIdData,
+  PutApiV1UserBadgesByIdResponses,
   PutApiV1UsersByIdData,
   PutApiV1UsersByIdResponses,
+  PutApiV1VendorsByIdData,
+  PutApiV1VendorsByIdResponses,
+  PutApiV1VenuesByIdData,
+  PutApiV1VenuesByIdResponses,
+  PutApiV1WarehousesByIdData,
+  PutApiV1WarehousesByIdResponses,
+  PutApiV1WishlistItemsByIdData,
+  PutApiV1WishlistItemsByIdResponses,
+  PutApiV1WishlistsByIdData,
+  PutApiV1WishlistsByIdResponses,
 } from "./types.gen";
 
 export type Options<
@@ -65,6 +1601,9 @@ export type Options<
   meta?: Record<string, unknown>;
 };
 
+/**
+ * List all Activities
+ */
 export const getApiV1Activities = <ThrowOnError extends boolean = false>(
   options?: Options<GetApiV1ActivitiesData, ThrowOnError>,
 ) =>
@@ -74,19 +1613,25 @@ export const getApiV1Activities = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Create a new Activity
+ */
 export const postApiV1Activities = <ThrowOnError extends boolean = false>(
-  options?: Options<PostApiV1ActivitiesData, ThrowOnError>,
+  options: Options<PostApiV1ActivitiesData, ThrowOnError>,
 ) =>
-  (options?.client ?? client).post<PostApiV1ActivitiesResponses, unknown, ThrowOnError>({
+  (options.client ?? client).post<PostApiV1ActivitiesResponses, unknown, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Activities",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
-      ...options?.headers,
+      "Content-Type": "application/json",
+      ...options.headers,
     },
   });
 
+/**
+ * Delete a Activity
+ */
 export const deleteApiV1ActivitiesById = <ThrowOnError extends boolean = false>(
   options: Options<DeleteApiV1ActivitiesByIdData, ThrowOnError>,
 ) =>
@@ -95,15 +1640,37 @@ export const deleteApiV1ActivitiesById = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Get a Activity by id
+ */
 export const getApiV1ActivitiesById = <ThrowOnError extends boolean = false>(
   options: Options<GetApiV1ActivitiesByIdData, ThrowOnError>,
 ) =>
-  (options.client ?? client).get<GetApiV1ActivitiesByIdResponses, unknown, ThrowOnError>({
+  (options.client ?? client).get<GetApiV1ActivitiesByIdResponses, GetApiV1ActivitiesByIdErrors, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Activities/{id}",
     ...options,
   });
 
+/**
+ * Partially update a Activity
+ */
+export const patchApiV1ActivitiesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ActivitiesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ActivitiesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Activities/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Activity
+ */
 export const putApiV1ActivitiesById = <ThrowOnError extends boolean = false>(
   options: Options<PutApiV1ActivitiesByIdData, ThrowOnError>,
 ) =>
@@ -112,11 +1679,14 @@ export const putApiV1ActivitiesById = <ThrowOnError extends boolean = false>(
     url: "/api/v1/Activities/{id}",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
+      "Content-Type": "application/json",
       ...options.headers,
     },
   });
 
+/**
+ * List all Authors
+ */
 export const getApiV1Authors = <ThrowOnError extends boolean = false>(
   options?: Options<GetApiV1AuthorsData, ThrowOnError>,
 ) =>
@@ -126,28 +1696,25 @@ export const getApiV1Authors = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Create a new Author
+ */
 export const postApiV1Authors = <ThrowOnError extends boolean = false>(
-  options?: Options<PostApiV1AuthorsData, ThrowOnError>,
+  options: Options<PostApiV1AuthorsData, ThrowOnError>,
 ) =>
-  (options?.client ?? client).post<PostApiV1AuthorsResponses, unknown, ThrowOnError>({
+  (options.client ?? client).post<PostApiV1AuthorsResponses, unknown, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Authors",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
-      ...options?.headers,
+      "Content-Type": "application/json",
+      ...options.headers,
     },
   });
 
-export const getApiV1AuthorsAuthorsBooksByIdBook = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1AuthorsAuthorsBooksByIdBookData, ThrowOnError>,
-) =>
-  (options.client ?? client).get<GetApiV1AuthorsAuthorsBooksByIdBookResponses, unknown, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/Authors/authors/books/{idBook}",
-    ...options,
-  });
-
+/**
+ * Delete a Author
+ */
 export const deleteApiV1AuthorsById = <ThrowOnError extends boolean = false>(
   options: Options<DeleteApiV1AuthorsByIdData, ThrowOnError>,
 ) =>
@@ -156,15 +1723,37 @@ export const deleteApiV1AuthorsById = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Get a Author by id
+ */
 export const getApiV1AuthorsById = <ThrowOnError extends boolean = false>(
   options: Options<GetApiV1AuthorsByIdData, ThrowOnError>,
 ) =>
-  (options.client ?? client).get<GetApiV1AuthorsByIdResponses, unknown, ThrowOnError>({
+  (options.client ?? client).get<GetApiV1AuthorsByIdResponses, GetApiV1AuthorsByIdErrors, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Authors/{id}",
     ...options,
   });
 
+/**
+ * Partially update a Author
+ */
+export const patchApiV1AuthorsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1AuthorsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1AuthorsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Authors/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Author
+ */
 export const putApiV1AuthorsById = <ThrowOnError extends boolean = false>(
   options: Options<PutApiV1AuthorsByIdData, ThrowOnError>,
 ) =>
@@ -173,11 +1762,14 @@ export const putApiV1AuthorsById = <ThrowOnError extends boolean = false>(
     url: "/api/v1/Authors/{id}",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
+      "Content-Type": "application/json",
       ...options.headers,
     },
   });
 
+/**
+ * List all Books
+ */
 export const getApiV1Books = <ThrowOnError extends boolean = false>(
   options?: Options<GetApiV1BooksData, ThrowOnError>,
 ) =>
@@ -187,18 +1779,25 @@ export const getApiV1Books = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Create a new Book
+ */
 export const postApiV1Books = <ThrowOnError extends boolean = false>(
-  options?: Options<PostApiV1BooksData, ThrowOnError>,
+  options: Options<PostApiV1BooksData, ThrowOnError>,
 ) =>
-  (options?.client ?? client).post<PostApiV1BooksResponses, unknown, ThrowOnError>({
+  (options.client ?? client).post<PostApiV1BooksResponses, unknown, ThrowOnError>({
+    responseType: "json",
     url: "/api/v1/Books",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
-      ...options?.headers,
+      "Content-Type": "application/json",
+      ...options.headers,
     },
   });
 
+/**
+ * Delete a Book
+ */
 export const deleteApiV1BooksById = <ThrowOnError extends boolean = false>(
   options: Options<DeleteApiV1BooksByIdData, ThrowOnError>,
 ) =>
@@ -207,27 +1806,136 @@ export const deleteApiV1BooksById = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Get a Book by id
+ */
 export const getApiV1BooksById = <ThrowOnError extends boolean = false>(
   options: Options<GetApiV1BooksByIdData, ThrowOnError>,
 ) =>
-  (options.client ?? client).get<GetApiV1BooksByIdResponses, unknown, ThrowOnError>({
+  (options.client ?? client).get<GetApiV1BooksByIdResponses, GetApiV1BooksByIdErrors, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Books/{id}",
     ...options,
   });
 
-export const putApiV1BooksById = <ThrowOnError extends boolean = false>(
-  options: Options<PutApiV1BooksByIdData, ThrowOnError>,
+/**
+ * Partially update a Book
+ */
+export const patchApiV1BooksById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1BooksByIdData, ThrowOnError>,
 ) =>
-  (options.client ?? client).put<PutApiV1BooksByIdResponses, unknown, ThrowOnError>({
+  (options.client ?? client).patch<PatchApiV1BooksByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
     url: "/api/v1/Books/{id}",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
+      "Content-Type": "application/json",
       ...options.headers,
     },
   });
 
+/**
+ * Replace a Book
+ */
+export const putApiV1BooksById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1BooksByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1BooksByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Books/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all CoverPhotos
+ */
+export const getApiV1CoverPhotos = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CoverPhotosData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CoverPhotosResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CoverPhotos",
+    ...options,
+  });
+
+/**
+ * Create a new CoverPhoto
+ */
+export const postApiV1CoverPhotos = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CoverPhotosData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CoverPhotosResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CoverPhotos",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a CoverPhoto
+ */
+export const deleteApiV1CoverPhotosById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CoverPhotosByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CoverPhotosByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/CoverPhotos/{id}",
+    ...options,
+  });
+
+/**
+ * Get a CoverPhoto by id
+ */
+export const getApiV1CoverPhotosById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CoverPhotosByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CoverPhotosByIdResponses, GetApiV1CoverPhotosByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CoverPhotos/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a CoverPhoto
+ */
+export const patchApiV1CoverPhotosById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CoverPhotosByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CoverPhotosByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CoverPhotos/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a CoverPhoto
+ */
+export const putApiV1CoverPhotosById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CoverPhotosByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CoverPhotosByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CoverPhotos/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Users
+ */
 export const getApiV1Users = <ThrowOnError extends boolean = false>(
   options?: Options<GetApiV1UsersData, ThrowOnError>,
 ) =>
@@ -237,18 +1945,25 @@ export const getApiV1Users = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Create a new User
+ */
 export const postApiV1Users = <ThrowOnError extends boolean = false>(
-  options?: Options<PostApiV1UsersData, ThrowOnError>,
+  options: Options<PostApiV1UsersData, ThrowOnError>,
 ) =>
-  (options?.client ?? client).post<PostApiV1UsersResponses, unknown, ThrowOnError>({
+  (options.client ?? client).post<PostApiV1UsersResponses, unknown, ThrowOnError>({
+    responseType: "json",
     url: "/api/v1/Users",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
-      ...options?.headers,
+      "Content-Type": "application/json",
+      ...options.headers,
     },
   });
 
+/**
+ * Delete a User
+ */
 export const deleteApiV1UsersById = <ThrowOnError extends boolean = false>(
   options: Options<DeleteApiV1UsersByIdData, ThrowOnError>,
 ) =>
@@ -257,22 +1972,9428 @@ export const deleteApiV1UsersById = <ThrowOnError extends boolean = false>(
     ...options,
   });
 
+/**
+ * Get a User by id
+ */
 export const getApiV1UsersById = <ThrowOnError extends boolean = false>(
   options: Options<GetApiV1UsersByIdData, ThrowOnError>,
 ) =>
-  (options.client ?? client).get<GetApiV1UsersByIdResponses, unknown, ThrowOnError>({
+  (options.client ?? client).get<GetApiV1UsersByIdResponses, GetApiV1UsersByIdErrors, ThrowOnError>({
+    responseType: "json",
     url: "/api/v1/Users/{id}",
     ...options,
   });
 
+/**
+ * Partially update a User
+ */
+export const patchApiV1UsersById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1UsersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1UsersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Users/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a User
+ */
 export const putApiV1UsersById = <ThrowOnError extends boolean = false>(
   options: Options<PutApiV1UsersByIdData, ThrowOnError>,
 ) =>
   (options.client ?? client).put<PutApiV1UsersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
     url: "/api/v1/Users/{id}",
     ...options,
     headers: {
-      "Content-Type": "application/json; v=1.0",
+      "Content-Type": "application/json",
       ...options.headers,
     },
+  });
+
+/**
+ * List all Products
+ */
+export const getApiV1Products = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ProductsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ProductsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Products",
+    ...options,
+  });
+
+/**
+ * Create a new Product
+ */
+export const postApiV1Products = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ProductsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ProductsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Products",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Product
+ */
+export const deleteApiV1ProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ProductsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Products/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Product by id
+ */
+export const getApiV1ProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ProductsByIdResponses, GetApiV1ProductsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Products/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Product
+ */
+export const patchApiV1ProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ProductsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Products/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Product
+ */
+export const putApiV1ProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ProductsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Products/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Categories
+ */
+export const getApiV1Categories = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CategoriesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CategoriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Categories",
+    ...options,
+  });
+
+/**
+ * Create a new Category
+ */
+export const postApiV1Categories = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CategoriesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CategoriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Categories",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Category
+ */
+export const deleteApiV1CategoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CategoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CategoriesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Categories/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Category by id
+ */
+export const getApiV1CategoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CategoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CategoriesByIdResponses, GetApiV1CategoriesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Categories/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Category
+ */
+export const patchApiV1CategoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CategoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CategoriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Categories/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Category
+ */
+export const putApiV1CategoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CategoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CategoriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Categories/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Orders
+ */
+export const getApiV1Orders = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1OrdersData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1OrdersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Orders",
+    ...options,
+  });
+
+/**
+ * Create a new Order
+ */
+export const postApiV1Orders = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1OrdersData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1OrdersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Orders",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all OrderItems
+ */
+export const getApiV1OrderItems = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1OrderItemsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1OrderItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderItems",
+    ...options,
+  });
+
+/**
+ * Create a new OrderItem
+ */
+export const postApiV1OrderItems = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1OrderItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1OrderItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderItems",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a OrderItem
+ */
+export const deleteApiV1OrderItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1OrderItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1OrderItemsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/OrderItems/{id}",
+    ...options,
+  });
+
+/**
+ * Get a OrderItem by id
+ */
+export const getApiV1OrderItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1OrderItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1OrderItemsByIdResponses, GetApiV1OrderItemsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderItems/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a OrderItem
+ */
+export const patchApiV1OrderItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1OrderItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1OrderItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a OrderItem
+ */
+export const putApiV1OrderItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1OrderItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1OrderItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Customers
+ */
+export const getApiV1Customers = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CustomersData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CustomersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Customers",
+    ...options,
+  });
+
+/**
+ * Create a new Customer
+ */
+export const postApiV1Customers = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CustomersData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CustomersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Customers",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Customer
+ */
+export const deleteApiV1CustomersById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CustomersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CustomersByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Customers/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Customer by id
+ */
+export const getApiV1CustomersById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CustomersByIdResponses, GetApiV1CustomersByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Customer
+ */
+export const patchApiV1CustomersById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CustomersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CustomersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Customer
+ */
+export const putApiV1CustomersById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CustomersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CustomersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Employees
+ */
+export const getApiV1Employees = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1EmployeesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1EmployeesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Employees",
+    ...options,
+  });
+
+/**
+ * Create a new Employee
+ */
+export const postApiV1Employees = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1EmployeesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1EmployeesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Employees",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Employee
+ */
+export const deleteApiV1EmployeesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1EmployeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1EmployeesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Employees/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Employee by id
+ */
+export const getApiV1EmployeesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EmployeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1EmployeesByIdResponses, GetApiV1EmployeesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Employees/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Employee
+ */
+export const patchApiV1EmployeesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1EmployeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1EmployeesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Employees/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Employee
+ */
+export const putApiV1EmployeesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1EmployeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1EmployeesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Employees/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Departments
+ */
+export const getApiV1Departments = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1DepartmentsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1DepartmentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Departments",
+    ...options,
+  });
+
+/**
+ * Create a new Department
+ */
+export const postApiV1Departments = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1DepartmentsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1DepartmentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Departments",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Department
+ */
+export const deleteApiV1DepartmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1DepartmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1DepartmentsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Departments/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Department by id
+ */
+export const getApiV1DepartmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1DepartmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1DepartmentsByIdResponses, GetApiV1DepartmentsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Departments/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Department
+ */
+export const patchApiV1DepartmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1DepartmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1DepartmentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Departments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Department
+ */
+export const putApiV1DepartmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1DepartmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1DepartmentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Departments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Companies
+ */
+export const getApiV1Companies = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CompaniesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CompaniesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Companies",
+    ...options,
+  });
+
+/**
+ * Create a new Company
+ */
+export const postApiV1Companies = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CompaniesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CompaniesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Companies",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Company
+ */
+export const deleteApiV1CompaniesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CompaniesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CompaniesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Companies/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Company by id
+ */
+export const getApiV1CompaniesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CompaniesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CompaniesByIdResponses, GetApiV1CompaniesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Companies/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Company
+ */
+export const patchApiV1CompaniesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CompaniesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CompaniesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Companies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Company
+ */
+export const putApiV1CompaniesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CompaniesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CompaniesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Companies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Projects
+ */
+export const getApiV1Projects = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ProjectsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ProjectsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Projects",
+    ...options,
+  });
+
+/**
+ * Create a new Project
+ */
+export const postApiV1Projects = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ProjectsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ProjectsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Projects",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Project
+ */
+export const deleteApiV1ProjectsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ProjectsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ProjectsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Projects/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Project by id
+ */
+export const getApiV1ProjectsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProjectsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ProjectsByIdResponses, GetApiV1ProjectsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Projects/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Project
+ */
+export const patchApiV1ProjectsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ProjectsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ProjectsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Projects/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Project
+ */
+export const putApiV1ProjectsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ProjectsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ProjectsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Projects/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Tasks
+ */
+export const getApiV1Tasks = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1TasksData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1TasksResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tasks",
+    ...options,
+  });
+
+/**
+ * Create a new Task
+ */
+export const postApiV1Tasks = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1TasksData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1TasksResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tasks",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Task
+ */
+export const deleteApiV1TasksById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1TasksByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1TasksByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Tasks/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Task by id
+ */
+export const getApiV1TasksById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1TasksByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1TasksByIdResponses, GetApiV1TasksByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tasks/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Task
+ */
+export const patchApiV1TasksById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1TasksByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1TasksByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tasks/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Task
+ */
+export const putApiV1TasksById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1TasksByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1TasksByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tasks/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Tags
+ */
+export const getApiV1Tags = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1TagsData, ThrowOnError>) =>
+  (options?.client ?? client).get<GetApiV1TagsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tags",
+    ...options,
+  });
+
+/**
+ * Create a new Tag
+ */
+export const postApiV1Tags = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1TagsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1TagsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tags",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Tag
+ */
+export const deleteApiV1TagsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1TagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1TagsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Tags/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Tag by id
+ */
+export const getApiV1TagsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1TagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1TagsByIdResponses, GetApiV1TagsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tags/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Tag
+ */
+export const patchApiV1TagsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1TagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1TagsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tags/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Tag
+ */
+export const putApiV1TagsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1TagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1TagsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tags/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Comments
+ */
+export const getApiV1Comments = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CommentsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CommentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Comments",
+    ...options,
+  });
+
+/**
+ * Create a new Comment
+ */
+export const postApiV1Comments = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CommentsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CommentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Comments",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Comment
+ */
+export const deleteApiV1CommentsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CommentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CommentsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Comments/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Comment by id
+ */
+export const getApiV1CommentsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CommentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CommentsByIdResponses, GetApiV1CommentsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Comments/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Comment
+ */
+export const patchApiV1CommentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CommentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CommentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Comments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Comment
+ */
+export const putApiV1CommentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CommentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CommentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Comments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Posts
+ */
+export const getApiV1Posts = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PostsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PostsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Posts",
+    ...options,
+  });
+
+/**
+ * Create a new Post
+ */
+export const postApiV1Posts = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PostsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PostsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Posts",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Post
+ */
+export const deleteApiV1PostsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PostsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PostsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Posts/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Post by id
+ */
+export const getApiV1PostsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PostsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PostsByIdResponses, GetApiV1PostsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Posts/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Post
+ */
+export const patchApiV1PostsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PostsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PostsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Posts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Post
+ */
+export const putApiV1PostsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PostsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PostsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Posts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Articles
+ */
+export const getApiV1Articles = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ArticlesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ArticlesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Articles",
+    ...options,
+  });
+
+/**
+ * Create a new Article
+ */
+export const postApiV1Articles = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ArticlesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ArticlesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Articles",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Article
+ */
+export const deleteApiV1ArticlesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ArticlesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ArticlesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Articles/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Article by id
+ */
+export const getApiV1ArticlesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ArticlesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ArticlesByIdResponses, GetApiV1ArticlesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Articles/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Article
+ */
+export const patchApiV1ArticlesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ArticlesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ArticlesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Articles/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Article
+ */
+export const putApiV1ArticlesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ArticlesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ArticlesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Articles/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Reviews
+ */
+export const getApiV1Reviews = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ReviewsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ReviewsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reviews",
+    ...options,
+  });
+
+/**
+ * Create a new Review
+ */
+export const postApiV1Reviews = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ReviewsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ReviewsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reviews",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Review
+ */
+export const deleteApiV1ReviewsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ReviewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ReviewsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Reviews/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Review by id
+ */
+export const getApiV1ReviewsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ReviewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ReviewsByIdResponses, GetApiV1ReviewsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reviews/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Review
+ */
+export const patchApiV1ReviewsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ReviewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ReviewsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reviews/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Review
+ */
+export const putApiV1ReviewsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ReviewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ReviewsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reviews/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Notifications
+ */
+export const getApiV1Notifications = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1NotificationsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1NotificationsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Notifications",
+    ...options,
+  });
+
+/**
+ * Create a new Notification
+ */
+export const postApiV1Notifications = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1NotificationsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1NotificationsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Notifications",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Notification
+ */
+export const deleteApiV1NotificationsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1NotificationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1NotificationsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Notifications/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Notification by id
+ */
+export const getApiV1NotificationsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1NotificationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1NotificationsByIdResponses, GetApiV1NotificationsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Notifications/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Notification
+ */
+export const patchApiV1NotificationsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1NotificationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1NotificationsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Notifications/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Notification
+ */
+export const putApiV1NotificationsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1NotificationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1NotificationsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Notifications/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Events
+ */
+export const getApiV1Events = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1EventsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1EventsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Events",
+    ...options,
+  });
+
+/**
+ * Create a new Event
+ */
+export const postApiV1Events = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1EventsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1EventsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Events",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Event
+ */
+export const deleteApiV1EventsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1EventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1EventsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Events/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Event by id
+ */
+export const getApiV1EventsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1EventsByIdResponses, GetApiV1EventsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Events/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Event
+ */
+export const patchApiV1EventsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1EventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1EventsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Events/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Event
+ */
+export const putApiV1EventsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1EventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1EventsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Events/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Tickets
+ */
+export const getApiV1Tickets = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1TicketsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1TicketsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tickets",
+    ...options,
+  });
+
+/**
+ * Create a new Ticket
+ */
+export const postApiV1Tickets = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1TicketsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1TicketsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tickets",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Ticket
+ */
+export const deleteApiV1TicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1TicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1TicketsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Tickets/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Ticket by id
+ */
+export const getApiV1TicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1TicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1TicketsByIdResponses, GetApiV1TicketsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tickets/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Ticket
+ */
+export const patchApiV1TicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1TicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1TicketsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tickets/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Ticket
+ */
+export const putApiV1TicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1TicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1TicketsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Tickets/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Venues
+ */
+export const getApiV1Venues = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1VenuesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1VenuesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Venues",
+    ...options,
+  });
+
+/**
+ * Create a new Venue
+ */
+export const postApiV1Venues = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1VenuesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1VenuesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Venues",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Venue
+ */
+export const deleteApiV1VenuesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1VenuesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1VenuesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Venues/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Venue by id
+ */
+export const getApiV1VenuesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1VenuesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1VenuesByIdResponses, GetApiV1VenuesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Venues/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Venue
+ */
+export const patchApiV1VenuesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1VenuesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1VenuesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Venues/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Venue
+ */
+export const putApiV1VenuesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1VenuesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1VenuesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Venues/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Cities
+ */
+export const getApiV1Cities = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CitiesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CitiesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cities",
+    ...options,
+  });
+
+/**
+ * Create a new City
+ */
+export const postApiV1Cities = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CitiesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CitiesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cities",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a City
+ */
+export const deleteApiV1CitiesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CitiesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CitiesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Cities/{id}",
+    ...options,
+  });
+
+/**
+ * Get a City by id
+ */
+export const getApiV1CitiesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CitiesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CitiesByIdResponses, GetApiV1CitiesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cities/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a City
+ */
+export const patchApiV1CitiesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CitiesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CitiesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cities/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a City
+ */
+export const putApiV1CitiesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CitiesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CitiesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cities/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Countries
+ */
+export const getApiV1Countries = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CountriesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CountriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Countries",
+    ...options,
+  });
+
+/**
+ * Create a new Country
+ */
+export const postApiV1Countries = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CountriesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CountriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Countries",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Country
+ */
+export const deleteApiV1CountriesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CountriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CountriesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Countries/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Country by id
+ */
+export const getApiV1CountriesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CountriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CountriesByIdResponses, GetApiV1CountriesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Countries/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Country
+ */
+export const patchApiV1CountriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CountriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CountriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Countries/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Country
+ */
+export const putApiV1CountriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CountriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CountriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Countries/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Addresses
+ */
+export const getApiV1Addresses = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1AddressesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1AddressesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Addresses",
+    ...options,
+  });
+
+/**
+ * Create a new Addresse
+ */
+export const postApiV1Addresses = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1AddressesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1AddressesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Addresses",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Addresse
+ */
+export const deleteApiV1AddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1AddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1AddressesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Addresses/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Addresse by id
+ */
+export const getApiV1AddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1AddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1AddressesByIdResponses, GetApiV1AddressesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Addresses/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Addresse
+ */
+export const patchApiV1AddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1AddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1AddressesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Addresses/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Addresse
+ */
+export const putApiV1AddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1AddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1AddressesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Addresses/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Suppliers
+ */
+export const getApiV1Suppliers = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1SuppliersData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1SuppliersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Suppliers",
+    ...options,
+  });
+
+/**
+ * Create a new Supplier
+ */
+export const postApiV1Suppliers = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1SuppliersData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1SuppliersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Suppliers",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Supplier
+ */
+export const deleteApiV1SuppliersById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1SuppliersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1SuppliersByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Suppliers/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Supplier by id
+ */
+export const getApiV1SuppliersById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SuppliersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1SuppliersByIdResponses, GetApiV1SuppliersByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Suppliers/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Supplier
+ */
+export const patchApiV1SuppliersById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1SuppliersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1SuppliersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Suppliers/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Supplier
+ */
+export const putApiV1SuppliersById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1SuppliersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1SuppliersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Suppliers/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Warehouses
+ */
+export const getApiV1Warehouses = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1WarehousesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1WarehousesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Warehouses",
+    ...options,
+  });
+
+/**
+ * Create a new Warehouse
+ */
+export const postApiV1Warehouses = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1WarehousesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1WarehousesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Warehouses",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Warehouse
+ */
+export const deleteApiV1WarehousesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1WarehousesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1WarehousesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Warehouses/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Warehouse by id
+ */
+export const getApiV1WarehousesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1WarehousesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1WarehousesByIdResponses, GetApiV1WarehousesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Warehouses/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Warehouse
+ */
+export const patchApiV1WarehousesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1WarehousesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1WarehousesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Warehouses/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Warehouse
+ */
+export const putApiV1WarehousesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1WarehousesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1WarehousesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Warehouses/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Inventories
+ */
+export const getApiV1Inventories = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1InventoriesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1InventoriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Inventories",
+    ...options,
+  });
+
+/**
+ * Create a new Inventory
+ */
+export const postApiV1Inventories = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1InventoriesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1InventoriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Inventories",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Inventory
+ */
+export const deleteApiV1InventoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1InventoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1InventoriesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Inventories/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Inventory by id
+ */
+export const getApiV1InventoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1InventoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1InventoriesByIdResponses, GetApiV1InventoriesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Inventories/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Inventory
+ */
+export const patchApiV1InventoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1InventoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1InventoriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Inventories/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Inventory
+ */
+export const putApiV1InventoriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1InventoriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1InventoriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Inventories/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Shipments
+ */
+export const getApiV1Shipments = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ShipmentsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ShipmentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Shipments",
+    ...options,
+  });
+
+/**
+ * Create a new Shipment
+ */
+export const postApiV1Shipments = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ShipmentsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ShipmentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Shipments",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Shipment
+ */
+export const deleteApiV1ShipmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ShipmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ShipmentsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Shipments/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Shipment by id
+ */
+export const getApiV1ShipmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ShipmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ShipmentsByIdResponses, GetApiV1ShipmentsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Shipments/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Shipment
+ */
+export const patchApiV1ShipmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ShipmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ShipmentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Shipments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Shipment
+ */
+export const putApiV1ShipmentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ShipmentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ShipmentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Shipments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Invoices
+ */
+export const getApiV1Invoices = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1InvoicesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1InvoicesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Invoices",
+    ...options,
+  });
+
+/**
+ * Create a new Invoice
+ */
+export const postApiV1Invoices = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1InvoicesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1InvoicesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Invoices",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Invoice
+ */
+export const deleteApiV1InvoicesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1InvoicesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1InvoicesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Invoices/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Invoice by id
+ */
+export const getApiV1InvoicesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1InvoicesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1InvoicesByIdResponses, GetApiV1InvoicesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Invoices/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Invoice
+ */
+export const patchApiV1InvoicesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1InvoicesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1InvoicesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Invoices/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Invoice
+ */
+export const putApiV1InvoicesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1InvoicesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1InvoicesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Invoices/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Payments
+ */
+export const getApiV1Payments = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PaymentsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PaymentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Payments",
+    ...options,
+  });
+
+/**
+ * Create a new Payment
+ */
+export const postApiV1Payments = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PaymentsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PaymentsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Payments",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Payment
+ */
+export const deleteApiV1PaymentsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PaymentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PaymentsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Payments/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Payment by id
+ */
+export const getApiV1PaymentsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PaymentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PaymentsByIdResponses, GetApiV1PaymentsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Payments/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Payment
+ */
+export const patchApiV1PaymentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PaymentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PaymentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Payments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Payment
+ */
+export const putApiV1PaymentsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PaymentsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PaymentsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Payments/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Coupons
+ */
+export const getApiV1Coupons = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CouponsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CouponsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Coupons",
+    ...options,
+  });
+
+/**
+ * Create a new Coupon
+ */
+export const postApiV1Coupons = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CouponsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CouponsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Coupons",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Coupon
+ */
+export const deleteApiV1CouponsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CouponsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CouponsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Coupons/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Coupon by id
+ */
+export const getApiV1CouponsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CouponsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CouponsByIdResponses, GetApiV1CouponsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Coupons/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Coupon
+ */
+export const patchApiV1CouponsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CouponsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CouponsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Coupons/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Coupon
+ */
+export const putApiV1CouponsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CouponsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CouponsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Coupons/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Carts
+ */
+export const getApiV1Carts = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CartsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CartsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Carts",
+    ...options,
+  });
+
+/**
+ * Create a new Cart
+ */
+export const postApiV1Carts = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CartsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CartsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Carts",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Cart
+ */
+export const deleteApiV1CartsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CartsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CartsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Carts/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Cart by id
+ */
+export const getApiV1CartsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CartsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CartsByIdResponses, GetApiV1CartsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Carts/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Cart
+ */
+export const patchApiV1CartsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CartsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CartsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Carts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Cart
+ */
+export const putApiV1CartsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CartsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CartsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Carts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Wishlists
+ */
+export const getApiV1Wishlists = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1WishlistsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1WishlistsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Wishlists",
+    ...options,
+  });
+
+/**
+ * Create a new Wishlist
+ */
+export const postApiV1Wishlists = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1WishlistsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1WishlistsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Wishlists",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Wishlist
+ */
+export const deleteApiV1WishlistsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1WishlistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1WishlistsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Wishlists/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Wishlist by id
+ */
+export const getApiV1WishlistsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1WishlistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1WishlistsByIdResponses, GetApiV1WishlistsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Wishlists/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Wishlist
+ */
+export const patchApiV1WishlistsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1WishlistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1WishlistsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Wishlists/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Wishlist
+ */
+export const putApiV1WishlistsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1WishlistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1WishlistsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Wishlists/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Subscriptions
+ */
+export const getApiV1Subscriptions = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1SubscriptionsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1SubscriptionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Subscriptions",
+    ...options,
+  });
+
+/**
+ * Create a new Subscription
+ */
+export const postApiV1Subscriptions = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1SubscriptionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1SubscriptionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Subscriptions",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Subscription
+ */
+export const deleteApiV1SubscriptionsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1SubscriptionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1SubscriptionsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Subscriptions/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Subscription by id
+ */
+export const getApiV1SubscriptionsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SubscriptionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1SubscriptionsByIdResponses, GetApiV1SubscriptionsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Subscriptions/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Subscription
+ */
+export const patchApiV1SubscriptionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1SubscriptionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1SubscriptionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Subscriptions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Subscription
+ */
+export const putApiV1SubscriptionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1SubscriptionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1SubscriptionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Subscriptions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Plans
+ */
+export const getApiV1Plans = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PlansData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PlansResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Plans",
+    ...options,
+  });
+
+/**
+ * Create a new Plan
+ */
+export const postApiV1Plans = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PlansData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PlansResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Plans",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Plan
+ */
+export const deleteApiV1PlansById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PlansByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PlansByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Plans/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Plan by id
+ */
+export const getApiV1PlansById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PlansByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PlansByIdResponses, GetApiV1PlansByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Plans/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Plan
+ */
+export const patchApiV1PlansById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PlansByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PlansByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Plans/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Plan
+ */
+export const putApiV1PlansById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PlansByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PlansByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Plans/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Roles
+ */
+export const getApiV1Roles = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1RolesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1RolesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Roles",
+    ...options,
+  });
+
+/**
+ * Create a new Role
+ */
+export const postApiV1Roles = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1RolesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1RolesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Roles",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Role
+ */
+export const deleteApiV1RolesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1RolesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1RolesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Roles/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Role by id
+ */
+export const getApiV1RolesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RolesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1RolesByIdResponses, GetApiV1RolesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Roles/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Role
+ */
+export const patchApiV1RolesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1RolesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1RolesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Roles/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Role
+ */
+export const putApiV1RolesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1RolesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1RolesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Roles/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Permissions
+ */
+export const getApiV1Permissions = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PermissionsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PermissionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Permissions",
+    ...options,
+  });
+
+/**
+ * Create a new Permission
+ */
+export const postApiV1Permissions = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PermissionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PermissionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Permissions",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Permission
+ */
+export const deleteApiV1PermissionsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PermissionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PermissionsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Permissions/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Permission by id
+ */
+export const getApiV1PermissionsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PermissionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PermissionsByIdResponses, GetApiV1PermissionsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Permissions/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Permission
+ */
+export const patchApiV1PermissionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PermissionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PermissionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Permissions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Permission
+ */
+export const putApiV1PermissionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PermissionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PermissionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Permissions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Sessions
+ */
+export const getApiV1Sessions = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1SessionsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1SessionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Sessions",
+    ...options,
+  });
+
+/**
+ * Create a new Session
+ */
+export const postApiV1Sessions = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1SessionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1SessionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Sessions",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Session
+ */
+export const deleteApiV1SessionsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1SessionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1SessionsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Sessions/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Session by id
+ */
+export const getApiV1SessionsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SessionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1SessionsByIdResponses, GetApiV1SessionsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Sessions/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Session
+ */
+export const patchApiV1SessionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1SessionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1SessionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Sessions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Session
+ */
+export const putApiV1SessionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1SessionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1SessionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Sessions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Logs
+ */
+export const getApiV1Logs = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1LogsData, ThrowOnError>) =>
+  (options?.client ?? client).get<GetApiV1LogsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Logs",
+    ...options,
+  });
+
+/**
+ * Create a new Log
+ */
+export const postApiV1Logs = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1LogsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1LogsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Logs",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Log
+ */
+export const deleteApiV1LogsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1LogsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1LogsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Logs/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Log by id
+ */
+export const getApiV1LogsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1LogsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1LogsByIdResponses, GetApiV1LogsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Logs/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Log
+ */
+export const patchApiV1LogsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1LogsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1LogsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Logs/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Log
+ */
+export const putApiV1LogsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1LogsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1LogsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Logs/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Files
+ */
+export const getApiV1Files = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1FilesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1FilesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Files",
+    ...options,
+  });
+
+/**
+ * Create a new File
+ */
+export const postApiV1Files = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1FilesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1FilesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Files",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a File
+ */
+export const deleteApiV1FilesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1FilesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1FilesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Files/{id}",
+    ...options,
+  });
+
+/**
+ * Get a File by id
+ */
+export const getApiV1FilesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1FilesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1FilesByIdResponses, GetApiV1FilesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Files/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a File
+ */
+export const patchApiV1FilesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1FilesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1FilesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Files/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a File
+ */
+export const putApiV1FilesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1FilesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1FilesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Files/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Folders
+ */
+export const getApiV1Folders = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1FoldersData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1FoldersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Folders",
+    ...options,
+  });
+
+/**
+ * Create a new Folder
+ */
+export const postApiV1Folders = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1FoldersData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1FoldersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Folders",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Folder
+ */
+export const deleteApiV1FoldersById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1FoldersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1FoldersByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Folders/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Folder by id
+ */
+export const getApiV1FoldersById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1FoldersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1FoldersByIdResponses, GetApiV1FoldersByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Folders/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Folder
+ */
+export const patchApiV1FoldersById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1FoldersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1FoldersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Folders/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Folder
+ */
+export const putApiV1FoldersById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1FoldersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1FoldersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Folders/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Genres
+ */
+export const getApiV1Genres = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1GenresData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1GenresResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Genres",
+    ...options,
+  });
+
+/**
+ * Create a new Genre
+ */
+export const postApiV1Genres = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1GenresData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1GenresResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Genres",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Genre
+ */
+export const deleteApiV1GenresById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1GenresByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1GenresByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Genres/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Genre by id
+ */
+export const getApiV1GenresById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1GenresByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1GenresByIdResponses, GetApiV1GenresByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Genres/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Genre
+ */
+export const patchApiV1GenresById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1GenresByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1GenresByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Genres/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Genre
+ */
+export const putApiV1GenresById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1GenresByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1GenresByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Genres/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Movies
+ */
+export const getApiV1Movies = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1MoviesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1MoviesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Movies",
+    ...options,
+  });
+
+/**
+ * Create a new Movy
+ */
+export const postApiV1Movies = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1MoviesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1MoviesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Movies",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Movy
+ */
+export const deleteApiV1MoviesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1MoviesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1MoviesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Movies/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Movy by id
+ */
+export const getApiV1MoviesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1MoviesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1MoviesByIdResponses, GetApiV1MoviesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Movies/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Movy
+ */
+export const patchApiV1MoviesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1MoviesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1MoviesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Movies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Movy
+ */
+export const putApiV1MoviesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1MoviesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1MoviesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Movies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Songs
+ */
+export const getApiV1Songs = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1SongsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1SongsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Songs",
+    ...options,
+  });
+
+/**
+ * Create a new Song
+ */
+export const postApiV1Songs = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1SongsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1SongsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Songs",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Song
+ */
+export const deleteApiV1SongsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1SongsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1SongsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Songs/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Song by id
+ */
+export const getApiV1SongsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SongsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1SongsByIdResponses, GetApiV1SongsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Songs/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Song
+ */
+export const patchApiV1SongsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1SongsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1SongsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Songs/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Song
+ */
+export const putApiV1SongsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1SongsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1SongsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Songs/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Albums
+ */
+export const getApiV1Albums = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1AlbumsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1AlbumsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Albums",
+    ...options,
+  });
+
+/**
+ * Create a new Album
+ */
+export const postApiV1Albums = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1AlbumsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1AlbumsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Albums",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Album
+ */
+export const deleteApiV1AlbumsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1AlbumsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1AlbumsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Albums/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Album by id
+ */
+export const getApiV1AlbumsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1AlbumsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1AlbumsByIdResponses, GetApiV1AlbumsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Albums/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Album
+ */
+export const patchApiV1AlbumsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1AlbumsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1AlbumsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Albums/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Album
+ */
+export const putApiV1AlbumsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1AlbumsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1AlbumsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Albums/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Artists
+ */
+export const getApiV1Artists = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ArtistsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ArtistsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Artists",
+    ...options,
+  });
+
+/**
+ * Create a new Artist
+ */
+export const postApiV1Artists = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ArtistsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ArtistsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Artists",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Artist
+ */
+export const deleteApiV1ArtistsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ArtistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ArtistsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Artists/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Artist by id
+ */
+export const getApiV1ArtistsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ArtistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ArtistsByIdResponses, GetApiV1ArtistsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Artists/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Artist
+ */
+export const patchApiV1ArtistsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ArtistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ArtistsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Artists/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Artist
+ */
+export const putApiV1ArtistsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ArtistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ArtistsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Artists/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Playlists
+ */
+export const getApiV1Playlists = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PlaylistsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PlaylistsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Playlists",
+    ...options,
+  });
+
+/**
+ * Create a new Playlist
+ */
+export const postApiV1Playlists = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PlaylistsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PlaylistsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Playlists",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Playlist
+ */
+export const deleteApiV1PlaylistsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PlaylistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PlaylistsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Playlists/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Playlist by id
+ */
+export const getApiV1PlaylistsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PlaylistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PlaylistsByIdResponses, GetApiV1PlaylistsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Playlists/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Playlist
+ */
+export const patchApiV1PlaylistsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PlaylistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PlaylistsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Playlists/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Playlist
+ */
+export const putApiV1PlaylistsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PlaylistsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PlaylistsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Playlists/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Teams
+ */
+export const getApiV1Teams = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1TeamsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1TeamsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Teams",
+    ...options,
+  });
+
+/**
+ * Create a new Team
+ */
+export const postApiV1Teams = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1TeamsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1TeamsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Teams",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Team
+ */
+export const deleteApiV1TeamsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1TeamsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1TeamsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Teams/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Team by id
+ */
+export const getApiV1TeamsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1TeamsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1TeamsByIdResponses, GetApiV1TeamsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Teams/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Team
+ */
+export const patchApiV1TeamsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1TeamsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1TeamsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Teams/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Team
+ */
+export const putApiV1TeamsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1TeamsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1TeamsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Teams/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Players
+ */
+export const getApiV1Players = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PlayersData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PlayersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Players",
+    ...options,
+  });
+
+/**
+ * Create a new Player
+ */
+export const postApiV1Players = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PlayersData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PlayersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Players",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Player
+ */
+export const deleteApiV1PlayersById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PlayersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PlayersByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Players/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Player by id
+ */
+export const getApiV1PlayersById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PlayersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PlayersByIdResponses, GetApiV1PlayersByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Players/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Player
+ */
+export const patchApiV1PlayersById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PlayersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PlayersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Players/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Player
+ */
+export const putApiV1PlayersById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PlayersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PlayersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Players/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Matches
+ */
+export const getApiV1Matches = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1MatchesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1MatchesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Matches",
+    ...options,
+  });
+
+/**
+ * Create a new Matche
+ */
+export const postApiV1Matches = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1MatchesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1MatchesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Matches",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Matche
+ */
+export const deleteApiV1MatchesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1MatchesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1MatchesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Matches/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Matche by id
+ */
+export const getApiV1MatchesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1MatchesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1MatchesByIdResponses, GetApiV1MatchesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Matches/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Matche
+ */
+export const patchApiV1MatchesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1MatchesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1MatchesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Matches/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Matche
+ */
+export const putApiV1MatchesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1MatchesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1MatchesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Matches/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Recipes
+ */
+export const getApiV1Recipes = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1RecipesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1RecipesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Recipes",
+    ...options,
+  });
+
+/**
+ * Create a new Recipe
+ */
+export const postApiV1Recipes = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1RecipesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1RecipesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Recipes",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Recipe
+ */
+export const deleteApiV1RecipesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1RecipesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1RecipesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Recipes/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Recipe by id
+ */
+export const getApiV1RecipesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RecipesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1RecipesByIdResponses, GetApiV1RecipesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Recipes/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Recipe
+ */
+export const patchApiV1RecipesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1RecipesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1RecipesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Recipes/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Recipe
+ */
+export const putApiV1RecipesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1RecipesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1RecipesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Recipes/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Restaurants
+ */
+export const getApiV1Restaurants = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1RestaurantsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1RestaurantsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Restaurants",
+    ...options,
+  });
+
+/**
+ * Create a new Restaurant
+ */
+export const postApiV1Restaurants = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1RestaurantsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1RestaurantsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Restaurants",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Restaurant
+ */
+export const deleteApiV1RestaurantsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1RestaurantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1RestaurantsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Restaurants/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Restaurant by id
+ */
+export const getApiV1RestaurantsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RestaurantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1RestaurantsByIdResponses, GetApiV1RestaurantsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Restaurants/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Restaurant
+ */
+export const patchApiV1RestaurantsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1RestaurantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1RestaurantsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Restaurants/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Restaurant
+ */
+export const putApiV1RestaurantsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1RestaurantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1RestaurantsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Restaurants/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Hotels
+ */
+export const getApiV1Hotels = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1HotelsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1HotelsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Hotels",
+    ...options,
+  });
+
+/**
+ * Create a new Hotel
+ */
+export const postApiV1Hotels = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1HotelsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1HotelsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Hotels",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Hotel
+ */
+export const deleteApiV1HotelsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1HotelsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1HotelsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Hotels/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Hotel by id
+ */
+export const getApiV1HotelsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1HotelsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1HotelsByIdResponses, GetApiV1HotelsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Hotels/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Hotel
+ */
+export const patchApiV1HotelsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1HotelsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1HotelsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Hotels/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Hotel
+ */
+export const putApiV1HotelsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1HotelsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1HotelsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Hotels/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Bookings
+ */
+export const getApiV1Bookings = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1BookingsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1BookingsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Bookings",
+    ...options,
+  });
+
+/**
+ * Create a new Booking
+ */
+export const postApiV1Bookings = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1BookingsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1BookingsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Bookings",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Booking
+ */
+export const deleteApiV1BookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1BookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1BookingsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Bookings/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Booking by id
+ */
+export const getApiV1BookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1BookingsByIdResponses, GetApiV1BookingsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Bookings/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Booking
+ */
+export const patchApiV1BookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1BookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1BookingsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Bookings/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Booking
+ */
+export const putApiV1BookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1BookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1BookingsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Bookings/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Flights
+ */
+export const getApiV1Flights = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1FlightsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1FlightsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Flights",
+    ...options,
+  });
+
+/**
+ * Create a new Flight
+ */
+export const postApiV1Flights = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1FlightsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1FlightsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Flights",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Flight
+ */
+export const deleteApiV1FlightsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1FlightsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1FlightsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Flights/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Flight by id
+ */
+export const getApiV1FlightsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1FlightsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1FlightsByIdResponses, GetApiV1FlightsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Flights/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Flight
+ */
+export const patchApiV1FlightsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1FlightsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1FlightsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Flights/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Flight
+ */
+export const putApiV1FlightsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1FlightsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1FlightsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Flights/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Cars
+ */
+export const getApiV1Cars = <ThrowOnError extends boolean = false>(options?: Options<GetApiV1CarsData, ThrowOnError>) =>
+  (options?.client ?? client).get<GetApiV1CarsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cars",
+    ...options,
+  });
+
+/**
+ * Create a new Car
+ */
+export const postApiV1Cars = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CarsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CarsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cars",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Car
+ */
+export const deleteApiV1CarsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CarsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CarsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Cars/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Car by id
+ */
+export const getApiV1CarsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CarsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CarsByIdResponses, GetApiV1CarsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cars/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Car
+ */
+export const patchApiV1CarsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CarsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CarsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cars/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Car
+ */
+export const putApiV1CarsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CarsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CarsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Cars/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Currencies
+ */
+export const getApiV1Currencies = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CurrenciesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CurrenciesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Currencies",
+    ...options,
+  });
+
+/**
+ * Create a new Currency
+ */
+export const postApiV1Currencies = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CurrenciesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CurrenciesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Currencies",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Currency
+ */
+export const deleteApiV1CurrenciesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CurrenciesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CurrenciesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Currencies/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Currency by id
+ */
+export const getApiV1CurrenciesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CurrenciesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CurrenciesByIdResponses, GetApiV1CurrenciesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Currencies/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Currency
+ */
+export const patchApiV1CurrenciesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CurrenciesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CurrenciesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Currencies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Currency
+ */
+export const putApiV1CurrenciesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CurrenciesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CurrenciesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Currencies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Languages
+ */
+export const getApiV1Languages = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1LanguagesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1LanguagesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Languages",
+    ...options,
+  });
+
+/**
+ * Create a new Language
+ */
+export const postApiV1Languages = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1LanguagesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1LanguagesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Languages",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Language
+ */
+export const deleteApiV1LanguagesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1LanguagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1LanguagesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Languages/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Language by id
+ */
+export const getApiV1LanguagesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1LanguagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1LanguagesByIdResponses, GetApiV1LanguagesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Languages/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Language
+ */
+export const patchApiV1LanguagesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1LanguagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1LanguagesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Languages/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Language
+ */
+export const putApiV1LanguagesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1LanguagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1LanguagesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Languages/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Brands
+ */
+export const getApiV1Brands = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1BrandsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1BrandsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Brands",
+    ...options,
+  });
+
+/**
+ * Create a new Brand
+ */
+export const postApiV1Brands = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1BrandsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1BrandsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Brands",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Brand
+ */
+export const deleteApiV1BrandsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1BrandsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1BrandsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Brands/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Brand by id
+ */
+export const getApiV1BrandsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BrandsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1BrandsByIdResponses, GetApiV1BrandsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Brands/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Brand
+ */
+export const patchApiV1BrandsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1BrandsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1BrandsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Brands/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Brand
+ */
+export const putApiV1BrandsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1BrandsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1BrandsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Brands/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all CartItems
+ */
+export const getApiV1CartItems = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CartItemsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CartItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CartItems",
+    ...options,
+  });
+
+/**
+ * Create a new CartItem
+ */
+export const postApiV1CartItems = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CartItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CartItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CartItems",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a CartItem
+ */
+export const deleteApiV1CartItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CartItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CartItemsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/CartItems/{id}",
+    ...options,
+  });
+
+/**
+ * Get a CartItem by id
+ */
+export const getApiV1CartItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CartItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CartItemsByIdResponses, GetApiV1CartItemsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CartItems/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a CartItem
+ */
+export const patchApiV1CartItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CartItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CartItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CartItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a CartItem
+ */
+export const putApiV1CartItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CartItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CartItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CartItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all WishlistItems
+ */
+export const getApiV1WishlistItems = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1WishlistItemsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1WishlistItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/WishlistItems",
+    ...options,
+  });
+
+/**
+ * Create a new WishlistItem
+ */
+export const postApiV1WishlistItems = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1WishlistItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1WishlistItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/WishlistItems",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a WishlistItem
+ */
+export const deleteApiV1WishlistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1WishlistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1WishlistItemsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/WishlistItems/{id}",
+    ...options,
+  });
+
+/**
+ * Get a WishlistItem by id
+ */
+export const getApiV1WishlistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1WishlistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1WishlistItemsByIdResponses, GetApiV1WishlistItemsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/WishlistItems/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a WishlistItem
+ */
+export const patchApiV1WishlistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1WishlistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1WishlistItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/WishlistItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a WishlistItem
+ */
+export const putApiV1WishlistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1WishlistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1WishlistItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/WishlistItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Likes
+ */
+export const getApiV1Likes = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1LikesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1LikesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Likes",
+    ...options,
+  });
+
+/**
+ * Create a new Like
+ */
+export const postApiV1Likes = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1LikesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1LikesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Likes",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Like
+ */
+export const deleteApiV1LikesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1LikesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1LikesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Likes/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Like by id
+ */
+export const getApiV1LikesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1LikesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1LikesByIdResponses, GetApiV1LikesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Likes/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Like
+ */
+export const patchApiV1LikesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1LikesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1LikesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Likes/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Like
+ */
+export const putApiV1LikesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1LikesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1LikesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Likes/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Follows
+ */
+export const getApiV1Follows = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1FollowsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1FollowsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Follows",
+    ...options,
+  });
+
+/**
+ * Create a new Follow
+ */
+export const postApiV1Follows = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1FollowsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1FollowsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Follows",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Follow
+ */
+export const deleteApiV1FollowsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1FollowsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1FollowsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Follows/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Follow by id
+ */
+export const getApiV1FollowsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1FollowsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1FollowsByIdResponses, GetApiV1FollowsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Follows/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Follow
+ */
+export const patchApiV1FollowsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1FollowsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1FollowsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Follows/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Follow
+ */
+export const putApiV1FollowsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1FollowsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1FollowsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Follows/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Messages
+ */
+export const getApiV1Messages = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1MessagesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1MessagesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Messages",
+    ...options,
+  });
+
+/**
+ * Create a new Message
+ */
+export const postApiV1Messages = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1MessagesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1MessagesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Messages",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Message
+ */
+export const deleteApiV1MessagesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1MessagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1MessagesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Messages/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Message by id
+ */
+export const getApiV1MessagesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1MessagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1MessagesByIdResponses, GetApiV1MessagesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Messages/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Message
+ */
+export const patchApiV1MessagesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1MessagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1MessagesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Messages/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Message
+ */
+export const putApiV1MessagesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1MessagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1MessagesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Messages/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Conversations
+ */
+export const getApiV1Conversations = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ConversationsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ConversationsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Conversations",
+    ...options,
+  });
+
+/**
+ * Create a new Conversation
+ */
+export const postApiV1Conversations = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ConversationsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ConversationsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Conversations",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Conversation
+ */
+export const deleteApiV1ConversationsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ConversationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ConversationsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Conversations/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Conversation by id
+ */
+export const getApiV1ConversationsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ConversationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ConversationsByIdResponses, GetApiV1ConversationsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Conversations/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Conversation
+ */
+export const patchApiV1ConversationsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ConversationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ConversationsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Conversations/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Conversation
+ */
+export const putApiV1ConversationsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ConversationsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ConversationsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Conversations/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all ProductVariants
+ */
+export const getApiV1ProductVariants = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ProductVariantsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ProductVariantsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ProductVariants",
+    ...options,
+  });
+
+/**
+ * Create a new ProductVariant
+ */
+export const postApiV1ProductVariants = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ProductVariantsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ProductVariantsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ProductVariants",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a ProductVariant
+ */
+export const deleteApiV1ProductVariantsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ProductVariantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ProductVariantsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/ProductVariants/{id}",
+    ...options,
+  });
+
+/**
+ * Get a ProductVariant by id
+ */
+export const getApiV1ProductVariantsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductVariantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ProductVariantsByIdResponses, GetApiV1ProductVariantsByIdErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/ProductVariants/{id}",
+      ...options,
+    },
+  );
+
+/**
+ * Partially update a ProductVariant
+ */
+export const patchApiV1ProductVariantsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ProductVariantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ProductVariantsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ProductVariants/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a ProductVariant
+ */
+export const putApiV1ProductVariantsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ProductVariantsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ProductVariantsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ProductVariants/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Returns
+ */
+export const getApiV1Returns = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ReturnsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ReturnsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Returns",
+    ...options,
+  });
+
+/**
+ * Create a new Return
+ */
+export const postApiV1Returns = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ReturnsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ReturnsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Returns",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Return
+ */
+export const deleteApiV1ReturnsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ReturnsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ReturnsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Returns/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Return by id
+ */
+export const getApiV1ReturnsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ReturnsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ReturnsByIdResponses, GetApiV1ReturnsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Returns/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Return
+ */
+export const patchApiV1ReturnsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ReturnsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ReturnsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Returns/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Return
+ */
+export const putApiV1ReturnsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ReturnsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ReturnsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Returns/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all ReviewReplies
+ */
+export const getApiV1ReviewReplies = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ReviewRepliesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ReviewRepliesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ReviewReplies",
+    ...options,
+  });
+
+/**
+ * Create a new ReviewReply
+ */
+export const postApiV1ReviewReplies = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ReviewRepliesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ReviewRepliesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ReviewReplies",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a ReviewReply
+ */
+export const deleteApiV1ReviewRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ReviewRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ReviewRepliesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/ReviewReplies/{id}",
+    ...options,
+  });
+
+/**
+ * Get a ReviewReply by id
+ */
+export const getApiV1ReviewRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ReviewRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ReviewRepliesByIdResponses, GetApiV1ReviewRepliesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ReviewReplies/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a ReviewReply
+ */
+export const patchApiV1ReviewRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ReviewRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ReviewRepliesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ReviewReplies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a ReviewReply
+ */
+export const putApiV1ReviewRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ReviewRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ReviewRepliesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ReviewReplies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all ArticleTags
+ */
+export const getApiV1ArticleTags = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ArticleTagsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ArticleTagsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ArticleTags",
+    ...options,
+  });
+
+/**
+ * Create a new ArticleTag
+ */
+export const postApiV1ArticleTags = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ArticleTagsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ArticleTagsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ArticleTags",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a ArticleTag
+ */
+export const deleteApiV1ArticleTagsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ArticleTagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ArticleTagsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/ArticleTags/{id}",
+    ...options,
+  });
+
+/**
+ * Get a ArticleTag by id
+ */
+export const getApiV1ArticleTagsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ArticleTagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ArticleTagsByIdResponses, GetApiV1ArticleTagsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ArticleTags/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a ArticleTag
+ */
+export const patchApiV1ArticleTagsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ArticleTagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ArticleTagsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ArticleTags/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a ArticleTag
+ */
+export const putApiV1ArticleTagsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ArticleTagsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ArticleTagsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ArticleTags/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all PageViews
+ */
+export const getApiV1PageViews = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PageViewsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PageViewsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PageViews",
+    ...options,
+  });
+
+/**
+ * Create a new PageView
+ */
+export const postApiV1PageViews = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PageViewsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PageViewsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PageViews",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a PageView
+ */
+export const deleteApiV1PageViewsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PageViewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PageViewsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/PageViews/{id}",
+    ...options,
+  });
+
+/**
+ * Get a PageView by id
+ */
+export const getApiV1PageViewsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PageViewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PageViewsByIdResponses, GetApiV1PageViewsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PageViews/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a PageView
+ */
+export const patchApiV1PageViewsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PageViewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PageViewsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PageViews/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a PageView
+ */
+export const putApiV1PageViewsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PageViewsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PageViewsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PageViews/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all UserActivity
+ */
+export const getApiV1UserActivity = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1UserActivityData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1UserActivityResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserActivity",
+    ...options,
+  });
+
+/**
+ * Create a new UserActivity
+ */
+export const postApiV1UserActivity = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1UserActivityData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1UserActivityResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserActivity",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a UserActivity
+ */
+export const deleteApiV1UserActivityById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1UserActivityByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1UserActivityByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/UserActivity/{id}",
+    ...options,
+  });
+
+/**
+ * Get a UserActivity by id
+ */
+export const getApiV1UserActivityById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UserActivityByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1UserActivityByIdResponses, GetApiV1UserActivityByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserActivity/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a UserActivity
+ */
+export const patchApiV1UserActivityById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1UserActivityByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1UserActivityByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserActivity/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a UserActivity
+ */
+export const putApiV1UserActivityById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1UserActivityByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1UserActivityByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserActivity/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Ratings
+ */
+export const getApiV1Ratings = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1RatingsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1RatingsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Ratings",
+    ...options,
+  });
+
+/**
+ * Create a new Rating
+ */
+export const postApiV1Ratings = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1RatingsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1RatingsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Ratings",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Rating
+ */
+export const deleteApiV1RatingsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1RatingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1RatingsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Ratings/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Rating by id
+ */
+export const getApiV1RatingsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RatingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1RatingsByIdResponses, GetApiV1RatingsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Ratings/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Rating
+ */
+export const patchApiV1RatingsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1RatingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1RatingsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Ratings/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Rating
+ */
+export const putApiV1RatingsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1RatingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1RatingsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Ratings/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Banners
+ */
+export const getApiV1Banners = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1BannersData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1BannersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Banners",
+    ...options,
+  });
+
+/**
+ * Create a new Banner
+ */
+export const postApiV1Banners = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1BannersData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1BannersResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Banners",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Banner
+ */
+export const deleteApiV1BannersById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1BannersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1BannersByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Banners/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Banner by id
+ */
+export const getApiV1BannersById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BannersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1BannersByIdResponses, GetApiV1BannersByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Banners/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Banner
+ */
+export const patchApiV1BannersById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1BannersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1BannersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Banners/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Banner
+ */
+export const putApiV1BannersById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1BannersByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1BannersByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Banners/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Promotions
+ */
+export const getApiV1Promotions = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PromotionsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PromotionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Promotions",
+    ...options,
+  });
+
+/**
+ * Create a new Promotion
+ */
+export const postApiV1Promotions = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PromotionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PromotionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Promotions",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Promotion
+ */
+export const deleteApiV1PromotionsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PromotionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PromotionsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Promotions/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Promotion by id
+ */
+export const getApiV1PromotionsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PromotionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PromotionsByIdResponses, GetApiV1PromotionsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Promotions/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Promotion
+ */
+export const patchApiV1PromotionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PromotionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PromotionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Promotions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Promotion
+ */
+export const putApiV1PromotionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PromotionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PromotionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Promotions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Discounts
+ */
+export const getApiV1Discounts = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1DiscountsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1DiscountsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Discounts",
+    ...options,
+  });
+
+/**
+ * Create a new Discount
+ */
+export const postApiV1Discounts = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1DiscountsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1DiscountsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Discounts",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Discount
+ */
+export const deleteApiV1DiscountsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1DiscountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1DiscountsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Discounts/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Discount by id
+ */
+export const getApiV1DiscountsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1DiscountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1DiscountsByIdResponses, GetApiV1DiscountsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Discounts/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Discount
+ */
+export const patchApiV1DiscountsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1DiscountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1DiscountsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Discounts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Discount
+ */
+export const putApiV1DiscountsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1DiscountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1DiscountsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Discounts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Favorites
+ */
+export const getApiV1Favorites = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1FavoritesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1FavoritesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Favorites",
+    ...options,
+  });
+
+/**
+ * Create a new Favorite
+ */
+export const postApiV1Favorites = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1FavoritesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1FavoritesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Favorites",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Favorite
+ */
+export const deleteApiV1FavoritesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1FavoritesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1FavoritesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Favorites/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Favorite by id
+ */
+export const getApiV1FavoritesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1FavoritesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1FavoritesByIdResponses, GetApiV1FavoritesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Favorites/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Favorite
+ */
+export const patchApiV1FavoritesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1FavoritesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1FavoritesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Favorites/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Favorite
+ */
+export const putApiV1FavoritesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1FavoritesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1FavoritesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Favorites/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all SearchQueries
+ */
+export const getApiV1SearchQueries = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1SearchQueriesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1SearchQueriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SearchQueries",
+    ...options,
+  });
+
+/**
+ * Create a new SearchQuery
+ */
+export const postApiV1SearchQueries = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1SearchQueriesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1SearchQueriesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SearchQueries",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a SearchQuery
+ */
+export const deleteApiV1SearchQueriesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1SearchQueriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1SearchQueriesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/SearchQueries/{id}",
+    ...options,
+  });
+
+/**
+ * Get a SearchQuery by id
+ */
+export const getApiV1SearchQueriesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SearchQueriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1SearchQueriesByIdResponses, GetApiV1SearchQueriesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SearchQueries/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a SearchQuery
+ */
+export const patchApiV1SearchQueriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1SearchQueriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1SearchQueriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SearchQueries/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a SearchQuery
+ */
+export const putApiV1SearchQueriesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1SearchQueriesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1SearchQueriesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SearchQueries/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Badges
+ */
+export const getApiV1Badges = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1BadgesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1BadgesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Badges",
+    ...options,
+  });
+
+/**
+ * Create a new Badge
+ */
+export const postApiV1Badges = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1BadgesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1BadgesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Badges",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Badge
+ */
+export const deleteApiV1BadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1BadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1BadgesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Badges/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Badge by id
+ */
+export const getApiV1BadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1BadgesByIdResponses, GetApiV1BadgesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Badges/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Badge
+ */
+export const patchApiV1BadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1BadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1BadgesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Badges/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Badge
+ */
+export const putApiV1BadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1BadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1BadgesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Badges/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all UserBadges
+ */
+export const getApiV1UserBadges = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1UserBadgesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1UserBadgesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserBadges",
+    ...options,
+  });
+
+/**
+ * Create a new UserBadge
+ */
+export const postApiV1UserBadges = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1UserBadgesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1UserBadgesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserBadges",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a UserBadge
+ */
+export const deleteApiV1UserBadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1UserBadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1UserBadgesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/UserBadges/{id}",
+    ...options,
+  });
+
+/**
+ * Get a UserBadge by id
+ */
+export const getApiV1UserBadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UserBadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1UserBadgesByIdResponses, GetApiV1UserBadgesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserBadges/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a UserBadge
+ */
+export const patchApiV1UserBadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1UserBadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1UserBadgesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserBadges/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a UserBadge
+ */
+export const putApiV1UserBadgesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1UserBadgesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1UserBadgesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/UserBadges/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Reports
+ */
+export const getApiV1Reports = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ReportsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ReportsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reports",
+    ...options,
+  });
+
+/**
+ * Create a new Report
+ */
+export const postApiV1Reports = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ReportsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ReportsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reports",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Report
+ */
+export const deleteApiV1ReportsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ReportsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ReportsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Reports/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Report by id
+ */
+export const getApiV1ReportsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ReportsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ReportsByIdResponses, GetApiV1ReportsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reports/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Report
+ */
+export const patchApiV1ReportsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ReportsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ReportsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reports/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Report
+ */
+export const putApiV1ReportsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ReportsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ReportsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reports/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Refunds
+ */
+export const getApiV1Refunds = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1RefundsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1RefundsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Refunds",
+    ...options,
+  });
+
+/**
+ * Create a new Refund
+ */
+export const postApiV1Refunds = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1RefundsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1RefundsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Refunds",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Refund
+ */
+export const deleteApiV1RefundsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1RefundsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1RefundsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Refunds/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Refund by id
+ */
+export const getApiV1RefundsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RefundsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1RefundsByIdResponses, GetApiV1RefundsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Refunds/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Refund
+ */
+export const patchApiV1RefundsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1RefundsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1RefundsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Refunds/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Refund
+ */
+export const putApiV1RefundsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1RefundsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1RefundsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Refunds/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Vendors
+ */
+export const getApiV1Vendors = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1VendorsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1VendorsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Vendors",
+    ...options,
+  });
+
+/**
+ * Create a new Vendor
+ */
+export const postApiV1Vendors = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1VendorsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1VendorsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Vendors",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Vendor
+ */
+export const deleteApiV1VendorsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1VendorsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1VendorsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Vendors/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Vendor by id
+ */
+export const getApiV1VendorsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1VendorsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1VendorsByIdResponses, GetApiV1VendorsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Vendors/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Vendor
+ */
+export const patchApiV1VendorsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1VendorsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1VendorsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Vendors/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Vendor
+ */
+export const putApiV1VendorsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1VendorsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1VendorsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Vendors/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Transactions
+ */
+export const getApiV1Transactions = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1TransactionsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1TransactionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Transactions",
+    ...options,
+  });
+
+/**
+ * Create a new Transaction
+ */
+export const postApiV1Transactions = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1TransactionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1TransactionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Transactions",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Transaction
+ */
+export const deleteApiV1TransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1TransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1TransactionsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Transactions/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Transaction by id
+ */
+export const getApiV1TransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1TransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1TransactionsByIdResponses, GetApiV1TransactionsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Transactions/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Transaction
+ */
+export const patchApiV1TransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1TransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1TransactionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Transactions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Transaction
+ */
+export const putApiV1TransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1TransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1TransactionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Transactions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all CouponUsages
+ */
+export const getApiV1CouponUsages = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CouponUsagesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CouponUsagesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CouponUsages",
+    ...options,
+  });
+
+/**
+ * Create a new CouponUsage
+ */
+export const postApiV1CouponUsages = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CouponUsagesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CouponUsagesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CouponUsages",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a CouponUsage
+ */
+export const deleteApiV1CouponUsagesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CouponUsagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CouponUsagesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/CouponUsages/{id}",
+    ...options,
+  });
+
+/**
+ * Get a CouponUsage by id
+ */
+export const getApiV1CouponUsagesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CouponUsagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CouponUsagesByIdResponses, GetApiV1CouponUsagesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CouponUsages/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a CouponUsage
+ */
+export const patchApiV1CouponUsagesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CouponUsagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CouponUsagesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CouponUsages/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a CouponUsage
+ */
+export const putApiV1CouponUsagesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CouponUsagesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CouponUsagesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CouponUsages/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all Preferences
+ */
+export const getApiV1Preferences = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PreferencesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PreferencesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Preferences",
+    ...options,
+  });
+
+/**
+ * Create a new Preference
+ */
+export const postApiV1Preferences = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PreferencesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PreferencesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Preferences",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a Preference
+ */
+export const deleteApiV1PreferencesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PreferencesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PreferencesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/Preferences/{id}",
+    ...options,
+  });
+
+/**
+ * Get a Preference by id
+ */
+export const getApiV1PreferencesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PreferencesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PreferencesByIdResponses, GetApiV1PreferencesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Preferences/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a Preference
+ */
+export const patchApiV1PreferencesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PreferencesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PreferencesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Preferences/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a Preference
+ */
+export const putApiV1PreferencesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PreferencesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PreferencesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Preferences/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all PaymentMethods
+ */
+export const getApiV1PaymentMethods = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PaymentMethodsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PaymentMethodsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PaymentMethods",
+    ...options,
+  });
+
+/**
+ * Create a new PaymentMethod
+ */
+export const postApiV1PaymentMethods = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PaymentMethodsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PaymentMethodsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PaymentMethods",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a PaymentMethod
+ */
+export const deleteApiV1PaymentMethodsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PaymentMethodsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PaymentMethodsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/PaymentMethods/{id}",
+    ...options,
+  });
+
+/**
+ * Get a PaymentMethod by id
+ */
+export const getApiV1PaymentMethodsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PaymentMethodsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PaymentMethodsByIdResponses, GetApiV1PaymentMethodsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PaymentMethods/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a PaymentMethod
+ */
+export const patchApiV1PaymentMethodsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PaymentMethodsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PaymentMethodsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PaymentMethods/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a PaymentMethod
+ */
+export const putApiV1PaymentMethodsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PaymentMethodsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PaymentMethodsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PaymentMethods/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all CustomerAddresses
+ */
+export const getApiV1CustomerAddresses = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CustomerAddressesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CustomerAddressesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CustomerAddresses",
+    ...options,
+  });
+
+/**
+ * Create a new CustomerAddresse
+ */
+export const postApiV1CustomerAddresses = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CustomerAddressesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CustomerAddressesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CustomerAddresses",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a CustomerAddresse
+ */
+export const deleteApiV1CustomerAddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CustomerAddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CustomerAddressesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/CustomerAddresses/{id}",
+    ...options,
+  });
+
+/**
+ * Get a CustomerAddresse by id
+ */
+export const getApiV1CustomerAddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomerAddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1CustomerAddressesByIdResponses,
+    GetApiV1CustomerAddressesByIdErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/CustomerAddresses/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a CustomerAddresse
+ */
+export const patchApiV1CustomerAddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CustomerAddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CustomerAddressesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CustomerAddresses/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a CustomerAddresse
+ */
+export const putApiV1CustomerAddressesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CustomerAddressesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CustomerAddressesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CustomerAddresses/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a OrderNote
+ */
+export const deleteApiV1OrderNotesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1OrderNotesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1OrderNotesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/OrderNotes/{id}",
+    ...options,
+  });
+
+/**
+ * Get a OrderNote by id
+ */
+export const getApiV1OrderNotesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1OrderNotesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1OrderNotesByIdResponses, GetApiV1OrderNotesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderNotes/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a OrderNote
+ */
+export const patchApiV1OrderNotesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1OrderNotesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1OrderNotesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderNotes/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a OrderNote
+ */
+export const putApiV1OrderNotesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1OrderNotesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1OrderNotesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/OrderNotes/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all ShipmentEvents
+ */
+export const getApiV1ShipmentEvents = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1ShipmentEventsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1ShipmentEventsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ShipmentEvents",
+    ...options,
+  });
+
+/**
+ * Create a new ShipmentEvent
+ */
+export const postApiV1ShipmentEvents = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1ShipmentEventsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1ShipmentEventsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ShipmentEvents",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a ShipmentEvent
+ */
+export const deleteApiV1ShipmentEventsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1ShipmentEventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1ShipmentEventsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/ShipmentEvents/{id}",
+    ...options,
+  });
+
+/**
+ * Get a ShipmentEvent by id
+ */
+export const getApiV1ShipmentEventsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ShipmentEventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ShipmentEventsByIdResponses, GetApiV1ShipmentEventsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ShipmentEvents/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a ShipmentEvent
+ */
+export const patchApiV1ShipmentEventsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1ShipmentEventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1ShipmentEventsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ShipmentEvents/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a ShipmentEvent
+ */
+export const putApiV1ShipmentEventsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1ShipmentEventsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1ShipmentEventsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/ShipmentEvents/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all InvoiceItems
+ */
+export const getApiV1InvoiceItems = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1InvoiceItemsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1InvoiceItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/InvoiceItems",
+    ...options,
+  });
+
+/**
+ * Create a new InvoiceItem
+ */
+export const postApiV1InvoiceItems = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1InvoiceItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1InvoiceItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/InvoiceItems",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a InvoiceItem
+ */
+export const deleteApiV1InvoiceItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1InvoiceItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1InvoiceItemsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/InvoiceItems/{id}",
+    ...options,
+  });
+
+/**
+ * Get a InvoiceItem by id
+ */
+export const getApiV1InvoiceItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1InvoiceItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1InvoiceItemsByIdResponses, GetApiV1InvoiceItemsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/InvoiceItems/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a InvoiceItem
+ */
+export const patchApiV1InvoiceItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1InvoiceItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1InvoiceItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/InvoiceItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a InvoiceItem
+ */
+export const putApiV1InvoiceItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1InvoiceItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1InvoiceItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/InvoiceItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all LoyaltyAccounts
+ */
+export const getApiV1LoyaltyAccounts = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1LoyaltyAccountsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1LoyaltyAccountsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyAccounts",
+    ...options,
+  });
+
+/**
+ * Create a new LoyaltyAccount
+ */
+export const postApiV1LoyaltyAccounts = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1LoyaltyAccountsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1LoyaltyAccountsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyAccounts",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a LoyaltyAccount
+ */
+export const deleteApiV1LoyaltyAccountsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1LoyaltyAccountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1LoyaltyAccountsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/LoyaltyAccounts/{id}",
+    ...options,
+  });
+
+/**
+ * Get a LoyaltyAccount by id
+ */
+export const getApiV1LoyaltyAccountsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1LoyaltyAccountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1LoyaltyAccountsByIdResponses, GetApiV1LoyaltyAccountsByIdErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/LoyaltyAccounts/{id}",
+      ...options,
+    },
+  );
+
+/**
+ * Partially update a LoyaltyAccount
+ */
+export const patchApiV1LoyaltyAccountsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1LoyaltyAccountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1LoyaltyAccountsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyAccounts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a LoyaltyAccount
+ */
+export const putApiV1LoyaltyAccountsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1LoyaltyAccountsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1LoyaltyAccountsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyAccounts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all LoyaltyTransactions
+ */
+export const getApiV1LoyaltyTransactions = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1LoyaltyTransactionsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1LoyaltyTransactionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyTransactions",
+    ...options,
+  });
+
+/**
+ * Create a new LoyaltyTransaction
+ */
+export const postApiV1LoyaltyTransactions = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1LoyaltyTransactionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1LoyaltyTransactionsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyTransactions",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a LoyaltyTransaction
+ */
+export const deleteApiV1LoyaltyTransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1LoyaltyTransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1LoyaltyTransactionsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/LoyaltyTransactions/{id}",
+    ...options,
+  });
+
+/**
+ * Get a LoyaltyTransaction by id
+ */
+export const getApiV1LoyaltyTransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1LoyaltyTransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1LoyaltyTransactionsByIdResponses,
+    GetApiV1LoyaltyTransactionsByIdErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/LoyaltyTransactions/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a LoyaltyTransaction
+ */
+export const patchApiV1LoyaltyTransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1LoyaltyTransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1LoyaltyTransactionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyTransactions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a LoyaltyTransaction
+ */
+export const putApiV1LoyaltyTransactionsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1LoyaltyTransactionsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1LoyaltyTransactionsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/LoyaltyTransactions/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all EventAttendees
+ */
+export const getApiV1EventAttendees = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1EventAttendeesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1EventAttendeesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EventAttendees",
+    ...options,
+  });
+
+/**
+ * Create a new EventAttendee
+ */
+export const postApiV1EventAttendees = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1EventAttendeesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1EventAttendeesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EventAttendees",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a EventAttendee
+ */
+export const deleteApiV1EventAttendeesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1EventAttendeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1EventAttendeesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/EventAttendees/{id}",
+    ...options,
+  });
+
+/**
+ * Get a EventAttendee by id
+ */
+export const getApiV1EventAttendeesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EventAttendeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1EventAttendeesByIdResponses, GetApiV1EventAttendeesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EventAttendees/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a EventAttendee
+ */
+export const patchApiV1EventAttendeesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1EventAttendeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1EventAttendeesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EventAttendees/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a EventAttendee
+ */
+export const putApiV1EventAttendeesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1EventAttendeesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1EventAttendeesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EventAttendees/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all PlaylistItems
+ */
+export const getApiV1PlaylistItems = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PlaylistItemsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PlaylistItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PlaylistItems",
+    ...options,
+  });
+
+/**
+ * Create a new PlaylistItem
+ */
+export const postApiV1PlaylistItems = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PlaylistItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PlaylistItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PlaylistItems",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a PlaylistItem
+ */
+export const deleteApiV1PlaylistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PlaylistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PlaylistItemsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/PlaylistItems/{id}",
+    ...options,
+  });
+
+/**
+ * Get a PlaylistItem by id
+ */
+export const getApiV1PlaylistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PlaylistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PlaylistItemsByIdResponses, GetApiV1PlaylistItemsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PlaylistItems/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a PlaylistItem
+ */
+export const patchApiV1PlaylistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PlaylistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PlaylistItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PlaylistItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a PlaylistItem
+ */
+export const putApiV1PlaylistItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PlaylistItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PlaylistItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PlaylistItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all RecipeIngredients
+ */
+export const getApiV1RecipeIngredients = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1RecipeIngredientsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1RecipeIngredientsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RecipeIngredients",
+    ...options,
+  });
+
+/**
+ * Create a new RecipeIngredient
+ */
+export const postApiV1RecipeIngredients = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1RecipeIngredientsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1RecipeIngredientsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RecipeIngredients",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a RecipeIngredient
+ */
+export const deleteApiV1RecipeIngredientsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1RecipeIngredientsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1RecipeIngredientsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/RecipeIngredients/{id}",
+    ...options,
+  });
+
+/**
+ * Get a RecipeIngredient by id
+ */
+export const getApiV1RecipeIngredientsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RecipeIngredientsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1RecipeIngredientsByIdResponses,
+    GetApiV1RecipeIngredientsByIdErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/RecipeIngredients/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a RecipeIngredient
+ */
+export const patchApiV1RecipeIngredientsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1RecipeIngredientsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1RecipeIngredientsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RecipeIngredients/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a RecipeIngredient
+ */
+export const putApiV1RecipeIngredientsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1RecipeIngredientsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1RecipeIngredientsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RecipeIngredients/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all RestaurantMenus
+ */
+export const getApiV1RestaurantMenus = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1RestaurantMenusData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1RestaurantMenusResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RestaurantMenus",
+    ...options,
+  });
+
+/**
+ * Create a new RestaurantMenu
+ */
+export const postApiV1RestaurantMenus = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1RestaurantMenusData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1RestaurantMenusResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RestaurantMenus",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a RestaurantMenu
+ */
+export const deleteApiV1RestaurantMenusById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1RestaurantMenusByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1RestaurantMenusByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/RestaurantMenus/{id}",
+    ...options,
+  });
+
+/**
+ * Get a RestaurantMenu by id
+ */
+export const getApiV1RestaurantMenusById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RestaurantMenusByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1RestaurantMenusByIdResponses, GetApiV1RestaurantMenusByIdErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/RestaurantMenus/{id}",
+      ...options,
+    },
+  );
+
+/**
+ * Partially update a RestaurantMenu
+ */
+export const patchApiV1RestaurantMenusById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1RestaurantMenusByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1RestaurantMenusByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RestaurantMenus/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a RestaurantMenu
+ */
+export const putApiV1RestaurantMenusById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1RestaurantMenusByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1RestaurantMenusByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/RestaurantMenus/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all MenuItems
+ */
+export const getApiV1MenuItems = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1MenuItemsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1MenuItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/MenuItems",
+    ...options,
+  });
+
+/**
+ * Create a new MenuItem
+ */
+export const postApiV1MenuItems = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1MenuItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1MenuItemsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/MenuItems",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a MenuItem
+ */
+export const deleteApiV1MenuItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1MenuItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1MenuItemsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/MenuItems/{id}",
+    ...options,
+  });
+
+/**
+ * Get a MenuItem by id
+ */
+export const getApiV1MenuItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1MenuItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1MenuItemsByIdResponses, GetApiV1MenuItemsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/MenuItems/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a MenuItem
+ */
+export const patchApiV1MenuItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1MenuItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1MenuItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/MenuItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a MenuItem
+ */
+export const putApiV1MenuItemsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1MenuItemsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1MenuItemsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/MenuItems/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all CompanyOffices
+ */
+export const getApiV1CompanyOffices = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1CompanyOfficesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1CompanyOfficesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CompanyOffices",
+    ...options,
+  });
+
+/**
+ * Create a new CompanyOffice
+ */
+export const postApiV1CompanyOffices = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1CompanyOfficesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1CompanyOfficesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CompanyOffices",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a CompanyOffice
+ */
+export const deleteApiV1CompanyOfficesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1CompanyOfficesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1CompanyOfficesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/CompanyOffices/{id}",
+    ...options,
+  });
+
+/**
+ * Get a CompanyOffice by id
+ */
+export const getApiV1CompanyOfficesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CompanyOfficesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CompanyOfficesByIdResponses, GetApiV1CompanyOfficesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CompanyOffices/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a CompanyOffice
+ */
+export const patchApiV1CompanyOfficesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1CompanyOfficesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1CompanyOfficesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CompanyOffices/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a CompanyOffice
+ */
+export const putApiV1CompanyOfficesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1CompanyOfficesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1CompanyOfficesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CompanyOffices/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all EmployeeSkills
+ */
+export const getApiV1EmployeeSkills = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1EmployeeSkillsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1EmployeeSkillsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EmployeeSkills",
+    ...options,
+  });
+
+/**
+ * Create a new EmployeeSkill
+ */
+export const postApiV1EmployeeSkills = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1EmployeeSkillsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1EmployeeSkillsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EmployeeSkills",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a EmployeeSkill
+ */
+export const deleteApiV1EmployeeSkillsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1EmployeeSkillsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1EmployeeSkillsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/EmployeeSkills/{id}",
+    ...options,
+  });
+
+/**
+ * Get a EmployeeSkill by id
+ */
+export const getApiV1EmployeeSkillsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EmployeeSkillsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1EmployeeSkillsByIdResponses, GetApiV1EmployeeSkillsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EmployeeSkills/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a EmployeeSkill
+ */
+export const patchApiV1EmployeeSkillsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1EmployeeSkillsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1EmployeeSkillsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EmployeeSkills/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a EmployeeSkill
+ */
+export const putApiV1EmployeeSkillsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1EmployeeSkillsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1EmployeeSkillsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/EmployeeSkills/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all SupplierProducts
+ */
+export const getApiV1SupplierProducts = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1SupplierProductsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1SupplierProductsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupplierProducts",
+    ...options,
+  });
+
+/**
+ * Create a new SupplierProduct
+ */
+export const postApiV1SupplierProducts = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1SupplierProductsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1SupplierProductsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupplierProducts",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a SupplierProduct
+ */
+export const deleteApiV1SupplierProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1SupplierProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1SupplierProductsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/SupplierProducts/{id}",
+    ...options,
+  });
+
+/**
+ * Get a SupplierProduct by id
+ */
+export const getApiV1SupplierProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SupplierProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1SupplierProductsByIdResponses,
+    GetApiV1SupplierProductsByIdErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/SupplierProducts/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a SupplierProduct
+ */
+export const patchApiV1SupplierProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1SupplierProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1SupplierProductsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupplierProducts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a SupplierProduct
+ */
+export const putApiV1SupplierProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1SupplierProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1SupplierProductsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupplierProducts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all FlightBookings
+ */
+export const getApiV1FlightBookings = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1FlightBookingsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1FlightBookingsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/FlightBookings",
+    ...options,
+  });
+
+/**
+ * Create a new FlightBooking
+ */
+export const postApiV1FlightBookings = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1FlightBookingsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1FlightBookingsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/FlightBookings",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a FlightBooking
+ */
+export const deleteApiV1FlightBookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1FlightBookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1FlightBookingsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/FlightBookings/{id}",
+    ...options,
+  });
+
+/**
+ * Get a FlightBooking by id
+ */
+export const getApiV1FlightBookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1FlightBookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1FlightBookingsByIdResponses, GetApiV1FlightBookingsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/FlightBookings/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a FlightBooking
+ */
+export const patchApiV1FlightBookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1FlightBookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1FlightBookingsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/FlightBookings/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a FlightBooking
+ */
+export const putApiV1FlightBookingsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1FlightBookingsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1FlightBookingsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/FlightBookings/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all PromotionProducts
+ */
+export const getApiV1PromotionProducts = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1PromotionProductsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1PromotionProductsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PromotionProducts",
+    ...options,
+  });
+
+/**
+ * Create a new PromotionProduct
+ */
+export const postApiV1PromotionProducts = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1PromotionProductsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1PromotionProductsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PromotionProducts",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a PromotionProduct
+ */
+export const deleteApiV1PromotionProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1PromotionProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1PromotionProductsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/PromotionProducts/{id}",
+    ...options,
+  });
+
+/**
+ * Get a PromotionProduct by id
+ */
+export const getApiV1PromotionProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PromotionProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1PromotionProductsByIdResponses,
+    GetApiV1PromotionProductsByIdErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/PromotionProducts/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a PromotionProduct
+ */
+export const patchApiV1PromotionProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1PromotionProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1PromotionProductsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PromotionProducts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a PromotionProduct
+ */
+export const putApiV1PromotionProductsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1PromotionProductsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1PromotionProductsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/PromotionProducts/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all BannerPlacements
+ */
+export const getApiV1BannerPlacements = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1BannerPlacementsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1BannerPlacementsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/BannerPlacements",
+    ...options,
+  });
+
+/**
+ * Create a new BannerPlacement
+ */
+export const postApiV1BannerPlacements = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1BannerPlacementsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1BannerPlacementsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/BannerPlacements",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a BannerPlacement
+ */
+export const deleteApiV1BannerPlacementsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1BannerPlacementsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1BannerPlacementsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/BannerPlacements/{id}",
+    ...options,
+  });
+
+/**
+ * Get a BannerPlacement by id
+ */
+export const getApiV1BannerPlacementsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BannerPlacementsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1BannerPlacementsByIdResponses,
+    GetApiV1BannerPlacementsByIdErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/BannerPlacements/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a BannerPlacement
+ */
+export const patchApiV1BannerPlacementsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1BannerPlacementsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1BannerPlacementsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/BannerPlacements/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a BannerPlacement
+ */
+export const putApiV1BannerPlacementsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1BannerPlacementsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1BannerPlacementsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/BannerPlacements/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all SupportTickets
+ */
+export const getApiV1SupportTickets = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1SupportTicketsData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1SupportTicketsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupportTickets",
+    ...options,
+  });
+
+/**
+ * Create a new SupportTicket
+ */
+export const postApiV1SupportTickets = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1SupportTicketsData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1SupportTicketsResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupportTickets",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a SupportTicket
+ */
+export const deleteApiV1SupportTicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1SupportTicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1SupportTicketsByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/SupportTickets/{id}",
+    ...options,
+  });
+
+/**
+ * Get a SupportTicket by id
+ */
+export const getApiV1SupportTicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SupportTicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1SupportTicketsByIdResponses, GetApiV1SupportTicketsByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupportTickets/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a SupportTicket
+ */
+export const patchApiV1SupportTicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1SupportTicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1SupportTicketsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupportTickets/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a SupportTicket
+ */
+export const putApiV1SupportTicketsById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1SupportTicketsByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1SupportTicketsByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/SupportTickets/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List all TicketReplies
+ */
+export const getApiV1TicketReplies = <ThrowOnError extends boolean = false>(
+  options?: Options<GetApiV1TicketRepliesData, ThrowOnError>,
+) =>
+  (options?.client ?? client).get<GetApiV1TicketRepliesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/TicketReplies",
+    ...options,
+  });
+
+/**
+ * Create a new TicketReply
+ */
+export const postApiV1TicketReplies = <ThrowOnError extends boolean = false>(
+  options: Options<PostApiV1TicketRepliesData, ThrowOnError>,
+) =>
+  (options.client ?? client).post<PostApiV1TicketRepliesResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/TicketReplies",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Delete a TicketReply
+ */
+export const deleteApiV1TicketRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<DeleteApiV1TicketRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).delete<DeleteApiV1TicketRepliesByIdResponses, unknown, ThrowOnError>({
+    url: "/api/v1/TicketReplies/{id}",
+    ...options,
+  });
+
+/**
+ * Get a TicketReply by id
+ */
+export const getApiV1TicketRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1TicketRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1TicketRepliesByIdResponses, GetApiV1TicketRepliesByIdErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/TicketReplies/{id}",
+    ...options,
+  });
+
+/**
+ * Partially update a TicketReply
+ */
+export const patchApiV1TicketRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<PatchApiV1TicketRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).patch<PatchApiV1TicketRepliesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/TicketReplies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * Replace a TicketReply
+ */
+export const putApiV1TicketRepliesById = <ThrowOnError extends boolean = false>(
+  options: Options<PutApiV1TicketRepliesByIdData, ThrowOnError>,
+) =>
+  (options.client ?? client).put<PutApiV1TicketRepliesByIdResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/TicketReplies/{id}",
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+  });
+
+/**
+ * List authors for a given book id
+ */
+export const getApiV1AuthorsAuthorsBooksByIdBook = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1AuthorsAuthorsBooksByIdBookData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1AuthorsAuthorsBooksByIdBookResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Authors/authors/books/{idBook}",
+    ...options,
+  });
+
+/**
+ * List cover photos for a given book id
+ */
+export const getApiV1CoverPhotosBooksCoversByIdBook = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CoverPhotosBooksCoversByIdBookData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CoverPhotosBooksCoversByIdBookResponses, unknown, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/CoverPhotos/books/covers/{idBook}",
+    ...options,
+  });
+
+/**
+ * List related authors for a given book id
+ */
+export const getApiV1BooksByIdAuthors = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BooksByIdAuthorsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1BooksByIdAuthorsResponses, GetApiV1BooksByIdAuthorsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Books/{id}/authors",
+    ...options,
+  });
+
+/**
+ * List related cover photos for a given book id
+ */
+export const getApiV1BooksByIdCoverPhotos = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BooksByIdCoverPhotosData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1BooksByIdCoverPhotosResponses,
+    GetApiV1BooksByIdCoverPhotosErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Books/{id}/coverPhotos",
+    ...options,
+  });
+
+/**
+ * List related orders for a given customer id
+ */
+export const getApiV1CustomersByIdOrders = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdOrdersData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CustomersByIdOrdersResponses, GetApiV1CustomersByIdOrdersErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Customers/{id}/orders",
+      ...options,
+    },
+  );
+
+/**
+ * List related reviews for a given customer id
+ */
+export const getApiV1CustomersByIdReviews = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdReviewsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1CustomersByIdReviewsResponses,
+    GetApiV1CustomersByIdReviewsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}/reviews",
+    ...options,
+  });
+
+/**
+ * List related refunds for a given order id
+ */
+export const getApiV1OrdersByIdRefunds = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1OrdersByIdRefundsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1OrdersByIdRefundsResponses, GetApiV1OrdersByIdRefundsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Orders/{id}/refunds",
+    ...options,
+  });
+
+/**
+ * List related reviews for a given product id
+ */
+export const getApiV1ProductsByIdReviews = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdReviewsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ProductsByIdReviewsResponses, GetApiV1ProductsByIdReviewsErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Products/{id}/reviews",
+      ...options,
+    },
+  );
+
+/**
+ * List related variants for a given product id
+ */
+export const getApiV1ProductsByIdVariants = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdVariantsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1ProductsByIdVariantsResponses,
+    GetApiV1ProductsByIdVariantsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Products/{id}/variants",
+    ...options,
+  });
+
+/**
+ * List related favorites for a given product id
+ */
+export const getApiV1ProductsByIdFavorites = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdFavoritesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1ProductsByIdFavoritesResponses,
+    GetApiV1ProductsByIdFavoritesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Products/{id}/favorites",
+    ...options,
+  });
+
+/**
+ * List related tasks for a given project id
+ */
+export const getApiV1ProjectsByIdTasks = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProjectsByIdTasksData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ProjectsByIdTasksResponses, GetApiV1ProjectsByIdTasksErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Projects/{id}/tasks",
+    ...options,
+  });
+
+/**
+ * List related cart items for a given cart id
+ */
+export const getApiV1CartsByIdItems = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CartsByIdItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CartsByIdItemsResponses, GetApiV1CartsByIdItemsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Carts/{id}/items",
+    ...options,
+  });
+
+/**
+ * List related wishlist items for a given wishlist id
+ */
+export const getApiV1WishlistsByIdItems = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1WishlistsByIdItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1WishlistsByIdItemsResponses, GetApiV1WishlistsByIdItemsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Wishlists/{id}/items",
+    ...options,
+  });
+
+/**
+ * List related badges for a given user id
+ */
+export const getApiV1UsersByIdBadges = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdBadgesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1UsersByIdBadgesResponses, GetApiV1UsersByIdBadgesErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Users/{id}/badges",
+    ...options,
+  });
+
+/**
+ * List related bookings for a given hotel id
+ */
+export const getApiV1HotelsByIdBookings = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1HotelsByIdBookingsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1HotelsByIdBookingsResponses, GetApiV1HotelsByIdBookingsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Hotels/{id}/bookings",
+    ...options,
+  });
+
+/**
+ * List related tags for a given article id
+ */
+export const getApiV1ArticlesByIdTags = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ArticlesByIdTagsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ArticlesByIdTagsResponses, GetApiV1ArticlesByIdTagsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Articles/{id}/tags",
+    ...options,
+  });
+
+/**
+ * List related employees for a given department id
+ */
+export const getApiV1DepartmentsByIdEmployees = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1DepartmentsByIdEmployeesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1DepartmentsByIdEmployeesResponses,
+    GetApiV1DepartmentsByIdEmployeesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Departments/{id}/employees",
+    ...options,
+  });
+
+/**
+ * List related transactions for a given vendor id
+ */
+export const getApiV1VendorsByIdTransactions = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1VendorsByIdTransactionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1VendorsByIdTransactionsResponses,
+    GetApiV1VendorsByIdTransactionsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Vendors/{id}/transactions",
+    ...options,
+  });
+
+/**
+ * List related replies for a given review id
+ */
+export const getApiV1ReviewsByIdReplies = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ReviewsByIdRepliesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ReviewsByIdRepliesResponses, GetApiV1ReviewsByIdRepliesErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Reviews/{id}/replies",
+    ...options,
+  });
+
+/**
+ * List related messages for a given conversation id
+ */
+export const getApiV1ConversationsByIdMessages = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ConversationsByIdMessagesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1ConversationsByIdMessagesResponses,
+    GetApiV1ConversationsByIdMessagesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Conversations/{id}/messages",
+    ...options,
+  });
+
+/**
+ * List related carts for a given customer id
+ */
+export const getApiV1CustomersByIdCarts = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdCartsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CustomersByIdCartsResponses, GetApiV1CustomersByIdCartsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}/carts",
+    ...options,
+  });
+
+/**
+ * List related wishlists for a given customer id
+ */
+export const getApiV1CustomersByIdWishlists = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdWishlistsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1CustomersByIdWishlistsResponses,
+    GetApiV1CustomersByIdWishlistsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}/wishlists",
+    ...options,
+  });
+
+/**
+ * List related payment methods for a given customer id
+ */
+export const getApiV1CustomersByIdPaymentMethods = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdPaymentMethodsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1CustomersByIdPaymentMethodsResponses,
+    GetApiV1CustomersByIdPaymentMethodsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}/paymentMethods",
+    ...options,
+  });
+
+/**
+ * List related customer addresses for a given customer id
+ */
+export const getApiV1CustomersByIdAddresses = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdAddressesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1CustomersByIdAddressesResponses,
+    GetApiV1CustomersByIdAddressesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}/addresses",
+    ...options,
+  });
+
+/**
+ * List related loyalty accounts for a given customer id
+ */
+export const getApiV1CustomersByIdLoyaltyAccounts = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdLoyaltyAccountsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1CustomersByIdLoyaltyAccountsResponses,
+    GetApiV1CustomersByIdLoyaltyAccountsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Customers/{id}/loyaltyAccounts",
+    ...options,
+  });
+
+/**
+ * List related projects for a given employee id
+ */
+export const getApiV1EmployeesByIdProjects = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EmployeesByIdProjectsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1EmployeesByIdProjectsResponses,
+    GetApiV1EmployeesByIdProjectsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Employees/{id}/projects",
+    ...options,
+  });
+
+/**
+ * List related skills for a given employee id
+ */
+export const getApiV1EmployeesByIdSkills = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EmployeesByIdSkillsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1EmployeesByIdSkillsResponses, GetApiV1EmployeesByIdSkillsErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Employees/{id}/skills",
+      ...options,
+    },
+  );
+
+/**
+ * List related comments for a given post id
+ */
+export const getApiV1PostsByIdComments = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PostsByIdCommentsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PostsByIdCommentsResponses, GetApiV1PostsByIdCommentsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Posts/{id}/comments",
+    ...options,
+  });
+
+/**
+ * List related tickets for a given event id
+ */
+export const getApiV1EventsByIdTickets = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EventsByIdTicketsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1EventsByIdTicketsResponses, GetApiV1EventsByIdTicketsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Events/{id}/tickets",
+    ...options,
+  });
+
+/**
+ * List related attendees for a given event id
+ */
+export const getApiV1EventsByIdAttendees = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1EventsByIdAttendeesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1EventsByIdAttendeesResponses, GetApiV1EventsByIdAttendeesErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Events/{id}/attendees",
+      ...options,
+    },
+  );
+
+/**
+ * List related playlist items for a given playlist id
+ */
+export const getApiV1PlaylistsByIdItems = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PlaylistsByIdItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1PlaylistsByIdItemsResponses, GetApiV1PlaylistsByIdItemsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Playlists/{id}/items",
+    ...options,
+  });
+
+/**
+ * List related albums for a given artist id
+ */
+export const getApiV1ArtistsByIdAlbums = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ArtistsByIdAlbumsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ArtistsByIdAlbumsResponses, GetApiV1ArtistsByIdAlbumsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Artists/{id}/albums",
+    ...options,
+  });
+
+/**
+ * List related songs for a given artist id
+ */
+export const getApiV1ArtistsByIdSongs = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ArtistsByIdSongsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ArtistsByIdSongsResponses, GetApiV1ArtistsByIdSongsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Artists/{id}/songs",
+    ...options,
+  });
+
+/**
+ * List related songs for a given album id
+ */
+export const getApiV1AlbumsByIdSongs = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1AlbumsByIdSongsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1AlbumsByIdSongsResponses, GetApiV1AlbumsByIdSongsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Albums/{id}/songs",
+    ...options,
+  });
+
+/**
+ * List related movies for a given genre id
+ */
+export const getApiV1GenresByIdMovies = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1GenresByIdMoviesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1GenresByIdMoviesResponses, GetApiV1GenresByIdMoviesErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Genres/{id}/movies",
+    ...options,
+  });
+
+/**
+ * List related songs for a given genre id
+ */
+export const getApiV1GenresByIdSongs = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1GenresByIdSongsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1GenresByIdSongsResponses, GetApiV1GenresByIdSongsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Genres/{id}/songs",
+    ...options,
+  });
+
+/**
+ * List related cities for a given country id
+ */
+export const getApiV1CountriesByIdCities = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CountriesByIdCitiesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1CountriesByIdCitiesResponses, GetApiV1CountriesByIdCitiesErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Countries/{id}/cities",
+      ...options,
+    },
+  );
+
+/**
+ * List related inventories for a given warehouse id
+ */
+export const getApiV1WarehousesByIdInventories = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1WarehousesByIdInventoriesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1WarehousesByIdInventoriesResponses,
+    GetApiV1WarehousesByIdInventoriesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Warehouses/{id}/inventories",
+    ...options,
+  });
+
+/**
+ * List related payments for a given invoice id
+ */
+export const getApiV1InvoicesByIdPayments = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1InvoicesByIdPaymentsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1InvoicesByIdPaymentsResponses,
+    GetApiV1InvoicesByIdPaymentsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Invoices/{id}/payments",
+    ...options,
+  });
+
+/**
+ * List related invoice items for a given invoice id
+ */
+export const getApiV1InvoicesByIdItems = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1InvoicesByIdItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1InvoicesByIdItemsResponses, GetApiV1InvoicesByIdItemsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Invoices/{id}/items",
+    ...options,
+  });
+
+/**
+ * List related subscriptions for a given plan id
+ */
+export const getApiV1PlansByIdSubscriptions = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PlansByIdSubscriptionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1PlansByIdSubscriptionsResponses,
+    GetApiV1PlansByIdSubscriptionsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Plans/{id}/subscriptions",
+    ...options,
+  });
+
+/**
+ * List related favorites for a given user id
+ */
+export const getApiV1UsersByIdFavorites = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdFavoritesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1UsersByIdFavoritesResponses, GetApiV1UsersByIdFavoritesErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Users/{id}/favorites",
+    ...options,
+  });
+
+/**
+ * List related notifications for a given user id
+ */
+export const getApiV1UsersByIdNotifications = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdNotificationsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1UsersByIdNotificationsResponses,
+    GetApiV1UsersByIdNotificationsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Users/{id}/notifications",
+    ...options,
+  });
+
+/**
+ * List related sessions for a given user id
+ */
+export const getApiV1UsersByIdSessions = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdSessionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1UsersByIdSessionsResponses, GetApiV1UsersByIdSessionsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Users/{id}/sessions",
+    ...options,
+  });
+
+/**
+ * List related page views for a given user id
+ */
+export const getApiV1UsersByIdPageViews = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdPageViewsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1UsersByIdPageViewsResponses, GetApiV1UsersByIdPageViewsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Users/{id}/pageViews",
+    ...options,
+  });
+
+/**
+ * List related activities for a given user id
+ */
+export const getApiV1UsersByIdActivities = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdActivitiesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1UsersByIdActivitiesResponses, GetApiV1UsersByIdActivitiesErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Users/{id}/activities",
+      ...options,
+    },
+  );
+
+/**
+ * List related search queries for a given user id
+ */
+export const getApiV1UsersByIdSearchQueries = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdSearchQueriesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1UsersByIdSearchQueriesResponses,
+    GetApiV1UsersByIdSearchQueriesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Users/{id}/searchQueries",
+    ...options,
+  });
+
+/**
+ * List related inventory records for a given product id
+ */
+export const getApiV1ProductsByIdInventory = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdInventoryData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1ProductsByIdInventoryResponses,
+    GetApiV1ProductsByIdInventoryErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Products/{id}/inventory",
+    ...options,
+  });
+
+/**
+ * List related order items for a given product id
+ */
+export const getApiV1ProductsByIdOrderItems = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdOrderItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1ProductsByIdOrderItemsResponses,
+    GetApiV1ProductsByIdOrderItemsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Products/{id}/orderItems",
+    ...options,
+  });
+
+/**
+ * List related supplier product offers for a given product id
+ */
+export const getApiV1ProductsByIdSupplierProducts = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdSupplierProductsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1ProductsByIdSupplierProductsResponses,
+    GetApiV1ProductsByIdSupplierProductsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Products/{id}/supplierProducts",
+    ...options,
+  });
+
+/**
+ * List related returns for a given order id
+ */
+export const getApiV1OrdersByIdReturns = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1OrdersByIdReturnsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1OrdersByIdReturnsResponses, GetApiV1OrdersByIdReturnsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Orders/{id}/returns",
+    ...options,
+  });
+
+/**
+ * List related coupon usages for a given order id
+ */
+export const getApiV1OrdersByIdCouponUsages = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1OrdersByIdCouponUsagesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1OrdersByIdCouponUsagesResponses,
+    GetApiV1OrdersByIdCouponUsagesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Orders/{id}/couponUsages",
+    ...options,
+  });
+
+/**
+ * List related shipment events for a given shipment id
+ */
+export const getApiV1ShipmentsByIdEvents = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ShipmentsByIdEventsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1ShipmentsByIdEventsResponses, GetApiV1ShipmentsByIdEventsErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Shipments/{id}/events",
+      ...options,
+    },
+  );
+
+/**
+ * List related flight bookings for a given flight id
+ */
+export const getApiV1FlightsByIdBookings = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1FlightsByIdBookingsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<GetApiV1FlightsByIdBookingsResponses, GetApiV1FlightsByIdBookingsErrors, ThrowOnError>(
+    {
+      responseType: "json",
+      url: "/api/v1/Flights/{id}/bookings",
+      ...options,
+    },
+  );
+
+/**
+ * List related offices for a given company id
+ */
+export const getApiV1CompaniesByIdOffices = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CompaniesByIdOfficesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1CompaniesByIdOfficesResponses,
+    GetApiV1CompaniesByIdOfficesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Companies/{id}/offices",
+    ...options,
+  });
+
+/**
+ * List related ingredients for a given recipe id
+ */
+export const getApiV1RecipesByIdIngredients = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RecipesByIdIngredientsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1RecipesByIdIngredientsResponses,
+    GetApiV1RecipesByIdIngredientsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Recipes/{id}/ingredients",
+    ...options,
+  });
+
+/**
+ * List related menus for a given restaurant id
+ */
+export const getApiV1RestaurantsByIdMenus = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RestaurantsByIdMenusData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1RestaurantsByIdMenusResponses,
+    GetApiV1RestaurantsByIdMenusErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Restaurants/{id}/menus",
+    ...options,
+  });
+
+/**
+ * List related menu items for a given menu id
+ */
+export const getApiV1RestaurantMenusByIdItems = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1RestaurantMenusByIdItemsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1RestaurantMenusByIdItemsResponses,
+    GetApiV1RestaurantMenusByIdItemsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/RestaurantMenus/{id}/items",
+    ...options,
+  });
+
+/**
+ * List related promotion products for a given promotion id
+ */
+export const getApiV1PromotionsByIdProducts = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1PromotionsByIdProductsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1PromotionsByIdProductsResponses,
+    GetApiV1PromotionsByIdProductsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Promotions/{id}/products",
+    ...options,
+  });
+
+/**
+ * List related banner placements for a given banner id
+ */
+export const getApiV1BannersByIdPlacements = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1BannersByIdPlacementsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1BannersByIdPlacementsResponses,
+    GetApiV1BannersByIdPlacementsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Banners/{id}/placements",
+    ...options,
+  });
+
+/**
+ * List related loyalty transactions for a given account id
+ */
+export const getApiV1LoyaltyAccountsByIdTransactions = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1LoyaltyAccountsByIdTransactionsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1LoyaltyAccountsByIdTransactionsResponses,
+    GetApiV1LoyaltyAccountsByIdTransactionsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/LoyaltyAccounts/{id}/transactions",
+    ...options,
+  });
+
+/**
+ * List related replies for a given support ticket id
+ */
+export const getApiV1SupportTicketsByIdReplies = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SupportTicketsByIdRepliesData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1SupportTicketsByIdRepliesResponses,
+    GetApiV1SupportTicketsByIdRepliesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/SupportTickets/{id}/replies",
+    ...options,
+  });
+
+/**
+ * List related supplier product offers for a given supplier id
+ */
+export const getApiV1SuppliersByIdProducts = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1SuppliersByIdProductsData, ThrowOnError>,
+) =>
+  (options.client ?? client).get<
+    GetApiV1SuppliersByIdProductsResponses,
+    GetApiV1SuppliersByIdProductsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Suppliers/{id}/products",
+    ...options,
   });
