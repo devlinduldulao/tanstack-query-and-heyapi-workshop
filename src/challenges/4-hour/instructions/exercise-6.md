@@ -17,9 +17,11 @@ The API returns the full books collection, so this lab builds paging and search 
   is its own component.**
 - Do **not** add `memo` or `useMemo`. React Compiler generates both once the component boundary
   is right; if you find yourself needing them by hand, the boundary is in the wrong place.
-- Surface `search !== deferredSearch` in the UI (dim the list, show `filtering…`). On 30 books
-  the deferral lasts well under a frame, so a deferral nobody can see is indistinguishable from
-  no deferral at all.
+- Surface `search !== deferredSearch` in the UI, using the docs' stale-content recipe: dim the
+  results with `opacity: isStale ? 0.5 : 1` and a delayed `opacity 0.2s 0.2s linear` transition.
+- **Do not expect it to behave like a debounce.** There is no fixed delay — React starts the
+  background render immediately. On a fast machine with 30 books you will see nothing at normal
+  speed; throttle the CPU 6x in DevTools to watch the list lag behind the input.
 - Read the full books collection through the generated list helper.
 - Derive the visible page locally by filtering first and slicing second.
 - Reset back to page 1 when the search term changes.

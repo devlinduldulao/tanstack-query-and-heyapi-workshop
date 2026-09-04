@@ -14,7 +14,15 @@ const PAGE_SIZE = 10;
 // keystroke. Splitting the consumer out gives it a scope keyed only on `books` + the deferred
 // term, so the compiler caches this element and React skips the subtree on the urgent pass.
 //
-// No `memo` / `useMemo` needed here — React Compiler generates both.
+// The React docs state this optimization "requires SlowList to be wrapped in memo ... without
+// memo, it would have to re-render anyway, defeating the point of the optimization". We get that
+// memoization from React Compiler (enabled in vite.config.ts), which is why there is no hand-
+// written `memo` here. Turn the compiler off and this component needs `memo` again.
+//
+// Note: useDeferredValue is NOT a debounce. Per the docs there is "no fixed delay" — React starts
+// the background re-render immediately, so on a fast machine with 30 books you will not perceive
+// any lag. The win is that the keystroke never blocks, not that the list arrives late.
+// https://react.dev/reference/react/useDeferredValue
 function BookResults({ books, search }: { books: Book[]; search: string }) {
   const [page, setPage] = useState(1);
 
@@ -79,14 +87,20 @@ export default function Exercise6End() {
         value={search}
         onChange={(event) => setSearch(event.target.value)}
       />
-      <div className="text-muted-foreground flex justify-end gap-2 text-xs">
-        {isFetching && <span>refreshing…</span>}
-        {isStale && <span>filtering…</span>}
-      </div>
-      {/* Dimming while stale is the only way a user can perceive the deferral at all. */}
-      <div className={isStale ? "opacity-50 transition-opacity" : "transition-opacity"}>
+      <div className="text-muted-foreground flex justify-end text-xs">{isFetching && <span>refreshing…</span>}</div>
+      {/* Stale-content indicator, verbatim from the React docs' useDeferredValue example. The
+          0.2s delay before the 0.2s fade is deliberate: on a fast device `isStale` is true for
+          about a millisecond, so the dimming never fires and the user sees no flicker. Throttle
+          the CPU (DevTools → Performance → CPU 6x) and it appears. */}
+      <div
+        style={{
+          opacity: isStale ? 0.5 : 1,
+          transition: isStale ? "opacity 0.2s 0.2s linear" : "opacity 0s 0s linear",
+        }}
+      >
         {/* `key` resets paging to page 1 whenever the deferred search term changes, with no
-            setPage on the urgent path and no resync effect. */}
+            setPage on the urgent path and no resync effect.
+            https://react.dev/learn/preserving-and-resetting-state */}
         <BookResults key={deferredSearch} books={books} search={deferredSearch} />
       </div>
     </div>

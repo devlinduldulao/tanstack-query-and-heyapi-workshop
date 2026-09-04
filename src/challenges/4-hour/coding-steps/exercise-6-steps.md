@@ -39,7 +39,33 @@ const deferredSearch = useDeferredValue(search);
 
 **Why `useDeferredValue`:** typing updates `search` immediately, but the filtering work is
 deferred to a later, interruptible render. The input stays responsive; the list lags by one
-render pass. It is React's built-in answer to "debounce typing without writing a debounce".
+render pass.
+
+**It is not a debounce, and it will not feel like one.** This trips up almost everyone, so read
+the React docs on it before you judge whether your code works
+([useDeferredValue → How is deferring a value different from debouncing and throttling?](https://react.dev/reference/react/useDeferredValue#how-is-deferring-a-value-different-from-debouncing-and-throttling)):
+
+> There is no fixed delay caused by `useDeferredValue` itself. As soon as React finishes the
+> original re-render, React will immediately start working on the background re-render with the
+> new deferred value.
+
+> Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's
+> device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately
+> and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input
+> proportionally to how slow the device is.
+
+Consequences for this exercise:
+
+- **You will not see a pause when you type.** Filtering 30 books costs about a millisecond, so
+  the deferred pass lands in the same frame. Nothing to see is the *expected* result here — it is
+  not evidence the hook is broken.
+- The payoff is not a delay, it is that the keystroke never *blocks*. Measure the urgent pass
+  (below) rather than looking for lag.
+- Deferred re-renders are **interruptible**; a debounce is not. Per the docs, debouncing and
+  throttling "merely postpone the moment when rendering blocks the keystroke."
+- If you actually want fewer *network requests*, `useDeferredValue` is the wrong tool — the docs
+  are explicit that debouncing and throttling are still the right choice for that, and that you
+  can combine them.
 
 **⚠️ The part everyone gets wrong — and React Compiler does not fix it.**
 
@@ -266,18 +292,40 @@ Delete it once you have confirmed every bullet.
 
 ## Step 9 — Verify in the browser
 
-1. Save.
-2. Type in the search box. The list dims and the status line shows `· filtering…` for the frame
-   before the deferred pass lands. **If you never see that, the deferral is not wired up** — this
-   is the check that catches a `useDeferredValue` that is doing nothing.
-3. Make the filter briefly expensive and time a keystroke (see Step 1). It should block for
+### See the deferral (CPU throttle)
+
+On a modern laptop the deferred pass finishes in about a millisecond, so **you will not see
+anything** at normal speed — that is expected, not a bug. The React docs put it plainly: on a
+fast device "the deferred re-render would happen almost immediately and wouldn't be noticeable",
+and on a slow one "the list would lag behind the input proportionally to how slow the device is".
+
+So simulate the slow device:
+
+1. DevTools → **Performance** → **CPU: 6x slowdown** (or 20x).
+2. Type into the search box.
+3. Watch the two halves come apart: the **input updates on every keystroke**, while the **list
+   lags behind and dims**. That gap is `useDeferredValue` doing its job.
+4. Remove the throttle — the gap disappears.
+
+The dimming uses the docs' own delayed transition (`opacity 0.2s 0.2s linear`), so it stays
+invisible on fast machines and only shows up when the deferral actually lasts long enough to
+matter.
+
+> **Do not expect debounce-like behaviour.** There is no timer here. React starts the background
+> render immediately and simply lets keystrokes interrupt it. If you want *fewer network
+> requests*, that is a debounce/throttle job — the docs say so explicitly.
+
+### Correctness checks
+
+1. Make the filter briefly expensive and time a keystroke (see Step 1). It should block for
    **~1ms**, not ~90ms. If it is still ~90ms the filter is reading `search` rather than
    `deferredSearch`, or it is still inline in the component that renders the input.
-4. Search `Book 1` — 11 matches, 2 pages.
-5. Click Next — the page indicator updates and Next disables on the last page.
-6. Change the search while on page 2 — page resets to 1.
-7. DevTools → Network → confirm exactly **one** `GET /api/v1/Books` powers the whole session.
-   Every keystroke and page click is derived from that single cache entry.
+2. Search `Book 1` — 11 matches, 2 pages.
+3. Click Next — the page indicator updates and Next disables on the last page.
+4. Change the search while on page 2 — page resets to 1.
+5. DevTools → Network → confirm exactly **one** `GET /api/v1/Books` powers the whole session.
+   Every keystroke and page click is derived from that single cache entry — typing triggers no
+   requests at all, which is also why there is nothing to "wait" for.
 
 ---
 
