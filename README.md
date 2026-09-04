@@ -10,7 +10,6 @@ Clone the repo and everything is here: activities, problems, reference solutions
 git clone <this-repo>
 cd tanstack-query-and-heyapi-workshop
 npm install
-npm run openapi-ts   # one-time: generate src/api/client/ from swagger.yaml
 npm run dev
 ```
 
