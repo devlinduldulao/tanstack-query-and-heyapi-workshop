@@ -27,7 +27,10 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { getApiV1OrdersOptions } from "@/api/client/@tanstack/react-query.gen";
 import type { Order } from "@/api/client";
 
-const statusFlow = ["pending", "processing", "shipped", "delivered", "cancelled"] as const;
+// The seeded Orders in fakerestapi cycle through exactly these five statuses, so every
+// row highlights a matching pill. Keep this list in sync with the data, not with a
+// hypothetical fulfilment flow.
+const statusFlow = ["pending", "active", "completed", "cancelled", "archived"] as const;
 
 type OrderRow = {
   id: number;

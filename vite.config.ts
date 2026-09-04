@@ -1,8 +1,9 @@
 import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
-import react from "@vitejs/plugin-react";
+import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import babel from '@rolldown/plugin-babel';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,7 +13,10 @@ export default defineConfig({
       routeTreeFileHeader: ["/* eslint-disable eslint-comments/no-unlimited-disable */", "/* eslint-disable */"],
       generatedRouteTree: "./src/route-tree.gen.ts",
     }),
-    react(),
+    viteReact(),
+    babel({
+      presets: [reactCompilerPreset()]
+    }),
     tailwindcss(),
   ],
   resolve: {

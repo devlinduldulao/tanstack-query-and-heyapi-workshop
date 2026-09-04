@@ -2592,6 +2592,83 @@ export type PostApiV1OrdersResponses = {
 
 export type PostApiV1OrdersResponse = PostApiV1OrdersResponses[keyof PostApiV1OrdersResponses];
 
+export type DeleteApiV1OrdersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Orders/{id}";
+};
+
+export type DeleteApiV1OrdersByIdResponses = {
+  /**
+   * Success
+   */
+  200: unknown;
+};
+
+export type GetApiV1OrdersByIdData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Orders/{id}";
+};
+
+export type GetApiV1OrdersByIdErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrdersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Order;
+};
+
+export type GetApiV1OrdersByIdResponse = GetApiV1OrdersByIdResponses[keyof GetApiV1OrdersByIdResponses];
+
+export type PatchApiV1OrdersByIdData = {
+  body: Order;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Orders/{id}";
+};
+
+export type PatchApiV1OrdersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Order;
+};
+
+export type PatchApiV1OrdersByIdResponse = PatchApiV1OrdersByIdResponses[keyof PatchApiV1OrdersByIdResponses];
+
+export type PutApiV1OrdersByIdData = {
+  body: Order;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Orders/{id}";
+};
+
+export type PutApiV1OrdersByIdResponses = {
+  /**
+   * Success
+   */
+  200: Order;
+};
+
+export type PutApiV1OrdersByIdResponse = PutApiV1OrdersByIdResponses[keyof PutApiV1OrdersByIdResponses];
+
 export type GetApiV1OrderItemsData = {
   body?: never;
   path?: never;
@@ -12135,6 +12212,38 @@ export type PutApiV1CustomerAddressesByIdResponses = {
 export type PutApiV1CustomerAddressesByIdResponse =
   PutApiV1CustomerAddressesByIdResponses[keyof PutApiV1CustomerAddressesByIdResponses];
 
+export type GetApiV1OrderNotesData = {
+  body?: never;
+  path?: never;
+  query?: never;
+  url: "/api/v1/OrderNotes";
+};
+
+export type GetApiV1OrderNotesResponses = {
+  /**
+   * Success
+   */
+  200: Array<OrderNote>;
+};
+
+export type GetApiV1OrderNotesResponse = GetApiV1OrderNotesResponses[keyof GetApiV1OrderNotesResponses];
+
+export type PostApiV1OrderNotesData = {
+  body: OrderNote;
+  path?: never;
+  query?: never;
+  url: "/api/v1/OrderNotes";
+};
+
+export type PostApiV1OrderNotesResponses = {
+  /**
+   * Success
+   */
+  200: OrderNote;
+};
+
+export type PostApiV1OrderNotesResponse = PostApiV1OrderNotesResponses[keyof PostApiV1OrderNotesResponses];
+
 export type DeleteApiV1OrderNotesByIdData = {
   body?: never;
   path: {
@@ -14318,7 +14427,7 @@ export type GetApiV1CustomersByIdOrdersResponses = {
 export type GetApiV1CustomersByIdOrdersResponse =
   GetApiV1CustomersByIdOrdersResponses[keyof GetApiV1CustomersByIdOrdersResponses];
 
-export type GetApiV1CustomersByIdReviewsData = {
+export type GetApiV1OrdersByIdItemsData = {
   body?: never;
   path: {
     id: number;
@@ -14361,51 +14470,26 @@ export type GetApiV1CustomersByIdReviewsData = {
      */
     "<field>"?: string;
   };
-  url: "/api/v1/Customers/{id}/reviews";
+  url: "/api/v1/Orders/{id}/items";
 };
 
-export type GetApiV1CustomersByIdReviewsErrors = {
+export type GetApiV1OrdersByIdItemsErrors = {
   /**
    * Not Found
    */
   404: unknown;
 };
 
-export type GetApiV1CustomersByIdReviewsResponses = {
+export type GetApiV1OrdersByIdItemsResponses = {
   /**
    * Success
    */
-  200: Array<Review>;
+  200: Array<{
+    [key: string]: unknown;
+  }>;
 };
 
-export type GetApiV1CustomersByIdReviewsResponse =
-  GetApiV1CustomersByIdReviewsResponses[keyof GetApiV1CustomersByIdReviewsResponses];
-
-export type GetApiV1OrdersByIdRefundsData = {
-  body?: never;
-  path: {
-    id: number;
-  };
-  query?: never;
-  url: "/api/v1/Orders/{id}/refunds";
-};
-
-export type GetApiV1OrdersByIdRefundsErrors = {
-  /**
-   * Not Found
-   */
-  404: unknown;
-};
-
-export type GetApiV1OrdersByIdRefundsResponses = {
-  /**
-   * Success
-   */
-  200: Array<Refund>;
-};
-
-export type GetApiV1OrdersByIdRefundsResponse =
-  GetApiV1OrdersByIdRefundsResponses[keyof GetApiV1OrdersByIdRefundsResponses];
+export type GetApiV1OrdersByIdItemsResponse = GetApiV1OrdersByIdItemsResponses[keyof GetApiV1OrdersByIdItemsResponses];
 
 export type GetApiV1ProductsByIdReviewsData = {
   body?: never;
@@ -14471,95 +14555,6 @@ export type GetApiV1ProductsByIdReviewsResponses = {
 
 export type GetApiV1ProductsByIdReviewsResponse =
   GetApiV1ProductsByIdReviewsResponses[keyof GetApiV1ProductsByIdReviewsResponses];
-
-export type GetApiV1ProductsByIdVariantsData = {
-  body?: never;
-  path: {
-    id: number;
-  };
-  query?: {
-    /**
-     * 1-based page number. Used with limit when paginating collection results.
-     */
-    page?: number;
-    /**
-     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
-     */
-    limit?: number;
-    /**
-     * Zero-based item offset. Takes precedence over page when present.
-     */
-    offset?: number;
-    /**
-     * Case-insensitive search across scalar values in each item.
-     */
-    q?: string;
-    /**
-     * Alias for q.
-     */
-    search?: string;
-    /**
-     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
-     */
-    sort?: string;
-    /**
-     * Sort direction used with sort.
-     */
-    order?: "asc" | "desc";
-    /**
-     * Comma-separated top-level fields to include in each returned item.
-     */
-    fields?: string;
-    /**
-     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
-     */
-    "<field>"?: string;
-  };
-  url: "/api/v1/Products/{id}/variants";
-};
-
-export type GetApiV1ProductsByIdVariantsErrors = {
-  /**
-   * Not Found
-   */
-  404: unknown;
-};
-
-export type GetApiV1ProductsByIdVariantsResponses = {
-  /**
-   * Success
-   */
-  200: Array<ProductVariant>;
-};
-
-export type GetApiV1ProductsByIdVariantsResponse =
-  GetApiV1ProductsByIdVariantsResponses[keyof GetApiV1ProductsByIdVariantsResponses];
-
-export type GetApiV1ProductsByIdFavoritesData = {
-  body?: never;
-  path: {
-    id: number;
-  };
-  query?: never;
-  url: "/api/v1/Products/{id}/favorites";
-};
-
-export type GetApiV1ProductsByIdFavoritesErrors = {
-  /**
-   * Not Found
-   */
-  404: unknown;
-};
-
-export type GetApiV1ProductsByIdFavoritesResponses = {
-  /**
-   * Success
-   */
-  200: Array<Favorite>;
-};
-
-export type GetApiV1ProductsByIdFavoritesResponse =
-  GetApiV1ProductsByIdFavoritesResponses[keyof GetApiV1ProductsByIdFavoritesResponses];
 
 export type GetApiV1ProjectsByIdTasksData = {
   body?: never;
@@ -14639,31 +14634,6 @@ export type GetApiV1WishlistsByIdItemsResponses = {
 
 export type GetApiV1WishlistsByIdItemsResponse =
   GetApiV1WishlistsByIdItemsResponses[keyof GetApiV1WishlistsByIdItemsResponses];
-
-export type GetApiV1UsersByIdBadgesData = {
-  body?: never;
-  path: {
-    id: number;
-  };
-  query?: never;
-  url: "/api/v1/Users/{id}/badges";
-};
-
-export type GetApiV1UsersByIdBadgesErrors = {
-  /**
-   * Not Found
-   */
-  404: unknown;
-};
-
-export type GetApiV1UsersByIdBadgesResponses = {
-  /**
-   * Success
-   */
-  200: Array<UserBadge>;
-};
-
-export type GetApiV1UsersByIdBadgesResponse = GetApiV1UsersByIdBadgesResponses[keyof GetApiV1UsersByIdBadgesResponses];
 
 export type GetApiV1HotelsByIdBookingsData = {
   body?: never;
@@ -14820,6 +14790,209 @@ export type GetApiV1ConversationsByIdMessagesResponses = {
 
 export type GetApiV1ConversationsByIdMessagesResponse =
   GetApiV1ConversationsByIdMessagesResponses[keyof GetApiV1ConversationsByIdMessagesResponses];
+
+export type GetApiV1ProductsByIdVariantsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Products/{id}/variants";
+};
+
+export type GetApiV1ProductsByIdVariantsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdVariantsResponses = {
+  /**
+   * Success
+   */
+  200: Array<ProductVariant>;
+};
+
+export type GetApiV1ProductsByIdVariantsResponse =
+  GetApiV1ProductsByIdVariantsResponses[keyof GetApiV1ProductsByIdVariantsResponses];
+
+export type GetApiV1ProductsByIdFavoritesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Products/{id}/favorites";
+};
+
+export type GetApiV1ProductsByIdFavoritesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1ProductsByIdFavoritesResponses = {
+  /**
+   * Success
+   */
+  200: Array<Favorite>;
+};
+
+export type GetApiV1ProductsByIdFavoritesResponse =
+  GetApiV1ProductsByIdFavoritesResponses[keyof GetApiV1ProductsByIdFavoritesResponses];
+
+export type GetApiV1UsersByIdBadgesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Users/{id}/badges";
+};
+
+export type GetApiV1UsersByIdBadgesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1UsersByIdBadgesResponses = {
+  /**
+   * Success
+   */
+  200: Array<UserBadge>;
+};
+
+export type GetApiV1UsersByIdBadgesResponse = GetApiV1UsersByIdBadgesResponses[keyof GetApiV1UsersByIdBadgesResponses];
+
+export type GetApiV1OrdersByIdRefundsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: never;
+  url: "/api/v1/Orders/{id}/refunds";
+};
+
+export type GetApiV1OrdersByIdRefundsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrdersByIdRefundsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Refund>;
+};
+
+export type GetApiV1OrdersByIdRefundsResponse =
+  GetApiV1OrdersByIdRefundsResponses[keyof GetApiV1OrdersByIdRefundsResponses];
+
+export type GetApiV1CustomersByIdReviewsData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Customers/{id}/reviews";
+};
+
+export type GetApiV1CustomersByIdReviewsErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1CustomersByIdReviewsResponses = {
+  /**
+   * Success
+   */
+  200: Array<Review>;
+};
+
+export type GetApiV1CustomersByIdReviewsResponse =
+  GetApiV1CustomersByIdReviewsResponses[keyof GetApiV1CustomersByIdReviewsResponses];
 
 export type GetApiV1CustomersByIdCartsData = {
   body?: never;
@@ -15908,6 +16081,70 @@ export type GetApiV1OrdersByIdReturnsResponses = {
 
 export type GetApiV1OrdersByIdReturnsResponse =
   GetApiV1OrdersByIdReturnsResponses[keyof GetApiV1OrdersByIdReturnsResponses];
+
+export type GetApiV1OrdersByIdNotesData = {
+  body?: never;
+  path: {
+    id: number;
+  };
+  query?: {
+    /**
+     * 1-based page number. Used with limit when paginating collection results.
+     */
+    page?: number;
+    /**
+     * Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
+     */
+    limit?: number;
+    /**
+     * Zero-based item offset. Takes precedence over page when present.
+     */
+    offset?: number;
+    /**
+     * Case-insensitive search across scalar values in each item.
+     */
+    q?: string;
+    /**
+     * Alias for q.
+     */
+    search?: string;
+    /**
+     * Sort by a top-level field. Prefix with - or set order=desc for descending order.
+     */
+    sort?: string;
+    /**
+     * Sort direction used with sort.
+     */
+    order?: "asc" | "desc";
+    /**
+     * Comma-separated top-level fields to include in each returned item.
+     */
+    fields?: string;
+    /**
+     * Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
+     */
+    "<field>"?: string;
+  };
+  url: "/api/v1/Orders/{id}/notes";
+};
+
+export type GetApiV1OrdersByIdNotesErrors = {
+  /**
+   * Not Found
+   */
+  404: unknown;
+};
+
+export type GetApiV1OrdersByIdNotesResponses = {
+  /**
+   * Success
+   */
+  200: Array<{
+    [key: string]: unknown;
+  }>;
+};
+
+export type GetApiV1OrdersByIdNotesResponse = GetApiV1OrdersByIdNotesResponses[keyof GetApiV1OrdersByIdNotesResponses];
 
 export type GetApiV1OrdersByIdCouponUsagesData = {
   body?: never;

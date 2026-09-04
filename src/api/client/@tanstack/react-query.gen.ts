@@ -69,6 +69,7 @@ import {
   deleteApiV1NotificationsById,
   deleteApiV1OrderItemsById,
   deleteApiV1OrderNotesById,
+  deleteApiV1OrdersById,
   deleteApiV1PageViewsById,
   deleteApiV1PaymentMethodsById,
   deleteApiV1PaymentsById,
@@ -264,9 +265,13 @@ import {
   getApiV1NotificationsById,
   getApiV1OrderItems,
   getApiV1OrderItemsById,
+  getApiV1OrderNotes,
   getApiV1OrderNotesById,
   getApiV1Orders,
+  getApiV1OrdersById,
   getApiV1OrdersByIdCouponUsages,
+  getApiV1OrdersByIdItems,
+  getApiV1OrdersByIdNotes,
   getApiV1OrdersByIdRefunds,
   getApiV1OrdersByIdReturns,
   getApiV1PageViews,
@@ -454,6 +459,7 @@ import {
   patchApiV1NotificationsById,
   patchApiV1OrderItemsById,
   patchApiV1OrderNotesById,
+  patchApiV1OrdersById,
   patchApiV1PageViewsById,
   patchApiV1PaymentMethodsById,
   patchApiV1PaymentsById,
@@ -560,6 +566,7 @@ import {
   postApiV1Movies,
   postApiV1Notifications,
   postApiV1OrderItems,
+  postApiV1OrderNotes,
   postApiV1Orders,
   postApiV1PageViews,
   postApiV1PaymentMethods,
@@ -668,6 +675,7 @@ import {
   putApiV1NotificationsById,
   putApiV1OrderItemsById,
   putApiV1OrderNotesById,
+  putApiV1OrdersById,
   putApiV1PageViewsById,
   putApiV1PaymentMethodsById,
   putApiV1PaymentsById,
@@ -777,6 +785,7 @@ import type {
   DeleteApiV1NotificationsByIdData,
   DeleteApiV1OrderItemsByIdData,
   DeleteApiV1OrderNotesByIdData,
+  DeleteApiV1OrdersByIdData,
   DeleteApiV1PageViewsByIdData,
   DeleteApiV1PaymentMethodsByIdData,
   DeleteApiV1PaymentsByIdData,
@@ -1120,10 +1129,18 @@ import type {
   GetApiV1OrderItemsResponse,
   GetApiV1OrderNotesByIdData,
   GetApiV1OrderNotesByIdResponse,
+  GetApiV1OrderNotesData,
+  GetApiV1OrderNotesResponse,
   GetApiV1OrdersByIdCouponUsagesData,
   GetApiV1OrdersByIdCouponUsagesResponse,
+  GetApiV1OrdersByIdData,
+  GetApiV1OrdersByIdItemsData,
+  GetApiV1OrdersByIdItemsResponse,
+  GetApiV1OrdersByIdNotesData,
+  GetApiV1OrdersByIdNotesResponse,
   GetApiV1OrdersByIdRefundsData,
   GetApiV1OrdersByIdRefundsResponse,
+  GetApiV1OrdersByIdResponse,
   GetApiV1OrdersByIdReturnsData,
   GetApiV1OrdersByIdReturnsResponse,
   GetApiV1OrdersData,
@@ -1496,6 +1513,8 @@ import type {
   PatchApiV1OrderItemsByIdResponse,
   PatchApiV1OrderNotesByIdData,
   PatchApiV1OrderNotesByIdResponse,
+  PatchApiV1OrdersByIdData,
+  PatchApiV1OrdersByIdResponse,
   PatchApiV1PageViewsByIdData,
   PatchApiV1PageViewsByIdResponse,
   PatchApiV1PaymentMethodsByIdData,
@@ -1708,6 +1727,8 @@ import type {
   PostApiV1NotificationsResponse,
   PostApiV1OrderItemsData,
   PostApiV1OrderItemsResponse,
+  PostApiV1OrderNotesData,
+  PostApiV1OrderNotesResponse,
   PostApiV1OrdersData,
   PostApiV1OrdersResponse,
   PostApiV1PageViewsData,
@@ -1924,6 +1945,8 @@ import type {
   PutApiV1OrderItemsByIdResponse,
   PutApiV1OrderNotesByIdData,
   PutApiV1OrderNotesByIdResponse,
+  PutApiV1OrdersByIdData,
+  PutApiV1OrdersByIdResponse,
   PutApiV1PageViewsByIdData,
   PutApiV1PageViewsByIdResponse,
   PutApiV1PaymentMethodsByIdData,
@@ -2701,8 +2724,8 @@ export const getApiV1UsersInfiniteQueryKey = (
 /**
  * List all Users
  */
-export const getApiV1UsersInfiniteOptions = (options?: Options<GetApiV1UsersData>) =>
-  infiniteQueryOptions<
+export const getApiV1UsersInfiniteOptions = (options?: Options<GetApiV1UsersData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1UsersResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1UsersResponse>,
@@ -2733,6 +2756,8 @@ export const getApiV1UsersInfiniteOptions = (options?: Options<GetApiV1UsersData
       queryKey: getApiV1UsersInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new User
@@ -2879,8 +2904,8 @@ export const getApiV1ProductsInfiniteQueryKey = (
 /**
  * List all Products
  */
-export const getApiV1ProductsInfiniteOptions = (options?: Options<GetApiV1ProductsData>) =>
-  infiniteQueryOptions<
+export const getApiV1ProductsInfiniteOptions = (options?: Options<GetApiV1ProductsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1ProductsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1ProductsResponse>,
@@ -2911,6 +2936,8 @@ export const getApiV1ProductsInfiniteOptions = (options?: Options<GetApiV1Produc
       queryKey: getApiV1ProductsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Product
@@ -3211,8 +3238,8 @@ export const getApiV1OrdersInfiniteQueryKey = (
 /**
  * List all Orders
  */
-export const getApiV1OrdersInfiniteOptions = (options?: Options<GetApiV1OrdersData>) =>
-  infiniteQueryOptions<
+export const getApiV1OrdersInfiniteOptions = (options?: Options<GetApiV1OrdersData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1OrdersResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1OrdersResponse>,
@@ -3243,6 +3270,8 @@ export const getApiV1OrdersInfiniteOptions = (options?: Options<GetApiV1OrdersDa
       queryKey: getApiV1OrdersInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Order
@@ -3257,6 +3286,96 @@ export const postApiV1OrdersMutation = (
   > = {
     mutationFn: async (fnOptions) => {
       const { data } = await postApiV1Orders({
+        ...options,
+        ...fnOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
+};
+
+/**
+ * Delete a Order
+ */
+export const deleteApiV1OrdersByIdMutation = (
+  options?: Partial<Options<DeleteApiV1OrdersByIdData>>,
+): UseMutationOptions<unknown, AxiosError<DefaultError>, Options<DeleteApiV1OrdersByIdData>> => {
+  const mutationOptions: UseMutationOptions<unknown, AxiosError<DefaultError>, Options<DeleteApiV1OrdersByIdData>> = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await deleteApiV1OrdersById({
+        ...options,
+        ...fnOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
+};
+
+export const getApiV1OrdersByIdQueryKey = (options: Options<GetApiV1OrdersByIdData>) =>
+  createQueryKey("getApiV1OrdersById", options);
+
+/**
+ * Get a Order by id
+ */
+export const getApiV1OrdersByIdOptions = (options: Options<GetApiV1OrdersByIdData>) =>
+  queryOptions<
+    GetApiV1OrdersByIdResponse,
+    AxiosError<DefaultError>,
+    GetApiV1OrdersByIdResponse,
+    ReturnType<typeof getApiV1OrdersByIdQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1OrdersById({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1OrdersByIdQueryKey(options),
+  });
+
+/**
+ * Partially update a Order
+ */
+export const patchApiV1OrdersByIdMutation = (
+  options?: Partial<Options<PatchApiV1OrdersByIdData>>,
+): UseMutationOptions<PatchApiV1OrdersByIdResponse, AxiosError<DefaultError>, Options<PatchApiV1OrdersByIdData>> => {
+  const mutationOptions: UseMutationOptions<
+    PatchApiV1OrdersByIdResponse,
+    AxiosError<DefaultError>,
+    Options<PatchApiV1OrdersByIdData>
+  > = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await patchApiV1OrdersById({
+        ...options,
+        ...fnOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
+};
+
+/**
+ * Replace a Order
+ */
+export const putApiV1OrdersByIdMutation = (
+  options?: Partial<Options<PutApiV1OrdersByIdData>>,
+): UseMutationOptions<PutApiV1OrdersByIdResponse, AxiosError<DefaultError>, Options<PutApiV1OrdersByIdData>> => {
+  const mutationOptions: UseMutationOptions<
+    PutApiV1OrdersByIdResponse,
+    AxiosError<DefaultError>,
+    Options<PutApiV1OrdersByIdData>
+  > = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await putApiV1OrdersById({
         ...options,
         ...fnOptions,
         throwOnError: true,
@@ -3449,8 +3568,8 @@ export const getApiV1CustomersInfiniteQueryKey = (
 /**
  * List all Customers
  */
-export const getApiV1CustomersInfiniteOptions = (options?: Options<GetApiV1CustomersData>) =>
-  infiniteQueryOptions<
+export const getApiV1CustomersInfiniteOptions = (options?: Options<GetApiV1CustomersData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1CustomersResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1CustomersResponse>,
@@ -3481,6 +3600,8 @@ export const getApiV1CustomersInfiniteOptions = (options?: Options<GetApiV1Custo
       queryKey: getApiV1CustomersInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Customer
@@ -4634,8 +4755,8 @@ export const getApiV1PostsInfiniteQueryKey = (
 /**
  * List all Posts
  */
-export const getApiV1PostsInfiniteOptions = (options?: Options<GetApiV1PostsData>) =>
-  infiniteQueryOptions<
+export const getApiV1PostsInfiniteOptions = (options?: Options<GetApiV1PostsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1PostsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1PostsResponse>,
@@ -4666,6 +4787,8 @@ export const getApiV1PostsInfiniteOptions = (options?: Options<GetApiV1PostsData
       queryKey: getApiV1PostsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Post
@@ -4812,8 +4935,8 @@ export const getApiV1ArticlesInfiniteQueryKey = (
 /**
  * List all Articles
  */
-export const getApiV1ArticlesInfiniteOptions = (options?: Options<GetApiV1ArticlesData>) =>
-  infiniteQueryOptions<
+export const getApiV1ArticlesInfiniteOptions = (options?: Options<GetApiV1ArticlesData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1ArticlesResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1ArticlesResponse>,
@@ -4844,6 +4967,8 @@ export const getApiV1ArticlesInfiniteOptions = (options?: Options<GetApiV1Articl
       queryKey: getApiV1ArticlesInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Article
@@ -4994,8 +5119,8 @@ export const getApiV1ReviewsInfiniteQueryKey = (
 /**
  * List all Reviews
  */
-export const getApiV1ReviewsInfiniteOptions = (options?: Options<GetApiV1ReviewsData>) =>
-  infiniteQueryOptions<
+export const getApiV1ReviewsInfiniteOptions = (options?: Options<GetApiV1ReviewsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1ReviewsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1ReviewsResponse>,
@@ -5026,6 +5151,8 @@ export const getApiV1ReviewsInfiniteOptions = (options?: Options<GetApiV1Reviews
       queryKey: getApiV1ReviewsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Review
@@ -5172,8 +5299,8 @@ export const getApiV1NotificationsInfiniteQueryKey = (
 /**
  * List all Notifications
  */
-export const getApiV1NotificationsInfiniteOptions = (options?: Options<GetApiV1NotificationsData>) =>
-  infiniteQueryOptions<
+export const getApiV1NotificationsInfiniteOptions = (options?: Options<GetApiV1NotificationsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1NotificationsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1NotificationsResponse>,
@@ -5204,6 +5331,8 @@ export const getApiV1NotificationsInfiniteOptions = (options?: Options<GetApiV1N
       queryKey: getApiV1NotificationsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Notification
@@ -5366,8 +5495,8 @@ export const getApiV1EventsInfiniteQueryKey = (
 /**
  * List all Events
  */
-export const getApiV1EventsInfiniteOptions = (options?: Options<GetApiV1EventsData>) =>
-  infiniteQueryOptions<
+export const getApiV1EventsInfiniteOptions = (options?: Options<GetApiV1EventsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1EventsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1EventsResponse>,
@@ -5398,6 +5527,8 @@ export const getApiV1EventsInfiniteOptions = (options?: Options<GetApiV1EventsDa
       queryKey: getApiV1EventsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Event
@@ -6842,8 +6973,8 @@ export const getApiV1InvoicesInfiniteQueryKey = (
 /**
  * List all Invoices
  */
-export const getApiV1InvoicesInfiniteOptions = (options?: Options<GetApiV1InvoicesData>) =>
-  infiniteQueryOptions<
+export const getApiV1InvoicesInfiniteOptions = (options?: Options<GetApiV1InvoicesData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1InvoicesResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1InvoicesResponse>,
@@ -6874,6 +7005,8 @@ export const getApiV1InvoicesInfiniteOptions = (options?: Options<GetApiV1Invoic
       queryKey: getApiV1InvoicesInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Invoice
@@ -7024,8 +7157,8 @@ export const getApiV1PaymentsInfiniteQueryKey = (
 /**
  * List all Payments
  */
-export const getApiV1PaymentsInfiniteOptions = (options?: Options<GetApiV1PaymentsData>) =>
-  infiniteQueryOptions<
+export const getApiV1PaymentsInfiniteOptions = (options?: Options<GetApiV1PaymentsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1PaymentsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1PaymentsResponse>,
@@ -7056,6 +7189,8 @@ export const getApiV1PaymentsInfiniteOptions = (options?: Options<GetApiV1Paymen
       queryKey: getApiV1PaymentsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Payment
@@ -8346,8 +8481,8 @@ export const getApiV1LogsInfiniteQueryKey = (
 /**
  * List all Logs
  */
-export const getApiV1LogsInfiniteOptions = (options?: Options<GetApiV1LogsData>) =>
-  infiniteQueryOptions<
+export const getApiV1LogsInfiniteOptions = (options?: Options<GetApiV1LogsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1LogsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1LogsResponse>,
@@ -8378,6 +8513,8 @@ export const getApiV1LogsInfiniteOptions = (options?: Options<GetApiV1LogsData>)
       queryKey: getApiV1LogsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Log
@@ -10185,8 +10322,8 @@ export const getApiV1RestaurantsInfiniteQueryKey = (
 /**
  * List all Restaurants
  */
-export const getApiV1RestaurantsInfiniteOptions = (options?: Options<GetApiV1RestaurantsData>) =>
-  infiniteQueryOptions<
+export const getApiV1RestaurantsInfiniteOptions = (options?: Options<GetApiV1RestaurantsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1RestaurantsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1RestaurantsResponse>,
@@ -10217,6 +10354,8 @@ export const getApiV1RestaurantsInfiniteOptions = (options?: Options<GetApiV1Res
       queryKey: getApiV1RestaurantsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Restaurant
@@ -10375,8 +10514,8 @@ export const getApiV1HotelsInfiniteQueryKey = (
 /**
  * List all Hotels
  */
-export const getApiV1HotelsInfiniteOptions = (options?: Options<GetApiV1HotelsData>) =>
-  infiniteQueryOptions<
+export const getApiV1HotelsInfiniteOptions = (options?: Options<GetApiV1HotelsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1HotelsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1HotelsResponse>,
@@ -10407,6 +10546,8 @@ export const getApiV1HotelsInfiniteOptions = (options?: Options<GetApiV1HotelsDa
       queryKey: getApiV1HotelsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Hotel
@@ -10553,8 +10694,8 @@ export const getApiV1BookingsInfiniteQueryKey = (
 /**
  * List all Bookings
  */
-export const getApiV1BookingsInfiniteOptions = (options?: Options<GetApiV1BookingsData>) =>
-  infiniteQueryOptions<
+export const getApiV1BookingsInfiniteOptions = (options?: Options<GetApiV1BookingsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1BookingsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1BookingsResponse>,
@@ -10585,6 +10726,8 @@ export const getApiV1BookingsInfiniteOptions = (options?: Options<GetApiV1Bookin
       queryKey: getApiV1BookingsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Booking
@@ -10735,8 +10878,8 @@ export const getApiV1FlightsInfiniteQueryKey = (
 /**
  * List all Flights
  */
-export const getApiV1FlightsInfiniteOptions = (options?: Options<GetApiV1FlightsData>) =>
-  infiniteQueryOptions<
+export const getApiV1FlightsInfiniteOptions = (options?: Options<GetApiV1FlightsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1FlightsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1FlightsResponse>,
@@ -10767,6 +10910,8 @@ export const getApiV1FlightsInfiniteOptions = (options?: Options<GetApiV1Flights
       queryKey: getApiV1FlightsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Flight
@@ -13965,8 +14110,8 @@ export const getApiV1SearchQueriesInfiniteQueryKey = (
 /**
  * List all SearchQueries
  */
-export const getApiV1SearchQueriesInfiniteOptions = (options?: Options<GetApiV1SearchQueriesData>) =>
-  infiniteQueryOptions<
+export const getApiV1SearchQueriesInfiniteOptions = (options?: Options<GetApiV1SearchQueriesData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1SearchQueriesResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1SearchQueriesResponse>,
@@ -13997,6 +14142,8 @@ export const getApiV1SearchQueriesInfiniteOptions = (options?: Options<GetApiV1S
       queryKey: getApiV1SearchQueriesInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new SearchQuery
@@ -14861,8 +15008,8 @@ export const getApiV1TransactionsInfiniteQueryKey = (
 /**
  * List all Transactions
  */
-export const getApiV1TransactionsInfiniteOptions = (options?: Options<GetApiV1TransactionsData>) =>
-  infiniteQueryOptions<
+export const getApiV1TransactionsInfiniteOptions = (options?: Options<GetApiV1TransactionsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1TransactionsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1TransactionsResponse>,
@@ -14893,6 +15040,8 @@ export const getApiV1TransactionsInfiniteOptions = (options?: Options<GetApiV1Tr
       queryKey: getApiV1TransactionsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new Transaction
@@ -15617,6 +15766,54 @@ export const putApiV1CustomerAddressesByIdMutation = (
   > = {
     mutationFn: async (fnOptions) => {
       const { data } = await putApiV1CustomerAddressesById({
+        ...options,
+        ...fnOptions,
+        throwOnError: true,
+      });
+      return data;
+    },
+  };
+  return mutationOptions;
+};
+
+export const getApiV1OrderNotesQueryKey = (options?: Options<GetApiV1OrderNotesData>) =>
+  createQueryKey("getApiV1OrderNotes", options);
+
+/**
+ * List all OrderNotes
+ */
+export const getApiV1OrderNotesOptions = (options?: Options<GetApiV1OrderNotesData>) =>
+  queryOptions<
+    GetApiV1OrderNotesResponse,
+    AxiosError<DefaultError>,
+    GetApiV1OrderNotesResponse,
+    ReturnType<typeof getApiV1OrderNotesQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1OrderNotes({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1OrderNotesQueryKey(options),
+  });
+
+/**
+ * Create a new OrderNote
+ */
+export const postApiV1OrderNotesMutation = (
+  options?: Partial<Options<PostApiV1OrderNotesData>>,
+): UseMutationOptions<PostApiV1OrderNotesResponse, AxiosError<DefaultError>, Options<PostApiV1OrderNotesData>> => {
+  const mutationOptions: UseMutationOptions<
+    PostApiV1OrderNotesResponse,
+    AxiosError<DefaultError>,
+    Options<PostApiV1OrderNotesData>
+  > = {
+    mutationFn: async (fnOptions) => {
+      const { data } = await postApiV1OrderNotes({
         ...options,
         ...fnOptions,
         throwOnError: true,
@@ -18059,8 +18256,8 @@ export const getApiV1SupportTicketsInfiniteQueryKey = (
 /**
  * List all SupportTickets
  */
-export const getApiV1SupportTicketsInfiniteOptions = (options?: Options<GetApiV1SupportTicketsData>) =>
-  infiniteQueryOptions<
+export const getApiV1SupportTicketsInfiniteOptions = (options?: Options<GetApiV1SupportTicketsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1SupportTicketsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1SupportTicketsResponse>,
@@ -18091,6 +18288,8 @@ export const getApiV1SupportTicketsInfiniteOptions = (options?: Options<GetApiV1
       queryKey: getApiV1SupportTicketsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 /**
  * Create a new SupportTicket
@@ -18511,8 +18710,8 @@ export const getApiV1CustomersByIdOrdersInfiniteQueryKey = (
 /**
  * List related orders for a given customer id
  */
-export const getApiV1CustomersByIdOrdersInfiniteOptions = (options: Options<GetApiV1CustomersByIdOrdersData>) =>
-  infiniteQueryOptions<
+export const getApiV1CustomersByIdOrdersInfiniteOptions = (options: Options<GetApiV1CustomersByIdOrdersData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1CustomersByIdOrdersResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1CustomersByIdOrdersResponse>,
@@ -18543,22 +18742,24 @@ export const getApiV1CustomersByIdOrdersInfiniteOptions = (options: Options<GetA
       queryKey: getApiV1CustomersByIdOrdersInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
-export const getApiV1CustomersByIdReviewsQueryKey = (options: Options<GetApiV1CustomersByIdReviewsData>) =>
-  createQueryKey("getApiV1CustomersByIdReviews", options);
+export const getApiV1OrdersByIdItemsQueryKey = (options: Options<GetApiV1OrdersByIdItemsData>) =>
+  createQueryKey("getApiV1OrdersByIdItems", options);
 
 /**
- * List related reviews for a given customer id
+ * List related order items for a given order id
  */
-export const getApiV1CustomersByIdReviewsOptions = (options: Options<GetApiV1CustomersByIdReviewsData>) =>
+export const getApiV1OrdersByIdItemsOptions = (options: Options<GetApiV1OrdersByIdItemsData>) =>
   queryOptions<
-    GetApiV1CustomersByIdReviewsResponse,
+    GetApiV1OrdersByIdItemsResponse,
     AxiosError<DefaultError>,
-    GetApiV1CustomersByIdReviewsResponse,
-    ReturnType<typeof getApiV1CustomersByIdReviewsQueryKey>
+    GetApiV1OrdersByIdItemsResponse,
+    ReturnType<typeof getApiV1OrdersByIdItemsQueryKey>
   >({
     queryFn: async ({ queryKey, signal }) => {
-      const { data } = await getApiV1CustomersByIdReviews({
+      const { data } = await getApiV1OrdersByIdItems({
         ...options,
         ...queryKey[0],
         signal,
@@ -18566,32 +18767,29 @@ export const getApiV1CustomersByIdReviewsOptions = (options: Options<GetApiV1Cus
       });
       return data;
     },
-    queryKey: getApiV1CustomersByIdReviewsQueryKey(options),
+    queryKey: getApiV1OrdersByIdItemsQueryKey(options),
   });
 
-export const getApiV1CustomersByIdReviewsInfiniteQueryKey = (
-  options: Options<GetApiV1CustomersByIdReviewsData>,
-): QueryKey<Options<GetApiV1CustomersByIdReviewsData>> => createQueryKey("getApiV1CustomersByIdReviews", options, true);
+export const getApiV1OrdersByIdItemsInfiniteQueryKey = (
+  options: Options<GetApiV1OrdersByIdItemsData>,
+): QueryKey<Options<GetApiV1OrdersByIdItemsData>> => createQueryKey("getApiV1OrdersByIdItems", options, true);
 
 /**
- * List related reviews for a given customer id
+ * List related order items for a given order id
  */
-export const getApiV1CustomersByIdReviewsInfiniteOptions = (options: Options<GetApiV1CustomersByIdReviewsData>) =>
-  infiniteQueryOptions<
-    GetApiV1CustomersByIdReviewsResponse,
+export const getApiV1OrdersByIdItemsInfiniteOptions = (options: Options<GetApiV1OrdersByIdItemsData>) => {
+  const opts = infiniteQueryOptions<
+    GetApiV1OrdersByIdItemsResponse,
     AxiosError<DefaultError>,
-    InfiniteData<GetApiV1CustomersByIdReviewsResponse>,
-    QueryKey<Options<GetApiV1CustomersByIdReviewsData>>,
-    number | Pick<QueryKey<Options<GetApiV1CustomersByIdReviewsData>>[0], "body" | "headers" | "path" | "query">
+    InfiniteData<GetApiV1OrdersByIdItemsResponse>,
+    QueryKey<Options<GetApiV1OrdersByIdItemsData>>,
+    number | Pick<QueryKey<Options<GetApiV1OrdersByIdItemsData>>[0], "body" | "headers" | "path" | "query">
   >(
     // @ts-ignore
     {
       queryFn: async ({ pageParam, queryKey, signal }) => {
         // @ts-ignore
-        const page: Pick<
-          QueryKey<Options<GetApiV1CustomersByIdReviewsData>>[0],
-          "body" | "headers" | "path" | "query"
-        > =
+        const page: Pick<QueryKey<Options<GetApiV1OrdersByIdItemsData>>[0], "body" | "headers" | "path" | "query"> =
           typeof pageParam === "object"
             ? pageParam
             : {
@@ -18600,7 +18798,7 @@ export const getApiV1CustomersByIdReviewsInfiniteOptions = (options: Options<Get
                 },
               };
         const params = createInfiniteParams(queryKey, page);
-        const { data } = await getApiV1CustomersByIdReviews({
+        const { data } = await getApiV1OrdersByIdItems({
           ...options,
           ...params,
           signal,
@@ -18608,34 +18806,11 @@ export const getApiV1CustomersByIdReviewsInfiniteOptions = (options: Options<Get
         });
         return data;
       },
-      queryKey: getApiV1CustomersByIdReviewsInfiniteQueryKey(options),
+      queryKey: getApiV1OrdersByIdItemsInfiniteQueryKey(options),
     },
   );
-
-export const getApiV1OrdersByIdRefundsQueryKey = (options: Options<GetApiV1OrdersByIdRefundsData>) =>
-  createQueryKey("getApiV1OrdersByIdRefunds", options);
-
-/**
- * List related refunds for a given order id
- */
-export const getApiV1OrdersByIdRefundsOptions = (options: Options<GetApiV1OrdersByIdRefundsData>) =>
-  queryOptions<
-    GetApiV1OrdersByIdRefundsResponse,
-    AxiosError<DefaultError>,
-    GetApiV1OrdersByIdRefundsResponse,
-    ReturnType<typeof getApiV1OrdersByIdRefundsQueryKey>
-  >({
-    queryFn: async ({ queryKey, signal }) => {
-      const { data } = await getApiV1OrdersByIdRefunds({
-        ...options,
-        ...queryKey[0],
-        signal,
-        throwOnError: true,
-      });
-      return data;
-    },
-    queryKey: getApiV1OrdersByIdRefundsQueryKey(options),
-  });
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1ProductsByIdReviewsQueryKey = (options: Options<GetApiV1ProductsByIdReviewsData>) =>
   createQueryKey("getApiV1ProductsByIdReviews", options);
@@ -18669,8 +18844,8 @@ export const getApiV1ProductsByIdReviewsInfiniteQueryKey = (
 /**
  * List related reviews for a given product id
  */
-export const getApiV1ProductsByIdReviewsInfiniteOptions = (options: Options<GetApiV1ProductsByIdReviewsData>) =>
-  infiniteQueryOptions<
+export const getApiV1ProductsByIdReviewsInfiniteOptions = (options: Options<GetApiV1ProductsByIdReviewsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1ProductsByIdReviewsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1ProductsByIdReviewsResponse>,
@@ -18701,99 +18876,8 @@ export const getApiV1ProductsByIdReviewsInfiniteOptions = (options: Options<GetA
       queryKey: getApiV1ProductsByIdReviewsInfiniteQueryKey(options),
     },
   );
-
-export const getApiV1ProductsByIdVariantsQueryKey = (options: Options<GetApiV1ProductsByIdVariantsData>) =>
-  createQueryKey("getApiV1ProductsByIdVariants", options);
-
-/**
- * List related variants for a given product id
- */
-export const getApiV1ProductsByIdVariantsOptions = (options: Options<GetApiV1ProductsByIdVariantsData>) =>
-  queryOptions<
-    GetApiV1ProductsByIdVariantsResponse,
-    AxiosError<DefaultError>,
-    GetApiV1ProductsByIdVariantsResponse,
-    ReturnType<typeof getApiV1ProductsByIdVariantsQueryKey>
-  >({
-    queryFn: async ({ queryKey, signal }) => {
-      const { data } = await getApiV1ProductsByIdVariants({
-        ...options,
-        ...queryKey[0],
-        signal,
-        throwOnError: true,
-      });
-      return data;
-    },
-    queryKey: getApiV1ProductsByIdVariantsQueryKey(options),
-  });
-
-export const getApiV1ProductsByIdVariantsInfiniteQueryKey = (
-  options: Options<GetApiV1ProductsByIdVariantsData>,
-): QueryKey<Options<GetApiV1ProductsByIdVariantsData>> => createQueryKey("getApiV1ProductsByIdVariants", options, true);
-
-/**
- * List related variants for a given product id
- */
-export const getApiV1ProductsByIdVariantsInfiniteOptions = (options: Options<GetApiV1ProductsByIdVariantsData>) =>
-  infiniteQueryOptions<
-    GetApiV1ProductsByIdVariantsResponse,
-    AxiosError<DefaultError>,
-    InfiniteData<GetApiV1ProductsByIdVariantsResponse>,
-    QueryKey<Options<GetApiV1ProductsByIdVariantsData>>,
-    number | Pick<QueryKey<Options<GetApiV1ProductsByIdVariantsData>>[0], "body" | "headers" | "path" | "query">
-  >(
-    // @ts-ignore
-    {
-      queryFn: async ({ pageParam, queryKey, signal }) => {
-        // @ts-ignore
-        const page: Pick<
-          QueryKey<Options<GetApiV1ProductsByIdVariantsData>>[0],
-          "body" | "headers" | "path" | "query"
-        > =
-          typeof pageParam === "object"
-            ? pageParam
-            : {
-                query: {
-                  page: pageParam,
-                },
-              };
-        const params = createInfiniteParams(queryKey, page);
-        const { data } = await getApiV1ProductsByIdVariants({
-          ...options,
-          ...params,
-          signal,
-          throwOnError: true,
-        });
-        return data;
-      },
-      queryKey: getApiV1ProductsByIdVariantsInfiniteQueryKey(options),
-    },
-  );
-
-export const getApiV1ProductsByIdFavoritesQueryKey = (options: Options<GetApiV1ProductsByIdFavoritesData>) =>
-  createQueryKey("getApiV1ProductsByIdFavorites", options);
-
-/**
- * List related favorites for a given product id
- */
-export const getApiV1ProductsByIdFavoritesOptions = (options: Options<GetApiV1ProductsByIdFavoritesData>) =>
-  queryOptions<
-    GetApiV1ProductsByIdFavoritesResponse,
-    AxiosError<DefaultError>,
-    GetApiV1ProductsByIdFavoritesResponse,
-    ReturnType<typeof getApiV1ProductsByIdFavoritesQueryKey>
-  >({
-    queryFn: async ({ queryKey, signal }) => {
-      const { data } = await getApiV1ProductsByIdFavorites({
-        ...options,
-        ...queryKey[0],
-        signal,
-        throwOnError: true,
-      });
-      return data;
-    },
-    queryKey: getApiV1ProductsByIdFavoritesQueryKey(options),
-  });
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1ProjectsByIdTasksQueryKey = (options: Options<GetApiV1ProjectsByIdTasksData>) =>
   createQueryKey("getApiV1ProjectsByIdTasks", options);
@@ -18868,31 +18952,6 @@ export const getApiV1WishlistsByIdItemsOptions = (options: Options<GetApiV1Wishl
       return data;
     },
     queryKey: getApiV1WishlistsByIdItemsQueryKey(options),
-  });
-
-export const getApiV1UsersByIdBadgesQueryKey = (options: Options<GetApiV1UsersByIdBadgesData>) =>
-  createQueryKey("getApiV1UsersByIdBadges", options);
-
-/**
- * List related badges for a given user id
- */
-export const getApiV1UsersByIdBadgesOptions = (options: Options<GetApiV1UsersByIdBadgesData>) =>
-  queryOptions<
-    GetApiV1UsersByIdBadgesResponse,
-    AxiosError<DefaultError>,
-    GetApiV1UsersByIdBadgesResponse,
-    ReturnType<typeof getApiV1UsersByIdBadgesQueryKey>
-  >({
-    queryFn: async ({ queryKey, signal }) => {
-      const { data } = await getApiV1UsersByIdBadges({
-        ...options,
-        ...queryKey[0],
-        signal,
-        throwOnError: true,
-      });
-      return data;
-    },
-    queryKey: getApiV1UsersByIdBadgesQueryKey(options),
   });
 
 export const getApiV1HotelsByIdBookingsQueryKey = (options: Options<GetApiV1HotelsByIdBookingsData>) =>
@@ -19045,6 +19104,221 @@ export const getApiV1ConversationsByIdMessagesOptions = (options: Options<GetApi
     queryKey: getApiV1ConversationsByIdMessagesQueryKey(options),
   });
 
+export const getApiV1ProductsByIdVariantsQueryKey = (options: Options<GetApiV1ProductsByIdVariantsData>) =>
+  createQueryKey("getApiV1ProductsByIdVariants", options);
+
+/**
+ * List related variants for a given product id
+ */
+export const getApiV1ProductsByIdVariantsOptions = (options: Options<GetApiV1ProductsByIdVariantsData>) =>
+  queryOptions<
+    GetApiV1ProductsByIdVariantsResponse,
+    AxiosError<DefaultError>,
+    GetApiV1ProductsByIdVariantsResponse,
+    ReturnType<typeof getApiV1ProductsByIdVariantsQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1ProductsByIdVariants({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1ProductsByIdVariantsQueryKey(options),
+  });
+
+export const getApiV1ProductsByIdVariantsInfiniteQueryKey = (
+  options: Options<GetApiV1ProductsByIdVariantsData>,
+): QueryKey<Options<GetApiV1ProductsByIdVariantsData>> => createQueryKey("getApiV1ProductsByIdVariants", options, true);
+
+/**
+ * List related variants for a given product id
+ */
+export const getApiV1ProductsByIdVariantsInfiniteOptions = (options: Options<GetApiV1ProductsByIdVariantsData>) => {
+  const opts = infiniteQueryOptions<
+    GetApiV1ProductsByIdVariantsResponse,
+    AxiosError<DefaultError>,
+    InfiniteData<GetApiV1ProductsByIdVariantsResponse>,
+    QueryKey<Options<GetApiV1ProductsByIdVariantsData>>,
+    number | Pick<QueryKey<Options<GetApiV1ProductsByIdVariantsData>>[0], "body" | "headers" | "path" | "query">
+  >(
+    // @ts-ignore
+    {
+      queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<
+          QueryKey<Options<GetApiV1ProductsByIdVariantsData>>[0],
+          "body" | "headers" | "path" | "query"
+        > =
+          typeof pageParam === "object"
+            ? pageParam
+            : {
+                query: {
+                  page: pageParam,
+                },
+              };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await getApiV1ProductsByIdVariants({
+          ...options,
+          ...params,
+          signal,
+          throwOnError: true,
+        });
+        return data;
+      },
+      queryKey: getApiV1ProductsByIdVariantsInfiniteQueryKey(options),
+    },
+  );
+  return opts as Omit<typeof opts, "initialData">;
+};
+
+export const getApiV1ProductsByIdFavoritesQueryKey = (options: Options<GetApiV1ProductsByIdFavoritesData>) =>
+  createQueryKey("getApiV1ProductsByIdFavorites", options);
+
+/**
+ * List related favorites for a given product id
+ */
+export const getApiV1ProductsByIdFavoritesOptions = (options: Options<GetApiV1ProductsByIdFavoritesData>) =>
+  queryOptions<
+    GetApiV1ProductsByIdFavoritesResponse,
+    AxiosError<DefaultError>,
+    GetApiV1ProductsByIdFavoritesResponse,
+    ReturnType<typeof getApiV1ProductsByIdFavoritesQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1ProductsByIdFavorites({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1ProductsByIdFavoritesQueryKey(options),
+  });
+
+export const getApiV1UsersByIdBadgesQueryKey = (options: Options<GetApiV1UsersByIdBadgesData>) =>
+  createQueryKey("getApiV1UsersByIdBadges", options);
+
+/**
+ * List related badges for a given user id
+ */
+export const getApiV1UsersByIdBadgesOptions = (options: Options<GetApiV1UsersByIdBadgesData>) =>
+  queryOptions<
+    GetApiV1UsersByIdBadgesResponse,
+    AxiosError<DefaultError>,
+    GetApiV1UsersByIdBadgesResponse,
+    ReturnType<typeof getApiV1UsersByIdBadgesQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1UsersByIdBadges({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1UsersByIdBadgesQueryKey(options),
+  });
+
+export const getApiV1OrdersByIdRefundsQueryKey = (options: Options<GetApiV1OrdersByIdRefundsData>) =>
+  createQueryKey("getApiV1OrdersByIdRefunds", options);
+
+/**
+ * List related refunds for a given order id
+ */
+export const getApiV1OrdersByIdRefundsOptions = (options: Options<GetApiV1OrdersByIdRefundsData>) =>
+  queryOptions<
+    GetApiV1OrdersByIdRefundsResponse,
+    AxiosError<DefaultError>,
+    GetApiV1OrdersByIdRefundsResponse,
+    ReturnType<typeof getApiV1OrdersByIdRefundsQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1OrdersByIdRefunds({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1OrdersByIdRefundsQueryKey(options),
+  });
+
+export const getApiV1CustomersByIdReviewsQueryKey = (options: Options<GetApiV1CustomersByIdReviewsData>) =>
+  createQueryKey("getApiV1CustomersByIdReviews", options);
+
+/**
+ * List related reviews for a given customer id
+ */
+export const getApiV1CustomersByIdReviewsOptions = (options: Options<GetApiV1CustomersByIdReviewsData>) =>
+  queryOptions<
+    GetApiV1CustomersByIdReviewsResponse,
+    AxiosError<DefaultError>,
+    GetApiV1CustomersByIdReviewsResponse,
+    ReturnType<typeof getApiV1CustomersByIdReviewsQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1CustomersByIdReviews({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1CustomersByIdReviewsQueryKey(options),
+  });
+
+export const getApiV1CustomersByIdReviewsInfiniteQueryKey = (
+  options: Options<GetApiV1CustomersByIdReviewsData>,
+): QueryKey<Options<GetApiV1CustomersByIdReviewsData>> => createQueryKey("getApiV1CustomersByIdReviews", options, true);
+
+/**
+ * List related reviews for a given customer id
+ */
+export const getApiV1CustomersByIdReviewsInfiniteOptions = (options: Options<GetApiV1CustomersByIdReviewsData>) => {
+  const opts = infiniteQueryOptions<
+    GetApiV1CustomersByIdReviewsResponse,
+    AxiosError<DefaultError>,
+    InfiniteData<GetApiV1CustomersByIdReviewsResponse>,
+    QueryKey<Options<GetApiV1CustomersByIdReviewsData>>,
+    number | Pick<QueryKey<Options<GetApiV1CustomersByIdReviewsData>>[0], "body" | "headers" | "path" | "query">
+  >(
+    // @ts-ignore
+    {
+      queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<
+          QueryKey<Options<GetApiV1CustomersByIdReviewsData>>[0],
+          "body" | "headers" | "path" | "query"
+        > =
+          typeof pageParam === "object"
+            ? pageParam
+            : {
+                query: {
+                  page: pageParam,
+                },
+              };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await getApiV1CustomersByIdReviews({
+          ...options,
+          ...params,
+          signal,
+          throwOnError: true,
+        });
+        return data;
+      },
+      queryKey: getApiV1CustomersByIdReviewsInfiniteQueryKey(options),
+    },
+  );
+  return opts as Omit<typeof opts, "initialData">;
+};
+
 export const getApiV1CustomersByIdCartsQueryKey = (options: Options<GetApiV1CustomersByIdCartsData>) =>
   createQueryKey("getApiV1CustomersByIdCarts", options);
 
@@ -19131,8 +19405,8 @@ export const getApiV1CustomersByIdPaymentMethodsInfiniteQueryKey = (
  */
 export const getApiV1CustomersByIdPaymentMethodsInfiniteOptions = (
   options: Options<GetApiV1CustomersByIdPaymentMethodsData>,
-) =>
-  infiniteQueryOptions<
+) => {
+  const opts = infiniteQueryOptions<
     GetApiV1CustomersByIdPaymentMethodsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1CustomersByIdPaymentMethodsResponse>,
@@ -19166,6 +19440,8 @@ export const getApiV1CustomersByIdPaymentMethodsInfiniteOptions = (
       queryKey: getApiV1CustomersByIdPaymentMethodsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1CustomersByIdAddressesQueryKey = (options: Options<GetApiV1CustomersByIdAddressesData>) =>
   createQueryKey("getApiV1CustomersByIdAddresses", options);
@@ -19200,8 +19476,8 @@ export const getApiV1CustomersByIdAddressesInfiniteQueryKey = (
 /**
  * List related customer addresses for a given customer id
  */
-export const getApiV1CustomersByIdAddressesInfiniteOptions = (options: Options<GetApiV1CustomersByIdAddressesData>) =>
-  infiniteQueryOptions<
+export const getApiV1CustomersByIdAddressesInfiniteOptions = (options: Options<GetApiV1CustomersByIdAddressesData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1CustomersByIdAddressesResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1CustomersByIdAddressesResponse>,
@@ -19235,6 +19511,8 @@ export const getApiV1CustomersByIdAddressesInfiniteOptions = (options: Options<G
       queryKey: getApiV1CustomersByIdAddressesInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1CustomersByIdLoyaltyAccountsQueryKey = (
   options: Options<GetApiV1CustomersByIdLoyaltyAccountsData>,
@@ -19621,8 +19899,8 @@ export const getApiV1InvoicesByIdPaymentsInfiniteQueryKey = (
 /**
  * List related payments for a given invoice id
  */
-export const getApiV1InvoicesByIdPaymentsInfiniteOptions = (options: Options<GetApiV1InvoicesByIdPaymentsData>) =>
-  infiniteQueryOptions<
+export const getApiV1InvoicesByIdPaymentsInfiniteOptions = (options: Options<GetApiV1InvoicesByIdPaymentsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1InvoicesByIdPaymentsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1InvoicesByIdPaymentsResponse>,
@@ -19656,6 +19934,8 @@ export const getApiV1InvoicesByIdPaymentsInfiniteOptions = (options: Options<Get
       queryKey: getApiV1InvoicesByIdPaymentsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1InvoicesByIdItemsQueryKey = (options: Options<GetApiV1InvoicesByIdItemsData>) =>
   createQueryKey("getApiV1InvoicesByIdItems", options);
@@ -19689,8 +19969,8 @@ export const getApiV1InvoicesByIdItemsInfiniteQueryKey = (
 /**
  * List related invoice items for a given invoice id
  */
-export const getApiV1InvoicesByIdItemsInfiniteOptions = (options: Options<GetApiV1InvoicesByIdItemsData>) =>
-  infiniteQueryOptions<
+export const getApiV1InvoicesByIdItemsInfiniteOptions = (options: Options<GetApiV1InvoicesByIdItemsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1InvoicesByIdItemsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1InvoicesByIdItemsResponse>,
@@ -19721,6 +20001,8 @@ export const getApiV1InvoicesByIdItemsInfiniteOptions = (options: Options<GetApi
       queryKey: getApiV1InvoicesByIdItemsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1PlansByIdSubscriptionsQueryKey = (options: Options<GetApiV1PlansByIdSubscriptionsData>) =>
   createQueryKey("getApiV1PlansByIdSubscriptions", options);
@@ -19930,8 +20212,8 @@ export const getApiV1ProductsByIdInventoryInfiniteQueryKey = (
 /**
  * List related inventory records for a given product id
  */
-export const getApiV1ProductsByIdInventoryInfiniteOptions = (options: Options<GetApiV1ProductsByIdInventoryData>) =>
-  infiniteQueryOptions<
+export const getApiV1ProductsByIdInventoryInfiniteOptions = (options: Options<GetApiV1ProductsByIdInventoryData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1ProductsByIdInventoryResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1ProductsByIdInventoryResponse>,
@@ -19965,6 +20247,8 @@ export const getApiV1ProductsByIdInventoryInfiniteOptions = (options: Options<Ge
       queryKey: getApiV1ProductsByIdInventoryInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1ProductsByIdOrderItemsQueryKey = (options: Options<GetApiV1ProductsByIdOrderItemsData>) =>
   createQueryKey("getApiV1ProductsByIdOrderItems", options);
@@ -20051,8 +20335,8 @@ export const getApiV1OrdersByIdReturnsInfiniteQueryKey = (
 /**
  * List related returns for a given order id
  */
-export const getApiV1OrdersByIdReturnsInfiniteOptions = (options: Options<GetApiV1OrdersByIdReturnsData>) =>
-  infiniteQueryOptions<
+export const getApiV1OrdersByIdReturnsInfiniteOptions = (options: Options<GetApiV1OrdersByIdReturnsData>) => {
+  const opts = infiniteQueryOptions<
     GetApiV1OrdersByIdReturnsResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1OrdersByIdReturnsResponse>,
@@ -20083,6 +20367,75 @@ export const getApiV1OrdersByIdReturnsInfiniteOptions = (options: Options<GetApi
       queryKey: getApiV1OrdersByIdReturnsInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
+
+export const getApiV1OrdersByIdNotesQueryKey = (options: Options<GetApiV1OrdersByIdNotesData>) =>
+  createQueryKey("getApiV1OrdersByIdNotes", options);
+
+/**
+ * List related notes for a given order id
+ */
+export const getApiV1OrdersByIdNotesOptions = (options: Options<GetApiV1OrdersByIdNotesData>) =>
+  queryOptions<
+    GetApiV1OrdersByIdNotesResponse,
+    AxiosError<DefaultError>,
+    GetApiV1OrdersByIdNotesResponse,
+    ReturnType<typeof getApiV1OrdersByIdNotesQueryKey>
+  >({
+    queryFn: async ({ queryKey, signal }) => {
+      const { data } = await getApiV1OrdersByIdNotes({
+        ...options,
+        ...queryKey[0],
+        signal,
+        throwOnError: true,
+      });
+      return data;
+    },
+    queryKey: getApiV1OrdersByIdNotesQueryKey(options),
+  });
+
+export const getApiV1OrdersByIdNotesInfiniteQueryKey = (
+  options: Options<GetApiV1OrdersByIdNotesData>,
+): QueryKey<Options<GetApiV1OrdersByIdNotesData>> => createQueryKey("getApiV1OrdersByIdNotes", options, true);
+
+/**
+ * List related notes for a given order id
+ */
+export const getApiV1OrdersByIdNotesInfiniteOptions = (options: Options<GetApiV1OrdersByIdNotesData>) => {
+  const opts = infiniteQueryOptions<
+    GetApiV1OrdersByIdNotesResponse,
+    AxiosError<DefaultError>,
+    InfiniteData<GetApiV1OrdersByIdNotesResponse>,
+    QueryKey<Options<GetApiV1OrdersByIdNotesData>>,
+    number | Pick<QueryKey<Options<GetApiV1OrdersByIdNotesData>>[0], "body" | "headers" | "path" | "query">
+  >(
+    // @ts-ignore
+    {
+      queryFn: async ({ pageParam, queryKey, signal }) => {
+        // @ts-ignore
+        const page: Pick<QueryKey<Options<GetApiV1OrdersByIdNotesData>>[0], "body" | "headers" | "path" | "query"> =
+          typeof pageParam === "object"
+            ? pageParam
+            : {
+                query: {
+                  page: pageParam,
+                },
+              };
+        const params = createInfiniteParams(queryKey, page);
+        const { data } = await getApiV1OrdersByIdNotes({
+          ...options,
+          ...params,
+          signal,
+          throwOnError: true,
+        });
+        return data;
+      },
+      queryKey: getApiV1OrdersByIdNotesInfiniteQueryKey(options),
+    },
+  );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1OrdersByIdCouponUsagesQueryKey = (options: Options<GetApiV1OrdersByIdCouponUsagesData>) =>
   createQueryKey("getApiV1OrdersByIdCouponUsages", options);
@@ -20372,8 +20725,8 @@ export const getApiV1SupportTicketsByIdRepliesInfiniteQueryKey = (
  */
 export const getApiV1SupportTicketsByIdRepliesInfiniteOptions = (
   options: Options<GetApiV1SupportTicketsByIdRepliesData>,
-) =>
-  infiniteQueryOptions<
+) => {
+  const opts = infiniteQueryOptions<
     GetApiV1SupportTicketsByIdRepliesResponse,
     AxiosError<DefaultError>,
     InfiniteData<GetApiV1SupportTicketsByIdRepliesResponse>,
@@ -20407,6 +20760,8 @@ export const getApiV1SupportTicketsByIdRepliesInfiniteOptions = (
       queryKey: getApiV1SupportTicketsByIdRepliesInfiniteQueryKey(options),
     },
   );
+  return opts as Omit<typeof opts, "initialData">;
+};
 
 export const getApiV1SuppliersByIdProductsQueryKey = (options: Options<GetApiV1SuppliersByIdProductsData>) =>
   createQueryKey("getApiV1SuppliersByIdProducts", options);

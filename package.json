@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "0.99.0",
+    "@rolldown/plugin-babel": "^0.2.3",
     "@tanstack/router-plugin": "^1.168.35",
     "@tanstack/router-vite-plugin": "^1.167.35",
     "@types/node": "^26.4.1",

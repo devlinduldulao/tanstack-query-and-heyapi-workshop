@@ -37,7 +37,65 @@ const [search, setSearch] = useState("");
 const deferredSearch = useDeferredValue(search);
 ```
 
-**Why `useDeferredValue`:** typing in the search box updates `search` immediately, but the filtering work is deferred to a later render. The input stays responsive; the list "lags by one frame" while React filters in the background. This is React 19's built-in answer to "debounce typing without writing a debounce".
+**Why `useDeferredValue`:** typing updates `search` immediately, but the filtering work is
+deferred to a later, interruptible render. The input stays responsive; the list lags by one
+render pass. It is React's built-in answer to "debounce typing without writing a debounce".
+
+**⚠️ The part everyone gets wrong — and React Compiler does not fix it.**
+
+Calling the hook is not enough. If the filter sits inline in the same component as the
+`<input value={search}>`, React Compiler groups them into a **single reactive scope**, and you
+can read the dependency list straight out of the compiled output:
+
+```js
+// compiled from the naive version
+if ($[2] !== books || $[3] !== deferredSearch || $[4] !== isFetching
+    || $[5] !== page || $[6] !== search) {          //  <-- urgent `search` is a dependency
+  const filteredBooks = books.filter(/* ... */);    //  <-- so this re-runs every keystroke
+```
+
+`search` changes on every keystroke, the guard fails, and the filter runs on the **urgent**
+(blocking) pass — precisely what `useDeferredValue` exists to prevent.
+
+Measure it. Make the filter briefly expensive and time the keystroke, which is synchronous:
+
+```js
+const t0 = performance.now();
+input.dispatchEvent(new Event("input", { bubbles: true }));
+console.log(performance.now() - t0); // time blocked on the urgent pass
+```
+
+On this screen that reads **~90ms per keystroke**. Typing visibly stutters.
+
+**The fix is a component boundary, not more memoization.** Move filter + slice + list into a
+child that receives the *deferred* term as a prop:
+
+```tsx
+<BookResults key={deferredSearch} books={books} search={deferredSearch} />
+```
+
+Now the compiled scope depends only on `[books, page, search]` where `search` is the deferred
+term, and the parent caches the child element on `[books, deferredSearch]`. During the urgent
+pass both are unchanged, so React reuses the cached element and skips the subtree outright.
+Same expensive filter, same keystroke: **~1ms**.
+
+**Do not reach for `memo` or `useMemo`.** With React Compiler on they are noise — the compiler
+already emits the caching. If hand-memoizing seems necessary, the component boundary is in the
+wrong place. Fix the boundary instead.
+
+**Bonus: `key` replaces the page-reset.** `key={deferredSearch}` remounts the results on a new
+search term, so paging resets to 1 for free — no `setPage(1)` on the urgent path, no
+resynchronizing `useEffect`.
+
+**Make the deferral visible.** Compare the two values and tell the user:
+
+```tsx
+const isStale = search !== deferredSearch;
+```
+
+Dim the list and show `filtering…` while `isStale`. On 30 books the deferral is well under a
+frame, so without this indicator a student cannot tell the hook is wired up at all — which is
+exactly why this exercise looks broken until you add it.
 
 **Why a separate `deferredSearch` variable:** clarity. You could read `useDeferredValue(search)` inline, but pulling it out names the concept so other engineers know why it exists.
 
@@ -69,11 +127,14 @@ Read it line by line:
 
 1. **`normalizedSearch`** — trim + lowercase once, so the per-row check is just `includes(normalizedSearch)`. Without this, you would re-lowercase the search string on every filter iteration.
 2. **`filteredBooks`** — case-insensitive title match. The `?.` guards against books with no title (shouldn't happen per the spec, but defensive).
-3. **`data.items`** — slice the filtered array to the current page. Order matters: **filter before slice**. Slicing the unfiltered array would give you page 1 of all books, not page 1 of the search matches.
-4. **`data.pageCount`** — `Math.max(1, ...)` ensures the UI always shows at least "Page 1 / 1" even when there are zero results. Without it, an empty search would show "Page 1 / 0", which looks broken.
-5. **`data.total`** — number of matches, displayed in the header.
+3. **`items`** — slice the filtered array to the current page. Order matters: **filter before slice**. Slicing the unfiltered array would give you page 1 of all books, not page 1 of the search matches.
+4. **`pageCount`** — `Math.max(1, ...)` ensures the UI always shows at least "Page 1 / 1" even when there are zero results. Without it, an empty search would show "Page 1 / 0", which looks broken.
+5. **`filteredBooks.length`** — number of matches, displayed in the header.
 
-Nothing to change in this block.
+The logic here is already right. What is wrong is *where it lives*: this block sits in the same
+component as the search input, which is what breaks the deferral (Step 1). In the finished
+solution this exact code moves into the results child, unchanged apart from reading the deferred
+term and the clamped page.
 
 ---
 
@@ -81,14 +142,18 @@ Nothing to change in this block.
 
 In the input's `onChange`:
 
+**Why this is required:** if the user is on page 4 of "harry" results and changes the search to
+"lord", page 4 of "lord" might not exist.
+
+Once paging lives inside the results component, you get the reset for free by keying the child
+on the deferred term:
+
 ```tsx
-onChange={(event) => {
-  setSearch(event.target.value);
-  setPage(1);
-}}
+<BookResults key={deferredSearch} books={books} search={deferredSearch} />
 ```
 
-**Why this is required:** if the user is on page 4 of "harry" results and changes the search to "lord", page 4 of "lord" might not exist. Forcing back to page 1 keeps the UI valid without crash-handling.
+A changed `key` remounts the child, so its `useState(1)` re-initialises to page 1. No `setPage`
+on the urgent path, and no `useEffect` to resynchronise two pieces of state.
 
 ---
 
@@ -97,60 +162,89 @@ onChange={(event) => {
 The Next/Prev buttons are disabled correctly:
 
 ```tsx
-<button disabled={page === 1} onClick={() => setPage((value) => value - 1)}>Prev</button>
-<button disabled={page >= (data?.pageCount ?? 1)} onClick={() => setPage((value) => value + 1)}>Next</button>
+<button disabled={page === 1} onClick={() => setPage(page - 1)}>Prev</button>
+<button disabled={page >= pageCount} onClick={() => setPage(page + 1)}>Next</button>
 ```
 
-**Why the `??` fallback:** during the initial deferred-value mismatch, `data?.pageCount` could conceivably be undefined; the `?? 1` keeps the boundary check sane.
+Disabling the buttons is necessary but not sufficient. `page` is state, and state can go stale
+against a result set that shrank underneath it — a background refetch returning fewer books, or
+the deferred filter catching up. Clamp on read rather than trusting the stored value:
+
+```tsx
+const pageCount = Math.max(1, Math.ceil(filteredBooks.length / PAGE_SIZE));
+const safePage = Math.min(page, pageCount);
+```
+
+Then slice, label, and gate the buttons with `safePage`. Page 4 of a 2-page result now renders
+page 2 instead of an empty list, with no extra `useEffect` to resynchronize state.
 
 ---
 
 ## Step 6 — Confirm `isFetching` is rendered
 
+Two different "not settled yet" signals, and they mean different things:
+
+- `isFetching` — the **server** round-trip is in flight (background refetch).
+- `isStale` — the **client** filter has not caught up with what you typed.
+
+Both belong in the **parent**, next to the input, because both describe the term you just typed:
+
 ```tsx
-<span>
-  Page {page} / {data?.pageCount ?? 1} {isFetching && "· refreshing…"}
+<div className="text-muted-foreground flex justify-end gap-2 text-xs">
+  {isFetching && <span>refreshing…</span>}
+  {isStale && <span>filtering…</span>}
+</div>
+```
+
+The match count and page indicator stay in the results child, since they describe the deferred
+result set:
+
+```tsx
+<span className="text-xs opacity-70">
+  {filteredBooks.length} matches · Page {safePage} / {pageCount}
 </span>
 ```
 
-This is the background-refresh indicator. Same idea as Exercise 1.
+Rendering only `isFetching` is what makes the deferral invisible to the user.
 
 ---
 
-## Step 7 — Decide whether to restructure the JSX
+## Step 7 — The final shape
 
-The **starter** lays out controls like this (top-down):
+Splitting the deferred consumer out is not cosmetic — it is the fix. The finished screen is two
+components with a clear division of labour:
 
-1. search input
-2. status line
-3. results list
-4. Prev / Next buttons (bottom)
+**Parent (urgent):** owns `search`, renders the input, derives `isStale`, runs the query.
 
-The **solution** moves the status line _into_ the pagination row, so the layout is:
+```tsx
+const [search, setSearch] = useState("");
+const deferredSearch = useDeferredValue(search);
+const isStale = search !== deferredSearch;
+const { data: books, isFetching } = useSuspenseQuery(getApiV1BooksOptions());
+```
 
-1. search input
-2. row: `[Prev] [status text] [Next]`
-3. results list
-
-Both work. If you want a clean diff against the solution, copy that pagination row pattern. **This is purely cosmetic** and not required by the instructions.
-
-If you do restructure, the key block becomes:
+**Child (deferred):** owns `page`, filters, slices, and renders the pagination row plus the list.
 
 ```tsx
 <div className="flex items-center justify-between">
-  <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="rounded border px-3 py-1 disabled:opacity-50">
+  <button onClick={() => setPage(Math.max(1, safePage - 1))} disabled={safePage === 1} className="rounded border px-3 py-1 disabled:opacity-50">
     Prev
   </button>
   <span className="text-xs opacity-70">
-    {data?.total ?? 0} matches · Page {page} / {data?.pageCount ?? 1} {isFetching && "· refreshing…"}
+    {filteredBooks.length} matches · Page {safePage} / {pageCount}
   </span>
-  <button onClick={() => setPage((p) => Math.min(data?.pageCount ?? 1, p + 1))} disabled={page >= (data?.pageCount ?? 1)} className="rounded border px-3 py-1 disabled:opacity-50">
+  <button onClick={() => setPage(Math.min(pageCount, safePage + 1))} disabled={safePage >= pageCount} className="rounded border px-3 py-1 disabled:opacity-50">
     Next
   </button>
 </div>
 ```
 
-Note the solution also adds `Math.max(1, p - 1)` and `Math.min(data?.pageCount ?? 1, p + 1)` inside the click handlers — belt-and-suspenders defense in case the `disabled` attribute is ever bypassed.
+Note the handlers step from `safePage`, not from raw `page`. If `page` ever drifts past the end
+of a shrunken result set, stepping from the clamped value keeps Prev/Next on pages that exist.
+
+The rule to take away: **a deferred value wants its own component.** Anything else sharing a
+render scope with the urgent value drags that urgent value into the scope's dependencies, and
+the deferral silently stops working — compiler or no compiler.
 
 ---
 
@@ -158,10 +252,12 @@ Note the solution also adds `Math.max(1, p - 1)` and `Math.min(data?.pageCount ?
 
 ```tsx
 // TODO:
-// 1. Start from getApiV1BooksOptions() so Hey API owns the request and query key.
-// 2. Use useDeferredValue(search) before deriving the visible items.
-// 3. Keep paging local because the API call is still the generated books list query.
-// 4. Remove manual prefetching and let one shared query feed the derived UI state.
+// 1. Start from getApiV1BooksOptions() ...
+// 2. Keep paging local ...
+// 3. Remove manual prefetching ...
+// 4. Make useDeferredValue actually pay off (split the consumer into its own component,
+//    pass it the deferred term, surface the stale flag).
+// 5. Clamp the page against pageCount.
 ```
 
 Delete it once you have confirmed every bullet.
@@ -171,11 +267,17 @@ Delete it once you have confirmed every bullet.
 ## Step 9 — Verify in the browser
 
 1. Save.
-2. Type quickly in the search box — the input should feel snappy even on slow machines, because filtering is deferred.
-3. Search for "the" — you should see total matches > 10 and pagination active.
-4. Click Next a few times — page indicator updates, button disables at the last page.
-5. Change search while on page 3 — page resets to 1.
-6. DevTools → Network → confirm exactly **one** `GET /api/v1/Books` call powers the entire session.
+2. Type in the search box. The list dims and the status line shows `· filtering…` for the frame
+   before the deferred pass lands. **If you never see that, the deferral is not wired up** — this
+   is the check that catches a `useDeferredValue` that is doing nothing.
+3. Make the filter briefly expensive and time a keystroke (see Step 1). It should block for
+   **~1ms**, not ~90ms. If it is still ~90ms the filter is reading `search` rather than
+   `deferredSearch`, or it is still inline in the component that renders the input.
+4. Search `Book 1` — 11 matches, 2 pages.
+5. Click Next — the page indicator updates and Next disables on the last page.
+6. Change the search while on page 2 — page resets to 1.
+7. DevTools → Network → confirm exactly **one** `GET /api/v1/Books` powers the whole session.
+   Every keystroke and page click is derived from that single cache entry.
 
 ---
 

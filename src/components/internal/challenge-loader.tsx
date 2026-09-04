@@ -18,7 +18,7 @@ export function ChallengeLoader({ day, exercise, showSolution }: Props) {
 
     const base = showSolution
       ? `../../challenges/${day}/solutions/${exercise}-end`
-      : `../../challenges/${day}/${exercise}`;
+      : `../../challenges/${day}/exercises/${exercise}`;
 
     const tryExt = async (ext: string) => {
       const path = base + ext;

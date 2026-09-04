@@ -8,24 +8,31 @@ checkpoint.
 
 ## Step 0 — Sync the contract first
 
-The solution file ships **broken on purpose**. The repo's `swagger.yaml` is missing four endpoints (`GET/PUT/PATCH/DELETE /api/v1/Orders/{id}`, `GET /api/v1/Orders/{id}/items`, `GET /api/v1/Orders/{id}/notes`, `POST /api/v1/OrderNotes`), so the generated client at `src/api/client/` does not expose the helpers the solution imports.
-
-Before you write a single line, refresh the contract:
+Every helper this capstone imports is generated from `swagger.yaml`. Before you write a
+single line, confirm the contract still matches the backend:
 
 ```bash
-pnpm run update-swagger-bash   # pull live swagger.yaml from fakerestapi.vercel.app
-pnpm run openapi-ts            # regenerate src/api/client/ from it
+npm run update-swagger-bash   # pull live swagger.yaml (update-swagger-pwsh on PowerShell)
+npm run openapi-ts            # regenerate src/api/client/ from it
+npm run typecheck             # no new errors under src/challenges/
 ```
 
-Now `pnpm run typecheck` should pass and the helpers below exist:
+After that, all of these exist in `src/api/client/@tanstack/react-query.gen.ts`:
 
+- `getApiV1OrdersOptions` / `getApiV1OrdersQueryKey`
 - `getApiV1OrdersByIdOptions` / `getApiV1OrdersByIdQueryKey`
 - `patchApiV1OrdersByIdMutation`
 - `getApiV1OrdersByIdItemsOptions`
 - `getApiV1OrdersByIdNotesOptions` / `getApiV1OrdersByIdNotesQueryKey`
 - `postApiV1OrderNotesMutation`
 
-This is the realism: in your day job, the contract moves first and the UI catches up via the regen pipeline. Feel the loop once, then build.
+If one of them ever stops resolving, the contract drifted — re-run the two commands above
+rather than editing anything under `src/api/client/`. This is the realism: in your day job
+the contract moves first and the UI catches up through the regen pipeline.
+
+> `openapi-ts.config.ts` sets `operationId: false` on the `@hey-api/sdk` plugin so helpers
+> are named from method + path. fakerestapi later added `operationId`s to its spec; without
+> that flag a regen would rename every helper and break every exercise at once.
 
 ---
 

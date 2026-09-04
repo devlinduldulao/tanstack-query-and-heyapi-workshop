@@ -13,6 +13,9 @@ The reported symptoms are:
 1. Deleted books reappear.
 2. Rapid clicks delete the wrong rows.
 
+(Symptom 1 is real but has a *backend* cause — see Step 3. Symptom 2 does not occur at
+all. What follows is what would cause them if the cache genuinely were at fault.)
+
 In a TanStack Query + Hey API codebase, **both symptoms have a single root cause**: the read and the invalidation are not addressing the _same_ cache entry. There are three ways this happens in practice:
 
 1. The read uses a generated key, but the invalidation uses a hand-written string array (`["books"]`).
@@ -69,13 +72,32 @@ This is intentional. The challenge is to recognize that **the symptoms in the bu
 
 ## Step 3 — Reproduce (or fail to reproduce) the symptoms
 
+> **Read this before you click anything.** `fakerestapi.vercel.app` is a **read-only mock**.
+> It answers `DELETE /api/v1/Books/{id}` with a realistic `200` but never actually removes
+> the record. So the row you delete **will still be there** after the refetch — all 30 books
+> come back every time. That is the backend, not the cache.
+>
+> This is the trap in the ticket. "Deleted book reappears" is a real observation with a
+> *server-side* explanation, and the reporter blamed the cache. Your job is to tell those two
+> apart.
+
 Run the bootcamp app and open the challenge:
 
-1. Click delete on a book → does the row disappear and stay gone? It should.
-2. Rapid-click delete on three different rows → do all three disappear correctly? They should.
-3. DevTools → Network → confirm one `DELETE` per click and one `GET /api/v1/Books` after each.
+1. Click delete on a book. Confirm the success toast fires and the row **returns** on the
+   refetch. Do **not** stop here and call it a cache bug.
+2. Open DevTools → Network. Confirm exactly one `DELETE /api/v1/Books/{id}` per click,
+   followed by one `GET /api/v1/Books` — the invalidation *is* firing.
+3. Inspect that `GET` response body. `Book 1` is still in the payload. The cache faithfully
+   rendered what the server returned; nothing was refreshed under the wrong key.
+4. Rapid-click delete on three different rows. Confirm three `DELETE`s go out with three
+   **distinct** ids matching the rows you clicked — no row mix-up.
 
-**If you cannot reproduce the bug:** that is the answer. Write that finding in your code review comment.
+**Conclusion:** the cache bug cannot be reproduced. The reappearance is a non-persisting
+backend, and the "wrong rows" symptom does not occur at all. Write that finding up.
+
+> To prove the cache layer is sound independent of the backend, invalidate manually from the
+> React Query Devtools and watch the same list re-render from the same key. One key, one
+> read, one refresh.
 
 ---
 
@@ -118,7 +140,8 @@ Memorize these — they are the patterns you will look for in 90% of "delete bug
 3. Open the React Query Devtools (look for the floating icon).
 4. Inspect the `books` cache entry — its key should match exactly what `getApiV1BooksQueryKey()` returns, and its state should be "fresh" right after invalidation.
 
-If everything matches: ✅ done.
+If everything matches: ✅ done. Remember the rows themselves stay on screen — the mock
+backend never deleted them. Cache identity is what you are verifying here, not row count.
 
 ---
 

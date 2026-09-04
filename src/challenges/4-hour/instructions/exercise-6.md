@@ -5,7 +5,21 @@ The API returns the full books collection, so this lab builds paging and search 
 ## Requirements
 
 - Hold `page` and `search` in component state.
-- Use `useDeferredValue(search)` so typing stays responsive.
+- Use `useDeferredValue(search)` so typing stays responsive — **and make it actually do
+  something**. Deferring only pays off if the code reading the deferred value can be skipped
+  during the urgent render, which means the results (filter + slice + list) must live in their
+  own component taking the deferred term as a prop.
+
+  React Compiler does **not** rescue the inline version. It groups the filter and the
+  `<input value={search}>` JSX into one reactive scope, so the filter inherits `search` as a
+  dependency and re-runs on every keystroke regardless. Measured on this screen with an
+  artificially expensive filter: **~90ms blocked per keystroke inline, ~1ms once the consumer
+  is its own component.**
+- Do **not** add `memo` or `useMemo`. React Compiler generates both once the component boundary
+  is right; if you find yourself needing them by hand, the boundary is in the wrong place.
+- Surface `search !== deferredSearch` in the UI (dim the list, show `filtering…`). On 30 books
+  the deferral lasts well under a frame, so a deferral nobody can see is indistinguishable from
+  no deferral at all.
 - Read the full books collection through the generated list helper.
 - Derive the visible page locally by filtering first and slicing second.
 - Reset back to page 1 when the search term changes.

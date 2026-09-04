@@ -1,15 +1,12 @@
 // Reference solution — Orders Operations Console capstone.
 //
-// HEADS UP: This file intentionally does NOT typecheck on a fresh clone.
-// The repo's swagger.yaml is deliberately trimmed (missing GET/PUT/PATCH/DELETE
-// /api/v1/Orders/{id}, GET /api/v1/Orders/{id}/items, GET /api/v1/Orders/{id}/notes,
-// POST /api/v1/OrderNotes), so the generated client at src/api/client/ is missing
-// the 7 helpers this file imports. Run the regen pipeline to fix it:
+// CONTRACT NOTE: every helper below comes from the generated client. If any of them
+// stop resolving, the local swagger.yaml has drifted from the backend. Re-sync the
+// contract instead of patching this file or reaching for @ts-expect-error:
 //
-//   pnpm run update-swagger-bash
-//   pnpm run openapi-ts
-//
-// That is the lesson — do not silence the errors with @ts-expect-error.
+//   npm run update-swagger-bash   # or update-swagger-pwsh on PowerShell
+//   npm run openapi-ts
+//   npm run typecheck
 //
 // Patterns demonstrated:
 //   * Master / detail with one selectedId state.
@@ -34,7 +31,10 @@ import {
 } from "@/api/client/@tanstack/react-query.gen";
 import type { Order, OrderItem, OrderNote } from "@/api/client";
 
-const statusFlow = ["pending", "processing", "shipped", "delivered", "cancelled"] as const;
+// The seeded Orders in fakerestapi cycle through exactly these five statuses, so every
+// row highlights a matching pill. Keep this list in sync with the data, not with a
+// hypothetical fulfilment flow.
+const statusFlow = ["pending", "active", "completed", "cancelled", "archived"] as const;
 
 type OrderRow = {
   id: number;

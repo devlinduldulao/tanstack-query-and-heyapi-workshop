@@ -13,25 +13,38 @@ All API calls go through generated Hey API + TanStack Query helpers — no hand-
 
 ## Step 0 — Sync the contract (the drift drill)
 
-The repo ships in a **deliberately drifted** state. The local `swagger.yaml` is missing four endpoints that the live backend actually exposes:
-
-- `GET /api/v1/Orders/{id}` (and PUT/PATCH/DELETE on the same path)
-- `GET /api/v1/Orders/{id}/items`
-- `GET /api/v1/Orders/{id}/notes`
-- `POST /api/v1/OrderNotes`
-
-That means the generated client at `src/api/client/` does **not** export the helpers your solution needs. Open `src/challenges/4-hour/solutions/exercise-7-end.tsx` right now — TypeScript will scream about ~20 errors. The starter on the other hand only uses `getApiV1OrdersOptions` and compiles fine.
-
-Real teams hit this every sprint: backend ships a new endpoint, frontend has to (a) notice, (b) refetch the spec, (c) regenerate, (d) rebuild around the new surface. Walk that workflow now:
+Every helper this capstone needs is generated. Before writing UI, confirm the local
+`swagger.yaml` still matches the backend — this is the workflow real teams run whenever a
+backend ships a new endpoint:
 
 ```bash
-pnpm run update-swagger-bash   # curl the live swagger.yaml from fakerestapi.vercel.app
-pnpm run openapi-ts            # regenerate src/api/client/ from the refreshed spec
+npm run update-swagger-bash   # curl the live swagger.yaml (use update-swagger-pwsh on PowerShell)
+npm run openapi-ts            # regenerate src/api/client/ from the refreshed spec
 git diff -- swagger.yaml src/api/client   # inspect what came back
-pnpm run typecheck             # solution should compile now
+npm run typecheck             # no new errors under src/challenges/
 ```
 
-After regen, the four helpers below appear in `src/api/client/@tanstack/react-query.gen.ts` and the solution typechecks. **Do not** silence the errors with `// @ts-expect-error` or by commenting out imports — that defeats the drill. The whole point is to feel the workflow.
+The helpers this exercise uses are:
+
+| Helper | Endpoint |
+| ------ | -------- |
+| `getApiV1OrdersOptions` | `GET /api/v1/Orders` |
+| `getApiV1OrdersByIdOptions` | `GET /api/v1/Orders/{id}` |
+| `getApiV1OrdersByIdItemsOptions` | `GET /api/v1/Orders/{id}/items` |
+| `getApiV1OrdersByIdNotesOptions` | `GET /api/v1/Orders/{id}/notes` |
+| `patchApiV1OrdersByIdMutation` | `PATCH /api/v1/Orders/{id}` |
+| `postApiV1OrderNotesMutation` | `POST /api/v1/OrderNotes` |
+
+If any of those stop resolving after a regen, the contract drifted — fix the spec and
+regenerate. **Do not** silence the errors with `// @ts-expect-error` or by commenting out
+imports; that defeats the point of a generated client.
+
+> **Why `operationId: false` is set in `openapi-ts.config.ts`.** Hey API names helpers from
+> the spec's `operationId` when one is present. fakerestapi added `operationId`s after this
+> workshop was written, which would rename every helper (`getApiV1BooksOptions` →
+> `listBooksOptions`) and break every exercise on the next regen. Pinning the naming to
+> method + path keeps regeneration safe. Contract drift is normal; *naming* drift is
+> avoidable — that is a real lesson about owning your generator config.
 
 ## Starter
 
@@ -57,7 +70,9 @@ Render the customer name + email and the shipping city. This component lives **i
 
 ### 2. Optimistic status update — `patchApiV1OrdersByIdMutation`
 
-The status pill row (`pending → processing → shipped → delivered → cancelled`) must PATCH the order with the new status. Use the **optimistic update pattern**:
+The status pill row (`pending`, `active`, `completed`, `cancelled`, `archived` — the five
+statuses the seeded Orders actually use) must PATCH the order with the new status. Use the
+**optimistic update pattern**:
 
 ```ts
 const detailKey = getApiV1OrdersByIdQueryKey({ path: { id: orderId } });
@@ -88,6 +103,13 @@ Key ideas:
 - **Snapshot before write.** `getQueryData` gives you the rollback target.
 - **Return context from `onMutate`.** TanStack Query passes it to `onError` and `onSettled` automatically.
 - **Reconcile in `onSettled`.** Invalidate both the detail key and the master list so the row badge stays accurate.
+
+> **What you will actually see.** fakerestapi is a read-only mock: it returns a realistic
+> `200` with your new status but does not persist it. So the pill flips instantly (your
+> optimistic write landed), then snaps back to the original status a moment later when
+> `onSettled` invalidates and the refetch returns the unchanged server record. That is the
+> pattern working correctly — optimistic UI is a *guess* the server always gets to overrule.
+> If the pill never flipped at all, *that* would be the bug.
 
 ### 3. Line items panel — `getApiV1OrdersByIdItemsOptions`
 
