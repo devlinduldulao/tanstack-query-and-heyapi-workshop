@@ -2,6 +2,15 @@
 
 > IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any tasks in this project.
 
+## Agent Skills
+
+Project skills live in `.agents/skills/<name>/SKILL.md`. Load the matching skill before starting
+work it covers — its rules take precedence over general guidance in this file.
+
+| Skill | File | Load when |
+| ----- | ---- | --------- |
+| `heyapi` | `.agents/skills/heyapi/SKILL.md` | Touching any API code: generated Hey API client imports (types, Zod schemas, SDK, TanStack Query hooks), route-loader prefetching, `useQuery`/`useSuspenseQuery`, mutations and optimistic updates, query-key invalidation, or regenerating the client from `swagger.yaml`. |
+
 ## Tech Stack
 
 | Category      | Technology               | Version   |

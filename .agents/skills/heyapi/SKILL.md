@@ -1,4 +1,7 @@
-
+---
+name: heyapi
+description: Standards for working with the Hey API generated client (@hey-api/openapi-ts) and TanStack Query in this project. Use when reading, writing, or reviewing any API-related code — importing generated types/Zod schemas/query hooks, writing route loaders that prefetch, useQuery/useSuspenseQuery, mutations and optimistic updates, query-key invalidation, or regenerating the client from the OpenAPI spec.
+---
 
 # API Integration Standards
 
@@ -14,6 +17,15 @@ This project uses **Hey API** to generate TypeScript clients from OpenAPI specif
 - Zod schemas: `src/api/client/zod.gen.ts`
 - SDK functions: `src/api/client/sdk.gen.ts`
 - TanStack Query hooks: `src/api/client/@tanstack/react-query.gen.ts`
+
+### Generated Symbol Naming
+
+Hey API derives export names from the OpenAPI operation (method + path), so the real exports in
+this project look like `getApiV1BooksOptions`, `getApiV1BooksByIdOptions`, `postApiV1BooksMutation`,
+`getApiV1BooksByIdQueryKey`. Always confirm the exact export in
+`src/api/client/@tanstack/react-query.gen.ts` before importing it — never guess a name.
+The `applicationGetOptions` / `applicationUpdateMutation` names in the examples below are
+placeholders standing in for whatever the real generated export is.
 
 ### DO NOT Modify Generated Files
 
@@ -247,6 +259,9 @@ import { ErrorBoundary } from "react-error-boundary";
 
 ## Authentication
 
+> Not wired up in this workshop repo — `@azure/msal-react` is not installed. Treat this section
+> as the reference pattern for downstream projects that do use Azure MSAL.
+
 ### Azure MSAL Token
 
 ```tsx
@@ -274,6 +289,9 @@ const getToken = async () => {
 The generated client automatically includes authentication tokens via the client configuration.
 
 ## Real-time Updates (SignalR)
+
+> Not wired up in this workshop repo — `@microsoft/signalr` is not installed. Treat this section
+> as the reference pattern for downstream projects that do use SignalR.
 
 ### SignalR Connection
 
@@ -312,10 +330,11 @@ function useApplicationSignalR(applicationId: string) {
 
 ### Update OpenAPI Spec
 
-1. Download latest spec:
+1. Download the latest spec (writes `swagger.yaml` at the repo root):
 
 ```bash
-curl -o swagger.json https://apicity-test.dnv.com/api/docs/v1.0/swagger.json
+npm run update-swagger-bash   # curl
+npm run update-swagger-pwsh   # PowerShell Invoke-WebRequest
 ```
 
 2. Generate client:
