@@ -1,6 +1,4 @@
----
-applyTo: "src/api/**/*.ts,src/api/**/*.tsx"
----
+
 
 # API Integration Standards
 
@@ -28,7 +26,7 @@ This project uses **Hey API** to generate TypeScript clients from OpenAPI specif
 ### Import Types
 
 ```tsx
-import type { Application, ApplicationCreateRequest, ApplicationUpdateRequest } from "@/api/client/types.gen";
+import type { Application, ApplicationCreateRequest, ApplicationUpdateRequest } from "@/api/client";
 ```
 
 ### Import Zod Schemas
@@ -336,10 +334,10 @@ See `openapi-ts.config.ts` for client generation settings.
 
 ```tsx
 // ✅ Good
-import type { Application } from "@/api/client/types.gen";
+import type { Application } from "@/api/client";
 
 // ❌ Bad
-interface Application { ... } // Don't redefine
+type Application = { ... } // Don't redefine
 ```
 
 ### 2. Use Generated Query Options with Void Pattern in Loaders

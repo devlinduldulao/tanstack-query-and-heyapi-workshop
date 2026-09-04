@@ -13,7 +13,6 @@
 | Styling       | Tailwind CSS             | 4.1       |
 | UI            | shadcn/ui + Base UI      | Latest    |
 | Forms         | React Hook Form + Zod    | 7.x + 4.x |
-| Testing       | Vitest + Testing Library | Latest    |
 | API Client    | @hey-api/openapi-ts      | 0.91.x    |
 | Icons         | Lucide React             | Latest    |
 | Auth          | Azure MSAL               | 5.x       |
@@ -25,8 +24,6 @@
 npm install              # Install dependencies
 npm run dev              # Start dev server (port 5173)
 npm run build            # Production build
-npm run test             # Run all tests
-npm run test -- --run    # Run tests once (no watch)
 npm run typecheck        # TypeScript check
 npm run lint             # ESLint check
 npm run openapi-ts       # Regenerate API client from swagger.json
@@ -47,11 +44,9 @@ src/
 │   ├── app/$applicationId/  # Dynamic authenticated routes
 │   ├── -components/         # Route-specific components (prefix with -)
 │   ├── -skeletons/          # Loading skeletons (prefix with -)
-│   └── -tests/              # Route tests (prefix with -)
 ├── hooks/                   # Custom React hooks (use-*.ts)
 ├── lib/                     # Utilities (utils.ts, toast.tsx)
 ├── state/client/            # Zustand stores (*-store.ts)
-└── testing/                 # Test utilities (render-with-providers)
 ```
 
 ## Critical Conventions
@@ -139,21 +134,6 @@ function MyForm() {
 }
 ```
 
-### Testing Pattern
-
-```typescript
-import { describe, it, expect, vi } from "vitest";
-import { screen, waitFor } from "@testing-library/react";
-import { renderWithProviders } from "@/testing/render-with-providers";
-
-describe("ComponentName", () => {
-  it("should render correctly", async () => {
-    renderWithProviders(<Component />);
-    expect(screen.getByRole("button")).toBeInTheDocument();
-  });
-});
-```
-
 ## Common Tasks
 
 ### Add a new route
@@ -161,13 +141,11 @@ describe("ComponentName", () => {
 1. Create file in `src/routes/` following file-based routing
 2. Add loader with `void queryClient.ensureQueryData()` for prefetching
 3. Add `-components/` folder for route-specific components
-4. Add `-tests/` folder for tests
 
 ### Add a new component
 
 1. Create in `src/components/` with `kebab-case.tsx` naming
 2. Export named export (not default)
-3. Add `.test.tsx` file alongside
 
 ### Regenerate API types
 
@@ -178,28 +156,12 @@ npm run openapi-ts
 npm run typecheck  # Verify no breaking changes
 ```
 
-## Detailed Documentation
-
-| Topic                 | File                                                    |
-| --------------------- | ------------------------------------------------------- |
-| Full project patterns | `.github/skills/this-project/SKILL.md`                  |
-| API integration       | `.github/instructions/api-integration.instructions.md`  |
-| TanStack Router       | `.github/instructions/tanstack-router.instructions.md`  |
-| Testing               | `.github/instructions/testing.instructions.md`          |
-| TypeScript/React      | `.github/instructions/typescript-react.instructions.md` |
-| UI/Design System      | `.github/instructions/ui-design-system.instructions.md` |
-
 ## PR/Commit Guidelines
 
-- Run `npm run lint && npm run test` before committing
-- Add/update tests for any code changes
 - Use descriptive commit messages
 - Title format: `[component/feature] Description`
 
 ## Quality Gates
 
-- After any new feature, bug fix, or refactor, always run `npm run lint`, `npm run typecheck`, and `npm run test`
+- After any new feature, bug fix, or refactor, always run `npm run lint`, `npm run typecheck`
 - Do not consider the task complete until these checks pass, unless the user explicitly asks not to run them or the environment prevents it
-- Every new feature must include automated tests that cover the new behavior, including both happy paths and unhappy paths where practical
-- Bug fixes should include a regression test when practical
-- Refactors must keep existing tests passing and should add tests if behavior changes or previously untested behavior becomes important
