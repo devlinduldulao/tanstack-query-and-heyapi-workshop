@@ -4,7 +4,7 @@
 
 You are editing [`exercise-5.tsx`](../exercise-5.tsx). Reference: [`solutions/exercise-5-end.tsx`](../solutions/exercise-5-end.tsx).
 
-The starter is functionally correct. The differences vs. the solution are two small polish edits: extract the query key into a local variable, and add a "do not submit if title is empty" guard.
+The starter already lists books and fires the create mutation. It does **not** toast or invalidate the generated list key. Clicking **Add** should feel unfinished until those handlers exist — then **Show Solution** matches.
 
 ---
 
@@ -28,15 +28,11 @@ With Hey API, the **same generated `getApiV1BooksQueryKey()` is used by the read
 // 4. Do not manually prepend records into the cache.
 ```
 
-All four are already done. The work is:
-
-1. Verify each one (the code review).
-2. Extract `queryKey` to a local variable for clarity.
-3. Add an "empty title" guard in the click handler.
+None of these are in the starter mutation yet. Add `useQueryClient`, `getApiV1BooksQueryKey()`, toasts, and invalidation. Then optionally extract `queryKey` to a local variable and skip empty titles, to match the solution.
 
 ---
 
-## Step 2 — Confirm the read + mutation wiring
+## Step 2 — Add the read + mutation wiring
 
 ```tsx
 const queryClient = useQueryClient();

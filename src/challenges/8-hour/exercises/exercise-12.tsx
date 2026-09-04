@@ -8,23 +8,11 @@ import { Suspense, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getApiV1BooksByIdOptions } from "@/api/client/@tanstack/react-query.gen";
 
-const WARM_CACHE_TIME = 60 * 1000;
-
-function getBookOptions() {
-  return {
-    ...getApiV1BooksByIdOptions({ path: { id: 1 } }),
-    staleTime: WARM_CACHE_TIME,
-  };
-}
-
 function BookPanel() {
-  const { data, isFetching } = useSuspenseQuery(getBookOptions());
+  const { data } = useSuspenseQuery(getApiV1BooksByIdOptions({ path: { id: 1 } }));
 
   return (
     <div className="rounded border p-3">
-      <p className="text-muted-foreground text-xs">
-        {isFetching ? "Fetching or refreshing..." : "Rendered from cache"}
-      </p>
       <div className="mt-2">
         <p className="font-medium">{data.title}</p>
         <p className="text-muted-foreground mt-1 text-xs">{data.description}</p>

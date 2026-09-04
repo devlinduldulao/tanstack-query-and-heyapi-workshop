@@ -4,7 +4,7 @@
 
 You are editing [`exercise-8.tsx`](../exercise-8.tsx). Reference: [`solutions/exercise-8-end.tsx`](../solutions/exercise-8-end.tsx).
 
-The starter is already on the generated read helper — the manual-axios drift has been removed for you. Two small edits remain to make the contract panel fully informative.
+The starter is the **before** state: a hand-written `BookPreview` type, a hardcoded `BOOKS_URL`, `fetchBooks()`, and `queryKey: ["books"]`. Replace that drift with `useSuspenseQuery(getApiV1BooksOptions())`, then update the contract panel. **Show Solution** is the after state.
 
 ---
 
@@ -30,30 +30,29 @@ The starter is already at step 3. The lesson is to recognize what is _absent_ (n
 // 4. Remove hand-written DTOs and raw URL strings.
 ```
 
-Items 1, 2, and 4 are already done. Your job is item 3 — improve the contract panel.
+Items 1, 2, and 4 are the code migration. Item 3 is the contract panel copy.
 
 ---
 
-## Step 2 — Confirm the read
+## Step 2 — Replace the manual read
+
+Delete `BookPreview`, `BOOKS_URL`, and `fetchBooks`. Replace the query with:
 
 ```tsx
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
+
 const { data = [] } = useSuspenseQuery(getApiV1BooksOptions());
 ```
 
-One line. One generated helper. Nothing else. **This is the win.**
-
-Compare to what a manual version would look like:
+One line. One generated helper. That is the win. The starter you deleted looked like this:
 
 ```tsx
-// What you do NOT have to write anymore:
-type Book = { id?: number; title?: string; description?: string; pageCount?: number; ... };
+type BookPreview = { id?: number; title?: string; description?: string; pageCount?: number };
 const BOOKS_URL = "https://fakerestapi.vercel.app/api/v1/Books";
-async function fetchBooks(): Promise<Book[]> { /* ... */ }
-const queryKey = ["books"] as const;
-const { data = [] } = useSuspenseQuery({ queryKey, queryFn: fetchBooks });
+async function fetchBooks(): Promise<BookPreview[]> { /* fetch */ }
+const { data = [] } = useSuspenseQuery({ queryKey: ["books"], queryFn: fetchBooks });
 ```
-
-Five lines of drift-prone hand-written code, replaced by one line of generated contract use. Look at the diff side-by-side once — that is the lesson.
 
 ---
 
@@ -79,7 +78,7 @@ Starter:
 <aside className="rounded border p-3 text-xs">
   <p className="font-semibold">Contract panel</p>
   <p className="mt-2 font-mono">GET /api/v1/Books</p>
-  <p className="text-muted-foreground mt-2">Hey API now owns the URL, request function, and query key.</p>
+  <p className="text-muted-foreground mt-2">Hand-written DTO, URL string, and query key live in this file.</p>
 </aside>
 ```
 
@@ -97,7 +96,7 @@ Solution:
 **Two changes:**
 
 1. **Add a "Query options" line** pointing to the actual generated file. This is the breadcrumb a future engineer follows to find the contract source.
-2. **Reword the bottom line** to enumerate what the UI _no longer owns_. The starter said "Hey API now owns ..." — past tense, vague. The solution says "UI no longer owns ..." — declarative, specific, and matches the lesson's framing.
+2. **Reword the bottom line** to enumerate what the UI _no longer owns_. The starter describes the drift ("Hand-written DTO, URL string, and query key live in this file"). The solution says "UI no longer owns URL strings, request functions, or query keys."
 
 **Why the wording matters:** in a code-review tool, this kind of inline documentation prevents the next dev from re-introducing the drift. "Components stop owning X, Y, Z" reads as a rule. "Hey API owns X, Y, Z" reads as trivia.
 
@@ -125,10 +124,11 @@ Open `src/api/client/@tanstack/react-query.gen.ts` and search for `getApiV1Books
 
 | Change                                                                                   | Required?   |
 | ---------------------------------------------------------------------------------------- | ----------- |
+| Replace hand-written fetch/`["books"]` with `getApiV1BooksOptions()`                     | ✅ yes      |
+| Delete `BookPreview`, `BOOKS_URL`, and `fetchBooks`                                      | ✅ yes      |
 | Add `<p>Query options: src/api/client/@tanstack/react-query.gen.ts</p>`                  | ✅ yes      |
 | Reword final `<p>` to "UI no longer owns URL strings, request functions, or query keys." | ✅ yes      |
 | Delete `// TODO:` header                                                                 | ✅ yes      |
-| Anywhere else                                                                            | leave alone |
 
 ---
 

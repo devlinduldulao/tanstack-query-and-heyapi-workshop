@@ -22,7 +22,10 @@ Your job: find and fix the cache bugs in `challenge-2-bug.tsx`.
 
 ## Checklist
 
-- ✅ Deleting a book removes it permanently (no reappearance).
+- ✅ Deleting a book fires exactly one `DELETE`, then exactly one `GET` on the same
+  generated list key. (The row itself stays on screen after the refetch — `fakerestapi` is a
+  read-only mock that never persists writes. Judge the cache by the requests and the key, not
+  by whether the row vanishes forever. The *starter* vanish-then-reappear flicker is the bug.)
 - ✅ Success feedback appears when the delete completes.
 - ✅ Failure feedback appears when the request fails.
 - ✅ The mutation uses generated helpers and one generated list identifier for the visible read and the post-delete refresh.

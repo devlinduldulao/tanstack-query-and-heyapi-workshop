@@ -1,10 +1,10 @@
 # Exercise 2 — Step-by-Step
 
-> Goal: take a starter that has half of a delete-mutation set up and finish it so deleting a book gives clear success/failure feedback **and** refreshes the same generated list that drives the visible UI.
+> Goal: finish a delete flow so clicking **delete** shows a success/failure toast **and** refreshes the same generated list that drives the visible UI.
 
 You are editing [`exercise-2.tsx`](../exercise-2.tsx). The reference output is [`solutions/exercise-2-end.tsx`](../solutions/exercise-2-end.tsx).
 
-Compare the two side-by-side and you will see they are already _almost identical_. The point of this exercise is not to write new code — it is to **read** what is there, prove to yourself it is correct, and clean up the `// TODO` markers. This is the realistic code-review skill senior devs use every day.
+The starter already lists books and fires the generated delete mutation. It does **not** toast or invalidate. Clicking **delete** should feel unfinished until you add those handlers — then **Show Solution** should match what you wrote.
 
 ---
 
@@ -12,21 +12,15 @@ Compare the two side-by-side and you will see they are already _almost identical
 
 Three generated helpers do all the heavy lifting:
 
-| Helper                              | What it gives you                                             |
-| ----------------------------------- | ------------------------------------------------------------- |
-| `getApiV1BooksOptions()`            | The full options object for reading the books list.           |
-| `getApiV1BooksQueryKey()`           | The exact same cache key that the read above uses.            |
-| `deleteApiV1BooksByIdMutation()`    | A pre-typed mutation options object for `DELETE /books/{id}`. |
+| Helper                           | What it gives you                                             |
+| -------------------------------- | ------------------------------------------------------------- |
+| `getApiV1BooksOptions()`         | The full options object for reading the books list.           |
+| `getApiV1BooksQueryKey()`        | The exact same cache key that the read above uses.            |
+| `deleteApiV1BooksByIdMutation()` | A pre-typed mutation options object for `DELETE /books/{id}`. |
 
 The "trick" is that **the read and the post-delete refresh must use the _same_ generated key**. If you typed a manual key like `["books"]`, the delete would succeed on the server but the UI would keep showing the deleted book until the next hard reload.
 
-The work order is:
-
-1. Read the file top-to-bottom and identify each TODO.
-2. Confirm the imports already cover what you need.
-3. Confirm the `onSuccess` invalidates the right key.
-4. Confirm the `onError` shows a toast.
-5. Delete the TODO comments.
+> `fakerestapi` is a read-only mock: `DELETE` returns 200 but the next `GET` still includes the book. Judge this lab by the **toast** and the **Network tab** (DELETE, then GET on the generated list), not by whether the row vanishes forever.
 
 ---
 
@@ -42,44 +36,45 @@ Open [`exercise-2.tsx`](../exercise-2.tsx). At the top you will see:
 // 4. Do not add manual cache writes or extra mutation lifecycle hooks.
 ```
 
-**Why this matters:** the TODO is your acceptance criteria. The word "only" in step 4 is the trap to avoid — do _not_ add `onMutate`, `onSettled`, `setQueryData`, or any optimistic update plumbing. The point of this lab is to prove a clean two-handler flow is enough.
+The word "only" in step 4 is the trap — do **not** add `onMutate`, `onSettled`, `setQueryData`, or any optimistic update plumbing.
 
 ---
 
-## Step 2 — Confirm `useQueryClient()` and `getApiV1BooksQueryKey()` are wired
+## Step 2 — Add `useQueryClient()` and `getApiV1BooksQueryKey()`
 
-Look at the top of the component:
+Add the missing imports and wire them at the top of the component:
 
 ```tsx
-const queryClient = useQueryClient();
-const queryKey = getApiV1BooksQueryKey();
-```
+import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { toast } from "sonner";
+import {
+  deleteApiV1BooksByIdMutation,
+  getApiV1BooksOptions,
+  getApiV1BooksQueryKey,
+} from "@/api/client/@tanstack/react-query.gen";
 
-**Why both are needed:**
+export default function Exercise2() {
+  const queryClient = useQueryClient();
+  const queryKey = getApiV1BooksQueryKey();
+  const { data } = useSuspenseQuery(getApiV1BooksOptions());
+```
 
 - `queryClient` is the handle to the cache. Without it you cannot call `invalidateQueries`.
-- `queryKey` is the address inside the cache. Storing it in a local variable keeps the code DRY in case you later add a second invalidation or a prefetch.
-
-If either line is missing in your edited version, add it now.
+- `queryKey` is the address inside the cache. Storing it in a local variable keeps the read and the refresh on the same identity.
 
 ---
 
-## Step 3 — Confirm the read query
+## Step 3 — Add success and error handlers
+
+The starter mutation is:
 
 ```tsx
-const { data } = useSuspenseQuery(getApiV1BooksOptions());
+const deleteBook = useMutation({
+  ...deleteApiV1BooksByIdMutation(),
+});
 ```
 
-`useSuspenseQuery` (not `useQuery`) is correct because:
-
-- The route uses a Suspense boundary.
-- `data` is non-nullable, so `data?.slice(...)` later is just defensive — `data` is already an array.
-
-Nothing to change here.
-
----
-
-## Step 4 — Confirm the mutation block
+Replace it with:
 
 ```tsx
 const deleteBook = useMutation({
@@ -94,19 +89,17 @@ const deleteBook = useMutation({
 });
 ```
 
-Read it line by line and check each requirement:
+Check each requirement:
 
-1. **`...deleteApiV1BooksByIdMutation()`** — the generated `mutationFn` and types. You did not write a manual `fetch` call. ✅
-2. **`onSuccess`** — toast first, then invalidate. The order does not affect correctness, but toasting first means the user sees feedback even if the invalidation is slow. ✅
-3. **`void queryClient.invalidateQueries({ queryKey })`** — the `void` operator silences the "floating promise" lint rule because we do not need to await the refetch. Invalidation is fire-and-forget; the components subscribed to that key will re-render when the new data arrives. ✅
-4. **`onError`** — shows the server message in a `toast.error`. ✅
-5. **No `onMutate`, no `setQueryData`, no rollback.** ✅
-
-If any of those bullets is missing, edit the block to match. If all five are already true, nothing to change.
+1. **`...deleteApiV1BooksByIdMutation()`** — generated `mutationFn` and types. No manual `fetch`.
+2. **`onSuccess`** — toast, then invalidate the generated list key.
+3. **`void queryClient.invalidateQueries({ queryKey })`** — fire-and-forget refetch; `void` silences the floating-promise lint.
+4. **`onError`** — surfaces the server message.
+5. **No `onMutate`, no `setQueryData`, no rollback.**
 
 ---
 
-## Step 5 — Confirm the JSX wiring
+## Step 4 — Leave the JSX alone
 
 ```tsx
 <button onClick={() => deleteBook.mutate({ path: { id: b.id! } })} className="text-xs text-red-500">
@@ -114,41 +107,39 @@ If any of those bullets is missing, edit the block to match. If all five are alr
 </button>
 ```
 
-The path argument shape — `{ path: { id: ... } }` — is dictated by the generated `deleteApiV1BooksByIdMutation` type. **Do not** flatten it to `deleteBook.mutate(b.id)` — TypeScript would let you know with a red squiggle, but it is the kind of "fix" a beginner is tempted to make that breaks the contract.
-
-The `b.id!` non-null assertion exists because the generated `Book` type marks `id` as optional. In practice the server always returns one, and we accept that risk inside this small lab.
+The path argument shape — `{ path: { id: ... } }` — is dictated by the generated mutation type. **Do not** flatten it to `deleteBook.mutate(b.id)`.
 
 ---
 
-## Step 6 — Remove the `// TODO:` block
+## Step 5 — Delete the `// TODO:` block
 
-Now delete the four-line TODO header. The file should now match `exercise-2-end.tsx` apart from the component name (`Exercise2` vs `Exercise2End`).
+The file should now match `exercise-2-end.tsx` apart from the component name (`Exercise2` vs `Exercise2End`).
 
 ---
 
-## Step 7 — Verify in the browser
+## Step 6 — Verify in the browser
 
 1. Save the file.
 2. Open Exercise 2 in the bootcamp UI.
-3. Click "delete" on any book.
-4. You should see the success toast _and_ the row disappears from the list.
+3. Click **delete** on any book.
+4. You should see the success toast. **Show Solution** should behave the same way.
 5. Open DevTools → Network. The sequence must be:
    - `DELETE /api/v1/Books/{id}` (the mutation)
    - `GET /api/v1/Books` (triggered by the invalidation)
 
-If the row does not disappear, your invalidation key does not match the read's key — re-check Step 2.
+If the toast is missing, the handlers are not wired. If the GET never fires, the invalidation key does not match the read.
 
 ---
 
 ## Code-change cheat sheet
 
-| Where                       | Action                                       | Why                                                       |
-| --------------------------- | -------------------------------------------- | --------------------------------------------------------- |
-| Top of file                 | Delete the `// TODO:` comment block          | Acceptance criteria are met                               |
-| `useQueryClient` + `queryKey` lines | Keep as-is                            | Required for invalidation                                  |
-| Mutation `onSuccess`        | Keep `toast.success` + `invalidateQueries`   | Refreshes the same generated list that drives the UI       |
-| Mutation `onError`          | Keep `toast.error`                           | Surfaces failures so users do not retry blindly            |
-| Anywhere else               | **Do not add** `onMutate`, `setQueryData`, etc. | Rule 4 of the TODO header — keep the flow minimal       |
+| Where                         | Action                                     | Why                                                  |
+| ----------------------------- | ------------------------------------------ | ---------------------------------------------------- |
+| Imports                       | Add `useQueryClient`, `toast`, query key   | Required for invalidation and feedback               |
+| `useQueryClient` + `queryKey` | Add                                        | Same generated identity for read and refresh         |
+| Mutation `onSuccess`          | `toast.success` + `invalidateQueries`      | Refreshes the same generated list that drives the UI |
+| Mutation `onError`            | `toast.error`                              | Surfaces failures so users do not retry blindly      |
+| Anywhere else                 | **Do not add** `onMutate` / `setQueryData` | Rule 4 of the TODO header                            |
 
 ---
 
@@ -159,5 +150,3 @@ Optimistic updates feel sophisticated, but they double the code path and add an 
 - Uses one generated key for read **and** refresh — guaranteed consistency.
 - Surfaces every server outcome through the toast.
 - Adds zero hand-managed cache state.
-
-If a future requirement actually needs optimistic UX (e.g. drag-to-reorder), you can layer it on top. Until then, this is the right floor.

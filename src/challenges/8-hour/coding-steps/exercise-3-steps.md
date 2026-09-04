@@ -1,10 +1,10 @@
 # Exercise 3 — Step-by-Step
 
-> Goal: confirm a books list cleanly distinguishes **first load**, **background refresh**, and **user-triggered refresh** — three different UX states that all live on the same generated query.
+> Goal: add refresh UX on top of a generated books list so the screen distinguishes **first load**, **background refresh**, and **user-triggered refresh**.
 
 You are editing [`exercise-3.tsx`](../exercise-3.tsx). Reference: [`solutions/exercise-3-end.tsx`](../solutions/exercise-3-end.tsx).
 
-The starter is already functionally correct. This is mostly a reading/verification exercise plus one minor polish edit. The real lesson here is about **state separation** — knowing why `isFetching`, the suspense fallback, and the manual refresh button each show different UI even when the underlying query is the same.
+The starter only renders the list. There is no Refresh button and no "Refreshing..." badge. **Show Solution** should add both.
 
 ---
 
@@ -32,42 +32,48 @@ The key insight: a user-triggered refresh should **not** look like a first load.
 // 4. Add a Refresh button that invalidates the query unconditionally.
 ```
 
-Items 2 and 4 are already implemented in the starter. Items 1 and 3 are handled by the **route shell** that mounts this component — there is an outer `<Suspense>` and an outer `<ErrorBoundary>` already in play. You do not need to add them inside this file unless you want a localized boundary.
+Items 1 and 3 are handled by the **route shell** that mounts this component — there is an outer `<Suspense>` and an outer `<ErrorBoundary>` already in play. Items 2 and 4 are the work in this file.
 
 ---
 
-## Step 2 — Confirm the query
+## Step 2 — Pull `queryClient` and `isFetching`
 
 ```tsx
-const queryClient = useQueryClient();
-const { data, isFetching } = useSuspenseQuery(getApiV1BooksOptions());
+import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { getApiV1BooksOptions, getApiV1BooksQueryKey } from "@/api/client/@tanstack/react-query.gen";
+
+export default function Exercise3() {
+  const queryClient = useQueryClient();
+  const { data, isFetching } = useSuspenseQuery(getApiV1BooksOptions());
 ```
 
 `useSuspenseQuery` makes `data` non-nullable. The first render either suspends (cold cache) or returns data immediately (warm cache). Either way, by the time the JSX runs, `data` is an array.
 
 ---
 
-## Step 3 — Confirm the refresh button + indicator
+## Step 3 — Add the refresh button + indicator
 
 ```tsx
-<button
-  onClick={() => void queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() })}
-  className="rounded border px-2 py-1 text-xs"
->
-  Refresh
-</button>
-{isFetching && <span className="text-xs opacity-60">Refreshing...</span>}
+<div className="mb-2 flex items-center justify-between">
+  <button
+    onClick={() => void queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() })}
+    className="rounded border px-2 py-1 text-xs"
+  >
+    Refresh
+  </button>
+  {isFetching && <span className="text-xs opacity-60">Refreshing...</span>}
+</div>
 ```
 
-Three things to verify:
+Three things to get right:
 
 1. **`getApiV1BooksQueryKey()`** — the same generated key that powers the read above. If you typed a manual `["books"]` here, the invalidation would miss and the button would be silently dead.
 2. **`void` operator** — `invalidateQueries` returns a Promise. The `void` operator silences the floating-promise lint rule because we do not need to await the refetch.
-3. **`isFetching` indicator** — covers both the post-click refetch and any automatic background refetches. Same indicator, both cases. That is the unified UX the lesson is teaching.
+3. **`isFetching` indicator** — covers both the post-click refetch and any automatic background refetches. Same indicator, both cases.
 
 ---
 
-## Step 4 — The single polish edit: add spacing to the list
+## Step 4 — Add spacing to the list
 
 Starter:
 
@@ -101,7 +107,7 @@ The instructions mention "an error fallback with a retry affordance at the neare
 
 ## Step 6 — Delete the `// TODO:` header
 
-Remove the four-line block once `space-y-1` is added and you have verified the other items live in the route shell.
+Remove the four-line block once the Refresh button and badge are in place.
 
 ---
 
@@ -120,10 +126,11 @@ Remove the four-line block once `space-y-1` is added and you have verified the o
 
 | Change                                               | Required? |
 | ---------------------------------------------------- | --------- |
+| Add `useQueryClient`, `isFetching`, Refresh button   | ✅ yes    |
+| Show `Refreshing...` while `isFetching`              | ✅ yes    |
 | Add `className="space-y-1"` to the `<ul>`            | ✅ yes    |
 | Delete `// TODO:` header                             | ✅ yes    |
 | Wrap in a local `<ErrorBoundary>`                    | optional (route shell already provides one) |
-| Anywhere else                                        | leave alone |
 
 ---
 

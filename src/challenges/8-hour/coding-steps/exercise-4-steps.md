@@ -4,7 +4,7 @@
 
 You are editing [`exercise-4.tsx`](../exercise-4.tsx). Reference: [`solutions/exercise-4-end.tsx`](../solutions/exercise-4-end.tsx).
 
-The starter is functionally correct. The only meaningful difference vs. the solution is a small **style/idiom** edit — the starter uses an `async` `handleSubmit` function, while the solution inlines the submit handler directly. Both work; the solution is cleaner because there is nothing actually async to await.
+The starter has the form and a generated `useMutation` **without** `mutate`, toasts, or success/error handlers. Submitting the form currently does nothing. Your job is to call `mutation.mutate`, disable the button while pending, and toast the outcome. **Show Solution** should then create a book.
 
 ---
 
@@ -29,13 +29,15 @@ The "trick" is that the request body must match the generated `Book` shape — `
 // 3. Disable submit while isPending; show success / error states.
 ```
 
-All three are already done in the starter. The work is to **understand** what is there and then make the small style cleanup.
+The mutation helper is imported. You still need toasts and `mutate`.
 
 ---
 
-## Step 2 — Confirm the mutation
+## Step 2 — Add success and error toasts
 
 ```tsx
+import { toast } from "sonner";
+
 const mutation = useMutation({
   ...postApiV1BooksMutation(),
   onSuccess: () => {
@@ -56,31 +58,9 @@ Two handlers, both required:
 
 ---
 
-## Step 3 — Inline the submit handler (the style cleanup)
+## Step 3 — Call `mutation.mutate` on submit
 
-The starter has:
-
-```tsx
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  // TODO: replace with mutation.mutate(form)
-  mutation.mutate({
-    body: {
-      id: 0,
-      title: form.title,
-      description: form.description,
-      pageCount: 1,
-      excerpt: form.description,
-      publishDate: new Date().toISOString(),
-    },
-  });
-};
-
-return (
-  <form onSubmit={handleSubmit} className="...">
-```
-
-Refactor to inline (matches the solution):
+The starter's `handleSubmit` only calls `preventDefault`. Replace it with the generated body shape, inlined on the form to match the solution:
 
 ```tsx
 return (
@@ -179,10 +159,10 @@ Remove the three-line block once the submit is inlined.
 
 | Change                                              | Required? |
 | --------------------------------------------------- | --------- |
+| Add `toast` success/error handlers                  | ✅ yes    |
+| Call `mutation.mutate({ body: { ... } })` on submit | ✅ yes    |
 | Inline `handleSubmit` into the `<form onSubmit={...}>` | optional but matches the solution |
-| Delete `const handleSubmit = ...` declaration       | optional |
 | Delete `// TODO:` header                            | ✅ yes    |
-| Anywhere else                                       | leave alone |
 
 ---
 

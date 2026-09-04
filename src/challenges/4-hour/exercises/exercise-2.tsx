@@ -4,28 +4,14 @@
 // 3. In onError, show toast.error(...).
 // 4. Do not add manual cache writes or extra mutation lifecycle hooks.
 
-import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { toast } from "sonner";
-import {
-  deleteApiV1BooksByIdMutation,
-  getApiV1BooksOptions,
-  getApiV1BooksQueryKey,
-} from "@/api/client/@tanstack/react-query.gen";
+import { useMutation, useSuspenseQuery } from "@tanstack/react-query";
+import { deleteApiV1BooksByIdMutation, getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
 
 export default function Exercise2() {
-  const queryClient = useQueryClient();
-  const queryKey = getApiV1BooksQueryKey();
   const { data } = useSuspenseQuery(getApiV1BooksOptions());
 
   const deleteBook = useMutation({
     ...deleteApiV1BooksByIdMutation(),
-    onSuccess: () => {
-      toast.success("Book deleted");
-      void queryClient.invalidateQueries({ queryKey });
-    },
-    onError: (error) => {
-      toast.error(`Delete failed: ${error.message}`);
-    },
   });
 
   return (

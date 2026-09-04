@@ -24,7 +24,7 @@ function SelectedBookPanel({ selectedId }: { selectedId: number }) {
 }
 
 export default function Exercise2() {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedId] = useState<number | null>(null);
   const { data: books } = useBooks();
 
   return (
@@ -32,12 +32,7 @@ export default function Exercise2() {
       <ul className="space-y-1">
         {books?.slice(0, 10).map((b) => (
           <li key={b.id}>
-            <button
-              onClick={() => setSelectedId(b.id ?? null)}
-              className={`text-left hover:underline ${selectedId === b.id ? "font-semibold" : ""}`}
-            >
-              {b.title}
-            </button>
+            <button className="text-left hover:underline">{b.title}</button>
           </li>
         ))}
       </ul>

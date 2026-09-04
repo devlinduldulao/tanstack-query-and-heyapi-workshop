@@ -4,7 +4,7 @@
 
 You are editing [`exercise-12.tsx`](../exercise-12.tsx). Reference: [`solutions/exercise-12-end.tsx`](../solutions/exercise-12-end.tsx).
 
-The starter is functionally complete. There are two tiny **wording** edits in the cache-state label and the JSX structure. This is a code-review exercise plus the requirement that you _explain_ the route-loader mapping.
+The starter mounts book #1 on click, but the detail query has **no freshness window** and **no cache/refresh label**. Add `staleTime` on a shared options helper and surface `isFetching` vs warm cache. **Show Solution** should then show "Rendered from warm cache" after the first load.
 
 ---
 
@@ -29,11 +29,13 @@ With `staleTime: 60_000`, whichever path runs _first_ populates the cache; the o
 // 4. Map this shared-options pattern to a TanStack Router loader when preloading is desired.
 ```
 
-Items 1, 2, 3 are already in the starter. Item 4 is documentation — you should be able to **explain** it out loud (see Step 5).
+Item 2 is already true: there is no manual prefetch button. Items 1 and 3 are the code work — a shared `getBookOptions()` with `staleTime`, plus a label that distinguishes first fetch from a warm cache. Item 4 is documentation: you should be able to **explain** the route-loader mapping out loud (see Step 5).
 
 ---
 
-## Step 2 — Confirm `getBookOptions`
+## Step 2 — Add `getBookOptions`
+
+The starter calls `getApiV1BooksByIdOptions({ path: { id: 1 } })` directly inside `BookPanel`. Wrap it so the same object can be reused (component now, a route loader later):
 
 ```tsx
 const WARM_CACHE_TIME = 60 * 1000;
@@ -55,29 +57,9 @@ Same function, two consumers, identical key.
 
 ---
 
-## Step 3 — Confirm `BookPanel`
+## Step 3 — Add the cache/refresh label to `BookPanel`
 
-Starter:
-
-```tsx
-function BookPanel() {
-  const { data, isFetching } = useSuspenseQuery(getBookOptions());
-
-  return (
-    <div className="rounded border p-3">
-      <p className="text-muted-foreground text-xs">
-        {isFetching ? "Fetching or refreshing..." : "Rendered from cache"}
-      </p>
-      <div className="mt-2">
-        <p className="font-medium">{data.title}</p>
-        <p className="text-muted-foreground mt-1 text-xs">{data.description}</p>
-      </div>
-    </div>
-  );
-}
-```
-
-Solution makes three tiny edits:
+The starter only renders title + description. Pull `isFetching` and show which state you are in:
 
 ```tsx
 function BookPanel() {
@@ -93,15 +75,6 @@ function BookPanel() {
   );
 }
 ```
-
-| Change                                         | Why                                                        |
-| ---------------------------------------------- | ---------------------------------------------------------- |
-| `"Rendered from cache"` → `"Rendered from warm cache"` | More specific; reinforces the lesson title                 |
-| Outer `<div className="mt-2">` removed         | `<p className="mt-1">` already provides spacing            |
-| Indicator gets `mb-2` instead of separate wrapper | Same visual gap with one less DOM node                     |
-| `text-muted-foreground` on description → `opacity-80` | Cosmetic; either is fine                                   |
-
-Apply them to match the solution. They are not behavior changes.
 
 ---
 

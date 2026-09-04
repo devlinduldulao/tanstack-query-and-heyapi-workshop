@@ -1,10 +1,10 @@
 # Exercise 2 — Step-by-Step
 
-> Goal: confirm the master-detail pattern is wired correctly with **two** generated read helpers — one for the list, one for the selected book — and that the detail panel mounts only after a selection.
+> Goal: wire the master-detail pattern with **two** generated read helpers — one for the list, one for the selected book — so clicking a row actually opens the detail panel.
 
 You are editing [`exercise-2.tsx`](../exercise-2.tsx). Reference: [`solutions/exercise-2-end.tsx`](../solutions/exercise-2-end.tsx).
 
-The starter is already functionally correct. This is a **code-review** exercise: read each piece, prove to yourself it meets the requirement, then delete the TODO header. Senior engineers do exactly this work on every pull request.
+The starter already fetches the list and defines `SelectedBookPanel`. Clicking a book does **nothing** yet — `selectedId` never changes. Your job is to connect the click to state, highlight the active row, and keep the detail panel behind a local `<Suspense>`. **Show Solution** should then match what you wrote.
 
 ---
 
@@ -31,7 +31,7 @@ A list/detail screen always has two queries:
 // 4. Render the selected book's title + description in the side panel.
 ```
 
-All four are already satisfied in the starter. Your job is to verify, not rewrite.
+Items 1 and 2 are already in the file (`useBooks`, `SelectedBookPanel`, the `selectedId &&` mount). Items 3 and 4 are the work: set `selectedId` on click and render title + description in the panel (the panel component already does the rendering once it mounts).
 
 ---
 
@@ -71,7 +71,13 @@ Three things to verify:
 
 ---
 
-## Step 4 — Confirm the click sets state correctly
+## Step 4 — Wire the click to `selectedId`
+
+The starter holds `const [selectedId] = useState<number | null>(null)` and the buttons have no `onClick`. Add the setter and the highlight:
+
+```tsx
+const [selectedId, setSelectedId] = useState<number | null>(null);
+```
 
 ```tsx
 <button
@@ -83,7 +89,7 @@ Three things to verify:
 ```
 
 - **`b.id ?? null`** — `Book.id` is optional in the generated type. The `??` fallback keeps the state type aligned (`number | null`).
-- **Active-row highlight** — small UX win, already present.
+- **Active-row highlight** — without it, the user cannot tell which row drove the panel.
 
 ---
 
@@ -103,7 +109,7 @@ Three things to verify:
 - Empty-state when nothing is selected.
 - Once selected, a **local** `<Suspense>` wraps the panel. If the detail fetch is slow, only this panel shows "Loading..." — the list never disappears.
 
-This is the textbook list/detail pattern. Nothing to change.
+This is the textbook list/detail pattern. The starter already has this block — keep it.
 
 ---
 
@@ -128,7 +134,7 @@ The solution removes `opacity-70` from the `<aside>` so the detail text is full-
 
 ## Step 7 — Delete the `// TODO:` header
 
-Remove the four-line block once you have verified each bullet.
+Remove the four-line block once clicking a book opens the panel.
 
 ---
 
@@ -149,9 +155,10 @@ Remove the four-line block once you have verified each bullet.
 
 | Action                                                  | Required? |
 | ------------------------------------------------------- | --------- |
+| Add `setSelectedId` and `onClick` on each row           | ✅ yes    |
+| Highlight the selected row                              | ✅ yes    |
 | Delete `// TODO:` header                                | ✅ yes    |
 | Remove `opacity-70` from `<aside>`, move it to the placeholder `<p>` | optional (matches solution) |
-| Anywhere else                                           | leave alone |
 
 ---
 

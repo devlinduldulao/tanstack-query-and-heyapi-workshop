@@ -5,7 +5,6 @@
 
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "sonner";
 import { postApiV1BooksMutation } from "@/api/client/@tanstack/react-query.gen";
 
 type NewBook = { title: string; description: string };
@@ -14,27 +13,11 @@ export default function Exercise4() {
   const [form, setForm] = useState<NewBook>({ title: "", description: "" });
   const mutation = useMutation({
     ...postApiV1BooksMutation(),
-    onSuccess: () => {
-      toast.success("Book created");
-    },
-    onError: (error) => {
-      toast.error(`Create failed: ${error.message}`);
-    },
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: replace with mutation.mutate(form)
-    mutation.mutate({
-      body: {
-        id: 0,
-        title: form.title,
-        description: form.description,
-        pageCount: 1,
-        excerpt: form.description,
-        publishDate: new Date().toISOString(),
-      },
-    });
+    // TODO: call mutation.mutate({ body: { ... } }) with the generated Book shape.
   };
 
   return (
