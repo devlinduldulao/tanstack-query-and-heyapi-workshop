@@ -11,7 +11,10 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import { applyThemeToDocument, useThemeStore } from "./lib/theme-store";
 
 client.setConfig({
-  baseURL: "https://fakerestapi.vercel.app",
+  // Same-origin in `vite dev` so the browser never CORS-preflights
+  // fakerestapi.vercel.app. Zscaler intercepts Chrome OPTIONS to that host
+  // with a 307 cookie-auth redirect, which browsers reject on preflight.
+  baseURL: import.meta.env.DEV ? "" : "https://fakerestapi.vercel.app",
 });
 
 // Keep document theme in sync after Zustand rehydrates from localStorage.

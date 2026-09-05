@@ -24,4 +24,17 @@ export default defineConfig({
       "@": path.resolve(import.meta.dirname, "./src"),
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://fakerestapi.vercel.app",
+        changeOrigin: true,
+        // Zscaler cookie-auth 307s Chrome User-Agent traffic for OPTIONS /
+        // DELETE. The proxy is a Node hop, so send a non-browser UA.
+        headers: {
+          "User-Agent": "DaloyWorkshopProxy/1.0",
+        },
+      },
+    },
+  },
 });
