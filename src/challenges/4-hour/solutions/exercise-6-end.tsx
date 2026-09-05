@@ -5,23 +5,6 @@ import type { Book } from "@/api/client";
 
 const PAGE_SIZE = 10;
 
-// This component boundary is the whole trick.
-//
-// useDeferredValue only pays off if the code reading the deferred value can be skipped during
-// the urgent render. Filtering inline in the parent does NOT achieve that, even with React
-// Compiler: the compiler puts the filter and the `<input value={search}>` JSX in the same
-// reactive scope, so the filter inherits `search` as a dependency and re-runs on every
-// keystroke. Splitting the consumer out gives it a scope keyed only on `books` + the deferred
-// term, so the compiler caches this element and React skips the subtree on the urgent pass.
-//
-// The React docs state this optimization "requires SlowList to be wrapped in memo ... without
-// memo, it would have to re-render anyway, defeating the point of the optimization". We get that
-// memoization from React Compiler (enabled in vite.config.ts), which is why there is no hand-
-// written `memo` here. Turn the compiler off and this component needs `memo` again.
-//
-// Note: useDeferredValue is NOT a debounce. Per the docs there is "no fixed delay" — React starts
-// the background re-render immediately, so on a fast machine with 30 books you will not perceive
-// any lag. The win is that the keystroke never blocks, not that the list arrives late.
 // https://react.dev/reference/react/useDeferredValue
 function BookResults({ books, search }: { books: Book[]; search: string }) {
   const [page, setPage] = useState(1);
