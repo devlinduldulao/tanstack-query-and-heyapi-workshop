@@ -25,7 +25,7 @@ export default function Exercise9End() {
   const queryClient = useQueryClient();
   const [selectedId, setSelectedId] = useState<number | null>(1);
 
-  const { data: books = [] } = useSuspenseQuery({
+  const { data: books = [], isFetching } = useSuspenseQuery({
     ...getApiV1BooksOptions(),
     staleTime: 60 * 1000,
     select: (books) =>
@@ -38,14 +38,17 @@ export default function Exercise9End() {
   return (
     <div className="grid gap-4 text-sm md:grid-cols-2">
       <section>
-        <div className="mb-2 flex items-center justify-between">
+        <div className="mb-2 flex items-center justify-between gap-2">
           <h3 className="font-semibold">Books</h3>
-          <button
-            className="rounded border px-2 py-1 text-xs"
-            onClick={() => queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() })}
-          >
-            Invalidate list
-          </button>
+          <div className="flex items-center gap-2">
+            {isFetching && <span className="text-muted-foreground text-xs">Refreshing...</span>}
+            <button
+              className="rounded border px-2 py-1 text-xs"
+              onClick={() => queryClient.invalidateQueries({ queryKey: getApiV1BooksQueryKey() })}
+            >
+              Invalidate list
+            </button>
+          </div>
         </div>
         <ul className="space-y-1">
           {books.map((book) => (

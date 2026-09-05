@@ -138,9 +138,23 @@ const { data: books = [] } = useSuspenseQuery({
 });
 ```
 
-Change `staleTime: 0` to `staleTime: 60 * 1000`.
+Change `staleTime: 0` to `staleTime: 60 * 1000`, and destructure `isFetching` so the button has visible feedback:
+
+```tsx
+const { data: books = [], isFetching } = useSuspenseQuery({
+  ...getApiV1BooksOptions(),
+  staleTime: 60 * 1000,
+  select: ...
+});
+```
+
+```tsx
+{isFetching && <span className="text-muted-foreground text-xs">Refreshing...</span>}
+```
 
 **Why:** zero stale time means clicking the invalidate button is effectively the same as the automatic refetch on mount — there is no fresh window. With `60 * 1000` the button actually means something: "I want fresher data than the 60-second window gives me by default".
+
+The mock API always returns the same eight titles, so the list will not look different after a refetch. `isFetching` is how you prove the generated list key was hit. The detail panel's `isFetching` is a *different* query (`getApiV1BooksByIdOptions`) and will not flip when you invalidate the list.
 
 ---
 
@@ -195,7 +209,9 @@ All four requirements are satisfied. Remove the header.
 2. Open Exercise 4 in the bootcamp UI.
 3. With the default `selectedId = 1`, the detail panel should render immediately.
 4. Click a different book — the panel should update.
-5. Click "Invalidate list" — Network tab shows a fresh `GET /api/v1/Books`, and the panel briefly shows "Refreshing..." if a background refetch is happening.
+5. Click **Invalidate list** → **Refreshing...** appears next to the button, and DevTools → Network shows a fresh `GET /api/v1/Books`. The book titles will not change — `fakerestapi` always returns the same list. The point of the button is the targeted refetch of the generated list key, not new rows.
+
+The detail panel's **Refreshing...** is a different query (`getApiV1BooksByIdOptions`). Invalidate list does **not** drive that label; picking another book does.
 
 ---
 
@@ -203,7 +219,8 @@ All four requirements are satisfied. Remove the header.
 
 | Change                                              | Required? | Why                                              |
 | --------------------------------------------------- | --------- | ------------------------------------------------ |
-| Destructure `isFetching` in `SelectedBookPanel`     | ✅ yes    | Visible background-refresh feedback              |
+| Destructure list `isFetching` next to **Invalidate list** | ✅ yes    | Visible list refetch feedback                    |
+| Destructure `isFetching` in `SelectedBookPanel`     | ✅ yes    | Visible detail refetch feedback                  |
 | Move "Selected book" heading into the panel         | ✅ yes    | Heading lives with its data                      |
 | Use fragment instead of `<div>` in the panel        | ✅ yes    | Parent `<section>` already provides the box      |
 | Remove duplicate heading + empty-state from parent  | ✅ yes    | No duplication                                   |

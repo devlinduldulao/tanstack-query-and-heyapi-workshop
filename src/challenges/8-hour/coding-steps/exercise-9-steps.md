@@ -125,9 +125,23 @@ const { data: books = [] } = useSuspenseQuery({
 });
 ```
 
-Change `staleTime: 0` → `staleTime: 60 * 1000`.
+Change `staleTime: 0` → `staleTime: 60 * 1000`, and destructure `isFetching` so the button has visible feedback:
+
+```tsx
+const { data: books = [], isFetching } = useSuspenseQuery({
+  ...getApiV1BooksOptions(),
+  staleTime: 60 * 1000,
+  select: ...
+});
+```
+
+```tsx
+{isFetching && <span className="text-muted-foreground text-xs">Refreshing...</span>}
+```
 
 **Why:** zero stale time means clicking the invalidate button is effectively the same as the automatic refetch on mount — there is no fresh window. With `60 * 1000`, the button actually means "I want fresher data than the 60-second window gives me".
+
+The mock API always returns the same eight titles, so the list will not look different after a refetch. `isFetching` is how you prove the generated list key was hit. The detail panel's `isFetching` is a *different* query (`getApiV1BooksByIdOptions`) and will not flip when you invalidate the list.
 
 ---
 
@@ -172,7 +186,9 @@ Remove the four-line block.
 2. Open Exercise 9.
 3. With default `selectedId = 1`, the detail panel renders immediately.
 4. Click a different book → the panel updates.
-5. Click "Invalidate list" → Network tab shows a fresh `GET /api/v1/Books`; the panel briefly shows "Refreshing..." if a background refetch is happening.
+5. Click **Invalidate list** → **Refreshing...** appears next to the button, and DevTools → Network shows a fresh `GET /api/v1/Books`. The book titles will not change — `fakerestapi` always returns the same list. The point of the button is the targeted refetch of the generated list key, not new rows.
+
+The detail panel's **Refreshing...** is a different query (`getApiV1BooksByIdOptions`). Invalidate list does **not** drive that label; picking another book does.
 
 ---
 
@@ -180,6 +196,7 @@ Remove the four-line block.
 
 | Change                                              | Required? |
 | --------------------------------------------------- | --------- |
+| Destructure list `isFetching` next to **Invalidate list** | ✅ yes    |
 | Destructure `isFetching` in `SelectedBookPanel`     | ✅ yes    |
 | Move "Selected book" heading into the panel         | ✅ yes    |
 | Use fragment instead of `<div>` in the panel        | ✅ yes    |
