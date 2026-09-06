@@ -136,7 +136,7 @@ export const navigationData: Day[] = [
     id: "8-hour",
     title: "8-hour workshop · Part 1",
     exercises: [
-      { id: "exercise-0", title: "Exercise 0 · Setup", type: "exercise" },
+      { id: "exercise-0", title: "Start · Setup", type: "exercise" },
       { id: "exercise-1", title: "Exercise 1 · Query Options", type: "exercise" },
       { id: "exercise-2", title: "Exercise 2 · Parallel + Dependent", type: "exercise" },
       { id: "exercise-3", title: "Exercise 3 · Retry + Refresh UX", type: "exercise" },
