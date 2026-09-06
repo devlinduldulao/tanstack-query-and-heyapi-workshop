@@ -10,14 +10,14 @@ You are reviewing [`challenge-2-bug.tsx`](../challenge-2-bug.tsx). The reference
 
 The reported symptoms are:
 
-1. Deleted books reappear after about a second.
+1. The success toast fires, but the visible list is a lie — the row vanishes and never refetches from the generated list cache.
 2. Rapid clicks delete the wrong rows.
 
 In a TanStack Query + Hey API codebase, both symptoms share one root cause: the read and the invalidation are not addressing the _same_ cache entry. There are three ways this happens in practice:
 
 1. The read uses a generated key, but the invalidation uses a hand-written string array (`["books"]`).
 2. The read uses `getApiV1BooksOptions()` (which produces a parameterized key), but the invalidation uses `getApiV1BooksQueryKey({ otherParams })` with different args.
-3. The mutation uses optimistic updates with `setQueryData` against a snapshot, then `onSettled` invalidates — the optimistic write wins for a moment, then the real cache flips back.
+3. The mutation uses optimistic updates with `setQueryData`, so the UI changes without ever refreshing the generated list identity.
 
 **The fix is the same in all three cases:** one generated key, used by the read _and_ the invalidation, with no manual cache writes between them.
 
@@ -29,12 +29,12 @@ Open the challenge (not Show Solution) and click **delete**:
 
 1. The row vanishes immediately (optimistic `setQueryData` on the generated list).
 2. A success toast fires.
-3. About a second later the row **comes back** (`onSettled` invalidates the generated key; the mock API never persisted the delete).
+3. The row **stays gone**. Success invalidates `["books"]`, which is not the key the list reads, so the generated cache is never refetched.
 4. The list uses `key={index}`, so when rows shift, rapid clicks can hit the wrong React row.
 
-That vanish-then-reappear is the bug, not the mock API by itself. **Show Solution** should not vanish-then-restore: it only toasts and invalidates the generated key.
+That stuck-deleted row is the bug. **Show Solution** does not vanish the row: it toasts and invalidates `getApiV1BooksQueryKey()`, so the mock API returns the full list again.
 
-> `fakerestapi.vercel.app` is a **read-only mock**. Even the fixed code will still show the book after the refetch. Judge the fix by: one generated key, no `setQueryData`, a failure toast, and `key={b.id}` — not by a row that stays gone forever.
+> `fakerestapi.vercel.app` is a **read-only mock**. The fixed code will still show the book after the refetch. That is correct — the cache is now telling the truth. The starter's vanished row is a local lie.
 
 ---
 
@@ -52,9 +52,6 @@ onSuccess: () => {
 },
 onError: (_error, _variables, context) => {
   // rollback instead of a failure toast
-},
-onSettled: () => {
-  void queryClient.invalidateQueries({ queryKey: generatedKey });
 },
 ```
 
@@ -100,7 +97,7 @@ const remove = useMutation({
   <li key={b.id} className="flex justify-between border-b py-1">
 ```
 
-Delete `onMutate`, `onSettled`, `setQueryData`, and the hand-written `["books"]` key.
+Delete `onMutate`, `setQueryData`, and the hand-written `["books"]` key.
 
 The file should now match `challenge-2-bug-end.tsx` apart from the component name.
 
@@ -108,7 +105,7 @@ The file should now match `challenge-2-bug-end.tsx` apart from the component nam
 
 ## Step 4 — Verify
 
-1. Toggle **Show Solution** and click delete. Toast fires. No vanish-then-reappear flicker.
+1. Toggle **Show Solution** and click delete. Toast fires. The row does **not** vanish — the mock list is still the server truth.
 2. Network: one `DELETE /api/v1/Books/{id}`, then one `GET /api/v1/Books` on the generated list key.
 3. Rapid-click three rows. Three DELETEs go out with three distinct ids.
 

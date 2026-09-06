@@ -28,7 +28,7 @@ The 4-hour track lives under `src/challenges/4-hour/`. It keeps only the activit
 | 5    | Generated Mutations + Zod Validation       | `*Mutation`, generated keys, runtime schema validation                |
 | 6    | Pagination, Search & Cache Shape           | derived local views, variable inputs, responsive filtering            |
 | 7    | Contract Drift Drill                       | sync swagger, regenerate, triage impact, ship a new generated slice   |
-| 8    | **Bug Challenge:** Cache Races             | Mismatched keys, missing cancellation, rollback, over-broad refreshes |
+| 8    | **Bug Challenge:** Cache Races             | Mismatched books-list key, optimistic cache lie, index-key races      |
 | HW   | Compressed Capstone                        | Apply the highest-impact patterns to one production slice             |
 
 ## 8-Hour Workshop
@@ -65,7 +65,7 @@ The 8-hour track lives under `src/challenges/8-hour/`. It keeps the full curricu
 | 13  | Pagination, Search & Cache Shape   | derived local views, variable inputs, responsive filtering               |
 | 14  | Contract Drift Drill               | sync swagger, regenerate, triage impact, ship a new generated slice      |
 | C1  | **Feature Challenge:** Author CRUD | Generated helpers, create/edit/delete, toast feedback                    |
-| C2  | **Bug Challenge:** Cache Races     | Mismatched keys, missing cancellation, rollback, over-broad refreshes    |
+| C2  | **Bug Challenge:** Cache Races     | 4-hour bugs plus cancel/invalidate hitting authors (over-broad refresh)  |
 | HW  | Capstone Homework                  | Production-ready Books/Admin slice using every pattern from the track    |
 
 ## Why Hey API Is the Pitch

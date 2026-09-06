@@ -1,6 +1,6 @@
 // Bug Challenge — find & fix the two bugs.
 // Symptoms:
-//  1. Deleted book reappears after ~1s.
+//  1. Success toast fires, but the row vanishes and never comes back from the real list cache.
 //  2. Rapid clicks delete the wrong rows.
 //
 // Hint: keep the generated books key in one place.
@@ -39,9 +39,6 @@ export default function Challenge2Bug() {
       if (context?.previous) {
         queryClient.setQueryData(generatedKey, context.previous);
       }
-    },
-    onSettled: () => {
-      void queryClient.invalidateQueries({ queryKey: generatedKey });
     },
   });
 

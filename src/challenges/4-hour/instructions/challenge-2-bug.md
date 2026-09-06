@@ -6,6 +6,8 @@ A teammate shipped a books dashboard and a bug report just landed:
 
 Your job: find and fix the cache bugs in `challenge-2-bug.tsx`.
 
+This is the **compressed** 4-hour version: one books list, one mismatched key, no extra panels. The 8-hour challenge adds an authors canary and over-broad invalidation.
+
 ## Symptoms
 
 1. The success toast appears, but the visible list does not always refresh.
@@ -23,9 +25,9 @@ Your job: find and fix the cache bugs in `challenge-2-bug.tsx`.
 ## Checklist
 
 - ✅ Deleting a book fires exactly one `DELETE`, then exactly one `GET` on the same
-  generated list key. (The row itself stays on screen — `fakerestapi` is a read-only mock
-  that never persists writes. Judge the cache by the requests and the key, not by whether
-  the row vanishes.)
+  generated list key. (The *starter* row vanishes and stays gone — that is the cache bug.
+  After the fix the row stays on screen: `fakerestapi` is a read-only mock that never
+  persists writes. Judge the fix by the requests and the key, not by a row that stays gone.)
 - ✅ Success feedback appears when the delete completes.
 - ✅ Failure feedback appears when the request fails.
 - ✅ The mutation uses generated helpers and one generated list identifier for the visible read and the post-delete refresh.
