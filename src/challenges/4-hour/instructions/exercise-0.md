@@ -4,7 +4,7 @@ Welcome to the **4-hour Hey API workshop**. This exercise verifies the project i
 
 ## Requirements
 
-- Confirm Node.js 20+ is installed (`node -v`).
+- Confirm Node.js 22+ is installed (`node -v`).
 - Run `npm install` at the project root.
 - Run `npm run dev` and open the bootcamp app at `http://localhost:5173`.
 - Navigate between exercises using the left sidebar.

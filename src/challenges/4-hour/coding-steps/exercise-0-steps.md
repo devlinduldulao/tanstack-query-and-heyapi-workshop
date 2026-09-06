@@ -22,7 +22,7 @@ node -v
 
 **Why this is first:** TanStack Router 1.x and Vite 8 require Node 20 or newer. If you skip this check and you are on Node 18, `npm install` will appear to work but later commands like `npm run dev` may crash with confusing module errors. Knowing the version up front saves an hour of debugging.
 
-If the printed version is lower than `v20.0.0`, install Node 20+ (use `nvm`, `fnm`, or the official installer) **before** continuing.
+If the printed version is lower than `v20.0.0`, install Node 22+ (use `nvm`, `fnm`, or the official installer) **before** continuing.
 
 ---
 
