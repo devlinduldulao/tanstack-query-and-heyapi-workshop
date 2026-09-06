@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ChevronDown, ChevronUp, Eye, EyeOff, Play, Bug, Wrench, Flame } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -8,6 +8,7 @@ import { useTextFile } from "@/hooks/use-text-file";
 import { MarkdownRenderer } from "@/components/internal/markdown-renderer";
 import { BootcampPageHeader } from "@/components/internal/bootcamp-page-header";
 import { ChallengeLoader } from "@/components/internal/challenge-loader";
+import { useSolutionVisibility } from "@/hooks/use-solution-visibility";
 
 export const Route = createFileRoute("/bootcamp/challenge/$day/$exercise")({
   component: ChallengePage,
@@ -23,11 +24,7 @@ const getIcon = (exercise: string) => {
 function ChallengePage() {
   const { day, exercise } = Route.useParams();
   const [isInstructionsOpen, setInstructionsOpen] = useState(true);
-  const [showSolution, setShowSolution] = useState(false);
-
-  useEffect(() => {
-    setShowSolution(false);
-  }, [day, exercise]);
+  const { showSolution, toggleSolution } = useSolutionVisibility(day, exercise);
 
   const baseExerciseName = exercise.replace(/-end$/, "");
   const instructionsPath = `/src/challenges/${day}/instructions/${baseExerciseName}.md`;
@@ -44,7 +41,7 @@ function ChallengePage() {
         day={day}
         exerciseId={exercise}
         extraActions={
-          <Button variant="outline" size="sm" onClick={() => setShowSolution((s) => !s)} className="gap-2">
+          <Button variant="outline" size="sm" onClick={toggleSolution} className="gap-2">
             {showSolution ? (
               <>
                 <EyeOff className="h-4 w-4" /> Hide Solution
