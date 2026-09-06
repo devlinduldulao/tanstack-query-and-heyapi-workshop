@@ -36,39 +36,6 @@ Two versions of the same senior-level curriculum:
 
 See [WORKSHOP_SCHEDULE.md](./WORKSHOP_SCHEDULE.md) for the full breakdown.
 
-## How the Workshop Is Organized
-
-```
-src/challenges/
-├── 4-hour/
-│   ├── exercise-N.tsx                  ← compressed starter files
-│   ├── challenge-2-bug.tsx             ← compressed bug challenge
-│   ├── instructions/                   ← markdown guidance for selected activities
-│   ├── coding-steps/                   ← ordered step-by-step walkthroughs (NEW)
-│   │   ├── exercise-N-steps.md         ← delete / edit / add sequence + explanations
-│   │   └── challenge-2-bug.md
-│   └── solutions/                      ← reference solutions
-├── 8-hour/
-│   ├── exercise-N.tsx                  ← starter file with TODOs (you edit this)
-│   ├── challenge-1-feature.tsx         ← end-of-workshop feature challenge
-│   ├── challenge-2-bug.tsx             ← end-of-workshop bug challenge
-│   ├── instructions/                   ← markdown guidance for each item
-│   │   ├── exercise-N.md
-│   │   ├── challenge-1-feature.md
-│   │   └── challenge-2-bug.md
-│   ├── coding-steps/                   ← ordered step-by-step walkthroughs (NEW)
-│   │   ├── exercise-N-steps.md         ← delete / edit / add sequence + explanations
-│   │   ├── challenge-1-feature-steps.md
-│   │   └── challenge-2-bug.md
-│   └── solutions/                      ← reference solutions
-│       ├── exercise-N-end.tsx
-│       ├── challenge-1-feature-end.tsx
-│       └── challenge-2-bug-end.tsx
-└── homework/
-  ├── 4-hour-homework.md              ← compressed capstone practice
-  └── 8-hour-homework.md              ← full capstone practice
-```
-
 The bootcamp UI (sidebar, instructions panel, solution toggle, completion tracking) lives at `/bootcamp` and is built with the same TanStack Router + shadcn/ui stack you're learning. Your progress is persisted in `localStorage`.
 
 ## Why Hey API Gets a Whole Part

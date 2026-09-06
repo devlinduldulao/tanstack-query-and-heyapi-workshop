@@ -13,7 +13,7 @@ Welcome to the **4-hour Hey API workshop**. This exercise verifies the project i
 
 > Each exercise contains three files:
 >
-> - `exercise-N.tsx` - your starting point with `// TODO` markers
+> - `exercises/exercise-N.tsx` - your starting point with `// TODO` markers
 > - `solutions/exercise-N-end.tsx` - the working reference solution
 > - `instructions/exercise-N.md` - this guide
 
