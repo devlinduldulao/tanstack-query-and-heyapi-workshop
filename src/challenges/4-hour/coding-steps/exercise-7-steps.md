@@ -226,14 +226,61 @@ Mount inside its own `<Suspense>`.
 `OrderDetailPanel` ends up like this:
 
 ```tsx
-<Suspense fallback={<HeaderSkeleton />}>
+<Suspense
+  fallback={
+    // Shaped like OrderHeaderPanel: id + customer, contact line, total, status pills.
+    <div className="space-y-2">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <div className="space-y-1">
+          <Skeleton className="h-4 w-48" />
+          <Skeleton className="h-3 w-64" />
+        </div>
+        <Skeleton className="h-4 w-20" />
+      </div>
+      <div className="flex flex-wrap items-center gap-1">
+        <Skeleton className="h-3 w-12" />
+        {statusFlow.map((status) => (
+          <Skeleton key={status} className="h-6 w-16 rounded border" />
+        ))}
+      </div>
+    </div>
+  }
+>
   <OrderHeaderPanel orderId={orderId} />
 </Suspense>
 <div className="grid md:grid-cols-2 gap-3">
-  <Suspense fallback={<ItemsSkeleton />}>
+  <Suspense
+    fallback={
+      // Shaped like OrderItemsPanel: a table head row plus three body rows.
+      <div className="space-y-2">
+        <Skeleton className="h-3 w-full" />
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div key={index} className="flex items-center justify-between gap-2">
+            <Skeleton className="h-4 w-28" />
+            <Skeleton className="h-4 w-8" />
+            <Skeleton className="h-4 w-14" />
+          </div>
+        ))}
+      </div>
+    }
+  >
     <OrderItemsPanel orderId={orderId} />
   </Suspense>
-  <Suspense fallback={<NotesSkeleton />}>
+  <Suspense
+    fallback={
+      // Shaped like OrderNotesPanel: a short notes feed plus the add-note form.
+      <div className="space-y-2">
+        {Array.from({ length: 2 }).map((_, index) => (
+          <div key={index} className="space-y-1 rounded border px-2 py-1">
+            <Skeleton className="h-3 w-full" />
+            <Skeleton className="h-3 w-24" />
+          </div>
+        ))}
+        <Skeleton className="h-12 w-full rounded border" />
+        <Skeleton className="h-6 w-full rounded" />
+      </div>
+    }
+  >
     <OrderNotesPanel orderId={orderId} />
   </Suspense>
 </div>
@@ -241,6 +288,10 @@ Mount inside its own `<Suspense>`.
 
 Three sibling boundaries. Each panel streams in independently. None can block
 the others.
+
+Each `fallback` holds the **silhouette of the panel it stands in for** — same row
+counts, same box borders — so nothing reflows when the real panel swaps in. That
+needs `import { Skeleton } from "@/components/ui/skeleton";` at the top of the file.
 
 ---
 
