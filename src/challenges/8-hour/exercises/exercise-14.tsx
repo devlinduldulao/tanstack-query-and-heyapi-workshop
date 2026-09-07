@@ -1,4 +1,4 @@
-// TODO: Build the Orders Operations Console capstone.
+// TODO: Build the Orders Operations Console completion.
 //
 // You have a paginated orders list rendering on the left. The right panel is empty until
 // you select an order. Your job is to wire up these four moving pieces using ONLY the

@@ -1,4 +1,4 @@
-# Exercise 7: Orders Operations Console (Capstone)
+# Exercise 7: Orders Operations Console (Completion)
 
 This is the workshop finale. You combine everything from earlier exercises — generated query options, suspense boundaries, mutations, query invalidation, derived state — into one realistic admin screen, then add the one new advanced pattern: **optimistic updates with rollback**.
 
@@ -13,7 +13,7 @@ All API calls go through generated Hey API + TanStack Query helpers — no hand-
 
 ## Step 0 — Sync the contract (the drift drill)
 
-Every helper this capstone needs is generated. Before writing UI, confirm the local
+Every helper this completion needs is generated. Before writing UI, confirm the local
 `swagger.yaml` still matches the backend — this is the workflow real teams run whenever a
 backend ships a new endpoint:
 
@@ -138,11 +138,11 @@ void queryClient.invalidateQueries({
 
 If you wrapped everything in one boundary, the slowest sub-resource would block the whole panel. Three sibling boundaries let each panel suspend in isolation, so users see header → items → notes stream in independently. This is the same pattern Next.js App Router teaches with nested `loading.tsx` files, applied at the component level.
 
-## Why Optimistic Updates Are the Capstone Concept
+## Why Optimistic Updates Are the Completion Concept
 
 Earlier exercises invalidate the cache after a mutation succeeds — the user waits for the round-trip before the UI reflects their action. That is fine for create/delete but feels sluggish for high-frequency edits like status changes.
 
-Optimistic updates flip the script: write to the cache **first**, send to the server **second**, undo if the server says no. The four-callback shape (`onMutate`, `onError`, `onSettled`, plus the implicit success) is the standard TanStack Query recipe for it.
+Optimistic updates the opposite: write to the cache **first**, send to the server **second**, undo if the server says no. The four-callback shape (`onMutate`, `onError`, `onSettled`, plus the implicit success) is the standard TanStack Query recipe for it.
 
 ## Discussion Prompts
 

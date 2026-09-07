@@ -1,4 +1,4 @@
-// Reference solution — Orders Operations Console capstone.
+// Reference solution — Orders Operations Console completion.
 //
 // HEADS UP: This file intentionally does NOT typecheck on a fresh clone.
 // The repo's swagger.yaml is deliberately trimmed (missing GET/PUT/PATCH/DELETE

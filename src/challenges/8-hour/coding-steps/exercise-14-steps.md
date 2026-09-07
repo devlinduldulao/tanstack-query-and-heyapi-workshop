@@ -1,6 +1,6 @@
 # Exercise 14 Walkthrough — Orders Operations Console
 
-A step-by-step build of the capstone solution. Follow it top to bottom and your
+A step-by-step build of the completion solution. Follow it top to bottom and your
 file should match `src/challenges/8-hour/solutions/exercise-14-end.tsx` at each
 checkpoint.
 
@@ -111,7 +111,7 @@ declaratively.
 
 ## Step 4 — Optimistic status update
 
-This is the new pattern of the capstone. Add a status-pill row that PATCHes
+This is the new pattern of the completion. Add a status-pill row that PATCHes
 the order, but **flip the cache before the request finishes**.
 
 ```tsx

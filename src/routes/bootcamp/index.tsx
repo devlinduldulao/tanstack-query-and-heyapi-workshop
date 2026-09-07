@@ -51,7 +51,7 @@ function BootcampHome() {
               <h3 className="text-xl font-semibold">8-hour workshop</h3>
               <p className="text-muted-foreground mt-2 text-sm">
                 The full track with every lab: refresh UX, mutation feedback, invalidation, Suspense, contract-drift
-                drills, feature challenge, and capstone homework.
+                drills, feature challenge, and completion homework.
               </p>
             </Link>
           </div>

@@ -1,4 +1,4 @@
-# 8-Hour Capstone Homework: Production-Ready Books Admin
+# 8-Hour Completion Homework: Production-Ready Books Admin
 
 Turn the demo app into a small production slice that a senior React developer would be comfortable defending in a code review.
 
@@ -43,4 +43,4 @@ Your team is adopting Hey API for an existing REST backend. Build a Books/Admin 
 - [Hey API — TanStack Query Plugin](https://heyapi.dev/openapi-ts/plugins/tanstack-query)
 - [Hey API — Plugins: Zod](https://heyapi.dev/openapi-ts/plugins/zod)
 
-> Open the **TanStack Query Devtools** while working. The capstone is not done until the cache story is easy to inspect and explain.
+> Open the **TanStack Query Devtools** while working. The completion is not done until the cache story is easy to inspect and explain.

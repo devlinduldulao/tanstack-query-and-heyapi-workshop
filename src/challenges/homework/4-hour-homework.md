@@ -1,4 +1,4 @@
-# 4-Hour Capstone Homework: Production-Ready Books Admin
+# 4-Hour Completion Homework: Production-Ready Books Admin
 
 Turn the demo app into one tight production slice that proves the compressed track landed.
 
@@ -39,4 +39,4 @@ Your team is adopting Hey API for an existing REST backend. Build the smallest B
 - [Hey API — TanStack Query Plugin](https://heyapi.dev/openapi-ts/plugins/tanstack-query)
 - [Hey API — Plugins: Zod](https://heyapi.dev/openapi-ts/plugins/zod)
 
-> Open the **TanStack Query Devtools** while working. The capstone is not done until the cache story is easy to inspect and explain.
+> Open the **TanStack Query Devtools** while working. The completion is not done until the cache story is easy to inspect and explain.

@@ -129,7 +129,7 @@ export const navigationData: Day[] = [
       { id: "exercise-6", title: "Exercise 6 · Pagination + Search", type: "exercise" },
       { id: "exercise-7", title: "Exercise 7 · Contract Drift Drill", type: "exercise" },
       { id: "challenge-2-bug", title: "Challenge · Cache Races", type: "bug-challenge" },
-      { id: "homework", title: "4-hour Capstone", type: "homework" },
+      { id: "homework", title: "4-hour Completion", type: "homework" },
     ],
   },
   {
@@ -165,7 +165,7 @@ export const navigationData: Day[] = [
       { id: "exercise-14", title: "Exercise 14 · Contract Drift Drill", type: "exercise" },
       { id: "challenge-1-feature", title: "Challenge 1 · Author CRUD", type: "feature-challenge" },
       { id: "challenge-2-bug", title: "Challenge 2 · Cache Races", type: "bug-challenge" },
-      { id: "homework", title: "Capstone Homework", type: "homework" },
+      { id: "homework", title: "Completion Homework", type: "homework" },
     ],
   },
   {

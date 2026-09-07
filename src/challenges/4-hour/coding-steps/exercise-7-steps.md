@@ -1,6 +1,6 @@
 # Exercise 7 Walkthrough — Orders Operations Console
 
-A step-by-step build of the capstone solution. Follow it top to bottom and your
+A step-by-step build of the completion solution. Follow it top to bottom and your
 file should match `src/challenges/4-hour/solutions/exercise-7-end.tsx` at each
 checkpoint.
 
@@ -8,7 +8,7 @@ checkpoint.
 
 ## Step 0 — Sync the contract first
 
-Every helper this capstone imports is generated from `swagger.yaml`. Before you write a
+Every helper this completion imports is generated from `swagger.yaml`. Before you write a
 single line, confirm the contract still matches the backend:
 
 ```bash
@@ -118,7 +118,7 @@ declaratively.
 
 ## Step 4 — Optimistic status update
 
-This is the new pattern of the capstone. Add a status-pill row that PATCHes
+This is the new pattern of the completion. Add a status-pill row that PATCHes
 the order, but **flip the cache before the request finishes**.
 
 ```tsx

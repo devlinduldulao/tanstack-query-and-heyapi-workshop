@@ -1,4 +1,4 @@
-// Reference solution — Orders Operations Console capstone.
+// Reference solution — Orders Operations Console completion.
 //
 // CONTRACT NOTE: every helper below comes from the generated client. If any of them
 // stop resolving, the local swagger.yaml has drifted from the backend. Re-sync the

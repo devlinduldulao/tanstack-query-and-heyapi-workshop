@@ -4,7 +4,7 @@
 
 You are editing [`challenge-1-feature.tsx`](../challenge-1-feature.tsx). Reference: [`solutions/challenge-1-feature-end.tsx`](../solutions/challenge-1-feature-end.tsx).
 
-Unlike the regular exercises, the starter here gives you only a **read** of the authors list. Everything else is yours to build. This is the day-2 capstone — you will combine every pattern from Exercises 4, 5, 6, and 11 into one screen.
+Unlike the regular exercises, the starter here gives you only a **read** of the authors list. Everything else is yours to build. This is the day-2 completion — you will combine every pattern from Exercises 4, 5, 6, and 11 into one screen.
 
 ---
 
