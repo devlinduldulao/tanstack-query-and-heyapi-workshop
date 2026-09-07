@@ -82,7 +82,17 @@ With:
 export default function Exercise10() {
   return (
     <ErrorBoundary fallback={<p className="text-red-500">Failed to load.</p>}>
-      <Suspense fallback={<p className="text-sm opacity-70">Loading…</p>}>
+      <Suspense
+        fallback={
+          <ul className="space-y-1">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <li key={index}>
+                <Skeleton className="h-4 w-56" />
+              </li>
+            ))}
+          </ul>
+        }
+      >
         <BooksList />
       </Suspense>
     </ErrorBoundary>
@@ -112,7 +122,7 @@ Read aloud as: "If anything in here throws, ErrorBoundary catches it. While anyt
 
 After your edit, the request lifecycle looks like:
 
-1. **First render, cache cold** → `useSuspenseQuery` throws a Promise → `<Suspense>` catches it and shows `"Loading…"`.
+1. **First render, cache cold** → `useSuspenseQuery` throws a Promise → `<Suspense>` catches it and renders the skeleton rows in `fallback`.
 2. **Request resolves** → Suspense unmounts the fallback and renders `<BooksList />` with data.
 3. **Request rejects** → `useSuspenseQuery` throws an Error → `<ErrorBoundary>` catches it and shows `"Failed to load."`.
 4. **Component re-mounts with warm cache** → no suspense at all; `data` is immediately available.
@@ -142,7 +152,17 @@ function Fallback({ resetErrorBoundary }: FallbackProps) {
 export default function Exercise10() {
   return (
     <ErrorBoundary FallbackComponent={Fallback}>
-      <Suspense fallback={<p className="text-sm opacity-70">Loading…</p>}>
+      <Suspense
+        fallback={
+          <ul className="space-y-1">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <li key={index}>
+                <Skeleton className="h-4 w-56" />
+              </li>
+            ))}
+          </ul>
+        }
+      >
         <BooksList />
       </Suspense>
     </ErrorBoundary>
@@ -158,7 +178,7 @@ export default function Exercise10() {
 
 1. Save.
 2. Open Exercise 10.
-3. First load → you may briefly see "Loading…" then the book list.
+3. First load → you may briefly see the skeleton rows then the book list.
 4. To verify the error path: DevTools → Network → block `GET /api/v1/Books`, then reload. You should see "Failed to load.".
 5. Unblock → reload → the list returns.
 

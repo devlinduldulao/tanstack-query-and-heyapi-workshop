@@ -17,7 +17,7 @@ A list/detail screen always has two queries:
 | The full list        | `getApiV1BooksOptions()`                             | On mount, always                        |
 | The selected record  | `getApiV1BooksByIdOptions({ path: { id } })`         | **Only after** a row is clicked         |
 
-"Only after" is enforced by a conditional render + a local `<Suspense>`, **not** by `enabled: false`. The local boundary keeps the list visible while only the detail panel shows the spinner.
+"Only after" is enforced by a conditional render + a local `<Suspense>`, **not** by `enabled: false`. The local boundary keeps the list visible while only the detail panel drops to a skeleton.
 
 ---
 
@@ -99,7 +99,15 @@ const [selectedId, setSelectedId] = useState<number | null>(null);
 <aside className="border-l pl-4 opacity-70">
   {!selectedId && <p>Select a book to see its details...</p>}
   {selectedId && (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense
+      fallback={
+        <>
+          <Skeleton className="mb-2 h-4 w-40" />
+          <Skeleton className="h-3 w-full" />
+          <Skeleton className="mt-1 h-3 w-2/3" />
+        </>
+      }
+    >
       <SelectedBookPanel selectedId={selectedId} />
     </Suspense>
   )}
@@ -107,7 +115,7 @@ const [selectedId, setSelectedId] = useState<number | null>(null);
 ```
 
 - Empty-state when nothing is selected.
-- Once selected, a **local** `<Suspense>` wraps the panel. If the detail fetch is slow, only this panel shows "Loading..." — the list never disappears.
+- Once selected, a **local** `<Suspense>` wraps the panel. If the detail fetch is slow, only this panel shows its skeleton — the list never disappears.
 
 This is the textbook list/detail pattern. The starter already has this block — keep it.
 
@@ -121,7 +129,15 @@ The solution removes `opacity-70` from the `<aside>` so the detail text is full-
 <aside className="border-l pl-4">
   {!selectedId && <p className="opacity-70">Select a book...</p>}
   {selectedId && (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense
+      fallback={
+        <>
+          <Skeleton className="mb-2 h-4 w-40" />
+          <Skeleton className="h-3 w-full" />
+          <Skeleton className="mt-1 h-3 w-2/3" />
+        </>
+      }
+    >
       <SelectedBookPanel selectedId={selectedId} />
     </Suspense>
   )}
@@ -143,7 +159,7 @@ Remove the four-line block once clicking a book opens the panel.
 1. Save.
 2. Open Exercise 2.
 3. List renders on the left.
-4. Click a book → the right panel briefly shows "Loading..." then renders title + description.
+4. Click a book → the right panel briefly shows the skeleton then renders title + description.
 5. Click a different book → only the panel re-suspends; the list stays visible.
 6. DevTools → Network → confirm:
    - One `GET /api/v1/Books` on mount.

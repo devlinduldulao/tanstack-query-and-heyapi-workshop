@@ -1,6 +1,7 @@
 import { type ComponentType, lazy, Suspense, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {
   day: string;
@@ -77,8 +78,17 @@ export function ChallengeLoader({ day, exercise, showSolution }: Props) {
     >
       <Suspense
         fallback={
-          <div className="py-8 text-center">
-            <Loader2 className="mx-auto h-6 w-6 animate-spin" />
+          <div className="space-y-4 py-8">
+            <Skeleton className="h-5 w-48" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-11/12" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              <Skeleton className="h-24 w-full" />
+              <Skeleton className="h-24 w-full" />
+            </div>
           </div>
         }
       >

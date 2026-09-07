@@ -7,6 +7,7 @@
 import { Suspense, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getApiV1BooksByIdOptions, getApiV1BooksOptions } from "@/api/client/@tanstack/react-query.gen";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function useBooks() {
   return useSuspenseQuery(getApiV1BooksOptions());
@@ -39,7 +40,16 @@ export default function Exercise2() {
       <aside className="border-l pl-4 opacity-70">
         {!selectedId && <p>Select a book to see its details...</p>}
         {selectedId && (
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense
+            fallback={
+              // Mirrors SelectedBookPanel: title heading, then the description line.
+              <>
+                <Skeleton className="mb-2 h-4 w-40" />
+                <Skeleton className="h-3 w-full" />
+                <Skeleton className="mt-1 h-3 w-2/3" />
+              </>
+            }
+          >
             <SelectedBookPanel selectedId={selectedId} />
           </Suspense>
         )}

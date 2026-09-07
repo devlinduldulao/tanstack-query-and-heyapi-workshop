@@ -103,7 +103,17 @@ Starter:
   <h3 className="mb-2 font-semibold">Selected book</h3>
   {!selectedId && <p className="text-muted-foreground">Select a book to run the generated detail query.</p>}
   {selectedId && (
-    <Suspense fallback={<p className="text-muted-foreground">Loading selected book...</p>}>
+    <Suspense
+      fallback={
+        <>
+          <div className="mb-2 flex items-center gap-2">
+            <Skeleton className="h-4 w-28" />
+          </div>
+          <Skeleton className="h-4 w-40" />
+          <Skeleton className="mt-1 h-3 w-3/4" />
+        </>
+      }
+    >
       <SelectedBookPanel selectedId={selectedId} />
     </Suspense>
   )}
@@ -115,7 +125,17 @@ Change to:
 ```tsx
 <section className="border-l pl-4">
   {selectedId && (
-    <Suspense fallback={<p className="text-muted-foreground">Loading selected book...</p>}>
+    <Suspense
+      fallback={
+        <>
+          <div className="mb-2 flex items-center gap-2">
+            <Skeleton className="h-4 w-28" />
+          </div>
+          <Skeleton className="h-4 w-40" />
+          <Skeleton className="mt-1 h-3 w-3/4" />
+        </>
+      }
+    >
       <SelectedBookPanel selectedId={selectedId} />
     </Suspense>
   )}

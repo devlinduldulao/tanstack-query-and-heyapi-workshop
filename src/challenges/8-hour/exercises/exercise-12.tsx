@@ -7,6 +7,7 @@
 import { Suspense, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getApiV1BooksByIdOptions } from "@/api/client/@tanstack/react-query.gen";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function BookPanel() {
   const { data } = useSuspenseQuery(getApiV1BooksByIdOptions({ path: { id: 1 } }));
@@ -35,7 +36,11 @@ export default function Exercise12() {
         <Suspense
           fallback={
             <div className="rounded border p-3">
-              <p className="text-muted-foreground text-xs">Fetching or refreshing...</p>
+              <div className="mt-2 space-y-2">
+                <Skeleton className="h-4 w-40" />
+                <Skeleton className="h-3 w-full" />
+                <Skeleton className="h-3 w-2/3" />
+              </div>
             </div>
           }
         >

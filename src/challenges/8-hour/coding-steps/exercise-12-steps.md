@@ -84,7 +84,15 @@ function BookPanel() {
 const [enabled, setEnabled] = useState(false);
 // ...
 {enabled && (
-  <Suspense fallback={<div className="rounded border p-3"><p>...Fetching or refreshing...</p></div>}>
+  <Suspense
+    fallback={
+      <div className="rounded border p-3">
+        <Skeleton className="mb-2 h-3 w-32" />
+        <Skeleton className="h-4 w-40" />
+        <Skeleton className="mt-1 h-3 w-3/4" />
+      </div>
+    }
+  >
     <BookPanel />
   </Suspense>
 )}

@@ -5,6 +5,7 @@ import {
   getApiV1BooksOptions,
   getApiV1BooksQueryKey,
 } from "@/api/client/@tanstack/react-query.gen";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function SelectedBookPanel({ selectedId }: { selectedId: number }) {
   const { data: book, isFetching } = useSuspenseQuery(getApiV1BooksByIdOptions({ path: { id: selectedId } }));
@@ -66,7 +67,18 @@ export default function Exercise4End() {
 
       <section className="border-l pl-4">
         {selectedId && (
-          <Suspense fallback={<p className="text-muted-foreground">Loading selected book...</p>}>
+          <Suspense
+            fallback={
+              // Mirrors SelectedBookPanel: heading row, title, description.
+              <>
+                <div className="mb-2 flex items-center gap-2">
+                  <Skeleton className="h-4 w-28" />
+                </div>
+                <Skeleton className="h-4 w-40" />
+                <Skeleton className="mt-1 h-3 w-3/4" />
+              </>
+            }
+          >
             <SelectedBookPanel selectedId={selectedId} />
           </Suspense>
         )}

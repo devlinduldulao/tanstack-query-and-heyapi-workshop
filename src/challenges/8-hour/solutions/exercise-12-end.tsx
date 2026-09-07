@@ -1,6 +1,7 @@
 import { Suspense, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { getApiV1BooksByIdOptions } from "@/api/client/@tanstack/react-query.gen";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const WARM_CACHE_TIME = 60 * 1000;
 
@@ -38,8 +39,11 @@ export default function Exercise12End() {
       {enabled && (
         <Suspense
           fallback={
+            // Mirrors BookPanel: status line, title, description.
             <div className="rounded border p-3">
-              <p className="text-muted-foreground mb-2 text-xs">Fetching or refreshing...</p>
+              <Skeleton className="mb-2 h-3 w-32" />
+              <Skeleton className="h-4 w-40" />
+              <Skeleton className="mt-1 h-3 w-3/4" />
             </div>
           }
         >

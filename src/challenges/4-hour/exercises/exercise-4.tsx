@@ -11,6 +11,7 @@ import {
   getApiV1BooksOptions,
   getApiV1BooksQueryKey,
 } from "@/api/client/@tanstack/react-query.gen";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { Book } from "@/api/client";
 
 function SelectedBookPanel({ selectedId }: { selectedId: number }) {
@@ -65,7 +66,15 @@ export default function Exercise4() {
         <h3 className="mb-2 font-semibold">Selected book</h3>
         {!selectedId && <p className="text-muted-foreground">Select a book to run the generated detail query.</p>}
         {selectedId && (
-          <Suspense fallback={<p className="text-muted-foreground">Loading selected book...</p>}>
+          <Suspense
+            fallback={
+              <div>
+                <Skeleton className="h-4 w-40" />
+                <Skeleton className="mt-2 h-3 w-full" />
+                <Skeleton className="mt-1 h-3 w-2/3" />
+              </div>
+            }
+          >
             <SelectedBookPanel selectedId={selectedId} />
           </Suspense>
         )}
