@@ -11,7 +11,7 @@
     "typecheck": "tsc -p tsconfig.app.json --noEmit",
     "openapi-ts": "openapi-ts",
     "update-swagger-pwsh": "Invoke-WebRequest -Uri \"https://fakerestapi.vercel.app/swagger/v1/swagger.yaml\" -OutFile \"swagger.yaml\"",
-    "update-swagger-bash": "curl -o swagger.yaml \"https://fakerestapi.vercel.app/swagger/v1/swagger.yaml\""
+    "update-swagger-bash": "curl -fsSL -o swagger.yaml \"https://fakerestapi.vercel.app/swagger/v1/swagger.yaml\""
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
