@@ -1,11 +1,11 @@
 openapi: "3.0.3"
 info:
-  title: FakeRESTApi.DaloyJS.V1
+  title: FakeRESTApi.Hono.V1
   description: A seeded mock API for testing integrations, frontends, and SDKs. It offers a wide catalog of resources, deterministic responses, and relationship-rich sample data. Write operations return realistic payloads without persisting changes.
   version: "1.0"
   contact:
-    name: FakeRESTApi.DaloyJS.V1
-    url: "https://daloyjs.dev/"
+    name: FakeRESTApi.Hono.V1
+    url: "https://github.com/"
 tags:
   - name: Activities
     description: Tasks/activities with due dates
@@ -229,7 +229,6 @@ paths:
       tags:
         - Activities
       summary: List all Activities
-      operationId: listActivities
       parameters: []
       responses:
         "200":
@@ -254,7 +253,6 @@ paths:
       tags:
         - Activities
       summary: Create a new Activity
-      operationId: createActivities
       requestBody:
         required: true
         content:
@@ -279,7 +277,6 @@ paths:
       tags:
         - Activities
       summary: Get a Activity by id
-      operationId: getActivitiesById
       parameters:
         - name: id
           in: path
@@ -306,7 +303,6 @@ paths:
       tags:
         - Activities
       summary: Replace a Activity
-      operationId: replaceActivities
       parameters:
         - name: id
           in: path
@@ -337,7 +333,6 @@ paths:
       tags:
         - Activities
       summary: Partially update a Activity
-      operationId: patchActivities
       parameters:
         - name: id
           in: path
@@ -368,7 +363,6 @@ paths:
       tags:
         - Activities
       summary: Delete a Activity
-      operationId: deleteActivities
       parameters:
         - name: id
           in: path
@@ -384,7 +378,6 @@ paths:
       tags:
         - Authors
       summary: List all Authors
-      operationId: listAuthors
       parameters: []
       responses:
         "200":
@@ -409,7 +402,6 @@ paths:
       tags:
         - Authors
       summary: Create a new Author
-      operationId: createAuthors
       requestBody:
         required: true
         content:
@@ -434,7 +426,6 @@ paths:
       tags:
         - Authors
       summary: Get a Author by id
-      operationId: getAuthorsById
       parameters:
         - name: id
           in: path
@@ -461,7 +452,6 @@ paths:
       tags:
         - Authors
       summary: Replace a Author
-      operationId: replaceAuthors
       parameters:
         - name: id
           in: path
@@ -492,7 +482,6 @@ paths:
       tags:
         - Authors
       summary: Partially update a Author
-      operationId: patchAuthors
       parameters:
         - name: id
           in: path
@@ -523,7 +512,6 @@ paths:
       tags:
         - Authors
       summary: Delete a Author
-      operationId: deleteAuthors
       parameters:
         - name: id
           in: path
@@ -539,7 +527,6 @@ paths:
       tags:
         - Books
       summary: List all Books
-      operationId: listBooks
       parameters: []
       responses:
         "200":
@@ -564,7 +551,6 @@ paths:
       tags:
         - Books
       summary: Create a new Book
-      operationId: createBooks
       requestBody:
         required: true
         content:
@@ -589,7 +575,6 @@ paths:
       tags:
         - Books
       summary: Get a Book by id
-      operationId: getBooksById
       parameters:
         - name: id
           in: path
@@ -616,7 +601,6 @@ paths:
       tags:
         - Books
       summary: Replace a Book
-      operationId: replaceBooks
       parameters:
         - name: id
           in: path
@@ -647,7 +631,6 @@ paths:
       tags:
         - Books
       summary: Partially update a Book
-      operationId: patchBooks
       parameters:
         - name: id
           in: path
@@ -678,7 +661,6 @@ paths:
       tags:
         - Books
       summary: Delete a Book
-      operationId: deleteBooks
       parameters:
         - name: id
           in: path
@@ -694,7 +676,6 @@ paths:
       tags:
         - CoverPhotos
       summary: List all CoverPhotos
-      operationId: listCoverPhotos
       parameters: []
       responses:
         "200":
@@ -719,7 +700,6 @@ paths:
       tags:
         - CoverPhotos
       summary: Create a new CoverPhoto
-      operationId: createCoverPhotos
       requestBody:
         required: true
         content:
@@ -744,7 +724,6 @@ paths:
       tags:
         - CoverPhotos
       summary: Get a CoverPhoto by id
-      operationId: getCoverPhotosById
       parameters:
         - name: id
           in: path
@@ -771,7 +750,6 @@ paths:
       tags:
         - CoverPhotos
       summary: Replace a CoverPhoto
-      operationId: replaceCoverPhotos
       parameters:
         - name: id
           in: path
@@ -802,7 +780,6 @@ paths:
       tags:
         - CoverPhotos
       summary: Partially update a CoverPhoto
-      operationId: patchCoverPhotos
       parameters:
         - name: id
           in: path
@@ -833,7 +810,6 @@ paths:
       tags:
         - CoverPhotos
       summary: Delete a CoverPhoto
-      operationId: deleteCoverPhotos
       parameters:
         - name: id
           in: path
@@ -849,7 +825,6 @@ paths:
       tags:
         - Users
       summary: List all Users
-      operationId: listUsers
       parameters:
         - name: page
           in: query
@@ -936,7 +911,6 @@ paths:
       tags:
         - Users
       summary: Create a new User
-      operationId: createUsers
       requestBody:
         required: true
         content:
@@ -961,7 +935,6 @@ paths:
       tags:
         - Users
       summary: Get a User by id
-      operationId: getUsersById
       parameters:
         - name: id
           in: path
@@ -988,7 +961,6 @@ paths:
       tags:
         - Users
       summary: Replace a User
-      operationId: replaceUsers
       parameters:
         - name: id
           in: path
@@ -1019,7 +991,6 @@ paths:
       tags:
         - Users
       summary: Partially update a User
-      operationId: patchUsers
       parameters:
         - name: id
           in: path
@@ -1050,7 +1021,6 @@ paths:
       tags:
         - Users
       summary: Delete a User
-      operationId: deleteUsers
       parameters:
         - name: id
           in: path
@@ -1066,7 +1036,6 @@ paths:
       tags:
         - Products
       summary: List all Products
-      operationId: listProducts
       parameters:
         - name: page
           in: query
@@ -1153,7 +1122,6 @@ paths:
       tags:
         - Products
       summary: Create a new Product
-      operationId: createProducts
       requestBody:
         required: true
         content:
@@ -1178,7 +1146,6 @@ paths:
       tags:
         - Products
       summary: Get a Product by id
-      operationId: getProductsById
       parameters:
         - name: id
           in: path
@@ -1205,7 +1172,6 @@ paths:
       tags:
         - Products
       summary: Replace a Product
-      operationId: replaceProducts
       parameters:
         - name: id
           in: path
@@ -1236,7 +1202,6 @@ paths:
       tags:
         - Products
       summary: Partially update a Product
-      operationId: patchProducts
       parameters:
         - name: id
           in: path
@@ -1267,7 +1232,6 @@ paths:
       tags:
         - Products
       summary: Delete a Product
-      operationId: deleteProducts
       parameters:
         - name: id
           in: path
@@ -1283,7 +1247,6 @@ paths:
       tags:
         - Categories
       summary: List all Categories
-      operationId: listCategories
       parameters: []
       responses:
         "200":
@@ -1308,7 +1271,6 @@ paths:
       tags:
         - Categories
       summary: Create a new Category
-      operationId: createCategories
       requestBody:
         required: true
         content:
@@ -1333,7 +1295,6 @@ paths:
       tags:
         - Categories
       summary: Get a Category by id
-      operationId: getCategoriesById
       parameters:
         - name: id
           in: path
@@ -1360,7 +1321,6 @@ paths:
       tags:
         - Categories
       summary: Replace a Category
-      operationId: replaceCategories
       parameters:
         - name: id
           in: path
@@ -1391,7 +1351,6 @@ paths:
       tags:
         - Categories
       summary: Partially update a Category
-      operationId: patchCategories
       parameters:
         - name: id
           in: path
@@ -1422,7 +1381,6 @@ paths:
       tags:
         - Categories
       summary: Delete a Category
-      operationId: deleteCategories
       parameters:
         - name: id
           in: path
@@ -1438,7 +1396,6 @@ paths:
       tags:
         - Orders
       summary: List all Orders
-      operationId: listOrders
       parameters:
         - name: page
           in: query
@@ -1525,7 +1482,6 @@ paths:
       tags:
         - Orders
       summary: Create a new Order
-      operationId: createOrders
       requestBody:
         required: true
         content:
@@ -1545,117 +1501,11 @@ paths:
             text/plain:
               schema:
                 "$ref": "#/components/schemas/Order"
-  "/api/v1/Orders/{id}":
-    get:
-      tags:
-        - Orders
-      summary: Get a Order by id
-      operationId: getOrdersById
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Order"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/Order"
-            text/plain:
-              schema:
-                "$ref": "#/components/schemas/Order"
-        "404":
-          description: Not Found
-    put:
-      tags:
-        - Orders
-      summary: Replace a Order
-      operationId: replaceOrders
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/Order"
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Order"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/Order"
-            text/plain:
-              schema:
-                "$ref": "#/components/schemas/Order"
-    patch:
-      tags:
-        - Orders
-      summary: Partially update a Order
-      operationId: patchOrders
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/Order"
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/Order"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/Order"
-            text/plain:
-              schema:
-                "$ref": "#/components/schemas/Order"
-    delete:
-      tags:
-        - Orders
-      summary: Delete a Order
-      operationId: deleteOrders
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
   "/api/v1/OrderItems":
     get:
       tags:
         - OrderItems
       summary: List all OrderItems
-      operationId: listOrderItems
       parameters: []
       responses:
         "200":
@@ -1680,7 +1530,6 @@ paths:
       tags:
         - OrderItems
       summary: Create a new OrderItem
-      operationId: createOrderItems
       requestBody:
         required: true
         content:
@@ -1705,7 +1554,6 @@ paths:
       tags:
         - OrderItems
       summary: Get a OrderItem by id
-      operationId: getOrderItemsById
       parameters:
         - name: id
           in: path
@@ -1732,7 +1580,6 @@ paths:
       tags:
         - OrderItems
       summary: Replace a OrderItem
-      operationId: replaceOrderItems
       parameters:
         - name: id
           in: path
@@ -1763,7 +1610,6 @@ paths:
       tags:
         - OrderItems
       summary: Partially update a OrderItem
-      operationId: patchOrderItems
       parameters:
         - name: id
           in: path
@@ -1794,7 +1640,6 @@ paths:
       tags:
         - OrderItems
       summary: Delete a OrderItem
-      operationId: deleteOrderItems
       parameters:
         - name: id
           in: path
@@ -1810,7 +1655,6 @@ paths:
       tags:
         - Customers
       summary: List all Customers
-      operationId: listCustomers
       parameters:
         - name: page
           in: query
@@ -1897,7 +1741,6 @@ paths:
       tags:
         - Customers
       summary: Create a new Customer
-      operationId: createCustomers
       requestBody:
         required: true
         content:
@@ -1922,7 +1765,6 @@ paths:
       tags:
         - Customers
       summary: Get a Customer by id
-      operationId: getCustomersById
       parameters:
         - name: id
           in: path
@@ -1949,7 +1791,6 @@ paths:
       tags:
         - Customers
       summary: Replace a Customer
-      operationId: replaceCustomers
       parameters:
         - name: id
           in: path
@@ -1980,7 +1821,6 @@ paths:
       tags:
         - Customers
       summary: Partially update a Customer
-      operationId: patchCustomers
       parameters:
         - name: id
           in: path
@@ -2011,7 +1851,6 @@ paths:
       tags:
         - Customers
       summary: Delete a Customer
-      operationId: deleteCustomers
       parameters:
         - name: id
           in: path
@@ -2027,7 +1866,6 @@ paths:
       tags:
         - Employees
       summary: List all Employees
-      operationId: listEmployees
       parameters: []
       responses:
         "200":
@@ -2052,7 +1890,6 @@ paths:
       tags:
         - Employees
       summary: Create a new Employee
-      operationId: createEmployees
       requestBody:
         required: true
         content:
@@ -2077,7 +1914,6 @@ paths:
       tags:
         - Employees
       summary: Get a Employee by id
-      operationId: getEmployeesById
       parameters:
         - name: id
           in: path
@@ -2104,7 +1940,6 @@ paths:
       tags:
         - Employees
       summary: Replace a Employee
-      operationId: replaceEmployees
       parameters:
         - name: id
           in: path
@@ -2135,7 +1970,6 @@ paths:
       tags:
         - Employees
       summary: Partially update a Employee
-      operationId: patchEmployees
       parameters:
         - name: id
           in: path
@@ -2166,7 +2000,6 @@ paths:
       tags:
         - Employees
       summary: Delete a Employee
-      operationId: deleteEmployees
       parameters:
         - name: id
           in: path
@@ -2182,7 +2015,6 @@ paths:
       tags:
         - Departments
       summary: List all Departments
-      operationId: listDepartments
       parameters: []
       responses:
         "200":
@@ -2207,7 +2039,6 @@ paths:
       tags:
         - Departments
       summary: Create a new Department
-      operationId: createDepartments
       requestBody:
         required: true
         content:
@@ -2232,7 +2063,6 @@ paths:
       tags:
         - Departments
       summary: Get a Department by id
-      operationId: getDepartmentsById
       parameters:
         - name: id
           in: path
@@ -2259,7 +2089,6 @@ paths:
       tags:
         - Departments
       summary: Replace a Department
-      operationId: replaceDepartments
       parameters:
         - name: id
           in: path
@@ -2290,7 +2119,6 @@ paths:
       tags:
         - Departments
       summary: Partially update a Department
-      operationId: patchDepartments
       parameters:
         - name: id
           in: path
@@ -2321,7 +2149,6 @@ paths:
       tags:
         - Departments
       summary: Delete a Department
-      operationId: deleteDepartments
       parameters:
         - name: id
           in: path
@@ -2337,7 +2164,6 @@ paths:
       tags:
         - Companies
       summary: List all Companies
-      operationId: listCompanies
       parameters: []
       responses:
         "200":
@@ -2362,7 +2188,6 @@ paths:
       tags:
         - Companies
       summary: Create a new Company
-      operationId: createCompanies
       requestBody:
         required: true
         content:
@@ -2387,7 +2212,6 @@ paths:
       tags:
         - Companies
       summary: Get a Company by id
-      operationId: getCompaniesById
       parameters:
         - name: id
           in: path
@@ -2414,7 +2238,6 @@ paths:
       tags:
         - Companies
       summary: Replace a Company
-      operationId: replaceCompanies
       parameters:
         - name: id
           in: path
@@ -2445,7 +2268,6 @@ paths:
       tags:
         - Companies
       summary: Partially update a Company
-      operationId: patchCompanies
       parameters:
         - name: id
           in: path
@@ -2476,7 +2298,6 @@ paths:
       tags:
         - Companies
       summary: Delete a Company
-      operationId: deleteCompanies
       parameters:
         - name: id
           in: path
@@ -2492,7 +2313,6 @@ paths:
       tags:
         - Projects
       summary: List all Projects
-      operationId: listProjects
       parameters: []
       responses:
         "200":
@@ -2517,7 +2337,6 @@ paths:
       tags:
         - Projects
       summary: Create a new Project
-      operationId: createProjects
       requestBody:
         required: true
         content:
@@ -2542,7 +2361,6 @@ paths:
       tags:
         - Projects
       summary: Get a Project by id
-      operationId: getProjectsById
       parameters:
         - name: id
           in: path
@@ -2569,7 +2387,6 @@ paths:
       tags:
         - Projects
       summary: Replace a Project
-      operationId: replaceProjects
       parameters:
         - name: id
           in: path
@@ -2600,7 +2417,6 @@ paths:
       tags:
         - Projects
       summary: Partially update a Project
-      operationId: patchProjects
       parameters:
         - name: id
           in: path
@@ -2631,7 +2447,6 @@ paths:
       tags:
         - Projects
       summary: Delete a Project
-      operationId: deleteProjects
       parameters:
         - name: id
           in: path
@@ -2647,7 +2462,6 @@ paths:
       tags:
         - Tasks
       summary: List all Tasks
-      operationId: listTasks
       parameters: []
       responses:
         "200":
@@ -2672,7 +2486,6 @@ paths:
       tags:
         - Tasks
       summary: Create a new Task
-      operationId: createTasks
       requestBody:
         required: true
         content:
@@ -2697,7 +2510,6 @@ paths:
       tags:
         - Tasks
       summary: Get a Task by id
-      operationId: getTasksById
       parameters:
         - name: id
           in: path
@@ -2724,7 +2536,6 @@ paths:
       tags:
         - Tasks
       summary: Replace a Task
-      operationId: replaceTasks
       parameters:
         - name: id
           in: path
@@ -2755,7 +2566,6 @@ paths:
       tags:
         - Tasks
       summary: Partially update a Task
-      operationId: patchTasks
       parameters:
         - name: id
           in: path
@@ -2786,7 +2596,6 @@ paths:
       tags:
         - Tasks
       summary: Delete a Task
-      operationId: deleteTasks
       parameters:
         - name: id
           in: path
@@ -2802,7 +2611,6 @@ paths:
       tags:
         - Tags
       summary: List all Tags
-      operationId: listTags
       parameters: []
       responses:
         "200":
@@ -2827,7 +2635,6 @@ paths:
       tags:
         - Tags
       summary: Create a new Tag
-      operationId: createTags
       requestBody:
         required: true
         content:
@@ -2852,7 +2659,6 @@ paths:
       tags:
         - Tags
       summary: Get a Tag by id
-      operationId: getTagsById
       parameters:
         - name: id
           in: path
@@ -2879,7 +2685,6 @@ paths:
       tags:
         - Tags
       summary: Replace a Tag
-      operationId: replaceTags
       parameters:
         - name: id
           in: path
@@ -2910,7 +2715,6 @@ paths:
       tags:
         - Tags
       summary: Partially update a Tag
-      operationId: patchTags
       parameters:
         - name: id
           in: path
@@ -2941,7 +2745,6 @@ paths:
       tags:
         - Tags
       summary: Delete a Tag
-      operationId: deleteTags
       parameters:
         - name: id
           in: path
@@ -2957,7 +2760,6 @@ paths:
       tags:
         - Comments
       summary: List all Comments
-      operationId: listComments
       parameters: []
       responses:
         "200":
@@ -2982,7 +2784,6 @@ paths:
       tags:
         - Comments
       summary: Create a new Comment
-      operationId: createComments
       requestBody:
         required: true
         content:
@@ -3007,7 +2808,6 @@ paths:
       tags:
         - Comments
       summary: Get a Comment by id
-      operationId: getCommentsById
       parameters:
         - name: id
           in: path
@@ -3034,7 +2834,6 @@ paths:
       tags:
         - Comments
       summary: Replace a Comment
-      operationId: replaceComments
       parameters:
         - name: id
           in: path
@@ -3065,7 +2864,6 @@ paths:
       tags:
         - Comments
       summary: Partially update a Comment
-      operationId: patchComments
       parameters:
         - name: id
           in: path
@@ -3096,7 +2894,6 @@ paths:
       tags:
         - Comments
       summary: Delete a Comment
-      operationId: deleteComments
       parameters:
         - name: id
           in: path
@@ -3112,7 +2909,6 @@ paths:
       tags:
         - Posts
       summary: List all Posts
-      operationId: listPosts
       parameters:
         - name: page
           in: query
@@ -3199,7 +2995,6 @@ paths:
       tags:
         - Posts
       summary: Create a new Post
-      operationId: createPosts
       requestBody:
         required: true
         content:
@@ -3224,7 +3019,6 @@ paths:
       tags:
         - Posts
       summary: Get a Post by id
-      operationId: getPostsById
       parameters:
         - name: id
           in: path
@@ -3251,7 +3045,6 @@ paths:
       tags:
         - Posts
       summary: Replace a Post
-      operationId: replacePosts
       parameters:
         - name: id
           in: path
@@ -3282,7 +3075,6 @@ paths:
       tags:
         - Posts
       summary: Partially update a Post
-      operationId: patchPosts
       parameters:
         - name: id
           in: path
@@ -3313,7 +3105,6 @@ paths:
       tags:
         - Posts
       summary: Delete a Post
-      operationId: deletePosts
       parameters:
         - name: id
           in: path
@@ -3329,7 +3120,6 @@ paths:
       tags:
         - Articles
       summary: List all Articles
-      operationId: listArticles
       parameters:
         - name: page
           in: query
@@ -3416,7 +3206,6 @@ paths:
       tags:
         - Articles
       summary: Create a new Article
-      operationId: createArticles
       requestBody:
         required: true
         content:
@@ -3441,7 +3230,6 @@ paths:
       tags:
         - Articles
       summary: Get a Article by id
-      operationId: getArticlesById
       parameters:
         - name: id
           in: path
@@ -3468,7 +3256,6 @@ paths:
       tags:
         - Articles
       summary: Replace a Article
-      operationId: replaceArticles
       parameters:
         - name: id
           in: path
@@ -3499,7 +3286,6 @@ paths:
       tags:
         - Articles
       summary: Partially update a Article
-      operationId: patchArticles
       parameters:
         - name: id
           in: path
@@ -3530,7 +3316,6 @@ paths:
       tags:
         - Articles
       summary: Delete a Article
-      operationId: deleteArticles
       parameters:
         - name: id
           in: path
@@ -3546,7 +3331,6 @@ paths:
       tags:
         - Reviews
       summary: List all Reviews
-      operationId: listReviews
       parameters:
         - name: page
           in: query
@@ -3633,7 +3417,6 @@ paths:
       tags:
         - Reviews
       summary: Create a new Review
-      operationId: createReviews
       requestBody:
         required: true
         content:
@@ -3658,7 +3441,6 @@ paths:
       tags:
         - Reviews
       summary: Get a Review by id
-      operationId: getReviewsById
       parameters:
         - name: id
           in: path
@@ -3685,7 +3467,6 @@ paths:
       tags:
         - Reviews
       summary: Replace a Review
-      operationId: replaceReviews
       parameters:
         - name: id
           in: path
@@ -3716,7 +3497,6 @@ paths:
       tags:
         - Reviews
       summary: Partially update a Review
-      operationId: patchReviews
       parameters:
         - name: id
           in: path
@@ -3747,7 +3527,6 @@ paths:
       tags:
         - Reviews
       summary: Delete a Review
-      operationId: deleteReviews
       parameters:
         - name: id
           in: path
@@ -3763,7 +3542,6 @@ paths:
       tags:
         - Notifications
       summary: List all Notifications
-      operationId: listNotifications
       parameters:
         - name: page
           in: query
@@ -3850,7 +3628,6 @@ paths:
       tags:
         - Notifications
       summary: Create a new Notification
-      operationId: createNotifications
       requestBody:
         required: true
         content:
@@ -3875,7 +3652,6 @@ paths:
       tags:
         - Notifications
       summary: Get a Notification by id
-      operationId: getNotificationsById
       parameters:
         - name: id
           in: path
@@ -3902,7 +3678,6 @@ paths:
       tags:
         - Notifications
       summary: Replace a Notification
-      operationId: replaceNotifications
       parameters:
         - name: id
           in: path
@@ -3933,7 +3708,6 @@ paths:
       tags:
         - Notifications
       summary: Partially update a Notification
-      operationId: patchNotifications
       parameters:
         - name: id
           in: path
@@ -3964,7 +3738,6 @@ paths:
       tags:
         - Notifications
       summary: Delete a Notification
-      operationId: deleteNotifications
       parameters:
         - name: id
           in: path
@@ -3980,7 +3753,6 @@ paths:
       tags:
         - Events
       summary: List all Events
-      operationId: listEvents
       parameters:
         - name: page
           in: query
@@ -4067,7 +3839,6 @@ paths:
       tags:
         - Events
       summary: Create a new Event
-      operationId: createEvents
       requestBody:
         required: true
         content:
@@ -4092,7 +3863,6 @@ paths:
       tags:
         - Events
       summary: Get a Event by id
-      operationId: getEventsById
       parameters:
         - name: id
           in: path
@@ -4119,7 +3889,6 @@ paths:
       tags:
         - Events
       summary: Replace a Event
-      operationId: replaceEvents
       parameters:
         - name: id
           in: path
@@ -4150,7 +3919,6 @@ paths:
       tags:
         - Events
       summary: Partially update a Event
-      operationId: patchEvents
       parameters:
         - name: id
           in: path
@@ -4181,7 +3949,6 @@ paths:
       tags:
         - Events
       summary: Delete a Event
-      operationId: deleteEvents
       parameters:
         - name: id
           in: path
@@ -4197,7 +3964,6 @@ paths:
       tags:
         - Tickets
       summary: List all Tickets
-      operationId: listTickets
       parameters: []
       responses:
         "200":
@@ -4222,7 +3988,6 @@ paths:
       tags:
         - Tickets
       summary: Create a new Ticket
-      operationId: createTickets
       requestBody:
         required: true
         content:
@@ -4247,7 +4012,6 @@ paths:
       tags:
         - Tickets
       summary: Get a Ticket by id
-      operationId: getTicketsById
       parameters:
         - name: id
           in: path
@@ -4274,7 +4038,6 @@ paths:
       tags:
         - Tickets
       summary: Replace a Ticket
-      operationId: replaceTickets
       parameters:
         - name: id
           in: path
@@ -4305,7 +4068,6 @@ paths:
       tags:
         - Tickets
       summary: Partially update a Ticket
-      operationId: patchTickets
       parameters:
         - name: id
           in: path
@@ -4336,7 +4098,6 @@ paths:
       tags:
         - Tickets
       summary: Delete a Ticket
-      operationId: deleteTickets
       parameters:
         - name: id
           in: path
@@ -4352,7 +4113,6 @@ paths:
       tags:
         - Venues
       summary: List all Venues
-      operationId: listVenues
       parameters: []
       responses:
         "200":
@@ -4377,7 +4137,6 @@ paths:
       tags:
         - Venues
       summary: Create a new Venue
-      operationId: createVenues
       requestBody:
         required: true
         content:
@@ -4402,7 +4161,6 @@ paths:
       tags:
         - Venues
       summary: Get a Venue by id
-      operationId: getVenuesById
       parameters:
         - name: id
           in: path
@@ -4429,7 +4187,6 @@ paths:
       tags:
         - Venues
       summary: Replace a Venue
-      operationId: replaceVenues
       parameters:
         - name: id
           in: path
@@ -4460,7 +4217,6 @@ paths:
       tags:
         - Venues
       summary: Partially update a Venue
-      operationId: patchVenues
       parameters:
         - name: id
           in: path
@@ -4491,7 +4247,6 @@ paths:
       tags:
         - Venues
       summary: Delete a Venue
-      operationId: deleteVenues
       parameters:
         - name: id
           in: path
@@ -4507,7 +4262,6 @@ paths:
       tags:
         - Cities
       summary: List all Cities
-      operationId: listCities
       parameters: []
       responses:
         "200":
@@ -4532,7 +4286,6 @@ paths:
       tags:
         - Cities
       summary: Create a new City
-      operationId: createCities
       requestBody:
         required: true
         content:
@@ -4557,7 +4310,6 @@ paths:
       tags:
         - Cities
       summary: Get a City by id
-      operationId: getCitiesById
       parameters:
         - name: id
           in: path
@@ -4584,7 +4336,6 @@ paths:
       tags:
         - Cities
       summary: Replace a City
-      operationId: replaceCities
       parameters:
         - name: id
           in: path
@@ -4615,7 +4366,6 @@ paths:
       tags:
         - Cities
       summary: Partially update a City
-      operationId: patchCities
       parameters:
         - name: id
           in: path
@@ -4646,7 +4396,6 @@ paths:
       tags:
         - Cities
       summary: Delete a City
-      operationId: deleteCities
       parameters:
         - name: id
           in: path
@@ -4662,7 +4411,6 @@ paths:
       tags:
         - Countries
       summary: List all Countries
-      operationId: listCountries
       parameters: []
       responses:
         "200":
@@ -4687,7 +4435,6 @@ paths:
       tags:
         - Countries
       summary: Create a new Country
-      operationId: createCountries
       requestBody:
         required: true
         content:
@@ -4712,7 +4459,6 @@ paths:
       tags:
         - Countries
       summary: Get a Country by id
-      operationId: getCountriesById
       parameters:
         - name: id
           in: path
@@ -4739,7 +4485,6 @@ paths:
       tags:
         - Countries
       summary: Replace a Country
-      operationId: replaceCountries
       parameters:
         - name: id
           in: path
@@ -4770,7 +4515,6 @@ paths:
       tags:
         - Countries
       summary: Partially update a Country
-      operationId: patchCountries
       parameters:
         - name: id
           in: path
@@ -4801,7 +4545,6 @@ paths:
       tags:
         - Countries
       summary: Delete a Country
-      operationId: deleteCountries
       parameters:
         - name: id
           in: path
@@ -4817,7 +4560,6 @@ paths:
       tags:
         - Addresses
       summary: List all Addresses
-      operationId: listAddresses
       parameters: []
       responses:
         "200":
@@ -4842,7 +4584,6 @@ paths:
       tags:
         - Addresses
       summary: Create a new Addresse
-      operationId: createAddresses
       requestBody:
         required: true
         content:
@@ -4867,7 +4608,6 @@ paths:
       tags:
         - Addresses
       summary: Get a Addresse by id
-      operationId: getAddressesById
       parameters:
         - name: id
           in: path
@@ -4894,7 +4634,6 @@ paths:
       tags:
         - Addresses
       summary: Replace a Addresse
-      operationId: replaceAddresses
       parameters:
         - name: id
           in: path
@@ -4925,7 +4664,6 @@ paths:
       tags:
         - Addresses
       summary: Partially update a Addresse
-      operationId: patchAddresses
       parameters:
         - name: id
           in: path
@@ -4956,7 +4694,6 @@ paths:
       tags:
         - Addresses
       summary: Delete a Addresse
-      operationId: deleteAddresses
       parameters:
         - name: id
           in: path
@@ -4972,7 +4709,6 @@ paths:
       tags:
         - Suppliers
       summary: List all Suppliers
-      operationId: listSuppliers
       parameters: []
       responses:
         "200":
@@ -4997,7 +4733,6 @@ paths:
       tags:
         - Suppliers
       summary: Create a new Supplier
-      operationId: createSuppliers
       requestBody:
         required: true
         content:
@@ -5022,7 +4757,6 @@ paths:
       tags:
         - Suppliers
       summary: Get a Supplier by id
-      operationId: getSuppliersById
       parameters:
         - name: id
           in: path
@@ -5049,7 +4783,6 @@ paths:
       tags:
         - Suppliers
       summary: Replace a Supplier
-      operationId: replaceSuppliers
       parameters:
         - name: id
           in: path
@@ -5080,7 +4813,6 @@ paths:
       tags:
         - Suppliers
       summary: Partially update a Supplier
-      operationId: patchSuppliers
       parameters:
         - name: id
           in: path
@@ -5111,7 +4843,6 @@ paths:
       tags:
         - Suppliers
       summary: Delete a Supplier
-      operationId: deleteSuppliers
       parameters:
         - name: id
           in: path
@@ -5127,7 +4858,6 @@ paths:
       tags:
         - Warehouses
       summary: List all Warehouses
-      operationId: listWarehouses
       parameters: []
       responses:
         "200":
@@ -5152,7 +4882,6 @@ paths:
       tags:
         - Warehouses
       summary: Create a new Warehouse
-      operationId: createWarehouses
       requestBody:
         required: true
         content:
@@ -5177,7 +4906,6 @@ paths:
       tags:
         - Warehouses
       summary: Get a Warehouse by id
-      operationId: getWarehousesById
       parameters:
         - name: id
           in: path
@@ -5204,7 +4932,6 @@ paths:
       tags:
         - Warehouses
       summary: Replace a Warehouse
-      operationId: replaceWarehouses
       parameters:
         - name: id
           in: path
@@ -5235,7 +4962,6 @@ paths:
       tags:
         - Warehouses
       summary: Partially update a Warehouse
-      operationId: patchWarehouses
       parameters:
         - name: id
           in: path
@@ -5266,7 +4992,6 @@ paths:
       tags:
         - Warehouses
       summary: Delete a Warehouse
-      operationId: deleteWarehouses
       parameters:
         - name: id
           in: path
@@ -5282,7 +5007,6 @@ paths:
       tags:
         - Inventories
       summary: List all Inventories
-      operationId: listInventories
       parameters: []
       responses:
         "200":
@@ -5307,7 +5031,6 @@ paths:
       tags:
         - Inventories
       summary: Create a new Inventory
-      operationId: createInventories
       requestBody:
         required: true
         content:
@@ -5332,7 +5055,6 @@ paths:
       tags:
         - Inventories
       summary: Get a Inventory by id
-      operationId: getInventoriesById
       parameters:
         - name: id
           in: path
@@ -5359,7 +5081,6 @@ paths:
       tags:
         - Inventories
       summary: Replace a Inventory
-      operationId: replaceInventories
       parameters:
         - name: id
           in: path
@@ -5390,7 +5111,6 @@ paths:
       tags:
         - Inventories
       summary: Partially update a Inventory
-      operationId: patchInventories
       parameters:
         - name: id
           in: path
@@ -5421,7 +5141,6 @@ paths:
       tags:
         - Inventories
       summary: Delete a Inventory
-      operationId: deleteInventories
       parameters:
         - name: id
           in: path
@@ -5437,7 +5156,6 @@ paths:
       tags:
         - Shipments
       summary: List all Shipments
-      operationId: listShipments
       parameters: []
       responses:
         "200":
@@ -5462,7 +5180,6 @@ paths:
       tags:
         - Shipments
       summary: Create a new Shipment
-      operationId: createShipments
       requestBody:
         required: true
         content:
@@ -5487,7 +5204,6 @@ paths:
       tags:
         - Shipments
       summary: Get a Shipment by id
-      operationId: getShipmentsById
       parameters:
         - name: id
           in: path
@@ -5514,7 +5230,6 @@ paths:
       tags:
         - Shipments
       summary: Replace a Shipment
-      operationId: replaceShipments
       parameters:
         - name: id
           in: path
@@ -5545,7 +5260,6 @@ paths:
       tags:
         - Shipments
       summary: Partially update a Shipment
-      operationId: patchShipments
       parameters:
         - name: id
           in: path
@@ -5576,7 +5290,6 @@ paths:
       tags:
         - Shipments
       summary: Delete a Shipment
-      operationId: deleteShipments
       parameters:
         - name: id
           in: path
@@ -5592,7 +5305,6 @@ paths:
       tags:
         - Invoices
       summary: List all Invoices
-      operationId: listInvoices
       parameters:
         - name: page
           in: query
@@ -5679,7 +5391,6 @@ paths:
       tags:
         - Invoices
       summary: Create a new Invoice
-      operationId: createInvoices
       requestBody:
         required: true
         content:
@@ -5704,7 +5415,6 @@ paths:
       tags:
         - Invoices
       summary: Get a Invoice by id
-      operationId: getInvoicesById
       parameters:
         - name: id
           in: path
@@ -5731,7 +5441,6 @@ paths:
       tags:
         - Invoices
       summary: Replace a Invoice
-      operationId: replaceInvoices
       parameters:
         - name: id
           in: path
@@ -5762,7 +5471,6 @@ paths:
       tags:
         - Invoices
       summary: Partially update a Invoice
-      operationId: patchInvoices
       parameters:
         - name: id
           in: path
@@ -5793,7 +5501,6 @@ paths:
       tags:
         - Invoices
       summary: Delete a Invoice
-      operationId: deleteInvoices
       parameters:
         - name: id
           in: path
@@ -5809,7 +5516,6 @@ paths:
       tags:
         - Payments
       summary: List all Payments
-      operationId: listPayments
       parameters:
         - name: page
           in: query
@@ -5896,7 +5602,6 @@ paths:
       tags:
         - Payments
       summary: Create a new Payment
-      operationId: createPayments
       requestBody:
         required: true
         content:
@@ -5921,7 +5626,6 @@ paths:
       tags:
         - Payments
       summary: Get a Payment by id
-      operationId: getPaymentsById
       parameters:
         - name: id
           in: path
@@ -5948,7 +5652,6 @@ paths:
       tags:
         - Payments
       summary: Replace a Payment
-      operationId: replacePayments
       parameters:
         - name: id
           in: path
@@ -5979,7 +5682,6 @@ paths:
       tags:
         - Payments
       summary: Partially update a Payment
-      operationId: patchPayments
       parameters:
         - name: id
           in: path
@@ -6010,7 +5712,6 @@ paths:
       tags:
         - Payments
       summary: Delete a Payment
-      operationId: deletePayments
       parameters:
         - name: id
           in: path
@@ -6026,7 +5727,6 @@ paths:
       tags:
         - Coupons
       summary: List all Coupons
-      operationId: listCoupons
       parameters: []
       responses:
         "200":
@@ -6051,7 +5751,6 @@ paths:
       tags:
         - Coupons
       summary: Create a new Coupon
-      operationId: createCoupons
       requestBody:
         required: true
         content:
@@ -6076,7 +5775,6 @@ paths:
       tags:
         - Coupons
       summary: Get a Coupon by id
-      operationId: getCouponsById
       parameters:
         - name: id
           in: path
@@ -6103,7 +5801,6 @@ paths:
       tags:
         - Coupons
       summary: Replace a Coupon
-      operationId: replaceCoupons
       parameters:
         - name: id
           in: path
@@ -6134,7 +5831,6 @@ paths:
       tags:
         - Coupons
       summary: Partially update a Coupon
-      operationId: patchCoupons
       parameters:
         - name: id
           in: path
@@ -6165,7 +5861,6 @@ paths:
       tags:
         - Coupons
       summary: Delete a Coupon
-      operationId: deleteCoupons
       parameters:
         - name: id
           in: path
@@ -6181,7 +5876,6 @@ paths:
       tags:
         - Carts
       summary: List all Carts
-      operationId: listCarts
       parameters: []
       responses:
         "200":
@@ -6206,7 +5900,6 @@ paths:
       tags:
         - Carts
       summary: Create a new Cart
-      operationId: createCarts
       requestBody:
         required: true
         content:
@@ -6231,7 +5924,6 @@ paths:
       tags:
         - Carts
       summary: Get a Cart by id
-      operationId: getCartsById
       parameters:
         - name: id
           in: path
@@ -6258,7 +5950,6 @@ paths:
       tags:
         - Carts
       summary: Replace a Cart
-      operationId: replaceCarts
       parameters:
         - name: id
           in: path
@@ -6289,7 +5980,6 @@ paths:
       tags:
         - Carts
       summary: Partially update a Cart
-      operationId: patchCarts
       parameters:
         - name: id
           in: path
@@ -6320,7 +6010,6 @@ paths:
       tags:
         - Carts
       summary: Delete a Cart
-      operationId: deleteCarts
       parameters:
         - name: id
           in: path
@@ -6336,7 +6025,6 @@ paths:
       tags:
         - Wishlists
       summary: List all Wishlists
-      operationId: listWishlists
       parameters: []
       responses:
         "200":
@@ -6361,7 +6049,6 @@ paths:
       tags:
         - Wishlists
       summary: Create a new Wishlist
-      operationId: createWishlists
       requestBody:
         required: true
         content:
@@ -6386,7 +6073,6 @@ paths:
       tags:
         - Wishlists
       summary: Get a Wishlist by id
-      operationId: getWishlistsById
       parameters:
         - name: id
           in: path
@@ -6413,7 +6099,6 @@ paths:
       tags:
         - Wishlists
       summary: Replace a Wishlist
-      operationId: replaceWishlists
       parameters:
         - name: id
           in: path
@@ -6444,7 +6129,6 @@ paths:
       tags:
         - Wishlists
       summary: Partially update a Wishlist
-      operationId: patchWishlists
       parameters:
         - name: id
           in: path
@@ -6475,7 +6159,6 @@ paths:
       tags:
         - Wishlists
       summary: Delete a Wishlist
-      operationId: deleteWishlists
       parameters:
         - name: id
           in: path
@@ -6491,7 +6174,6 @@ paths:
       tags:
         - Subscriptions
       summary: List all Subscriptions
-      operationId: listSubscriptions
       parameters: []
       responses:
         "200":
@@ -6516,7 +6198,6 @@ paths:
       tags:
         - Subscriptions
       summary: Create a new Subscription
-      operationId: createSubscriptions
       requestBody:
         required: true
         content:
@@ -6541,7 +6222,6 @@ paths:
       tags:
         - Subscriptions
       summary: Get a Subscription by id
-      operationId: getSubscriptionsById
       parameters:
         - name: id
           in: path
@@ -6568,7 +6248,6 @@ paths:
       tags:
         - Subscriptions
       summary: Replace a Subscription
-      operationId: replaceSubscriptions
       parameters:
         - name: id
           in: path
@@ -6599,7 +6278,6 @@ paths:
       tags:
         - Subscriptions
       summary: Partially update a Subscription
-      operationId: patchSubscriptions
       parameters:
         - name: id
           in: path
@@ -6630,7 +6308,6 @@ paths:
       tags:
         - Subscriptions
       summary: Delete a Subscription
-      operationId: deleteSubscriptions
       parameters:
         - name: id
           in: path
@@ -6646,7 +6323,6 @@ paths:
       tags:
         - Plans
       summary: List all Plans
-      operationId: listPlans
       parameters: []
       responses:
         "200":
@@ -6671,7 +6347,6 @@ paths:
       tags:
         - Plans
       summary: Create a new Plan
-      operationId: createPlans
       requestBody:
         required: true
         content:
@@ -6696,7 +6371,6 @@ paths:
       tags:
         - Plans
       summary: Get a Plan by id
-      operationId: getPlansById
       parameters:
         - name: id
           in: path
@@ -6723,7 +6397,6 @@ paths:
       tags:
         - Plans
       summary: Replace a Plan
-      operationId: replacePlans
       parameters:
         - name: id
           in: path
@@ -6754,7 +6427,6 @@ paths:
       tags:
         - Plans
       summary: Partially update a Plan
-      operationId: patchPlans
       parameters:
         - name: id
           in: path
@@ -6785,7 +6457,6 @@ paths:
       tags:
         - Plans
       summary: Delete a Plan
-      operationId: deletePlans
       parameters:
         - name: id
           in: path
@@ -6801,7 +6472,6 @@ paths:
       tags:
         - Roles
       summary: List all Roles
-      operationId: listRoles
       parameters: []
       responses:
         "200":
@@ -6826,7 +6496,6 @@ paths:
       tags:
         - Roles
       summary: Create a new Role
-      operationId: createRoles
       requestBody:
         required: true
         content:
@@ -6851,7 +6520,6 @@ paths:
       tags:
         - Roles
       summary: Get a Role by id
-      operationId: getRolesById
       parameters:
         - name: id
           in: path
@@ -6878,7 +6546,6 @@ paths:
       tags:
         - Roles
       summary: Replace a Role
-      operationId: replaceRoles
       parameters:
         - name: id
           in: path
@@ -6909,7 +6576,6 @@ paths:
       tags:
         - Roles
       summary: Partially update a Role
-      operationId: patchRoles
       parameters:
         - name: id
           in: path
@@ -6940,7 +6606,6 @@ paths:
       tags:
         - Roles
       summary: Delete a Role
-      operationId: deleteRoles
       parameters:
         - name: id
           in: path
@@ -6956,7 +6621,6 @@ paths:
       tags:
         - Permissions
       summary: List all Permissions
-      operationId: listPermissions
       parameters: []
       responses:
         "200":
@@ -6981,7 +6645,6 @@ paths:
       tags:
         - Permissions
       summary: Create a new Permission
-      operationId: createPermissions
       requestBody:
         required: true
         content:
@@ -7006,7 +6669,6 @@ paths:
       tags:
         - Permissions
       summary: Get a Permission by id
-      operationId: getPermissionsById
       parameters:
         - name: id
           in: path
@@ -7033,7 +6695,6 @@ paths:
       tags:
         - Permissions
       summary: Replace a Permission
-      operationId: replacePermissions
       parameters:
         - name: id
           in: path
@@ -7064,7 +6725,6 @@ paths:
       tags:
         - Permissions
       summary: Partially update a Permission
-      operationId: patchPermissions
       parameters:
         - name: id
           in: path
@@ -7095,7 +6755,6 @@ paths:
       tags:
         - Permissions
       summary: Delete a Permission
-      operationId: deletePermissions
       parameters:
         - name: id
           in: path
@@ -7111,7 +6770,6 @@ paths:
       tags:
         - Sessions
       summary: List all Sessions
-      operationId: listSessions
       parameters: []
       responses:
         "200":
@@ -7136,7 +6794,6 @@ paths:
       tags:
         - Sessions
       summary: Create a new Session
-      operationId: createSessions
       requestBody:
         required: true
         content:
@@ -7161,7 +6818,6 @@ paths:
       tags:
         - Sessions
       summary: Get a Session by id
-      operationId: getSessionsById
       parameters:
         - name: id
           in: path
@@ -7188,7 +6844,6 @@ paths:
       tags:
         - Sessions
       summary: Replace a Session
-      operationId: replaceSessions
       parameters:
         - name: id
           in: path
@@ -7219,7 +6874,6 @@ paths:
       tags:
         - Sessions
       summary: Partially update a Session
-      operationId: patchSessions
       parameters:
         - name: id
           in: path
@@ -7250,7 +6904,6 @@ paths:
       tags:
         - Sessions
       summary: Delete a Session
-      operationId: deleteSessions
       parameters:
         - name: id
           in: path
@@ -7266,7 +6919,6 @@ paths:
       tags:
         - Logs
       summary: List all Logs
-      operationId: listLogs
       parameters:
         - name: page
           in: query
@@ -7353,7 +7005,6 @@ paths:
       tags:
         - Logs
       summary: Create a new Log
-      operationId: createLogs
       requestBody:
         required: true
         content:
@@ -7378,7 +7029,6 @@ paths:
       tags:
         - Logs
       summary: Get a Log by id
-      operationId: getLogsById
       parameters:
         - name: id
           in: path
@@ -7405,7 +7055,6 @@ paths:
       tags:
         - Logs
       summary: Replace a Log
-      operationId: replaceLogs
       parameters:
         - name: id
           in: path
@@ -7436,7 +7085,6 @@ paths:
       tags:
         - Logs
       summary: Partially update a Log
-      operationId: patchLogs
       parameters:
         - name: id
           in: path
@@ -7467,7 +7115,6 @@ paths:
       tags:
         - Logs
       summary: Delete a Log
-      operationId: deleteLogs
       parameters:
         - name: id
           in: path
@@ -7483,7 +7130,6 @@ paths:
       tags:
         - Files
       summary: List all Files
-      operationId: listFiles
       parameters: []
       responses:
         "200":
@@ -7508,7 +7154,6 @@ paths:
       tags:
         - Files
       summary: Create a new File
-      operationId: createFiles
       requestBody:
         required: true
         content:
@@ -7533,7 +7178,6 @@ paths:
       tags:
         - Files
       summary: Get a File by id
-      operationId: getFilesById
       parameters:
         - name: id
           in: path
@@ -7560,7 +7204,6 @@ paths:
       tags:
         - Files
       summary: Replace a File
-      operationId: replaceFiles
       parameters:
         - name: id
           in: path
@@ -7591,7 +7234,6 @@ paths:
       tags:
         - Files
       summary: Partially update a File
-      operationId: patchFiles
       parameters:
         - name: id
           in: path
@@ -7622,7 +7264,6 @@ paths:
       tags:
         - Files
       summary: Delete a File
-      operationId: deleteFiles
       parameters:
         - name: id
           in: path
@@ -7638,7 +7279,6 @@ paths:
       tags:
         - Folders
       summary: List all Folders
-      operationId: listFolders
       parameters: []
       responses:
         "200":
@@ -7663,7 +7303,6 @@ paths:
       tags:
         - Folders
       summary: Create a new Folder
-      operationId: createFolders
       requestBody:
         required: true
         content:
@@ -7688,7 +7327,6 @@ paths:
       tags:
         - Folders
       summary: Get a Folder by id
-      operationId: getFoldersById
       parameters:
         - name: id
           in: path
@@ -7715,7 +7353,6 @@ paths:
       tags:
         - Folders
       summary: Replace a Folder
-      operationId: replaceFolders
       parameters:
         - name: id
           in: path
@@ -7746,7 +7383,6 @@ paths:
       tags:
         - Folders
       summary: Partially update a Folder
-      operationId: patchFolders
       parameters:
         - name: id
           in: path
@@ -7777,7 +7413,6 @@ paths:
       tags:
         - Folders
       summary: Delete a Folder
-      operationId: deleteFolders
       parameters:
         - name: id
           in: path
@@ -7793,7 +7428,6 @@ paths:
       tags:
         - Genres
       summary: List all Genres
-      operationId: listGenres
       parameters: []
       responses:
         "200":
@@ -7818,7 +7452,6 @@ paths:
       tags:
         - Genres
       summary: Create a new Genre
-      operationId: createGenres
       requestBody:
         required: true
         content:
@@ -7843,7 +7476,6 @@ paths:
       tags:
         - Genres
       summary: Get a Genre by id
-      operationId: getGenresById
       parameters:
         - name: id
           in: path
@@ -7870,7 +7502,6 @@ paths:
       tags:
         - Genres
       summary: Replace a Genre
-      operationId: replaceGenres
       parameters:
         - name: id
           in: path
@@ -7901,7 +7532,6 @@ paths:
       tags:
         - Genres
       summary: Partially update a Genre
-      operationId: patchGenres
       parameters:
         - name: id
           in: path
@@ -7932,7 +7562,6 @@ paths:
       tags:
         - Genres
       summary: Delete a Genre
-      operationId: deleteGenres
       parameters:
         - name: id
           in: path
@@ -7948,7 +7577,6 @@ paths:
       tags:
         - Movies
       summary: List all Movies
-      operationId: listMovies
       parameters: []
       responses:
         "200":
@@ -7973,7 +7601,6 @@ paths:
       tags:
         - Movies
       summary: Create a new Movy
-      operationId: createMovies
       requestBody:
         required: true
         content:
@@ -7998,7 +7625,6 @@ paths:
       tags:
         - Movies
       summary: Get a Movy by id
-      operationId: getMoviesById
       parameters:
         - name: id
           in: path
@@ -8025,7 +7651,6 @@ paths:
       tags:
         - Movies
       summary: Replace a Movy
-      operationId: replaceMovies
       parameters:
         - name: id
           in: path
@@ -8056,7 +7681,6 @@ paths:
       tags:
         - Movies
       summary: Partially update a Movy
-      operationId: patchMovies
       parameters:
         - name: id
           in: path
@@ -8087,7 +7711,6 @@ paths:
       tags:
         - Movies
       summary: Delete a Movy
-      operationId: deleteMovies
       parameters:
         - name: id
           in: path
@@ -8103,7 +7726,6 @@ paths:
       tags:
         - Songs
       summary: List all Songs
-      operationId: listSongs
       parameters: []
       responses:
         "200":
@@ -8128,7 +7750,6 @@ paths:
       tags:
         - Songs
       summary: Create a new Song
-      operationId: createSongs
       requestBody:
         required: true
         content:
@@ -8153,7 +7774,6 @@ paths:
       tags:
         - Songs
       summary: Get a Song by id
-      operationId: getSongsById
       parameters:
         - name: id
           in: path
@@ -8180,7 +7800,6 @@ paths:
       tags:
         - Songs
       summary: Replace a Song
-      operationId: replaceSongs
       parameters:
         - name: id
           in: path
@@ -8211,7 +7830,6 @@ paths:
       tags:
         - Songs
       summary: Partially update a Song
-      operationId: patchSongs
       parameters:
         - name: id
           in: path
@@ -8242,7 +7860,6 @@ paths:
       tags:
         - Songs
       summary: Delete a Song
-      operationId: deleteSongs
       parameters:
         - name: id
           in: path
@@ -8258,7 +7875,6 @@ paths:
       tags:
         - Albums
       summary: List all Albums
-      operationId: listAlbums
       parameters: []
       responses:
         "200":
@@ -8283,7 +7899,6 @@ paths:
       tags:
         - Albums
       summary: Create a new Album
-      operationId: createAlbums
       requestBody:
         required: true
         content:
@@ -8308,7 +7923,6 @@ paths:
       tags:
         - Albums
       summary: Get a Album by id
-      operationId: getAlbumsById
       parameters:
         - name: id
           in: path
@@ -8335,7 +7949,6 @@ paths:
       tags:
         - Albums
       summary: Replace a Album
-      operationId: replaceAlbums
       parameters:
         - name: id
           in: path
@@ -8366,7 +7979,6 @@ paths:
       tags:
         - Albums
       summary: Partially update a Album
-      operationId: patchAlbums
       parameters:
         - name: id
           in: path
@@ -8397,7 +8009,6 @@ paths:
       tags:
         - Albums
       summary: Delete a Album
-      operationId: deleteAlbums
       parameters:
         - name: id
           in: path
@@ -8413,7 +8024,6 @@ paths:
       tags:
         - Artists
       summary: List all Artists
-      operationId: listArtists
       parameters: []
       responses:
         "200":
@@ -8438,7 +8048,6 @@ paths:
       tags:
         - Artists
       summary: Create a new Artist
-      operationId: createArtists
       requestBody:
         required: true
         content:
@@ -8463,7 +8072,6 @@ paths:
       tags:
         - Artists
       summary: Get a Artist by id
-      operationId: getArtistsById
       parameters:
         - name: id
           in: path
@@ -8490,7 +8098,6 @@ paths:
       tags:
         - Artists
       summary: Replace a Artist
-      operationId: replaceArtists
       parameters:
         - name: id
           in: path
@@ -8521,7 +8128,6 @@ paths:
       tags:
         - Artists
       summary: Partially update a Artist
-      operationId: patchArtists
       parameters:
         - name: id
           in: path
@@ -8552,7 +8158,6 @@ paths:
       tags:
         - Artists
       summary: Delete a Artist
-      operationId: deleteArtists
       parameters:
         - name: id
           in: path
@@ -8568,7 +8173,6 @@ paths:
       tags:
         - Playlists
       summary: List all Playlists
-      operationId: listPlaylists
       parameters: []
       responses:
         "200":
@@ -8593,7 +8197,6 @@ paths:
       tags:
         - Playlists
       summary: Create a new Playlist
-      operationId: createPlaylists
       requestBody:
         required: true
         content:
@@ -8618,7 +8221,6 @@ paths:
       tags:
         - Playlists
       summary: Get a Playlist by id
-      operationId: getPlaylistsById
       parameters:
         - name: id
           in: path
@@ -8645,7 +8247,6 @@ paths:
       tags:
         - Playlists
       summary: Replace a Playlist
-      operationId: replacePlaylists
       parameters:
         - name: id
           in: path
@@ -8676,7 +8277,6 @@ paths:
       tags:
         - Playlists
       summary: Partially update a Playlist
-      operationId: patchPlaylists
       parameters:
         - name: id
           in: path
@@ -8707,7 +8307,6 @@ paths:
       tags:
         - Playlists
       summary: Delete a Playlist
-      operationId: deletePlaylists
       parameters:
         - name: id
           in: path
@@ -8723,7 +8322,6 @@ paths:
       tags:
         - Teams
       summary: List all Teams
-      operationId: listTeams
       parameters: []
       responses:
         "200":
@@ -8748,7 +8346,6 @@ paths:
       tags:
         - Teams
       summary: Create a new Team
-      operationId: createTeams
       requestBody:
         required: true
         content:
@@ -8773,7 +8370,6 @@ paths:
       tags:
         - Teams
       summary: Get a Team by id
-      operationId: getTeamsById
       parameters:
         - name: id
           in: path
@@ -8800,7 +8396,6 @@ paths:
       tags:
         - Teams
       summary: Replace a Team
-      operationId: replaceTeams
       parameters:
         - name: id
           in: path
@@ -8831,7 +8426,6 @@ paths:
       tags:
         - Teams
       summary: Partially update a Team
-      operationId: patchTeams
       parameters:
         - name: id
           in: path
@@ -8862,7 +8456,6 @@ paths:
       tags:
         - Teams
       summary: Delete a Team
-      operationId: deleteTeams
       parameters:
         - name: id
           in: path
@@ -8878,7 +8471,6 @@ paths:
       tags:
         - Players
       summary: List all Players
-      operationId: listPlayers
       parameters: []
       responses:
         "200":
@@ -8903,7 +8495,6 @@ paths:
       tags:
         - Players
       summary: Create a new Player
-      operationId: createPlayers
       requestBody:
         required: true
         content:
@@ -8928,7 +8519,6 @@ paths:
       tags:
         - Players
       summary: Get a Player by id
-      operationId: getPlayersById
       parameters:
         - name: id
           in: path
@@ -8955,7 +8545,6 @@ paths:
       tags:
         - Players
       summary: Replace a Player
-      operationId: replacePlayers
       parameters:
         - name: id
           in: path
@@ -8986,7 +8575,6 @@ paths:
       tags:
         - Players
       summary: Partially update a Player
-      operationId: patchPlayers
       parameters:
         - name: id
           in: path
@@ -9017,7 +8605,6 @@ paths:
       tags:
         - Players
       summary: Delete a Player
-      operationId: deletePlayers
       parameters:
         - name: id
           in: path
@@ -9033,7 +8620,6 @@ paths:
       tags:
         - Matches
       summary: List all Matches
-      operationId: listMatches
       parameters: []
       responses:
         "200":
@@ -9058,7 +8644,6 @@ paths:
       tags:
         - Matches
       summary: Create a new Matche
-      operationId: createMatches
       requestBody:
         required: true
         content:
@@ -9083,7 +8668,6 @@ paths:
       tags:
         - Matches
       summary: Get a Matche by id
-      operationId: getMatchesById
       parameters:
         - name: id
           in: path
@@ -9110,7 +8694,6 @@ paths:
       tags:
         - Matches
       summary: Replace a Matche
-      operationId: replaceMatches
       parameters:
         - name: id
           in: path
@@ -9141,7 +8724,6 @@ paths:
       tags:
         - Matches
       summary: Partially update a Matche
-      operationId: patchMatches
       parameters:
         - name: id
           in: path
@@ -9172,7 +8754,6 @@ paths:
       tags:
         - Matches
       summary: Delete a Matche
-      operationId: deleteMatches
       parameters:
         - name: id
           in: path
@@ -9188,7 +8769,6 @@ paths:
       tags:
         - Recipes
       summary: List all Recipes
-      operationId: listRecipes
       parameters: []
       responses:
         "200":
@@ -9213,7 +8793,6 @@ paths:
       tags:
         - Recipes
       summary: Create a new Recipe
-      operationId: createRecipes
       requestBody:
         required: true
         content:
@@ -9238,7 +8817,6 @@ paths:
       tags:
         - Recipes
       summary: Get a Recipe by id
-      operationId: getRecipesById
       parameters:
         - name: id
           in: path
@@ -9265,7 +8843,6 @@ paths:
       tags:
         - Recipes
       summary: Replace a Recipe
-      operationId: replaceRecipes
       parameters:
         - name: id
           in: path
@@ -9296,7 +8873,6 @@ paths:
       tags:
         - Recipes
       summary: Partially update a Recipe
-      operationId: patchRecipes
       parameters:
         - name: id
           in: path
@@ -9327,7 +8903,6 @@ paths:
       tags:
         - Recipes
       summary: Delete a Recipe
-      operationId: deleteRecipes
       parameters:
         - name: id
           in: path
@@ -9343,7 +8918,6 @@ paths:
       tags:
         - Restaurants
       summary: List all Restaurants
-      operationId: listRestaurants
       parameters:
         - name: page
           in: query
@@ -9430,7 +9004,6 @@ paths:
       tags:
         - Restaurants
       summary: Create a new Restaurant
-      operationId: createRestaurants
       requestBody:
         required: true
         content:
@@ -9455,7 +9028,6 @@ paths:
       tags:
         - Restaurants
       summary: Get a Restaurant by id
-      operationId: getRestaurantsById
       parameters:
         - name: id
           in: path
@@ -9482,7 +9054,6 @@ paths:
       tags:
         - Restaurants
       summary: Replace a Restaurant
-      operationId: replaceRestaurants
       parameters:
         - name: id
           in: path
@@ -9513,7 +9084,6 @@ paths:
       tags:
         - Restaurants
       summary: Partially update a Restaurant
-      operationId: patchRestaurants
       parameters:
         - name: id
           in: path
@@ -9544,7 +9114,6 @@ paths:
       tags:
         - Restaurants
       summary: Delete a Restaurant
-      operationId: deleteRestaurants
       parameters:
         - name: id
           in: path
@@ -9560,7 +9129,6 @@ paths:
       tags:
         - Hotels
       summary: List all Hotels
-      operationId: listHotels
       parameters:
         - name: page
           in: query
@@ -9647,7 +9215,6 @@ paths:
       tags:
         - Hotels
       summary: Create a new Hotel
-      operationId: createHotels
       requestBody:
         required: true
         content:
@@ -9672,7 +9239,6 @@ paths:
       tags:
         - Hotels
       summary: Get a Hotel by id
-      operationId: getHotelsById
       parameters:
         - name: id
           in: path
@@ -9699,7 +9265,6 @@ paths:
       tags:
         - Hotels
       summary: Replace a Hotel
-      operationId: replaceHotels
       parameters:
         - name: id
           in: path
@@ -9730,7 +9295,6 @@ paths:
       tags:
         - Hotels
       summary: Partially update a Hotel
-      operationId: patchHotels
       parameters:
         - name: id
           in: path
@@ -9761,7 +9325,6 @@ paths:
       tags:
         - Hotels
       summary: Delete a Hotel
-      operationId: deleteHotels
       parameters:
         - name: id
           in: path
@@ -9777,7 +9340,6 @@ paths:
       tags:
         - Bookings
       summary: List all Bookings
-      operationId: listBookings
       parameters:
         - name: page
           in: query
@@ -9864,7 +9426,6 @@ paths:
       tags:
         - Bookings
       summary: Create a new Booking
-      operationId: createBookings
       requestBody:
         required: true
         content:
@@ -9889,7 +9450,6 @@ paths:
       tags:
         - Bookings
       summary: Get a Booking by id
-      operationId: getBookingsById
       parameters:
         - name: id
           in: path
@@ -9916,7 +9476,6 @@ paths:
       tags:
         - Bookings
       summary: Replace a Booking
-      operationId: replaceBookings
       parameters:
         - name: id
           in: path
@@ -9947,7 +9506,6 @@ paths:
       tags:
         - Bookings
       summary: Partially update a Booking
-      operationId: patchBookings
       parameters:
         - name: id
           in: path
@@ -9978,7 +9536,6 @@ paths:
       tags:
         - Bookings
       summary: Delete a Booking
-      operationId: deleteBookings
       parameters:
         - name: id
           in: path
@@ -9994,7 +9551,6 @@ paths:
       tags:
         - Flights
       summary: List all Flights
-      operationId: listFlights
       parameters:
         - name: page
           in: query
@@ -10081,7 +9637,6 @@ paths:
       tags:
         - Flights
       summary: Create a new Flight
-      operationId: createFlights
       requestBody:
         required: true
         content:
@@ -10106,7 +9661,6 @@ paths:
       tags:
         - Flights
       summary: Get a Flight by id
-      operationId: getFlightsById
       parameters:
         - name: id
           in: path
@@ -10133,7 +9687,6 @@ paths:
       tags:
         - Flights
       summary: Replace a Flight
-      operationId: replaceFlights
       parameters:
         - name: id
           in: path
@@ -10164,7 +9717,6 @@ paths:
       tags:
         - Flights
       summary: Partially update a Flight
-      operationId: patchFlights
       parameters:
         - name: id
           in: path
@@ -10195,7 +9747,6 @@ paths:
       tags:
         - Flights
       summary: Delete a Flight
-      operationId: deleteFlights
       parameters:
         - name: id
           in: path
@@ -10211,7 +9762,6 @@ paths:
       tags:
         - Cars
       summary: List all Cars
-      operationId: listCars
       parameters: []
       responses:
         "200":
@@ -10236,7 +9786,6 @@ paths:
       tags:
         - Cars
       summary: Create a new Car
-      operationId: createCars
       requestBody:
         required: true
         content:
@@ -10261,7 +9810,6 @@ paths:
       tags:
         - Cars
       summary: Get a Car by id
-      operationId: getCarsById
       parameters:
         - name: id
           in: path
@@ -10288,7 +9836,6 @@ paths:
       tags:
         - Cars
       summary: Replace a Car
-      operationId: replaceCars
       parameters:
         - name: id
           in: path
@@ -10319,7 +9866,6 @@ paths:
       tags:
         - Cars
       summary: Partially update a Car
-      operationId: patchCars
       parameters:
         - name: id
           in: path
@@ -10350,7 +9896,6 @@ paths:
       tags:
         - Cars
       summary: Delete a Car
-      operationId: deleteCars
       parameters:
         - name: id
           in: path
@@ -10366,7 +9911,6 @@ paths:
       tags:
         - Currencies
       summary: List all Currencies
-      operationId: listCurrencies
       parameters: []
       responses:
         "200":
@@ -10391,7 +9935,6 @@ paths:
       tags:
         - Currencies
       summary: Create a new Currency
-      operationId: createCurrencies
       requestBody:
         required: true
         content:
@@ -10416,7 +9959,6 @@ paths:
       tags:
         - Currencies
       summary: Get a Currency by id
-      operationId: getCurrenciesById
       parameters:
         - name: id
           in: path
@@ -10443,7 +9985,6 @@ paths:
       tags:
         - Currencies
       summary: Replace a Currency
-      operationId: replaceCurrencies
       parameters:
         - name: id
           in: path
@@ -10474,7 +10015,6 @@ paths:
       tags:
         - Currencies
       summary: Partially update a Currency
-      operationId: patchCurrencies
       parameters:
         - name: id
           in: path
@@ -10505,7 +10045,6 @@ paths:
       tags:
         - Currencies
       summary: Delete a Currency
-      operationId: deleteCurrencies
       parameters:
         - name: id
           in: path
@@ -10521,7 +10060,6 @@ paths:
       tags:
         - Languages
       summary: List all Languages
-      operationId: listLanguages
       parameters: []
       responses:
         "200":
@@ -10546,7 +10084,6 @@ paths:
       tags:
         - Languages
       summary: Create a new Language
-      operationId: createLanguages
       requestBody:
         required: true
         content:
@@ -10571,7 +10108,6 @@ paths:
       tags:
         - Languages
       summary: Get a Language by id
-      operationId: getLanguagesById
       parameters:
         - name: id
           in: path
@@ -10598,7 +10134,6 @@ paths:
       tags:
         - Languages
       summary: Replace a Language
-      operationId: replaceLanguages
       parameters:
         - name: id
           in: path
@@ -10629,7 +10164,6 @@ paths:
       tags:
         - Languages
       summary: Partially update a Language
-      operationId: patchLanguages
       parameters:
         - name: id
           in: path
@@ -10660,7 +10194,6 @@ paths:
       tags:
         - Languages
       summary: Delete a Language
-      operationId: deleteLanguages
       parameters:
         - name: id
           in: path
@@ -10676,7 +10209,6 @@ paths:
       tags:
         - Brands
       summary: List all Brands
-      operationId: listBrands
       parameters: []
       responses:
         "200":
@@ -10701,7 +10233,6 @@ paths:
       tags:
         - Brands
       summary: Create a new Brand
-      operationId: createBrands
       requestBody:
         required: true
         content:
@@ -10726,7 +10257,6 @@ paths:
       tags:
         - Brands
       summary: Get a Brand by id
-      operationId: getBrandsById
       parameters:
         - name: id
           in: path
@@ -10753,7 +10283,6 @@ paths:
       tags:
         - Brands
       summary: Replace a Brand
-      operationId: replaceBrands
       parameters:
         - name: id
           in: path
@@ -10784,7 +10313,6 @@ paths:
       tags:
         - Brands
       summary: Partially update a Brand
-      operationId: patchBrands
       parameters:
         - name: id
           in: path
@@ -10815,7 +10343,6 @@ paths:
       tags:
         - Brands
       summary: Delete a Brand
-      operationId: deleteBrands
       parameters:
         - name: id
           in: path
@@ -10831,7 +10358,6 @@ paths:
       tags:
         - CartItems
       summary: List all CartItems
-      operationId: listCartItems
       parameters: []
       responses:
         "200":
@@ -10856,7 +10382,6 @@ paths:
       tags:
         - CartItems
       summary: Create a new CartItem
-      operationId: createCartItems
       requestBody:
         required: true
         content:
@@ -10881,7 +10406,6 @@ paths:
       tags:
         - CartItems
       summary: Get a CartItem by id
-      operationId: getCartItemsById
       parameters:
         - name: id
           in: path
@@ -10908,7 +10432,6 @@ paths:
       tags:
         - CartItems
       summary: Replace a CartItem
-      operationId: replaceCartItems
       parameters:
         - name: id
           in: path
@@ -10939,7 +10462,6 @@ paths:
       tags:
         - CartItems
       summary: Partially update a CartItem
-      operationId: patchCartItems
       parameters:
         - name: id
           in: path
@@ -10970,7 +10492,6 @@ paths:
       tags:
         - CartItems
       summary: Delete a CartItem
-      operationId: deleteCartItems
       parameters:
         - name: id
           in: path
@@ -10986,7 +10507,6 @@ paths:
       tags:
         - WishlistItems
       summary: List all WishlistItems
-      operationId: listWishlistItems
       parameters: []
       responses:
         "200":
@@ -11011,7 +10531,6 @@ paths:
       tags:
         - WishlistItems
       summary: Create a new WishlistItem
-      operationId: createWishlistItems
       requestBody:
         required: true
         content:
@@ -11036,7 +10555,6 @@ paths:
       tags:
         - WishlistItems
       summary: Get a WishlistItem by id
-      operationId: getWishlistItemsById
       parameters:
         - name: id
           in: path
@@ -11063,7 +10581,6 @@ paths:
       tags:
         - WishlistItems
       summary: Replace a WishlistItem
-      operationId: replaceWishlistItems
       parameters:
         - name: id
           in: path
@@ -11094,7 +10611,6 @@ paths:
       tags:
         - WishlistItems
       summary: Partially update a WishlistItem
-      operationId: patchWishlistItems
       parameters:
         - name: id
           in: path
@@ -11125,7 +10641,6 @@ paths:
       tags:
         - WishlistItems
       summary: Delete a WishlistItem
-      operationId: deleteWishlistItems
       parameters:
         - name: id
           in: path
@@ -11141,7 +10656,6 @@ paths:
       tags:
         - Likes
       summary: List all Likes
-      operationId: listLikes
       parameters: []
       responses:
         "200":
@@ -11166,7 +10680,6 @@ paths:
       tags:
         - Likes
       summary: Create a new Like
-      operationId: createLikes
       requestBody:
         required: true
         content:
@@ -11191,7 +10704,6 @@ paths:
       tags:
         - Likes
       summary: Get a Like by id
-      operationId: getLikesById
       parameters:
         - name: id
           in: path
@@ -11218,7 +10730,6 @@ paths:
       tags:
         - Likes
       summary: Replace a Like
-      operationId: replaceLikes
       parameters:
         - name: id
           in: path
@@ -11249,7 +10760,6 @@ paths:
       tags:
         - Likes
       summary: Partially update a Like
-      operationId: patchLikes
       parameters:
         - name: id
           in: path
@@ -11280,7 +10790,6 @@ paths:
       tags:
         - Likes
       summary: Delete a Like
-      operationId: deleteLikes
       parameters:
         - name: id
           in: path
@@ -11296,7 +10805,6 @@ paths:
       tags:
         - Follows
       summary: List all Follows
-      operationId: listFollows
       parameters: []
       responses:
         "200":
@@ -11321,7 +10829,6 @@ paths:
       tags:
         - Follows
       summary: Create a new Follow
-      operationId: createFollows
       requestBody:
         required: true
         content:
@@ -11346,7 +10853,6 @@ paths:
       tags:
         - Follows
       summary: Get a Follow by id
-      operationId: getFollowsById
       parameters:
         - name: id
           in: path
@@ -11373,7 +10879,6 @@ paths:
       tags:
         - Follows
       summary: Replace a Follow
-      operationId: replaceFollows
       parameters:
         - name: id
           in: path
@@ -11404,7 +10909,6 @@ paths:
       tags:
         - Follows
       summary: Partially update a Follow
-      operationId: patchFollows
       parameters:
         - name: id
           in: path
@@ -11435,7 +10939,6 @@ paths:
       tags:
         - Follows
       summary: Delete a Follow
-      operationId: deleteFollows
       parameters:
         - name: id
           in: path
@@ -11451,7 +10954,6 @@ paths:
       tags:
         - Messages
       summary: List all Messages
-      operationId: listMessages
       parameters: []
       responses:
         "200":
@@ -11476,7 +10978,6 @@ paths:
       tags:
         - Messages
       summary: Create a new Message
-      operationId: createMessages
       requestBody:
         required: true
         content:
@@ -11501,7 +11002,6 @@ paths:
       tags:
         - Messages
       summary: Get a Message by id
-      operationId: getMessagesById
       parameters:
         - name: id
           in: path
@@ -11528,7 +11028,6 @@ paths:
       tags:
         - Messages
       summary: Replace a Message
-      operationId: replaceMessages
       parameters:
         - name: id
           in: path
@@ -11559,7 +11058,6 @@ paths:
       tags:
         - Messages
       summary: Partially update a Message
-      operationId: patchMessages
       parameters:
         - name: id
           in: path
@@ -11590,7 +11088,6 @@ paths:
       tags:
         - Messages
       summary: Delete a Message
-      operationId: deleteMessages
       parameters:
         - name: id
           in: path
@@ -11606,7 +11103,6 @@ paths:
       tags:
         - Conversations
       summary: List all Conversations
-      operationId: listConversations
       parameters: []
       responses:
         "200":
@@ -11631,7 +11127,6 @@ paths:
       tags:
         - Conversations
       summary: Create a new Conversation
-      operationId: createConversations
       requestBody:
         required: true
         content:
@@ -11656,7 +11151,6 @@ paths:
       tags:
         - Conversations
       summary: Get a Conversation by id
-      operationId: getConversationsById
       parameters:
         - name: id
           in: path
@@ -11683,7 +11177,6 @@ paths:
       tags:
         - Conversations
       summary: Replace a Conversation
-      operationId: replaceConversations
       parameters:
         - name: id
           in: path
@@ -11714,7 +11207,6 @@ paths:
       tags:
         - Conversations
       summary: Partially update a Conversation
-      operationId: patchConversations
       parameters:
         - name: id
           in: path
@@ -11745,7 +11237,6 @@ paths:
       tags:
         - Conversations
       summary: Delete a Conversation
-      operationId: deleteConversations
       parameters:
         - name: id
           in: path
@@ -11761,7 +11252,6 @@ paths:
       tags:
         - ProductVariants
       summary: List all ProductVariants
-      operationId: listProductVariants
       parameters: []
       responses:
         "200":
@@ -11786,7 +11276,6 @@ paths:
       tags:
         - ProductVariants
       summary: Create a new ProductVariant
-      operationId: createProductVariants
       requestBody:
         required: true
         content:
@@ -11811,7 +11300,6 @@ paths:
       tags:
         - ProductVariants
       summary: Get a ProductVariant by id
-      operationId: getProductVariantsById
       parameters:
         - name: id
           in: path
@@ -11838,7 +11326,6 @@ paths:
       tags:
         - ProductVariants
       summary: Replace a ProductVariant
-      operationId: replaceProductVariants
       parameters:
         - name: id
           in: path
@@ -11869,7 +11356,6 @@ paths:
       tags:
         - ProductVariants
       summary: Partially update a ProductVariant
-      operationId: patchProductVariants
       parameters:
         - name: id
           in: path
@@ -11900,7 +11386,6 @@ paths:
       tags:
         - ProductVariants
       summary: Delete a ProductVariant
-      operationId: deleteProductVariants
       parameters:
         - name: id
           in: path
@@ -11916,7 +11401,6 @@ paths:
       tags:
         - Returns
       summary: List all Returns
-      operationId: listReturns
       parameters: []
       responses:
         "200":
@@ -11941,7 +11425,6 @@ paths:
       tags:
         - Returns
       summary: Create a new Return
-      operationId: createReturns
       requestBody:
         required: true
         content:
@@ -11966,7 +11449,6 @@ paths:
       tags:
         - Returns
       summary: Get a Return by id
-      operationId: getReturnsById
       parameters:
         - name: id
           in: path
@@ -11993,7 +11475,6 @@ paths:
       tags:
         - Returns
       summary: Replace a Return
-      operationId: replaceReturns
       parameters:
         - name: id
           in: path
@@ -12024,7 +11505,6 @@ paths:
       tags:
         - Returns
       summary: Partially update a Return
-      operationId: patchReturns
       parameters:
         - name: id
           in: path
@@ -12055,7 +11535,6 @@ paths:
       tags:
         - Returns
       summary: Delete a Return
-      operationId: deleteReturns
       parameters:
         - name: id
           in: path
@@ -12071,7 +11550,6 @@ paths:
       tags:
         - ReviewReplies
       summary: List all ReviewReplies
-      operationId: listReviewReplies
       parameters: []
       responses:
         "200":
@@ -12096,7 +11574,6 @@ paths:
       tags:
         - ReviewReplies
       summary: Create a new ReviewReply
-      operationId: createReviewReplies
       requestBody:
         required: true
         content:
@@ -12121,7 +11598,6 @@ paths:
       tags:
         - ReviewReplies
       summary: Get a ReviewReply by id
-      operationId: getReviewRepliesById
       parameters:
         - name: id
           in: path
@@ -12148,7 +11624,6 @@ paths:
       tags:
         - ReviewReplies
       summary: Replace a ReviewReply
-      operationId: replaceReviewReplies
       parameters:
         - name: id
           in: path
@@ -12179,7 +11654,6 @@ paths:
       tags:
         - ReviewReplies
       summary: Partially update a ReviewReply
-      operationId: patchReviewReplies
       parameters:
         - name: id
           in: path
@@ -12210,7 +11684,6 @@ paths:
       tags:
         - ReviewReplies
       summary: Delete a ReviewReply
-      operationId: deleteReviewReplies
       parameters:
         - name: id
           in: path
@@ -12226,7 +11699,6 @@ paths:
       tags:
         - ArticleTags
       summary: List all ArticleTags
-      operationId: listArticleTags
       parameters: []
       responses:
         "200":
@@ -12251,7 +11723,6 @@ paths:
       tags:
         - ArticleTags
       summary: Create a new ArticleTag
-      operationId: createArticleTags
       requestBody:
         required: true
         content:
@@ -12276,7 +11747,6 @@ paths:
       tags:
         - ArticleTags
       summary: Get a ArticleTag by id
-      operationId: getArticleTagsById
       parameters:
         - name: id
           in: path
@@ -12303,7 +11773,6 @@ paths:
       tags:
         - ArticleTags
       summary: Replace a ArticleTag
-      operationId: replaceArticleTags
       parameters:
         - name: id
           in: path
@@ -12334,7 +11803,6 @@ paths:
       tags:
         - ArticleTags
       summary: Partially update a ArticleTag
-      operationId: patchArticleTags
       parameters:
         - name: id
           in: path
@@ -12365,7 +11833,6 @@ paths:
       tags:
         - ArticleTags
       summary: Delete a ArticleTag
-      operationId: deleteArticleTags
       parameters:
         - name: id
           in: path
@@ -12381,7 +11848,6 @@ paths:
       tags:
         - PageViews
       summary: List all PageViews
-      operationId: listPageViews
       parameters: []
       responses:
         "200":
@@ -12406,7 +11872,6 @@ paths:
       tags:
         - PageViews
       summary: Create a new PageView
-      operationId: createPageViews
       requestBody:
         required: true
         content:
@@ -12431,7 +11896,6 @@ paths:
       tags:
         - PageViews
       summary: Get a PageView by id
-      operationId: getPageViewsById
       parameters:
         - name: id
           in: path
@@ -12458,7 +11922,6 @@ paths:
       tags:
         - PageViews
       summary: Replace a PageView
-      operationId: replacePageViews
       parameters:
         - name: id
           in: path
@@ -12489,7 +11952,6 @@ paths:
       tags:
         - PageViews
       summary: Partially update a PageView
-      operationId: patchPageViews
       parameters:
         - name: id
           in: path
@@ -12520,7 +11982,6 @@ paths:
       tags:
         - PageViews
       summary: Delete a PageView
-      operationId: deletePageViews
       parameters:
         - name: id
           in: path
@@ -12536,7 +11997,6 @@ paths:
       tags:
         - UserActivity
       summary: List all UserActivity
-      operationId: listUserActivity
       parameters: []
       responses:
         "200":
@@ -12561,7 +12021,6 @@ paths:
       tags:
         - UserActivity
       summary: Create a new UserActivity
-      operationId: createUserActivity
       requestBody:
         required: true
         content:
@@ -12586,7 +12045,6 @@ paths:
       tags:
         - UserActivity
       summary: Get a UserActivity by id
-      operationId: getUserActivityById
       parameters:
         - name: id
           in: path
@@ -12613,7 +12071,6 @@ paths:
       tags:
         - UserActivity
       summary: Replace a UserActivity
-      operationId: replaceUserActivity
       parameters:
         - name: id
           in: path
@@ -12644,7 +12101,6 @@ paths:
       tags:
         - UserActivity
       summary: Partially update a UserActivity
-      operationId: patchUserActivity
       parameters:
         - name: id
           in: path
@@ -12675,7 +12131,6 @@ paths:
       tags:
         - UserActivity
       summary: Delete a UserActivity
-      operationId: deleteUserActivity
       parameters:
         - name: id
           in: path
@@ -12691,7 +12146,6 @@ paths:
       tags:
         - Ratings
       summary: List all Ratings
-      operationId: listRatings
       parameters: []
       responses:
         "200":
@@ -12716,7 +12170,6 @@ paths:
       tags:
         - Ratings
       summary: Create a new Rating
-      operationId: createRatings
       requestBody:
         required: true
         content:
@@ -12741,7 +12194,6 @@ paths:
       tags:
         - Ratings
       summary: Get a Rating by id
-      operationId: getRatingsById
       parameters:
         - name: id
           in: path
@@ -12768,7 +12220,6 @@ paths:
       tags:
         - Ratings
       summary: Replace a Rating
-      operationId: replaceRatings
       parameters:
         - name: id
           in: path
@@ -12799,7 +12250,6 @@ paths:
       tags:
         - Ratings
       summary: Partially update a Rating
-      operationId: patchRatings
       parameters:
         - name: id
           in: path
@@ -12830,7 +12280,6 @@ paths:
       tags:
         - Ratings
       summary: Delete a Rating
-      operationId: deleteRatings
       parameters:
         - name: id
           in: path
@@ -12846,7 +12295,6 @@ paths:
       tags:
         - Banners
       summary: List all Banners
-      operationId: listBanners
       parameters: []
       responses:
         "200":
@@ -12871,7 +12319,6 @@ paths:
       tags:
         - Banners
       summary: Create a new Banner
-      operationId: createBanners
       requestBody:
         required: true
         content:
@@ -12896,7 +12343,6 @@ paths:
       tags:
         - Banners
       summary: Get a Banner by id
-      operationId: getBannersById
       parameters:
         - name: id
           in: path
@@ -12923,7 +12369,6 @@ paths:
       tags:
         - Banners
       summary: Replace a Banner
-      operationId: replaceBanners
       parameters:
         - name: id
           in: path
@@ -12954,7 +12399,6 @@ paths:
       tags:
         - Banners
       summary: Partially update a Banner
-      operationId: patchBanners
       parameters:
         - name: id
           in: path
@@ -12985,7 +12429,6 @@ paths:
       tags:
         - Banners
       summary: Delete a Banner
-      operationId: deleteBanners
       parameters:
         - name: id
           in: path
@@ -13001,7 +12444,6 @@ paths:
       tags:
         - Promotions
       summary: List all Promotions
-      operationId: listPromotions
       parameters: []
       responses:
         "200":
@@ -13026,7 +12468,6 @@ paths:
       tags:
         - Promotions
       summary: Create a new Promotion
-      operationId: createPromotions
       requestBody:
         required: true
         content:
@@ -13051,7 +12492,6 @@ paths:
       tags:
         - Promotions
       summary: Get a Promotion by id
-      operationId: getPromotionsById
       parameters:
         - name: id
           in: path
@@ -13078,7 +12518,6 @@ paths:
       tags:
         - Promotions
       summary: Replace a Promotion
-      operationId: replacePromotions
       parameters:
         - name: id
           in: path
@@ -13109,7 +12548,6 @@ paths:
       tags:
         - Promotions
       summary: Partially update a Promotion
-      operationId: patchPromotions
       parameters:
         - name: id
           in: path
@@ -13140,7 +12578,6 @@ paths:
       tags:
         - Promotions
       summary: Delete a Promotion
-      operationId: deletePromotions
       parameters:
         - name: id
           in: path
@@ -13156,7 +12593,6 @@ paths:
       tags:
         - Discounts
       summary: List all Discounts
-      operationId: listDiscounts
       parameters: []
       responses:
         "200":
@@ -13181,7 +12617,6 @@ paths:
       tags:
         - Discounts
       summary: Create a new Discount
-      operationId: createDiscounts
       requestBody:
         required: true
         content:
@@ -13206,7 +12641,6 @@ paths:
       tags:
         - Discounts
       summary: Get a Discount by id
-      operationId: getDiscountsById
       parameters:
         - name: id
           in: path
@@ -13233,7 +12667,6 @@ paths:
       tags:
         - Discounts
       summary: Replace a Discount
-      operationId: replaceDiscounts
       parameters:
         - name: id
           in: path
@@ -13264,7 +12697,6 @@ paths:
       tags:
         - Discounts
       summary: Partially update a Discount
-      operationId: patchDiscounts
       parameters:
         - name: id
           in: path
@@ -13295,7 +12727,6 @@ paths:
       tags:
         - Discounts
       summary: Delete a Discount
-      operationId: deleteDiscounts
       parameters:
         - name: id
           in: path
@@ -13311,7 +12742,6 @@ paths:
       tags:
         - Favorites
       summary: List all Favorites
-      operationId: listFavorites
       parameters: []
       responses:
         "200":
@@ -13336,7 +12766,6 @@ paths:
       tags:
         - Favorites
       summary: Create a new Favorite
-      operationId: createFavorites
       requestBody:
         required: true
         content:
@@ -13361,7 +12790,6 @@ paths:
       tags:
         - Favorites
       summary: Get a Favorite by id
-      operationId: getFavoritesById
       parameters:
         - name: id
           in: path
@@ -13388,7 +12816,6 @@ paths:
       tags:
         - Favorites
       summary: Replace a Favorite
-      operationId: replaceFavorites
       parameters:
         - name: id
           in: path
@@ -13419,7 +12846,6 @@ paths:
       tags:
         - Favorites
       summary: Partially update a Favorite
-      operationId: patchFavorites
       parameters:
         - name: id
           in: path
@@ -13450,7 +12876,6 @@ paths:
       tags:
         - Favorites
       summary: Delete a Favorite
-      operationId: deleteFavorites
       parameters:
         - name: id
           in: path
@@ -13466,7 +12891,6 @@ paths:
       tags:
         - SearchQueries
       summary: List all SearchQueries
-      operationId: listSearchQueries
       parameters:
         - name: page
           in: query
@@ -13553,7 +12977,6 @@ paths:
       tags:
         - SearchQueries
       summary: Create a new SearchQuery
-      operationId: createSearchQueries
       requestBody:
         required: true
         content:
@@ -13578,7 +13001,6 @@ paths:
       tags:
         - SearchQueries
       summary: Get a SearchQuery by id
-      operationId: getSearchQueriesById
       parameters:
         - name: id
           in: path
@@ -13605,7 +13027,6 @@ paths:
       tags:
         - SearchQueries
       summary: Replace a SearchQuery
-      operationId: replaceSearchQueries
       parameters:
         - name: id
           in: path
@@ -13636,7 +13057,6 @@ paths:
       tags:
         - SearchQueries
       summary: Partially update a SearchQuery
-      operationId: patchSearchQueries
       parameters:
         - name: id
           in: path
@@ -13667,7 +13087,6 @@ paths:
       tags:
         - SearchQueries
       summary: Delete a SearchQuery
-      operationId: deleteSearchQueries
       parameters:
         - name: id
           in: path
@@ -13683,7 +13102,6 @@ paths:
       tags:
         - Badges
       summary: List all Badges
-      operationId: listBadges
       parameters: []
       responses:
         "200":
@@ -13708,7 +13126,6 @@ paths:
       tags:
         - Badges
       summary: Create a new Badge
-      operationId: createBadges
       requestBody:
         required: true
         content:
@@ -13733,7 +13150,6 @@ paths:
       tags:
         - Badges
       summary: Get a Badge by id
-      operationId: getBadgesById
       parameters:
         - name: id
           in: path
@@ -13760,7 +13176,6 @@ paths:
       tags:
         - Badges
       summary: Replace a Badge
-      operationId: replaceBadges
       parameters:
         - name: id
           in: path
@@ -13791,7 +13206,6 @@ paths:
       tags:
         - Badges
       summary: Partially update a Badge
-      operationId: patchBadges
       parameters:
         - name: id
           in: path
@@ -13822,7 +13236,6 @@ paths:
       tags:
         - Badges
       summary: Delete a Badge
-      operationId: deleteBadges
       parameters:
         - name: id
           in: path
@@ -13838,7 +13251,6 @@ paths:
       tags:
         - UserBadges
       summary: List all UserBadges
-      operationId: listUserBadges
       parameters: []
       responses:
         "200":
@@ -13863,7 +13275,6 @@ paths:
       tags:
         - UserBadges
       summary: Create a new UserBadge
-      operationId: createUserBadges
       requestBody:
         required: true
         content:
@@ -13888,7 +13299,6 @@ paths:
       tags:
         - UserBadges
       summary: Get a UserBadge by id
-      operationId: getUserBadgesById
       parameters:
         - name: id
           in: path
@@ -13915,7 +13325,6 @@ paths:
       tags:
         - UserBadges
       summary: Replace a UserBadge
-      operationId: replaceUserBadges
       parameters:
         - name: id
           in: path
@@ -13946,7 +13355,6 @@ paths:
       tags:
         - UserBadges
       summary: Partially update a UserBadge
-      operationId: patchUserBadges
       parameters:
         - name: id
           in: path
@@ -13977,7 +13385,6 @@ paths:
       tags:
         - UserBadges
       summary: Delete a UserBadge
-      operationId: deleteUserBadges
       parameters:
         - name: id
           in: path
@@ -13993,7 +13400,6 @@ paths:
       tags:
         - Reports
       summary: List all Reports
-      operationId: listReports
       parameters: []
       responses:
         "200":
@@ -14018,7 +13424,6 @@ paths:
       tags:
         - Reports
       summary: Create a new Report
-      operationId: createReports
       requestBody:
         required: true
         content:
@@ -14043,7 +13448,6 @@ paths:
       tags:
         - Reports
       summary: Get a Report by id
-      operationId: getReportsById
       parameters:
         - name: id
           in: path
@@ -14070,7 +13474,6 @@ paths:
       tags:
         - Reports
       summary: Replace a Report
-      operationId: replaceReports
       parameters:
         - name: id
           in: path
@@ -14101,7 +13504,6 @@ paths:
       tags:
         - Reports
       summary: Partially update a Report
-      operationId: patchReports
       parameters:
         - name: id
           in: path
@@ -14132,7 +13534,6 @@ paths:
       tags:
         - Reports
       summary: Delete a Report
-      operationId: deleteReports
       parameters:
         - name: id
           in: path
@@ -14148,7 +13549,6 @@ paths:
       tags:
         - Refunds
       summary: List all Refunds
-      operationId: listRefunds
       parameters: []
       responses:
         "200":
@@ -14173,7 +13573,6 @@ paths:
       tags:
         - Refunds
       summary: Create a new Refund
-      operationId: createRefunds
       requestBody:
         required: true
         content:
@@ -14198,7 +13597,6 @@ paths:
       tags:
         - Refunds
       summary: Get a Refund by id
-      operationId: getRefundsById
       parameters:
         - name: id
           in: path
@@ -14225,7 +13623,6 @@ paths:
       tags:
         - Refunds
       summary: Replace a Refund
-      operationId: replaceRefunds
       parameters:
         - name: id
           in: path
@@ -14256,7 +13653,6 @@ paths:
       tags:
         - Refunds
       summary: Partially update a Refund
-      operationId: patchRefunds
       parameters:
         - name: id
           in: path
@@ -14287,7 +13683,6 @@ paths:
       tags:
         - Refunds
       summary: Delete a Refund
-      operationId: deleteRefunds
       parameters:
         - name: id
           in: path
@@ -14303,7 +13698,6 @@ paths:
       tags:
         - Vendors
       summary: List all Vendors
-      operationId: listVendors
       parameters: []
       responses:
         "200":
@@ -14328,7 +13722,6 @@ paths:
       tags:
         - Vendors
       summary: Create a new Vendor
-      operationId: createVendors
       requestBody:
         required: true
         content:
@@ -14353,7 +13746,6 @@ paths:
       tags:
         - Vendors
       summary: Get a Vendor by id
-      operationId: getVendorsById
       parameters:
         - name: id
           in: path
@@ -14380,7 +13772,6 @@ paths:
       tags:
         - Vendors
       summary: Replace a Vendor
-      operationId: replaceVendors
       parameters:
         - name: id
           in: path
@@ -14411,7 +13802,6 @@ paths:
       tags:
         - Vendors
       summary: Partially update a Vendor
-      operationId: patchVendors
       parameters:
         - name: id
           in: path
@@ -14442,7 +13832,6 @@ paths:
       tags:
         - Vendors
       summary: Delete a Vendor
-      operationId: deleteVendors
       parameters:
         - name: id
           in: path
@@ -14458,7 +13847,6 @@ paths:
       tags:
         - Transactions
       summary: List all Transactions
-      operationId: listTransactions
       parameters:
         - name: page
           in: query
@@ -14545,7 +13933,6 @@ paths:
       tags:
         - Transactions
       summary: Create a new Transaction
-      operationId: createTransactions
       requestBody:
         required: true
         content:
@@ -14570,7 +13957,6 @@ paths:
       tags:
         - Transactions
       summary: Get a Transaction by id
-      operationId: getTransactionsById
       parameters:
         - name: id
           in: path
@@ -14597,7 +13983,6 @@ paths:
       tags:
         - Transactions
       summary: Replace a Transaction
-      operationId: replaceTransactions
       parameters:
         - name: id
           in: path
@@ -14628,7 +14013,6 @@ paths:
       tags:
         - Transactions
       summary: Partially update a Transaction
-      operationId: patchTransactions
       parameters:
         - name: id
           in: path
@@ -14659,7 +14043,6 @@ paths:
       tags:
         - Transactions
       summary: Delete a Transaction
-      operationId: deleteTransactions
       parameters:
         - name: id
           in: path
@@ -14675,7 +14058,6 @@ paths:
       tags:
         - CouponUsages
       summary: List all CouponUsages
-      operationId: listCouponUsages
       parameters: []
       responses:
         "200":
@@ -14700,7 +14082,6 @@ paths:
       tags:
         - CouponUsages
       summary: Create a new CouponUsage
-      operationId: createCouponUsages
       requestBody:
         required: true
         content:
@@ -14725,7 +14106,6 @@ paths:
       tags:
         - CouponUsages
       summary: Get a CouponUsage by id
-      operationId: getCouponUsagesById
       parameters:
         - name: id
           in: path
@@ -14752,7 +14132,6 @@ paths:
       tags:
         - CouponUsages
       summary: Replace a CouponUsage
-      operationId: replaceCouponUsages
       parameters:
         - name: id
           in: path
@@ -14783,7 +14162,6 @@ paths:
       tags:
         - CouponUsages
       summary: Partially update a CouponUsage
-      operationId: patchCouponUsages
       parameters:
         - name: id
           in: path
@@ -14814,7 +14192,6 @@ paths:
       tags:
         - CouponUsages
       summary: Delete a CouponUsage
-      operationId: deleteCouponUsages
       parameters:
         - name: id
           in: path
@@ -14830,7 +14207,6 @@ paths:
       tags:
         - Preferences
       summary: List all Preferences
-      operationId: listPreferences
       parameters: []
       responses:
         "200":
@@ -14855,7 +14231,6 @@ paths:
       tags:
         - Preferences
       summary: Create a new Preference
-      operationId: createPreferences
       requestBody:
         required: true
         content:
@@ -14880,7 +14255,6 @@ paths:
       tags:
         - Preferences
       summary: Get a Preference by id
-      operationId: getPreferencesById
       parameters:
         - name: id
           in: path
@@ -14907,7 +14281,6 @@ paths:
       tags:
         - Preferences
       summary: Replace a Preference
-      operationId: replacePreferences
       parameters:
         - name: id
           in: path
@@ -14938,7 +14311,6 @@ paths:
       tags:
         - Preferences
       summary: Partially update a Preference
-      operationId: patchPreferences
       parameters:
         - name: id
           in: path
@@ -14969,7 +14341,6 @@ paths:
       tags:
         - Preferences
       summary: Delete a Preference
-      operationId: deletePreferences
       parameters:
         - name: id
           in: path
@@ -14985,7 +14356,6 @@ paths:
       tags:
         - PaymentMethods
       summary: List all PaymentMethods
-      operationId: listPaymentMethods
       parameters: []
       responses:
         "200":
@@ -15010,7 +14380,6 @@ paths:
       tags:
         - PaymentMethods
       summary: Create a new PaymentMethod
-      operationId: createPaymentMethods
       requestBody:
         required: true
         content:
@@ -15035,7 +14404,6 @@ paths:
       tags:
         - PaymentMethods
       summary: Get a PaymentMethod by id
-      operationId: getPaymentMethodsById
       parameters:
         - name: id
           in: path
@@ -15062,7 +14430,6 @@ paths:
       tags:
         - PaymentMethods
       summary: Replace a PaymentMethod
-      operationId: replacePaymentMethods
       parameters:
         - name: id
           in: path
@@ -15093,7 +14460,6 @@ paths:
       tags:
         - PaymentMethods
       summary: Partially update a PaymentMethod
-      operationId: patchPaymentMethods
       parameters:
         - name: id
           in: path
@@ -15124,7 +14490,6 @@ paths:
       tags:
         - PaymentMethods
       summary: Delete a PaymentMethod
-      operationId: deletePaymentMethods
       parameters:
         - name: id
           in: path
@@ -15140,7 +14505,6 @@ paths:
       tags:
         - CustomerAddresses
       summary: List all CustomerAddresses
-      operationId: listCustomerAddresses
       parameters: []
       responses:
         "200":
@@ -15165,7 +14529,6 @@ paths:
       tags:
         - CustomerAddresses
       summary: Create a new CustomerAddresse
-      operationId: createCustomerAddresses
       requestBody:
         required: true
         content:
@@ -15190,7 +14553,6 @@ paths:
       tags:
         - CustomerAddresses
       summary: Get a CustomerAddresse by id
-      operationId: getCustomerAddressesById
       parameters:
         - name: id
           in: path
@@ -15217,7 +14579,6 @@ paths:
       tags:
         - CustomerAddresses
       summary: Replace a CustomerAddresse
-      operationId: replaceCustomerAddresses
       parameters:
         - name: id
           in: path
@@ -15248,7 +14609,6 @@ paths:
       tags:
         - CustomerAddresses
       summary: Partially update a CustomerAddresse
-      operationId: patchCustomerAddresses
       parameters:
         - name: id
           in: path
@@ -15279,7 +14639,6 @@ paths:
       tags:
         - CustomerAddresses
       summary: Delete a CustomerAddresse
-      operationId: deleteCustomerAddresses
       parameters:
         - name: id
           in: path
@@ -15290,62 +14649,11 @@ paths:
       responses:
         "200":
           description: Success
-  "/api/v1/OrderNotes":
-    get:
-      tags:
-        - OrderNotes
-      summary: List all OrderNotes
-      operationId: listOrderNotes
-      parameters: []
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/OrderNote"
-            application/xml:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/OrderNote"
-            text/plain:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/OrderNote"
-    post:
-      tags:
-        - OrderNotes
-      summary: Create a new OrderNote
-      operationId: createOrderNotes
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/OrderNote"
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/OrderNote"
-            application/xml:
-              schema:
-                "$ref": "#/components/schemas/OrderNote"
-            text/plain:
-              schema:
-                "$ref": "#/components/schemas/OrderNote"
   "/api/v1/OrderNotes/{id}":
     get:
       tags:
         - OrderNotes
       summary: Get a OrderNote by id
-      operationId: getOrderNotesById
       parameters:
         - name: id
           in: path
@@ -15372,7 +14680,6 @@ paths:
       tags:
         - OrderNotes
       summary: Replace a OrderNote
-      operationId: replaceOrderNotes
       parameters:
         - name: id
           in: path
@@ -15403,7 +14710,6 @@ paths:
       tags:
         - OrderNotes
       summary: Partially update a OrderNote
-      operationId: patchOrderNotes
       parameters:
         - name: id
           in: path
@@ -15434,7 +14740,6 @@ paths:
       tags:
         - OrderNotes
       summary: Delete a OrderNote
-      operationId: deleteOrderNotes
       parameters:
         - name: id
           in: path
@@ -15450,7 +14755,6 @@ paths:
       tags:
         - ShipmentEvents
       summary: List all ShipmentEvents
-      operationId: listShipmentEvents
       parameters: []
       responses:
         "200":
@@ -15475,7 +14779,6 @@ paths:
       tags:
         - ShipmentEvents
       summary: Create a new ShipmentEvent
-      operationId: createShipmentEvents
       requestBody:
         required: true
         content:
@@ -15500,7 +14803,6 @@ paths:
       tags:
         - ShipmentEvents
       summary: Get a ShipmentEvent by id
-      operationId: getShipmentEventsById
       parameters:
         - name: id
           in: path
@@ -15527,7 +14829,6 @@ paths:
       tags:
         - ShipmentEvents
       summary: Replace a ShipmentEvent
-      operationId: replaceShipmentEvents
       parameters:
         - name: id
           in: path
@@ -15558,7 +14859,6 @@ paths:
       tags:
         - ShipmentEvents
       summary: Partially update a ShipmentEvent
-      operationId: patchShipmentEvents
       parameters:
         - name: id
           in: path
@@ -15589,7 +14889,6 @@ paths:
       tags:
         - ShipmentEvents
       summary: Delete a ShipmentEvent
-      operationId: deleteShipmentEvents
       parameters:
         - name: id
           in: path
@@ -15605,7 +14904,6 @@ paths:
       tags:
         - InvoiceItems
       summary: List all InvoiceItems
-      operationId: listInvoiceItems
       parameters: []
       responses:
         "200":
@@ -15630,7 +14928,6 @@ paths:
       tags:
         - InvoiceItems
       summary: Create a new InvoiceItem
-      operationId: createInvoiceItems
       requestBody:
         required: true
         content:
@@ -15655,7 +14952,6 @@ paths:
       tags:
         - InvoiceItems
       summary: Get a InvoiceItem by id
-      operationId: getInvoiceItemsById
       parameters:
         - name: id
           in: path
@@ -15682,7 +14978,6 @@ paths:
       tags:
         - InvoiceItems
       summary: Replace a InvoiceItem
-      operationId: replaceInvoiceItems
       parameters:
         - name: id
           in: path
@@ -15713,7 +15008,6 @@ paths:
       tags:
         - InvoiceItems
       summary: Partially update a InvoiceItem
-      operationId: patchInvoiceItems
       parameters:
         - name: id
           in: path
@@ -15744,7 +15038,6 @@ paths:
       tags:
         - InvoiceItems
       summary: Delete a InvoiceItem
-      operationId: deleteInvoiceItems
       parameters:
         - name: id
           in: path
@@ -15760,7 +15053,6 @@ paths:
       tags:
         - LoyaltyAccounts
       summary: List all LoyaltyAccounts
-      operationId: listLoyaltyAccounts
       parameters: []
       responses:
         "200":
@@ -15785,7 +15077,6 @@ paths:
       tags:
         - LoyaltyAccounts
       summary: Create a new LoyaltyAccount
-      operationId: createLoyaltyAccounts
       requestBody:
         required: true
         content:
@@ -15810,7 +15101,6 @@ paths:
       tags:
         - LoyaltyAccounts
       summary: Get a LoyaltyAccount by id
-      operationId: getLoyaltyAccountsById
       parameters:
         - name: id
           in: path
@@ -15837,7 +15127,6 @@ paths:
       tags:
         - LoyaltyAccounts
       summary: Replace a LoyaltyAccount
-      operationId: replaceLoyaltyAccounts
       parameters:
         - name: id
           in: path
@@ -15868,7 +15157,6 @@ paths:
       tags:
         - LoyaltyAccounts
       summary: Partially update a LoyaltyAccount
-      operationId: patchLoyaltyAccounts
       parameters:
         - name: id
           in: path
@@ -15899,7 +15187,6 @@ paths:
       tags:
         - LoyaltyAccounts
       summary: Delete a LoyaltyAccount
-      operationId: deleteLoyaltyAccounts
       parameters:
         - name: id
           in: path
@@ -15915,7 +15202,6 @@ paths:
       tags:
         - LoyaltyTransactions
       summary: List all LoyaltyTransactions
-      operationId: listLoyaltyTransactions
       parameters: []
       responses:
         "200":
@@ -15940,7 +15226,6 @@ paths:
       tags:
         - LoyaltyTransactions
       summary: Create a new LoyaltyTransaction
-      operationId: createLoyaltyTransactions
       requestBody:
         required: true
         content:
@@ -15965,7 +15250,6 @@ paths:
       tags:
         - LoyaltyTransactions
       summary: Get a LoyaltyTransaction by id
-      operationId: getLoyaltyTransactionsById
       parameters:
         - name: id
           in: path
@@ -15992,7 +15276,6 @@ paths:
       tags:
         - LoyaltyTransactions
       summary: Replace a LoyaltyTransaction
-      operationId: replaceLoyaltyTransactions
       parameters:
         - name: id
           in: path
@@ -16023,7 +15306,6 @@ paths:
       tags:
         - LoyaltyTransactions
       summary: Partially update a LoyaltyTransaction
-      operationId: patchLoyaltyTransactions
       parameters:
         - name: id
           in: path
@@ -16054,7 +15336,6 @@ paths:
       tags:
         - LoyaltyTransactions
       summary: Delete a LoyaltyTransaction
-      operationId: deleteLoyaltyTransactions
       parameters:
         - name: id
           in: path
@@ -16070,7 +15351,6 @@ paths:
       tags:
         - EventAttendees
       summary: List all EventAttendees
-      operationId: listEventAttendees
       parameters: []
       responses:
         "200":
@@ -16095,7 +15375,6 @@ paths:
       tags:
         - EventAttendees
       summary: Create a new EventAttendee
-      operationId: createEventAttendees
       requestBody:
         required: true
         content:
@@ -16120,7 +15399,6 @@ paths:
       tags:
         - EventAttendees
       summary: Get a EventAttendee by id
-      operationId: getEventAttendeesById
       parameters:
         - name: id
           in: path
@@ -16147,7 +15425,6 @@ paths:
       tags:
         - EventAttendees
       summary: Replace a EventAttendee
-      operationId: replaceEventAttendees
       parameters:
         - name: id
           in: path
@@ -16178,7 +15455,6 @@ paths:
       tags:
         - EventAttendees
       summary: Partially update a EventAttendee
-      operationId: patchEventAttendees
       parameters:
         - name: id
           in: path
@@ -16209,7 +15485,6 @@ paths:
       tags:
         - EventAttendees
       summary: Delete a EventAttendee
-      operationId: deleteEventAttendees
       parameters:
         - name: id
           in: path
@@ -16225,7 +15500,6 @@ paths:
       tags:
         - PlaylistItems
       summary: List all PlaylistItems
-      operationId: listPlaylistItems
       parameters: []
       responses:
         "200":
@@ -16250,7 +15524,6 @@ paths:
       tags:
         - PlaylistItems
       summary: Create a new PlaylistItem
-      operationId: createPlaylistItems
       requestBody:
         required: true
         content:
@@ -16275,7 +15548,6 @@ paths:
       tags:
         - PlaylistItems
       summary: Get a PlaylistItem by id
-      operationId: getPlaylistItemsById
       parameters:
         - name: id
           in: path
@@ -16302,7 +15574,6 @@ paths:
       tags:
         - PlaylistItems
       summary: Replace a PlaylistItem
-      operationId: replacePlaylistItems
       parameters:
         - name: id
           in: path
@@ -16333,7 +15604,6 @@ paths:
       tags:
         - PlaylistItems
       summary: Partially update a PlaylistItem
-      operationId: patchPlaylistItems
       parameters:
         - name: id
           in: path
@@ -16364,7 +15634,6 @@ paths:
       tags:
         - PlaylistItems
       summary: Delete a PlaylistItem
-      operationId: deletePlaylistItems
       parameters:
         - name: id
           in: path
@@ -16380,7 +15649,6 @@ paths:
       tags:
         - RecipeIngredients
       summary: List all RecipeIngredients
-      operationId: listRecipeIngredients
       parameters: []
       responses:
         "200":
@@ -16405,7 +15673,6 @@ paths:
       tags:
         - RecipeIngredients
       summary: Create a new RecipeIngredient
-      operationId: createRecipeIngredients
       requestBody:
         required: true
         content:
@@ -16430,7 +15697,6 @@ paths:
       tags:
         - RecipeIngredients
       summary: Get a RecipeIngredient by id
-      operationId: getRecipeIngredientsById
       parameters:
         - name: id
           in: path
@@ -16457,7 +15723,6 @@ paths:
       tags:
         - RecipeIngredients
       summary: Replace a RecipeIngredient
-      operationId: replaceRecipeIngredients
       parameters:
         - name: id
           in: path
@@ -16488,7 +15753,6 @@ paths:
       tags:
         - RecipeIngredients
       summary: Partially update a RecipeIngredient
-      operationId: patchRecipeIngredients
       parameters:
         - name: id
           in: path
@@ -16519,7 +15783,6 @@ paths:
       tags:
         - RecipeIngredients
       summary: Delete a RecipeIngredient
-      operationId: deleteRecipeIngredients
       parameters:
         - name: id
           in: path
@@ -16535,7 +15798,6 @@ paths:
       tags:
         - RestaurantMenus
       summary: List all RestaurantMenus
-      operationId: listRestaurantMenus
       parameters: []
       responses:
         "200":
@@ -16560,7 +15822,6 @@ paths:
       tags:
         - RestaurantMenus
       summary: Create a new RestaurantMenu
-      operationId: createRestaurantMenus
       requestBody:
         required: true
         content:
@@ -16585,7 +15846,6 @@ paths:
       tags:
         - RestaurantMenus
       summary: Get a RestaurantMenu by id
-      operationId: getRestaurantMenusById
       parameters:
         - name: id
           in: path
@@ -16612,7 +15872,6 @@ paths:
       tags:
         - RestaurantMenus
       summary: Replace a RestaurantMenu
-      operationId: replaceRestaurantMenus
       parameters:
         - name: id
           in: path
@@ -16643,7 +15902,6 @@ paths:
       tags:
         - RestaurantMenus
       summary: Partially update a RestaurantMenu
-      operationId: patchRestaurantMenus
       parameters:
         - name: id
           in: path
@@ -16674,7 +15932,6 @@ paths:
       tags:
         - RestaurantMenus
       summary: Delete a RestaurantMenu
-      operationId: deleteRestaurantMenus
       parameters:
         - name: id
           in: path
@@ -16690,7 +15947,6 @@ paths:
       tags:
         - MenuItems
       summary: List all MenuItems
-      operationId: listMenuItems
       parameters: []
       responses:
         "200":
@@ -16715,7 +15971,6 @@ paths:
       tags:
         - MenuItems
       summary: Create a new MenuItem
-      operationId: createMenuItems
       requestBody:
         required: true
         content:
@@ -16740,7 +15995,6 @@ paths:
       tags:
         - MenuItems
       summary: Get a MenuItem by id
-      operationId: getMenuItemsById
       parameters:
         - name: id
           in: path
@@ -16767,7 +16021,6 @@ paths:
       tags:
         - MenuItems
       summary: Replace a MenuItem
-      operationId: replaceMenuItems
       parameters:
         - name: id
           in: path
@@ -16798,7 +16051,6 @@ paths:
       tags:
         - MenuItems
       summary: Partially update a MenuItem
-      operationId: patchMenuItems
       parameters:
         - name: id
           in: path
@@ -16829,7 +16081,6 @@ paths:
       tags:
         - MenuItems
       summary: Delete a MenuItem
-      operationId: deleteMenuItems
       parameters:
         - name: id
           in: path
@@ -16845,7 +16096,6 @@ paths:
       tags:
         - CompanyOffices
       summary: List all CompanyOffices
-      operationId: listCompanyOffices
       parameters: []
       responses:
         "200":
@@ -16870,7 +16120,6 @@ paths:
       tags:
         - CompanyOffices
       summary: Create a new CompanyOffice
-      operationId: createCompanyOffices
       requestBody:
         required: true
         content:
@@ -16895,7 +16144,6 @@ paths:
       tags:
         - CompanyOffices
       summary: Get a CompanyOffice by id
-      operationId: getCompanyOfficesById
       parameters:
         - name: id
           in: path
@@ -16922,7 +16170,6 @@ paths:
       tags:
         - CompanyOffices
       summary: Replace a CompanyOffice
-      operationId: replaceCompanyOffices
       parameters:
         - name: id
           in: path
@@ -16953,7 +16200,6 @@ paths:
       tags:
         - CompanyOffices
       summary: Partially update a CompanyOffice
-      operationId: patchCompanyOffices
       parameters:
         - name: id
           in: path
@@ -16984,7 +16230,6 @@ paths:
       tags:
         - CompanyOffices
       summary: Delete a CompanyOffice
-      operationId: deleteCompanyOffices
       parameters:
         - name: id
           in: path
@@ -17000,7 +16245,6 @@ paths:
       tags:
         - EmployeeSkills
       summary: List all EmployeeSkills
-      operationId: listEmployeeSkills
       parameters: []
       responses:
         "200":
@@ -17025,7 +16269,6 @@ paths:
       tags:
         - EmployeeSkills
       summary: Create a new EmployeeSkill
-      operationId: createEmployeeSkills
       requestBody:
         required: true
         content:
@@ -17050,7 +16293,6 @@ paths:
       tags:
         - EmployeeSkills
       summary: Get a EmployeeSkill by id
-      operationId: getEmployeeSkillsById
       parameters:
         - name: id
           in: path
@@ -17077,7 +16319,6 @@ paths:
       tags:
         - EmployeeSkills
       summary: Replace a EmployeeSkill
-      operationId: replaceEmployeeSkills
       parameters:
         - name: id
           in: path
@@ -17108,7 +16349,6 @@ paths:
       tags:
         - EmployeeSkills
       summary: Partially update a EmployeeSkill
-      operationId: patchEmployeeSkills
       parameters:
         - name: id
           in: path
@@ -17139,7 +16379,6 @@ paths:
       tags:
         - EmployeeSkills
       summary: Delete a EmployeeSkill
-      operationId: deleteEmployeeSkills
       parameters:
         - name: id
           in: path
@@ -17155,7 +16394,6 @@ paths:
       tags:
         - SupplierProducts
       summary: List all SupplierProducts
-      operationId: listSupplierProducts
       parameters: []
       responses:
         "200":
@@ -17180,7 +16418,6 @@ paths:
       tags:
         - SupplierProducts
       summary: Create a new SupplierProduct
-      operationId: createSupplierProducts
       requestBody:
         required: true
         content:
@@ -17205,7 +16442,6 @@ paths:
       tags:
         - SupplierProducts
       summary: Get a SupplierProduct by id
-      operationId: getSupplierProductsById
       parameters:
         - name: id
           in: path
@@ -17232,7 +16468,6 @@ paths:
       tags:
         - SupplierProducts
       summary: Replace a SupplierProduct
-      operationId: replaceSupplierProducts
       parameters:
         - name: id
           in: path
@@ -17263,7 +16498,6 @@ paths:
       tags:
         - SupplierProducts
       summary: Partially update a SupplierProduct
-      operationId: patchSupplierProducts
       parameters:
         - name: id
           in: path
@@ -17294,7 +16528,6 @@ paths:
       tags:
         - SupplierProducts
       summary: Delete a SupplierProduct
-      operationId: deleteSupplierProducts
       parameters:
         - name: id
           in: path
@@ -17310,7 +16543,6 @@ paths:
       tags:
         - FlightBookings
       summary: List all FlightBookings
-      operationId: listFlightBookings
       parameters: []
       responses:
         "200":
@@ -17335,7 +16567,6 @@ paths:
       tags:
         - FlightBookings
       summary: Create a new FlightBooking
-      operationId: createFlightBookings
       requestBody:
         required: true
         content:
@@ -17360,7 +16591,6 @@ paths:
       tags:
         - FlightBookings
       summary: Get a FlightBooking by id
-      operationId: getFlightBookingsById
       parameters:
         - name: id
           in: path
@@ -17387,7 +16617,6 @@ paths:
       tags:
         - FlightBookings
       summary: Replace a FlightBooking
-      operationId: replaceFlightBookings
       parameters:
         - name: id
           in: path
@@ -17418,7 +16647,6 @@ paths:
       tags:
         - FlightBookings
       summary: Partially update a FlightBooking
-      operationId: patchFlightBookings
       parameters:
         - name: id
           in: path
@@ -17449,7 +16677,6 @@ paths:
       tags:
         - FlightBookings
       summary: Delete a FlightBooking
-      operationId: deleteFlightBookings
       parameters:
         - name: id
           in: path
@@ -17465,7 +16692,6 @@ paths:
       tags:
         - PromotionProducts
       summary: List all PromotionProducts
-      operationId: listPromotionProducts
       parameters: []
       responses:
         "200":
@@ -17490,7 +16716,6 @@ paths:
       tags:
         - PromotionProducts
       summary: Create a new PromotionProduct
-      operationId: createPromotionProducts
       requestBody:
         required: true
         content:
@@ -17515,7 +16740,6 @@ paths:
       tags:
         - PromotionProducts
       summary: Get a PromotionProduct by id
-      operationId: getPromotionProductsById
       parameters:
         - name: id
           in: path
@@ -17542,7 +16766,6 @@ paths:
       tags:
         - PromotionProducts
       summary: Replace a PromotionProduct
-      operationId: replacePromotionProducts
       parameters:
         - name: id
           in: path
@@ -17573,7 +16796,6 @@ paths:
       tags:
         - PromotionProducts
       summary: Partially update a PromotionProduct
-      operationId: patchPromotionProducts
       parameters:
         - name: id
           in: path
@@ -17604,7 +16826,6 @@ paths:
       tags:
         - PromotionProducts
       summary: Delete a PromotionProduct
-      operationId: deletePromotionProducts
       parameters:
         - name: id
           in: path
@@ -17620,7 +16841,6 @@ paths:
       tags:
         - BannerPlacements
       summary: List all BannerPlacements
-      operationId: listBannerPlacements
       parameters: []
       responses:
         "200":
@@ -17645,7 +16865,6 @@ paths:
       tags:
         - BannerPlacements
       summary: Create a new BannerPlacement
-      operationId: createBannerPlacements
       requestBody:
         required: true
         content:
@@ -17670,7 +16889,6 @@ paths:
       tags:
         - BannerPlacements
       summary: Get a BannerPlacement by id
-      operationId: getBannerPlacementsById
       parameters:
         - name: id
           in: path
@@ -17697,7 +16915,6 @@ paths:
       tags:
         - BannerPlacements
       summary: Replace a BannerPlacement
-      operationId: replaceBannerPlacements
       parameters:
         - name: id
           in: path
@@ -17728,7 +16945,6 @@ paths:
       tags:
         - BannerPlacements
       summary: Partially update a BannerPlacement
-      operationId: patchBannerPlacements
       parameters:
         - name: id
           in: path
@@ -17759,7 +16975,6 @@ paths:
       tags:
         - BannerPlacements
       summary: Delete a BannerPlacement
-      operationId: deleteBannerPlacements
       parameters:
         - name: id
           in: path
@@ -17775,7 +16990,6 @@ paths:
       tags:
         - SupportTickets
       summary: List all SupportTickets
-      operationId: listSupportTickets
       parameters:
         - name: page
           in: query
@@ -17862,7 +17076,6 @@ paths:
       tags:
         - SupportTickets
       summary: Create a new SupportTicket
-      operationId: createSupportTickets
       requestBody:
         required: true
         content:
@@ -17887,7 +17100,6 @@ paths:
       tags:
         - SupportTickets
       summary: Get a SupportTicket by id
-      operationId: getSupportTicketsById
       parameters:
         - name: id
           in: path
@@ -17914,7 +17126,6 @@ paths:
       tags:
         - SupportTickets
       summary: Replace a SupportTicket
-      operationId: replaceSupportTickets
       parameters:
         - name: id
           in: path
@@ -17945,7 +17156,6 @@ paths:
       tags:
         - SupportTickets
       summary: Partially update a SupportTicket
-      operationId: patchSupportTickets
       parameters:
         - name: id
           in: path
@@ -17976,7 +17186,6 @@ paths:
       tags:
         - SupportTickets
       summary: Delete a SupportTicket
-      operationId: deleteSupportTickets
       parameters:
         - name: id
           in: path
@@ -17992,7 +17201,6 @@ paths:
       tags:
         - TicketReplies
       summary: List all TicketReplies
-      operationId: listTicketReplies
       parameters: []
       responses:
         "200":
@@ -18017,7 +17225,6 @@ paths:
       tags:
         - TicketReplies
       summary: Create a new TicketReply
-      operationId: createTicketReplies
       requestBody:
         required: true
         content:
@@ -18042,7 +17249,6 @@ paths:
       tags:
         - TicketReplies
       summary: Get a TicketReply by id
-      operationId: getTicketRepliesById
       parameters:
         - name: id
           in: path
@@ -18069,7 +17275,6 @@ paths:
       tags:
         - TicketReplies
       summary: Replace a TicketReply
-      operationId: replaceTicketReplies
       parameters:
         - name: id
           in: path
@@ -18100,7 +17305,6 @@ paths:
       tags:
         - TicketReplies
       summary: Partially update a TicketReply
-      operationId: patchTicketReplies
       parameters:
         - name: id
           in: path
@@ -18131,7 +17335,6 @@ paths:
       tags:
         - TicketReplies
       summary: Delete a TicketReply
-      operationId: deleteTicketReplies
       parameters:
         - name: id
           in: path
@@ -18147,7 +17350,6 @@ paths:
       tags:
         - Authors
       summary: List authors for a given book id
-      operationId: getAuthorsForBook
       parameters:
         - name: idBook
           in: path
@@ -18169,7 +17371,6 @@ paths:
       tags:
         - CoverPhotos
       summary: List cover photos for a given book id
-      operationId: getCoverPhotosForBook
       parameters:
         - name: idBook
           in: path
@@ -18191,7 +17392,6 @@ paths:
       tags:
         - Books
       summary: List related authors for a given book id
-      operationId: getBookAuthors
       parameters:
         - name: id
           in: path
@@ -18215,7 +17415,6 @@ paths:
       tags:
         - Books
       summary: List related cover photos for a given book id
-      operationId: getBookCoverPhotos
       parameters:
         - name: id
           in: path
@@ -18239,7 +17438,6 @@ paths:
       tags:
         - Customers
       summary: List related orders for a given customer id
-      operationId: getCustomerOrders
       parameters:
         - name: id
           in: path
@@ -18320,12 +17518,11 @@ paths:
                   type: object
         "404":
           description: Not Found
-  "/api/v1/Orders/{id}/items":
+  "/api/v1/Customers/{id}/reviews":
     get:
       tags:
-        - Orders
-      summary: List related order items for a given order id
-      operationId: getOrderItems
+        - Customers
+      summary: List related reviews for a given customer id
       parameters:
         - name: id
           in: path
@@ -18403,7 +17600,30 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
+                  "$ref": "#/components/schemas/Review"
+        "404":
+          description: Not Found
+  "/api/v1/Orders/{id}/refunds":
+    get:
+      tags:
+        - Orders
+      summary: List related refunds for a given order id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Refund"
         "404":
           description: Not Found
   "/api/v1/Products/{id}/reviews":
@@ -18411,7 +17631,6 @@ paths:
       tags:
         - Products
       summary: List related reviews for a given product id
-      operationId: getProductReviews
       parameters:
         - name: id
           in: path
@@ -18492,228 +17711,11 @@ paths:
                   type: object
         "404":
           description: Not Found
-  "/api/v1/Projects/{id}/tasks":
-    get:
-      tags:
-        - Projects
-      summary: List related tasks for a given project id
-      operationId: getProjectTasks
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-        "404":
-          description: Not Found
-  "/api/v1/Carts/{id}/items":
-    get:
-      tags:
-        - Carts
-      summary: List related cart items for a given cart id
-      operationId: getCartItems
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/CartItem"
-        "404":
-          description: Not Found
-  "/api/v1/Wishlists/{id}/items":
-    get:
-      tags:
-        - Wishlists
-      summary: List related wishlist items for a given wishlist id
-      operationId: getWishlistItems
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/WishlistItem"
-        "404":
-          description: Not Found
-  "/api/v1/Hotels/{id}/bookings":
-    get:
-      tags:
-        - Hotels
-      summary: List related bookings for a given hotel id
-      operationId: getHotelBookings
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/Booking"
-        "404":
-          description: Not Found
-  "/api/v1/Articles/{id}/tags":
-    get:
-      tags:
-        - Articles
-      summary: List related tags for a given article id
-      operationId: getArticleTags
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/ArticleTag"
-        "404":
-          description: Not Found
-  "/api/v1/Departments/{id}/employees":
-    get:
-      tags:
-        - Departments
-      summary: List related employees for a given department id
-      operationId: getDepartmentEmployees
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/Employee"
-        "404":
-          description: Not Found
-  "/api/v1/Vendors/{id}/transactions":
-    get:
-      tags:
-        - Vendors
-      summary: List related transactions for a given vendor id
-      operationId: getVendorTransactions
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/Transaction"
-        "404":
-          description: Not Found
-  "/api/v1/Reviews/{id}/replies":
-    get:
-      tags:
-        - Reviews
-      summary: List related replies for a given review id
-      operationId: getReviewReplies
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/ReviewReply"
-        "404":
-          description: Not Found
-  "/api/v1/Conversations/{id}/messages":
-    get:
-      tags:
-        - Conversations
-      summary: List related messages for a given conversation id
-      operationId: getConversationMessages
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  "$ref": "#/components/schemas/Message"
-        "404":
-          description: Not Found
   "/api/v1/Products/{id}/variants":
     get:
       tags:
         - Products
       summary: List related variants for a given product id
-      operationId: getProductVariants
       parameters:
         - name: id
           in: path
@@ -18799,7 +17801,6 @@ paths:
       tags:
         - Products
       summary: List related favorites for a given product id
-      operationId: getProductFavorites
       parameters:
         - name: id
           in: path
@@ -18818,12 +17819,80 @@ paths:
                   "$ref": "#/components/schemas/Favorite"
         "404":
           description: Not Found
+  "/api/v1/Projects/{id}/tasks":
+    get:
+      tags:
+        - Projects
+      summary: List related tasks for a given project id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        "404":
+          description: Not Found
+  "/api/v1/Carts/{id}/items":
+    get:
+      tags:
+        - Carts
+      summary: List related cart items for a given cart id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/CartItem"
+        "404":
+          description: Not Found
+  "/api/v1/Wishlists/{id}/items":
+    get:
+      tags:
+        - Wishlists
+      summary: List related wishlist items for a given wishlist id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/WishlistItem"
+        "404":
+          description: Not Found
   "/api/v1/Users/{id}/badges":
     get:
       tags:
         - Users
       summary: List related badges for a given user id
-      operationId: getUserBadges
       parameters:
         - name: id
           in: path
@@ -18842,12 +17911,11 @@ paths:
                   "$ref": "#/components/schemas/UserBadge"
         "404":
           description: Not Found
-  "/api/v1/Orders/{id}/refunds":
+  "/api/v1/Hotels/{id}/bookings":
     get:
       tags:
-        - Orders
-      summary: List related refunds for a given order id
-      operationId: getOrderRefunds
+        - Hotels
+      summary: List related bookings for a given hotel id
       parameters:
         - name: id
           in: path
@@ -18863,15 +17931,14 @@ paths:
               schema:
                 type: array
                 items:
-                  "$ref": "#/components/schemas/Refund"
+                  "$ref": "#/components/schemas/Booking"
         "404":
           description: Not Found
-  "/api/v1/Customers/{id}/reviews":
+  "/api/v1/Articles/{id}/tags":
     get:
       tags:
-        - Customers
-      summary: List related reviews for a given customer id
-      operationId: getCustomerReviews
+        - Articles
+      summary: List related tags for a given article id
       parameters:
         - name: id
           in: path
@@ -18879,68 +17946,6 @@ paths:
           schema:
             type: integer
             format: int32
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            default: 1
-          description: "1-based page number. Used with limit when paginating collection results."
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-          description: Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
-        - name: offset
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-          description: Zero-based item offset. Takes precedence over page when present.
-        - name: q
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Case-insensitive search across scalar values in each item.
-        - name: search
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Alias for q.
-        - name: sort
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Sort by a top-level field. Prefix with - or set order=desc for descending order.
-        - name: order
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-          description: Sort direction used with sort.
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Comma-separated top-level fields to include in each returned item.
-        - name: "<field>"
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
       responses:
         "200":
           description: Success
@@ -18949,7 +17954,99 @@ paths:
               schema:
                 type: array
                 items:
-                  "$ref": "#/components/schemas/Review"
+                  "$ref": "#/components/schemas/ArticleTag"
+        "404":
+          description: Not Found
+  "/api/v1/Departments/{id}/employees":
+    get:
+      tags:
+        - Departments
+      summary: List related employees for a given department id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Employee"
+        "404":
+          description: Not Found
+  "/api/v1/Vendors/{id}/transactions":
+    get:
+      tags:
+        - Vendors
+      summary: List related transactions for a given vendor id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Transaction"
+        "404":
+          description: Not Found
+  "/api/v1/Reviews/{id}/replies":
+    get:
+      tags:
+        - Reviews
+      summary: List related replies for a given review id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/ReviewReply"
+        "404":
+          description: Not Found
+  "/api/v1/Conversations/{id}/messages":
+    get:
+      tags:
+        - Conversations
+      summary: List related messages for a given conversation id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Message"
         "404":
           description: Not Found
   "/api/v1/Customers/{id}/carts":
@@ -18957,7 +18054,6 @@ paths:
       tags:
         - Customers
       summary: List related carts for a given customer id
-      operationId: get_Customers_carts
       parameters:
         - name: id
           in: path
@@ -18981,7 +18077,6 @@ paths:
       tags:
         - Customers
       summary: List related wishlists for a given customer id
-      operationId: get_Customers_wishlists
       parameters:
         - name: id
           in: path
@@ -19005,7 +18100,6 @@ paths:
       tags:
         - Customers
       summary: List related payment methods for a given customer id
-      operationId: get_Customers_paymentMethods
       parameters:
         - name: id
           in: path
@@ -19091,7 +18185,6 @@ paths:
       tags:
         - Customers
       summary: List related customer addresses for a given customer id
-      operationId: get_Customers_addresses
       parameters:
         - name: id
           in: path
@@ -19177,7 +18270,6 @@ paths:
       tags:
         - Customers
       summary: List related loyalty accounts for a given customer id
-      operationId: get_Customers_loyaltyAccounts
       parameters:
         - name: id
           in: path
@@ -19201,7 +18293,6 @@ paths:
       tags:
         - Employees
       summary: List related projects for a given employee id
-      operationId: get_Employees_projects
       parameters:
         - name: id
           in: path
@@ -19225,7 +18316,6 @@ paths:
       tags:
         - Employees
       summary: List related skills for a given employee id
-      operationId: get_Employees_skills
       parameters:
         - name: id
           in: path
@@ -19249,7 +18339,6 @@ paths:
       tags:
         - Posts
       summary: List related comments for a given post id
-      operationId: get_Posts_comments
       parameters:
         - name: id
           in: path
@@ -19273,7 +18362,6 @@ paths:
       tags:
         - Events
       summary: List related tickets for a given event id
-      operationId: get_Events_tickets
       parameters:
         - name: id
           in: path
@@ -19297,7 +18385,6 @@ paths:
       tags:
         - Events
       summary: List related attendees for a given event id
-      operationId: get_Events_attendees
       parameters:
         - name: id
           in: path
@@ -19321,7 +18408,6 @@ paths:
       tags:
         - Playlists
       summary: List related playlist items for a given playlist id
-      operationId: get_Playlists_items
       parameters:
         - name: id
           in: path
@@ -19345,7 +18431,6 @@ paths:
       tags:
         - Artists
       summary: List related albums for a given artist id
-      operationId: get_Artists_albums
       parameters:
         - name: id
           in: path
@@ -19369,7 +18454,6 @@ paths:
       tags:
         - Artists
       summary: List related songs for a given artist id
-      operationId: get_Artists_songs
       parameters:
         - name: id
           in: path
@@ -19393,7 +18477,6 @@ paths:
       tags:
         - Albums
       summary: List related songs for a given album id
-      operationId: get_Albums_songs
       parameters:
         - name: id
           in: path
@@ -19417,7 +18500,6 @@ paths:
       tags:
         - Genres
       summary: List related movies for a given genre id
-      operationId: get_Genres_movies
       parameters:
         - name: id
           in: path
@@ -19441,7 +18523,6 @@ paths:
       tags:
         - Genres
       summary: List related songs for a given genre id
-      operationId: get_Genres_songs
       parameters:
         - name: id
           in: path
@@ -19465,7 +18546,6 @@ paths:
       tags:
         - Countries
       summary: List related cities for a given country id
-      operationId: get_Countries_cities
       parameters:
         - name: id
           in: path
@@ -19489,7 +18569,6 @@ paths:
       tags:
         - Warehouses
       summary: List related inventories for a given warehouse id
-      operationId: get_Warehouses_inventories
       parameters:
         - name: id
           in: path
@@ -19513,7 +18592,6 @@ paths:
       tags:
         - Invoices
       summary: List related payments for a given invoice id
-      operationId: get_Invoices_payments
       parameters:
         - name: id
           in: path
@@ -19599,7 +18677,6 @@ paths:
       tags:
         - Invoices
       summary: List related invoice items for a given invoice id
-      operationId: get_Invoices_items
       parameters:
         - name: id
           in: path
@@ -19685,7 +18762,6 @@ paths:
       tags:
         - Plans
       summary: List related subscriptions for a given plan id
-      operationId: get_Plans_subscriptions
       parameters:
         - name: id
           in: path
@@ -19709,7 +18785,6 @@ paths:
       tags:
         - Users
       summary: List related favorites for a given user id
-      operationId: get_Users_favorites
       parameters:
         - name: id
           in: path
@@ -19733,7 +18808,6 @@ paths:
       tags:
         - Users
       summary: List related notifications for a given user id
-      operationId: get_Users_notifications
       parameters:
         - name: id
           in: path
@@ -19757,7 +18831,6 @@ paths:
       tags:
         - Users
       summary: List related sessions for a given user id
-      operationId: get_Users_sessions
       parameters:
         - name: id
           in: path
@@ -19781,7 +18854,6 @@ paths:
       tags:
         - Users
       summary: List related page views for a given user id
-      operationId: get_Users_pageViews
       parameters:
         - name: id
           in: path
@@ -19805,7 +18877,6 @@ paths:
       tags:
         - Users
       summary: List related activities for a given user id
-      operationId: get_Users_activities
       parameters:
         - name: id
           in: path
@@ -19829,7 +18900,6 @@ paths:
       tags:
         - Users
       summary: List related search queries for a given user id
-      operationId: get_Users_searchQueries
       parameters:
         - name: id
           in: path
@@ -19853,7 +18923,6 @@ paths:
       tags:
         - Products
       summary: List related inventory records for a given product id
-      operationId: get_Products_inventory
       parameters:
         - name: id
           in: path
@@ -19939,7 +19008,6 @@ paths:
       tags:
         - Products
       summary: List related order items for a given product id
-      operationId: get_Products_orderItems
       parameters:
         - name: id
           in: path
@@ -19963,7 +19031,6 @@ paths:
       tags:
         - Products
       summary: List related supplier product offers for a given product id
-      operationId: get_Products_supplierProducts
       parameters:
         - name: id
           in: path
@@ -19987,93 +19054,6 @@ paths:
       tags:
         - Orders
       summary: List related returns for a given order id
-      operationId: get_Orders_returns
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: page
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            default: 1
-          description: "1-based page number. Used with limit when paginating collection results."
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-          description: Maximum number of items to return. Pagination metadata is exposed through X-Total-Count, X-Page, X-Limit, and X-Offset headers.
-        - name: offset
-          in: query
-          required: false
-          schema:
-            type: integer
-            minimum: 0
-          description: Zero-based item offset. Takes precedence over page when present.
-        - name: q
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Case-insensitive search across scalar values in each item.
-        - name: search
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Alias for q.
-        - name: sort
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Sort by a top-level field. Prefix with - or set order=desc for descending order.
-        - name: order
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-          description: Sort direction used with sort.
-        - name: fields
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Comma-separated top-level fields to include in each returned item.
-        - name: "<field>"
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Any other query parameter is treated as an equality filter. Repeated values and comma-separated values are supported.
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  type: object
-        "404":
-          description: Not Found
-  "/api/v1/Orders/{id}/notes":
-    get:
-      tags:
-        - Orders
-      summary: List related notes for a given order id
-      operationId: get_Orders_notes
       parameters:
         - name: id
           in: path
@@ -20159,7 +19139,6 @@ paths:
       tags:
         - Orders
       summary: List related coupon usages for a given order id
-      operationId: get_Orders_couponUsages
       parameters:
         - name: id
           in: path
@@ -20183,7 +19162,6 @@ paths:
       tags:
         - Shipments
       summary: List related shipment events for a given shipment id
-      operationId: get_Shipments_events
       parameters:
         - name: id
           in: path
@@ -20207,7 +19185,6 @@ paths:
       tags:
         - Flights
       summary: List related flight bookings for a given flight id
-      operationId: get_Flights_bookings
       parameters:
         - name: id
           in: path
@@ -20231,7 +19208,6 @@ paths:
       tags:
         - Companies
       summary: List related offices for a given company id
-      operationId: get_Companies_offices
       parameters:
         - name: id
           in: path
@@ -20255,7 +19231,6 @@ paths:
       tags:
         - Recipes
       summary: List related ingredients for a given recipe id
-      operationId: get_Recipes_ingredients
       parameters:
         - name: id
           in: path
@@ -20279,7 +19254,6 @@ paths:
       tags:
         - Restaurants
       summary: List related menus for a given restaurant id
-      operationId: get_Restaurants_menus
       parameters:
         - name: id
           in: path
@@ -20303,7 +19277,6 @@ paths:
       tags:
         - RestaurantMenus
       summary: List related menu items for a given menu id
-      operationId: get_RestaurantMenus_items
       parameters:
         - name: id
           in: path
@@ -20327,7 +19300,6 @@ paths:
       tags:
         - Promotions
       summary: List related promotion products for a given promotion id
-      operationId: get_Promotions_products
       parameters:
         - name: id
           in: path
@@ -20351,7 +19323,6 @@ paths:
       tags:
         - Banners
       summary: List related banner placements for a given banner id
-      operationId: get_Banners_placements
       parameters:
         - name: id
           in: path
@@ -20375,7 +19346,6 @@ paths:
       tags:
         - LoyaltyAccounts
       summary: List related loyalty transactions for a given account id
-      operationId: get_LoyaltyAccounts_transactions
       parameters:
         - name: id
           in: path
@@ -20399,7 +19369,6 @@ paths:
       tags:
         - SupportTickets
       summary: List related replies for a given support ticket id
-      operationId: get_SupportTickets_replies
       parameters:
         - name: id
           in: path
@@ -20485,7 +19454,6 @@ paths:
       tags:
         - Suppliers
       summary: List related supplier product offers for a given supplier id
-      operationId: get_Suppliers_products
       parameters:
         - name: id
           in: path

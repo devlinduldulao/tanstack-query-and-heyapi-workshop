@@ -119,8 +119,6 @@ import type {
   DeleteApiV1OrderItemsByIdResponses,
   DeleteApiV1OrderNotesByIdData,
   DeleteApiV1OrderNotesByIdResponses,
-  DeleteApiV1OrdersByIdData,
-  DeleteApiV1OrdersByIdResponses,
   DeleteApiV1PageViewsByIdData,
   DeleteApiV1PageViewsByIdResponses,
   DeleteApiV1PaymentMethodsByIdData,
@@ -601,23 +599,12 @@ import type {
   GetApiV1OrderNotesByIdData,
   GetApiV1OrderNotesByIdErrors,
   GetApiV1OrderNotesByIdResponses,
-  GetApiV1OrderNotesData,
-  GetApiV1OrderNotesResponses,
   GetApiV1OrdersByIdCouponUsagesData,
   GetApiV1OrdersByIdCouponUsagesErrors,
   GetApiV1OrdersByIdCouponUsagesResponses,
-  GetApiV1OrdersByIdData,
-  GetApiV1OrdersByIdErrors,
-  GetApiV1OrdersByIdItemsData,
-  GetApiV1OrdersByIdItemsErrors,
-  GetApiV1OrdersByIdItemsResponses,
-  GetApiV1OrdersByIdNotesData,
-  GetApiV1OrdersByIdNotesErrors,
-  GetApiV1OrdersByIdNotesResponses,
   GetApiV1OrdersByIdRefundsData,
   GetApiV1OrdersByIdRefundsErrors,
   GetApiV1OrdersByIdRefundsResponses,
-  GetApiV1OrdersByIdResponses,
   GetApiV1OrdersByIdReturnsData,
   GetApiV1OrdersByIdReturnsErrors,
   GetApiV1OrdersByIdReturnsResponses,
@@ -1068,8 +1055,6 @@ import type {
   PatchApiV1OrderItemsByIdResponses,
   PatchApiV1OrderNotesByIdData,
   PatchApiV1OrderNotesByIdResponses,
-  PatchApiV1OrdersByIdData,
-  PatchApiV1OrdersByIdResponses,
   PatchApiV1PageViewsByIdData,
   PatchApiV1PageViewsByIdResponses,
   PatchApiV1PaymentMethodsByIdData,
@@ -1282,8 +1267,6 @@ import type {
   PostApiV1NotificationsResponses,
   PostApiV1OrderItemsData,
   PostApiV1OrderItemsResponses,
-  PostApiV1OrderNotesData,
-  PostApiV1OrderNotesResponses,
   PostApiV1OrdersData,
   PostApiV1OrdersResponses,
   PostApiV1PageViewsData,
@@ -1500,8 +1483,6 @@ import type {
   PutApiV1OrderItemsByIdResponses,
   PutApiV1OrderNotesByIdData,
   PutApiV1OrderNotesByIdResponses,
-  PutApiV1OrdersByIdData,
-  PutApiV1OrdersByIdResponses,
   PutApiV1PageViewsByIdData,
   PutApiV1PageViewsByIdResponses,
   PutApiV1PaymentMethodsByIdData,
@@ -2222,61 +2203,6 @@ export const postApiV1Orders = <ThrowOnError extends boolean = false>(
   (options.client ?? client).post<PostApiV1OrdersResponses, unknown, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Orders",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Delete a Order
- */
-export const deleteApiV1OrdersById = <ThrowOnError extends boolean = false>(
-  options: Options<DeleteApiV1OrdersByIdData, ThrowOnError>,
-): RequestResult<DeleteApiV1OrdersByIdResponses, unknown, ThrowOnError> =>
-  (options.client ?? client).delete<DeleteApiV1OrdersByIdResponses, unknown, ThrowOnError>({
-    url: "/api/v1/Orders/{id}",
-    ...options,
-  });
-
-/**
- * Get a Order by id
- */
-export const getApiV1OrdersById = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1OrdersByIdData, ThrowOnError>,
-): RequestResult<GetApiV1OrdersByIdResponses, GetApiV1OrdersByIdErrors, ThrowOnError> =>
-  (options.client ?? client).get<GetApiV1OrdersByIdResponses, GetApiV1OrdersByIdErrors, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/Orders/{id}",
-    ...options,
-  });
-
-/**
- * Partially update a Order
- */
-export const patchApiV1OrdersById = <ThrowOnError extends boolean = false>(
-  options: Options<PatchApiV1OrdersByIdData, ThrowOnError>,
-): RequestResult<PatchApiV1OrdersByIdResponses, unknown, ThrowOnError> =>
-  (options.client ?? client).patch<PatchApiV1OrdersByIdResponses, unknown, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/Orders/{id}",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
- * Replace a Order
- */
-export const putApiV1OrdersById = <ThrowOnError extends boolean = false>(
-  options: Options<PutApiV1OrdersByIdData, ThrowOnError>,
-): RequestResult<PutApiV1OrdersByIdResponses, unknown, ThrowOnError> =>
-  (options.client ?? client).put<PutApiV1OrdersByIdResponses, unknown, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/Orders/{id}",
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -9097,34 +9023,6 @@ export const putApiV1CustomerAddressesById = <ThrowOnError extends boolean = fal
   });
 
 /**
- * List all OrderNotes
- */
-export const getApiV1OrderNotes = <ThrowOnError extends boolean = false>(
-  options?: Options<GetApiV1OrderNotesData, ThrowOnError>,
-): RequestResult<GetApiV1OrderNotesResponses, unknown, ThrowOnError> =>
-  (options?.client ?? client).get<GetApiV1OrderNotesResponses, unknown, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/OrderNotes",
-    ...options,
-  });
-
-/**
- * Create a new OrderNote
- */
-export const postApiV1OrderNotes = <ThrowOnError extends boolean = false>(
-  options: Options<PostApiV1OrderNotesData, ThrowOnError>,
-): RequestResult<PostApiV1OrderNotesResponses, unknown, ThrowOnError> =>
-  (options.client ?? client).post<PostApiV1OrderNotesResponses, unknown, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/OrderNotes",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...options.headers,
-    },
-  });
-
-/**
  * Delete a OrderNote
  */
 export const deleteApiV1OrderNotesById = <ThrowOnError extends boolean = false>(
@@ -10681,14 +10579,30 @@ export const getApiV1CustomersByIdOrders = <ThrowOnError extends boolean = false
   );
 
 /**
- * List related order items for a given order id
+ * List related reviews for a given customer id
  */
-export const getApiV1OrdersByIdItems = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1OrdersByIdItemsData, ThrowOnError>,
-): RequestResult<GetApiV1OrdersByIdItemsResponses, GetApiV1OrdersByIdItemsErrors, ThrowOnError> =>
-  (options.client ?? client).get<GetApiV1OrdersByIdItemsResponses, GetApiV1OrdersByIdItemsErrors, ThrowOnError>({
+export const getApiV1CustomersByIdReviews = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1CustomersByIdReviewsData, ThrowOnError>,
+): RequestResult<GetApiV1CustomersByIdReviewsResponses, GetApiV1CustomersByIdReviewsErrors, ThrowOnError> =>
+  (options.client ?? client).get<
+    GetApiV1CustomersByIdReviewsResponses,
+    GetApiV1CustomersByIdReviewsErrors,
+    ThrowOnError
+  >({
     responseType: "json",
-    url: "/api/v1/Orders/{id}/items",
+    url: "/api/v1/Customers/{id}/reviews",
+    ...options,
+  });
+
+/**
+ * List related refunds for a given order id
+ */
+export const getApiV1OrdersByIdRefunds = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1OrdersByIdRefundsData, ThrowOnError>,
+): RequestResult<GetApiV1OrdersByIdRefundsResponses, GetApiV1OrdersByIdRefundsErrors, ThrowOnError> =>
+  (options.client ?? client).get<GetApiV1OrdersByIdRefundsResponses, GetApiV1OrdersByIdRefundsErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Orders/{id}/refunds",
     ...options,
   });
 
@@ -10705,6 +10619,38 @@ export const getApiV1ProductsByIdReviews = <ThrowOnError extends boolean = false
       ...options,
     },
   );
+
+/**
+ * List related variants for a given product id
+ */
+export const getApiV1ProductsByIdVariants = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdVariantsData, ThrowOnError>,
+): RequestResult<GetApiV1ProductsByIdVariantsResponses, GetApiV1ProductsByIdVariantsErrors, ThrowOnError> =>
+  (options.client ?? client).get<
+    GetApiV1ProductsByIdVariantsResponses,
+    GetApiV1ProductsByIdVariantsErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Products/{id}/variants",
+    ...options,
+  });
+
+/**
+ * List related favorites for a given product id
+ */
+export const getApiV1ProductsByIdFavorites = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1ProductsByIdFavoritesData, ThrowOnError>,
+): RequestResult<GetApiV1ProductsByIdFavoritesResponses, GetApiV1ProductsByIdFavoritesErrors, ThrowOnError> =>
+  (options.client ?? client).get<
+    GetApiV1ProductsByIdFavoritesResponses,
+    GetApiV1ProductsByIdFavoritesErrors,
+    ThrowOnError
+  >({
+    responseType: "json",
+    url: "/api/v1/Products/{id}/favorites",
+    ...options,
+  });
 
 /**
  * List related tasks for a given project id
@@ -10739,6 +10685,18 @@ export const getApiV1WishlistsByIdItems = <ThrowOnError extends boolean = false>
   (options.client ?? client).get<GetApiV1WishlistsByIdItemsResponses, GetApiV1WishlistsByIdItemsErrors, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Wishlists/{id}/items",
+    ...options,
+  });
+
+/**
+ * List related badges for a given user id
+ */
+export const getApiV1UsersByIdBadges = <ThrowOnError extends boolean = false>(
+  options: Options<GetApiV1UsersByIdBadgesData, ThrowOnError>,
+): RequestResult<GetApiV1UsersByIdBadgesResponses, GetApiV1UsersByIdBadgesErrors, ThrowOnError> =>
+  (options.client ?? client).get<GetApiV1UsersByIdBadgesResponses, GetApiV1UsersByIdBadgesErrors, ThrowOnError>({
+    responseType: "json",
+    url: "/api/v1/Users/{id}/badges",
     ...options,
   });
 
@@ -10823,78 +10781,6 @@ export const getApiV1ConversationsByIdMessages = <ThrowOnError extends boolean =
   >({
     responseType: "json",
     url: "/api/v1/Conversations/{id}/messages",
-    ...options,
-  });
-
-/**
- * List related variants for a given product id
- */
-export const getApiV1ProductsByIdVariants = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1ProductsByIdVariantsData, ThrowOnError>,
-): RequestResult<GetApiV1ProductsByIdVariantsResponses, GetApiV1ProductsByIdVariantsErrors, ThrowOnError> =>
-  (options.client ?? client).get<
-    GetApiV1ProductsByIdVariantsResponses,
-    GetApiV1ProductsByIdVariantsErrors,
-    ThrowOnError
-  >({
-    responseType: "json",
-    url: "/api/v1/Products/{id}/variants",
-    ...options,
-  });
-
-/**
- * List related favorites for a given product id
- */
-export const getApiV1ProductsByIdFavorites = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1ProductsByIdFavoritesData, ThrowOnError>,
-): RequestResult<GetApiV1ProductsByIdFavoritesResponses, GetApiV1ProductsByIdFavoritesErrors, ThrowOnError> =>
-  (options.client ?? client).get<
-    GetApiV1ProductsByIdFavoritesResponses,
-    GetApiV1ProductsByIdFavoritesErrors,
-    ThrowOnError
-  >({
-    responseType: "json",
-    url: "/api/v1/Products/{id}/favorites",
-    ...options,
-  });
-
-/**
- * List related badges for a given user id
- */
-export const getApiV1UsersByIdBadges = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1UsersByIdBadgesData, ThrowOnError>,
-): RequestResult<GetApiV1UsersByIdBadgesResponses, GetApiV1UsersByIdBadgesErrors, ThrowOnError> =>
-  (options.client ?? client).get<GetApiV1UsersByIdBadgesResponses, GetApiV1UsersByIdBadgesErrors, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/Users/{id}/badges",
-    ...options,
-  });
-
-/**
- * List related refunds for a given order id
- */
-export const getApiV1OrdersByIdRefunds = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1OrdersByIdRefundsData, ThrowOnError>,
-): RequestResult<GetApiV1OrdersByIdRefundsResponses, GetApiV1OrdersByIdRefundsErrors, ThrowOnError> =>
-  (options.client ?? client).get<GetApiV1OrdersByIdRefundsResponses, GetApiV1OrdersByIdRefundsErrors, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/Orders/{id}/refunds",
-    ...options,
-  });
-
-/**
- * List related reviews for a given customer id
- */
-export const getApiV1CustomersByIdReviews = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1CustomersByIdReviewsData, ThrowOnError>,
-): RequestResult<GetApiV1CustomersByIdReviewsResponses, GetApiV1CustomersByIdReviewsErrors, ThrowOnError> =>
-  (options.client ?? client).get<
-    GetApiV1CustomersByIdReviewsResponses,
-    GetApiV1CustomersByIdReviewsErrors,
-    ThrowOnError
-  >({
-    responseType: "json",
-    url: "/api/v1/Customers/{id}/reviews",
     ...options,
   });
 
@@ -11339,18 +11225,6 @@ export const getApiV1OrdersByIdReturns = <ThrowOnError extends boolean = false>(
   (options.client ?? client).get<GetApiV1OrdersByIdReturnsResponses, GetApiV1OrdersByIdReturnsErrors, ThrowOnError>({
     responseType: "json",
     url: "/api/v1/Orders/{id}/returns",
-    ...options,
-  });
-
-/**
- * List related notes for a given order id
- */
-export const getApiV1OrdersByIdNotes = <ThrowOnError extends boolean = false>(
-  options: Options<GetApiV1OrdersByIdNotesData, ThrowOnError>,
-): RequestResult<GetApiV1OrdersByIdNotesResponses, GetApiV1OrdersByIdNotesErrors, ThrowOnError> =>
-  (options.client ?? client).get<GetApiV1OrdersByIdNotesResponses, GetApiV1OrdersByIdNotesErrors, ThrowOnError>({
-    responseType: "json",
-    url: "/api/v1/Orders/{id}/notes",
     ...options,
   });
 
